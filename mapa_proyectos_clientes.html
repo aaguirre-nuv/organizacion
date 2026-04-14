@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mapa de proyectos por cliente</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: system-ui, sans-serif; background: #fff; color: #1a1a1a; padding: 1.5rem; }
+  .container { max-width: 860px; margin: 0 auto; }
+  h1 { font-size: 18px; font-weight: 500; margin-bottom: 1rem; color: #1a1a1a; }
+  .client-card { background: #fff; border: 0.5px solid rgba(0,0,0,0.15); border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
+  .client-header { display: flex; align-items: center; gap: 10px; padding: 10px 14px; cursor: pointer; border-bottom: 0.5px solid rgba(0,0,0,0.1); }
+  .client-header:hover { background: #f8f8f6; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .client-name { font-size: 15px; font-weight: 500; color: #1a1a1a; flex: 1; }
+  .badge { font-size: 11px; padding: 3px 8px; border-radius: 8px; font-weight: 500; }
+  .badge-red { background: #FCEBEB; color: #A32D2D; }
+  .badge-amber { background: #FAEEDA; color: #854F0B; }
+  .badge-green { background: #EAF3DE; color: #3B6D11; }
+  .badge-gray { background: #F1EFE8; color: #5F5E5A; }
+  .chevron { font-size: 12px; color: #aaa; transition: transform 0.2s; }
+  .chevron.open { transform: rotate(90deg); }
+  .tasks { display: none; }
+  .tasks.open { display: block; }
+  .task-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 8px 14px; border-bottom: 0.5px solid rgba(0,0,0,0.08); }
+  .task-row:last-child { border-bottom: none; }
+  .task-label { font-size: 13px; color: #1a1a1a; }
+  .task-done { font-size: 12px; color: #666; }
+  .section-header { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 6px 14px; background: #f8f8f6; }
+  .section-header span { font-size: 11px; color: #aaa; text-transform: uppercase; letter-spacing: 0.05em; }
+  .toggle-all { font-size: 12px; color: #666; cursor: pointer; text-align: right; padding-bottom: 10px; }
+  .toggle-all:hover { color: #1a1a1a; }
+  .deadline { font-size: 11px; color: #A32D2D; background: #FCEBEB; padding: 2px 6px; border-radius: 8px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Mapa de proyectos por cliente</h1>
+
+  <div style="margin-bottom: 1.5rem;">
+    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom: 10px;">
+      <span style="font-size:13px; font-weight:500; color:#1a1a1a;">Semana 16 — 14 al 18 abril</span>
+      <span style="font-size:11px; color:#aaa;">plan de trabajo</span>
+    </div>
+    <div style="display:grid; grid-template-columns: 80px 1fr 1fr; gap: 0; border: 0.5px solid rgba(0,0,0,0.12); border-radius: 12px; overflow: hidden;">
+      <div style="background:#f8f8f6; padding:6px 10px; font-size:11px; color:#aaa; text-transform:uppercase; letter-spacing:0.05em; border-bottom:0.5px solid rgba(0,0,0,0.08);">día</div>
+      <div style="background:#f8f8f6; padding:6px 10px; font-size:11px; color:#aaa; text-transform:uppercase; letter-spacing:0.05em; border-bottom:0.5px solid rgba(0,0,0,0.08);">foco</div>
+      <div style="background:#f8f8f6; padding:6px 10px; font-size:11px; color:#aaa; text-transform:uppercase; letter-spacing:0.05em; border-bottom:0.5px solid rgba(0,0,0,0.08);">tarea concreta</div>
+
+      <div style="padding:8px 10px; font-size:13px; font-weight:500; color:#1a1a1a; border-bottom:0.5px solid rgba(0,0,0,0.06);">Martes<br><span style="font-size:11px; font-weight:400; color:#aaa;">14 abr</span></div>
+      <div style="padding:8px 10px; border-bottom:0.5px solid rgba(0,0,0,0.06);"><span style="font-size:11px; padding:2px 7px; border-radius:6px; background:#FAEEDA; color:#854F0B;">Central (tío)</span><br><span style="font-size:12px; color:#666; margin-top:4px; display:block;">+ tarde: Atitlán</span></div>
+      <div style="padding:8px 10px; font-size:12px; color:#444; border-bottom:0.5px solid rgba(0,0,0,0.06);">Consulta SAGE (~30 min) → resto tarde liquidaciones</div>
+
+      <div style="padding:8px 10px; font-size:13px; font-weight:500; color:#1a1a1a; border-bottom:0.5px solid rgba(0,0,0,0.06);">Miércoles<br><span style="font-size:11px; font-weight:400; color:#aaa;">15 abr</span></div>
+      <div style="padding:8px 10px; border-bottom:0.5px solid rgba(0,0,0,0.06);"><span style="font-size:11px; padding:2px 7px; border-radius:6px; background:#FCEBEB; color:#A32D2D;">La Razón</span></div>
+      <div style="padding:8px 10px; font-size:12px; color:#444; border-bottom:0.5px solid rgba(0,0,0,0.06);">Ajustes flujos carga nóminas (antes de reunión del viernes)</div>
+
+      <div style="padding:8px 10px; font-size:13px; font-weight:500; color:#1a1a1a; border-bottom:0.5px solid rgba(0,0,0,0.06);">Jueves<br><span style="font-size:11px; font-weight:400; color:#aaa;">16 abr</span></div>
+      <div style="padding:8px 10px; border-bottom:0.5px solid rgba(0,0,0,0.06);"><span style="font-size:11px; padding:2px 7px; border-radius:6px; background:#E1F5EE; color:#0F6E56;">Velasco</span><br><span style="font-size:11px; color:#aaa; display:block; margin-top:3px;">post CSC Torrejón</span></div>
+      <div style="padding:8px 10px; font-size:12px; color:#444; border-bottom:0.5px solid rgba(0,0,0,0.06);">Flujo contactos inactivos + renombrado archivos (último paso)</div>
+
+      <div style="padding:8px 10px; font-size:13px; font-weight:500; color:#1a1a1a; border-bottom:0.5px solid rgba(0,0,0,0.06);">Viernes<br><span style="font-size:11px; font-weight:400; color:#aaa;">17 abr</span></div>
+      <div style="padding:8px 10px; border-bottom:0.5px solid rgba(0,0,0,0.06);"><span style="font-size:11px; padding:2px 7px; border-radius:6px; background:#FCEBEB; color:#A32D2D;">La Razón</span></div>
+      <div style="padding:8px 10px; font-size:12px; color:#444; border-bottom:0.5px solid rgba(0,0,0,0.06);">Reunión revisión flujos nóminas</div>
+
+      <div style="padding:8px 10px; font-size:13px; font-weight:500; color:#1a1a1a;">Fin de semana<br><span style="font-size:11px; font-weight:400; color:#aaa;">18-19 abr</span></div>
+      <div style="padding:8px 10px;"><span style="font-size:11px; padding:2px 7px; border-radius:6px; background:#FCEBEB; color:#A32D2D;">Fisiodrid 🔴</span></div>
+      <div style="padding:8px 10px; font-size:12px; color:#444;">Modelo BI Sanitas — cerrar antes del 25</div>
+    </div>
+    <div style="margin-top:8px; font-size:11px; color:#aaa;">BestMedia: toque enviado, en espera de respuesta.</div>
+  </div>
+
+  <div class="toggle-all" onclick="toggleAll()">expandir todo ▾</div>
+
+  <div class="client-card">
+    <div class="client-header" onclick="toggle('fisiodrid')">
+      <div class="dot" style="background:#E24B4A;"></div>
+      <span class="client-name">Fisiodrid</span>
+      <span class="deadline">25 abril</span>
+      <span class="badge badge-red">urgente</span>
+      <span class="chevron" id="chev-fisiodrid">▶</span>
+    </div>
+    <div class="tasks" id="tasks-fisiodrid">
+      <div class="section-header"><span>tema</span><span>done cuando</span></div>
+      <div class="task-row"><div class="task-label">Modelo BI facturación Sanitas</div><div class="task-done">Usuario identifica facturas correctas, errores y puede resolverlos</div></div>
+    </div>
+  </div>
+
+  <div class="client-card">
+    <div class="client-header" onclick="toggle('atitlan')">
+      <div class="dot" style="background:#D4537E;"></div>
+      <span class="client-name">Atitlán</span>
+      <span class="deadline">~15 mayo</span>
+      <span class="badge badge-red">en curso</span>
+      <span class="chevron" id="chev-atitlan">▶</span>
+    </div>
+    <div class="tasks" id="tasks-atitlan">
+      <div class="section-header"><span>tema</span><span>done cuando</span></div>
+      <div class="task-row"><div class="task-label">Flujo borrador liquidaciones</div><div class="task-done">Se genera y notifica al usuario interno</div></div>
+      <div class="task-row"><div class="task-label">Flujo aprobación y envío liquidaciones</div><div class="task-done">Se ejecuta y envía correo al inversor</div></div>
+      <div class="task-row"><div class="task-label">Proceso rebalanceo</div><div class="task-done">Flujo end-to-end correcto</div></div>
+      <div class="task-row"><div class="task-label">Notificación rebalanceo</div><div class="task-done">Flujo completo correcto</div></div>
+      <div class="task-row"><div class="task-label">Power BI Atitlán → ATGR0</div><div class="task-done">Modelo operativo en tenant destino</div></div>
+      <div class="task-row"><div class="task-label">Power BI externo → ATGR0</div><div class="task-done">Modelo disponible y funcional en ATGR0</div></div>
+      <div class="task-row"><div class="task-label">Validación de datos (model-driven app)</div><div class="task-done">Usuarios ven, filtran y modifican datos autónomamente</div></div>
+      <div class="task-row"><div class="task-label">Gestión de usuarios y grupos de seguridad</div><div class="task-done">Todos los perfiles de acceso definidos y operativos</div></div>
+    </div>
+  </div>
+
+  <div class="client-card">
+    <div class="client-header" onclick="toggle('velasco')">
+      <div class="dot" style="background:#1D9E75;"></div>
+      <span class="client-name">Velasco Abogados</span>
+      <span class="badge badge-amber">cerca del fin</span>
+      <span class="chevron" id="chev-velasco">▶</span>
+    </div>
+    <div class="tasks" id="tasks-velasco">
+      <div class="section-header"><span>tema</span><span>done cuando</span></div>
+      <div class="task-row"><div class="task-label">Migración documentos (expedientes y clientes)</div><div class="task-done">BI no muestra ningún archivo pendiente</div></div>
+      <div class="task-row"><div class="task-label">Contactos inactivos Sage</div><div class="task-done">Flujo diario operativo, registros actualizados</div></div>
+      <div class="task-row"><div class="task-label">Cargos con fechas inicio/fin</div><div class="task-done">Todos los contactos con cargos y fechas cargadas</div></div>
+      <div class="task-row"><div class="task-label">Formación equipo laboral (4 personas)</div><div class="task-done">4 sesiones de 45 min completadas</div></div>
+      <div class="task-row"><div class="task-label">Tabla de contratos</div><div class="task-done">A definir — mejora futura</div></div>
+    </div>
+  </div>
+
+  <div class="client-card">
+    <div class="client-header" onclick="toggle('bestmedia')">
+      <div class="dot" style="background:#378ADD;"></div>
+      <span class="client-name">BestMedia</span>
+      <span class="badge badge-amber">reactivar</span>
+      <span class="chevron" id="chev-bestmedia">▶</span>
+    </div>
+    <div class="tasks" id="tasks-bestmedia">
+      <div class="section-header"><span>tema</span><span>done cuando</span></div>
+      <div class="task-row"><div class="task-label">Proceso ClickUp — costes</div><div class="task-done">Flujo operativo, costes registrándose correctamente</div></div>
+      <div class="task-row"><div class="task-label">Notificación estado POs</div><div class="task-done">Sin dependencia de Google Sheet, en plataforma propia</div></div>
+      <div class="task-row"><div class="task-label">Generación de facturas desde Power Apps</div><div class="task-done">Usuario genera factura sin replicar datos manualmente</div></div>
+    </div>
+  </div>
+
+  <div class="client-card">
+    <div class="client-header" onclick="toggle('articulo14')">
+      <div class="dot" style="background:#7F77DD;"></div>
+      <span class="client-name">Artículo 14</span>
+      <span class="badge badge-amber">en curso</span>
+      <span class="chevron" id="chev-articulo14">▶</span>
+    </div>
+    <div class="tasks" id="tasks-articulo14">
+      <div class="section-header"><span>tema</span><span>done cuando</span></div>
+      <div class="task-row"><div class="task-label">Informes Power BI (artículos, audiencia, costes)</div><div class="task-done">Inversor accede y ve la información correctamente</div></div>
+      <div class="task-row"><div class="task-label">BBDD contactos + Customer Insights</div><div class="task-done">Contactos migrados, creables, clasificados correctamente</div></div>
+      <div class="task-row"><div class="task-label">Gestión contactos-eventos</div><div class="task-done">Cruce contacto-evento registrado y consultable</div></div>
+      <div class="task-row"><div class="task-label">Modelo de audiencias</div><div class="task-done">Reporte actualizado automáticamente</div></div>
+      <div class="task-row"><div class="task-label">Modelo financiero — visual HTML</div><div class="task-done">Visual HTML operativo en informe financiero</div></div>
+    </div>
+  </div>
+
+  <div class="client-card">
+    <div class="client-header" onclick="toggle('larazon')">
+      <div class="dot" style="background:#E24B4A;"></div>
+      <span class="client-name">La Razón</span>
+      <span class="badge badge-green">sin urgencia</span>
+      <span class="chevron" id="chev-larazon">▶</span>
+    </div>
+    <div class="tasks" id="tasks-larazon">
+      <div class="section-header"><span>tema</span><span>done cuando</span></div>
+      <div class="task-row"><div class="task-label">Flujos carga nóminas Planeta</div><div class="task-done">Usuario sube ficheros, flujos cargan datos en ambas tablas</div></div>
+      <div class="task-row"><div class="task-label">Modelo Power BI nóminas</div><div class="task-done">Modelo publicado y navegable</div></div>
+      <div class="task-row"><div class="task-label">Canvas App gestión nóminas</div><div class="task-done">A definir en fase posterior</div></div>
+    </div>
+  </div>
+
+  <div class="client-card">
+    <div class="client-header" onclick="toggle('dasme')">
+      <div class="dot" style="background:#BA7517;"></div>
+      <span class="client-name">Dasme Control</span>
+      <span class="badge badge-gray">bloqueado</span>
+      <span class="chevron" id="chev-dasme">▶</span>
+    </div>
+    <div class="tasks" id="tasks-dasme">
+      <div class="section-header"><span>tema</span><span>done cuando</span></div>
+      <div class="task-row"><div class="task-label">Conexión Telegram → Dataverse/Excel</div><div class="task-done">Avisos llegan automáticamente a tabla sin intervención manual</div></div>
+    </div>
+  </div>
+
+</div>
+<script>
+let allOpen = false;
+function toggle(id) {
+  const tasks = document.getElementById('tasks-' + id);
+  const chev = document.getElementById('chev-' + id);
+  tasks.classList.toggle('open');
+  chev.classList.toggle('open');
+}
+function toggleAll() {
+  const clients = ['fisiodrid','atitlan','velasco','bestmedia','articulo14','larazon','dasme'];
+  allOpen = !allOpen;
+  clients.forEach(id => {
+    const tasks = document.getElementById('tasks-' + id);
+    const chev = document.getElementById('chev-' + id);
+    if (allOpen) { tasks.classList.add('open'); chev.classList.add('open'); }
+    else { tasks.classList.remove('open'); chev.classList.remove('open'); }
+  });
+  document.querySelector('.toggle-all').textContent = allOpen ? 'colapsar todo ▴' : 'expandir todo ▾';
+}
+</script>
+</body>
+</html>
