@@ -36,42 +36,127 @@
 </head>
 <body>
 <div class="container">
-  <h1>Mapa de proyectos por cliente</h1>
+  <h1>Planificación semanal + mapa de proyectos</h1>
 
-  <div style="margin-bottom: 1.5rem;">
-    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom: 10px;">
-      <span style="font-size:13px; font-weight:500; color:#1a1a1a;">Semana 16 — 14 al 18 abril</span>
-      <span style="font-size:11px; color:#aaa;">plan de trabajo</span>
+  <!-- HOY -->
+  <div style="margin-bottom:1.5rem; background:#FAEEDA; border-radius:12px; padding:14px 16px; border:0.5px solid #FAC775;">
+    <div style="font-size:11px; color:#854F0B; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:8px;">Hoy — miércoles 15 de abril</div>
+    <div style="display:flex; flex-direction:column; gap:8px;">
+      <div style="display:flex; align-items:flex-start; gap:10px;">
+        <span style="font-size:11px; background:#fff; color:#854F0B; border-radius:6px; padding:2px 7px; white-space:nowrap; margin-top:1px;">mañana</span>
+        <div>
+          <span style="font-size:13px; font-weight:500; color:#1a1a1a;">La Razón</span>
+          <span style="font-size:12px; color:#666; margin-left:6px;">Ajustes flujos carga nóminas — antes de la reunión del viernes</span>
+        </div>
+      </div>
+      <div style="display:flex; align-items:flex-start; gap:10px;">
+        <span style="font-size:11px; background:#fff; color:#854F0B; border-radius:6px; padding:2px 7px; white-space:nowrap; margin-top:1px;">mediodía</span>
+        <div>
+          <span style="font-size:13px; font-weight:500; color:#1a1a1a;">Velasco</span>
+          <span style="font-size:12px; color:#666; margin-left:6px;">Rematar renombrado de archivos al cambiar título en CRM — urgente, en producción</span>
+        </div>
+      </div>
+      <div style="display:flex; align-items:flex-start; gap:10px;">
+        <span style="font-size:11px; background:#fff; color:#854F0B; border-radius:6px; padding:2px 7px; white-space:nowrap; margin-top:1px;">tarde</span>
+        <div>
+          <span style="font-size:13px; font-weight:500; color:#1a1a1a;">Atitlán</span>
+          <span style="font-size:12px; color:#666; margin-left:6px;">Liquidaciones — continuar lo de ayer</span>
+        </div>
+      </div>
     </div>
-    <div style="display:grid; grid-template-columns: 80px 1fr 1fr; gap: 0; border: 0.5px solid rgba(0,0,0,0.12); border-radius: 12px; overflow: hidden;">
+  </div>
+
+  <!-- SEMANA 16 -->
+  <div style="margin-bottom:1.5rem;">
+    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
+      <span style="font-size:13px; font-weight:500; color:#1a1a1a;">Semana 16 — 14 al 19 abril</span>
+      <span style="font-size:11px; color:#aaa;">resumen</span>
+    </div>
+    <div style="display:grid; grid-template-columns: 90px 1fr 1fr; gap:0; border:0.5px solid rgba(0,0,0,0.12); border-radius:12px; overflow:hidden;">
       <div style="background:#f8f8f6; padding:6px 10px; font-size:11px; color:#aaa; text-transform:uppercase; letter-spacing:0.05em; border-bottom:0.5px solid rgba(0,0,0,0.08);">día</div>
-      <div style="background:#f8f8f6; padding:6px 10px; font-size:11px; color:#aaa; text-transform:uppercase; letter-spacing:0.05em; border-bottom:0.5px solid rgba(0,0,0,0.08);">foco</div>
-      <div style="background:#f8f8f6; padding:6px 10px; font-size:11px; color:#aaa; text-transform:uppercase; letter-spacing:0.05em; border-bottom:0.5px solid rgba(0,0,0,0.08);">tarea concreta</div>
+      <div style="background:#f8f8f6; padding:6px 10px; font-size:11px; color:#aaa; text-transform:uppercase; letter-spacing:0.05em; border-bottom:0.5px solid rgba(0,0,0,0.08);">cliente</div>
+      <div style="background:#f8f8f6; padding:6px 10px; font-size:11px; color:#aaa; text-transform:uppercase; letter-spacing:0.05em; border-bottom:0.5px solid rgba(0,0,0,0.08);">tarea</div>
 
-      <div style="padding:8px 10px; font-size:13px; font-weight:500; color:#1a1a1a; border-bottom:0.5px solid rgba(0,0,0,0.06);">Martes<br><span style="font-size:11px; font-weight:400; color:#aaa;">14 abr</span></div>
-      <div style="padding:8px 10px; border-bottom:0.5px solid rgba(0,0,0,0.06);"><span style="font-size:11px; padding:2px 7px; border-radius:6px; background:#FAEEDA; color:#854F0B;">Central (tío)</span><br><span style="font-size:12px; color:#666; margin-top:4px; display:block;">+ tarde: Atitlán</span></div>
-      <div style="padding:8px 10px; font-size:12px; color:#444; border-bottom:0.5px solid rgba(0,0,0,0.06);">Consulta SAGE (~30 min) → resto tarde liquidaciones</div>
+      <div style="padding:8px 10px; font-size:12px; font-weight:500; color:#1a1a1a; border-bottom:0.5px solid rgba(0,0,0,0.06);">Mar 14</div>
+      <div style="padding:8px 10px; border-bottom:0.5px solid rgba(0,0,0,0.06);"><span style="font-size:11px; padding:2px 7px; border-radius:6px; background:#FAEEDA; color:#854F0B;">Central</span></div>
+      <div style="padding:8px 10px; font-size:12px; color:#444; border-bottom:0.5px solid rgba(0,0,0,0.06);">Consulta SAGE — resuelto ✓</div>
 
-      <div style="padding:8px 10px; font-size:13px; font-weight:500; color:#1a1a1a; border-bottom:0.5px solid rgba(0,0,0,0.06);">Miércoles<br><span style="font-size:11px; font-weight:400; color:#aaa;">15 abr</span></div>
-      <div style="padding:8px 10px; border-bottom:0.5px solid rgba(0,0,0,0.06);"><span style="font-size:11px; padding:2px 7px; border-radius:6px; background:#FCEBEB; color:#A32D2D;">La Razón</span></div>
-      <div style="padding:8px 10px; font-size:12px; color:#444; border-bottom:0.5px solid rgba(0,0,0,0.06);">Ajustes flujos carga nóminas (antes de reunión del viernes)</div>
+      <div style="padding:8px 10px; font-size:12px; font-weight:500; color:#1a1a1a; border-bottom:0.5px solid rgba(0,0,0,0.06);">Mié 15</div>
+      <div style="padding:8px 10px; border-bottom:0.5px solid rgba(0,0,0,0.06); display:flex; flex-direction:column; gap:4px;">
+        <span style="font-size:11px; padding:2px 7px; border-radius:6px; background:#FCEBEB; color:#A32D2D; width:fit-content;">La Razón</span>
+        <span style="font-size:11px; padding:2px 7px; border-radius:6px; background:#E1F5EE; color:#0F6E56; width:fit-content;">Velasco</span>
+        <span style="font-size:11px; padding:2px 7px; border-radius:6px; background:#FBEAF0; color:#72243E; width:fit-content;">Atitlán</span>
+      </div>
+      <div style="padding:8px 10px; font-size:12px; color:#444; border-bottom:0.5px solid rgba(0,0,0,0.06);">Flujos nóminas / Renombrado archivos CRM / Liquidaciones</div>
 
-      <div style="padding:8px 10px; font-size:13px; font-weight:500; color:#1a1a1a; border-bottom:0.5px solid rgba(0,0,0,0.06);">Jueves<br><span style="font-size:11px; font-weight:400; color:#aaa;">16 abr</span></div>
-      <div style="padding:8px 10px; border-bottom:0.5px solid rgba(0,0,0,0.06);"><span style="font-size:11px; padding:2px 7px; border-radius:6px; background:#E1F5EE; color:#0F6E56;">Velasco</span><br><span style="font-size:11px; color:#aaa; display:block; margin-top:3px;">post CSC Torrejón</span></div>
-      <div style="padding:8px 10px; font-size:12px; color:#444; border-bottom:0.5px solid rgba(0,0,0,0.06);">Flujo contactos inactivos + renombrado archivos (último paso)</div>
+      <div style="padding:8px 10px; font-size:12px; font-weight:500; color:#1a1a1a; border-bottom:0.5px solid rgba(0,0,0,0.06);">Jue 16</div>
+      <div style="padding:8px 10px; border-bottom:0.5px solid rgba(0,0,0,0.06); display:flex; flex-direction:column; gap:4px;"><span style="font-size:11px; padding:2px 7px; border-radius:6px; background:#E1F5EE; color:#0F6E56; width:fit-content;">Velasco</span><span style="font-size:11px; padding:2px 7px; border-radius:6px; background:#EEEDFE; color:#3C3489; width:fit-content;">Vibe Coding</span></div>
+      <div style="padding:8px 10px; font-size:12px; color:#444; border-bottom:0.5px solid rgba(0,0,0,0.06);">Flujo contactos inactivos Sage (post CSC) + webinar IA en Power BI con Vibe Coding — Climbea 16h</div>
 
-      <div style="padding:8px 10px; font-size:13px; font-weight:500; color:#1a1a1a; border-bottom:0.5px solid rgba(0,0,0,0.06);">Viernes<br><span style="font-size:11px; font-weight:400; color:#aaa;">17 abr</span></div>
-      <div style="padding:8px 10px; border-bottom:0.5px solid rgba(0,0,0,0.06);"><span style="font-size:11px; padding:2px 7px; border-radius:6px; background:#FCEBEB; color:#A32D2D;">La Razón</span></div>
-      <div style="padding:8px 10px; font-size:12px; color:#444; border-bottom:0.5px solid rgba(0,0,0,0.06);">Reunión revisión flujos nóminas</div>
+      <div style="padding:8px 10px; font-size:12px; font-weight:500; color:#1a1a1a; border-bottom:0.5px solid rgba(0,0,0,0.06);">Vie 17</div>
+      <div style="padding:8px 10px; border-bottom:0.5px solid rgba(0,0,0,0.06); display:flex; flex-direction:column; gap:4px;"><span style="font-size:11px; padding:2px 7px; border-radius:6px; background:#FCEBEB; color:#A32D2D; width:fit-content;">La Razón</span><span style="font-size:11px; padding:2px 7px; border-radius:6px; background:#EEEDFE; color:#3C3489; width:fit-content;">Vibe Coding</span></div>
+      <div style="padding:8px 10px; font-size:12px; color:#444; border-bottom:0.5px solid rgba(0,0,0,0.06);">Reunión revisión flujos nóminas + bloque 1h Vibe Coding si termina pronto</div>
 
-      <div style="padding:8px 10px; font-size:13px; font-weight:500; color:#1a1a1a;">Fin de semana<br><span style="font-size:11px; font-weight:400; color:#aaa;">18-19 abr</span></div>
-      <div style="padding:8px 10px;"><span style="font-size:11px; padding:2px 7px; border-radius:6px; background:#FCEBEB; color:#A32D2D;">Fisiodrid 🔴</span></div>
+      <div style="padding:8px 10px; font-size:12px; font-weight:500; color:#1a1a1a;">Fin semana</div>
+      <div style="padding:8px 10px;"><span style="font-size:11px; padding:2px 7px; border-radius:6px; background:#FCEBEB; color:#A32D2D;">Fisiodrid</span></div>
       <div style="padding:8px 10px; font-size:12px; color:#444;">Modelo BI Sanitas — cerrar antes del 25</div>
     </div>
-    <div style="margin-top:8px; font-size:11px; color:#aaa;">BestMedia: toque enviado, en espera de respuesta.</div>
+    <div style="margin-top:6px; font-size:11px; color:#aaa;">BestMedia: toque enviado, en espera de respuesta sobre ClickUp.</div>
+  </div>
+
+  <!-- SEMANA 17 -->
+  <div style="margin-bottom:1.5rem;">
+    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
+      <span style="font-size:13px; font-weight:500; color:#1a1a1a;">Semana 17 — 20 al 26 abril</span>
+      <span style="font-size:11px; color:#aaa;">planificado</span>
+    </div>
+    <div style="display:grid; grid-template-columns: 90px 1fr 1fr; gap:0; border:0.5px solid rgba(0,0,0,0.12); border-radius:12px; overflow:hidden;">
+      <div style="background:#f8f8f6; padding:6px 10px; font-size:11px; color:#aaa; text-transform:uppercase; letter-spacing:0.05em; border-bottom:0.5px solid rgba(0,0,0,0.08);">día</div>
+      <div style="background:#f8f8f6; padding:6px 10px; font-size:11px; color:#aaa; text-transform:uppercase; letter-spacing:0.05em; border-bottom:0.5px solid rgba(0,0,0,0.08);">cliente</div>
+      <div style="background:#f8f8f6; padding:6px 10px; font-size:11px; color:#aaa; text-transform:uppercase; letter-spacing:0.05em; border-bottom:0.5px solid rgba(0,0,0,0.08);">tarea</div>
+
+      <div style="padding:8px 10px; font-size:12px; font-weight:500; color:#1a1a1a; border-bottom:0.5px solid rgba(0,0,0,0.06);">Lun 20</div>
+      <div style="padding:8px 10px; border-bottom:0.5px solid rgba(0,0,0,0.06);"><span style="font-size:11px; padding:2px 7px; border-radius:6px; background:#FBEAF0; color:#72243E;">Atitlán</span></div>
+      <div style="padding:8px 10px; font-size:12px; color:#444; border-bottom:0.5px solid rgba(0,0,0,0.06);">Preparar reunión del martes — estado liquidaciones, bloqueos</div>
+
+      <div style="padding:8px 10px; font-size:12px; font-weight:500; color:#1a1a1a; border-bottom:0.5px solid rgba(0,0,0,0.06);">Mar 21</div>
+      <div style="padding:8px 10px; border-bottom:0.5px solid rgba(0,0,0,0.06);"><span style="font-size:11px; padding:2px 7px; border-radius:6px; background:#FBEAF0; color:#72243E;">Atitlán</span></div>
+      <div style="padding:8px 10px; font-size:12px; color:#444; border-bottom:0.5px solid rgba(0,0,0,0.06);">Reunión (11h) + tarde: avanzar según lo que salga</div>
+
+      <div style="padding:8px 10px; font-size:12px; font-weight:500; color:#1a1a1a; border-bottom:0.5px solid rgba(0,0,0,0.06);">Mié 22</div>
+      <div style="padding:8px 10px; border-bottom:0.5px solid rgba(0,0,0,0.06);"><span style="font-size:11px; padding:2px 7px; border-radius:6px; background:#FCEBEB; color:#A32D2D;">Fisiodrid</span></div>
+      <div style="padding:8px 10px; font-size:12px; color:#444; border-bottom:0.5px solid rgba(0,0,0,0.06);">Último empujón modelo BI Sanitas (deadline jue 25)</div>
+
+      <div style="padding:8px 10px; font-size:12px; font-weight:500; color:#1a1a1a; border-bottom:0.5px solid rgba(0,0,0,0.06);">Jue 23</div>
+      <div style="padding:8px 10px; border-bottom:0.5px solid rgba(0,0,0,0.06);"><span style="font-size:11px; padding:2px 7px; border-radius:6px; background:#E1F5EE; color:#0F6E56;">Velasco</span></div>
+      <div style="padding:8px 10px; font-size:12px; color:#444; border-bottom:0.5px solid rgba(0,0,0,0.06);">4 formaciones equipo laboral × 45 min</div>
+
+      <div style="padding:8px 10px; font-size:12px; font-weight:500; color:#1a1a1a;">Vie 24</div>
+      <div style="padding:8px 10px; display:flex; flex-direction:column; gap:4px;"><span style="font-size:11px; padding:2px 7px; border-radius:6px; background:#FBEAF0; color:#72243E; width:fit-content;">Atitlán</span><span style="font-size:11px; padding:2px 7px; border-radius:6px; background:#EEEDFE; color:#3C3489; width:fit-content;">Vibe Coding</span></div>
+      <div style="padding:8px 10px; font-size:12px; color:#444;">Bloque técnico Atitlán (mañana) + bloque 1h Vibe Coding (tarde) — día más libre de la semana</div>
+    </div>
+    <div style="margin-top:6px; font-size:11px; color:#aaa;">BestMedia: si llega respuesta de ClickUp antes del viernes, se mete un hueco corto donde encaje.</div>
+  </div>
+
+  <div style="border-top:0.5px solid rgba(0,0,0,0.1); margin-bottom:1.5rem; padding-top:1.5rem;">
+    <h2 style="font-size:15px; font-weight:500; margin-bottom:10px; color:#1a1a1a;">Mapa de proyectos por cliente</h2>
   </div>
 
   <div class="toggle-all" onclick="toggleAll()">expandir todo ▾</div>
+
+  <div class="client-card">
+    <div class="client-header" onclick="toggle('formacion')">
+      <div class="dot" style="background:#7F77DD;"></div>
+      <span class="client-name">Formación propia</span>
+      <span class="badge" style="background:#EEEDFE; color:#3C3489;">inversión</span>
+      <span class="chevron" id="chev-formacion">▶</span>
+    </div>
+    <div class="tasks" id="tasks-formacion">
+      <div class="section-header"><span>tema</span><span>done cuando</span></div>
+      <div class="task-row"><div class="task-label">Vibe Coding — IA aplicada a Power BI y desarrollo</div><div class="task-done">Capaz de generar y adaptar código con IA de forma autónoma y documentada</div></div>
+      <div class="task-row"><div class="task-label">Code Apps en Power Apps</div><div class="task-done">Capaz de construir una Canvas App completa desde cero (Dasme como primer caso real)</div></div>
+    </div>
+  </div>
 
   <div class="client-card">
     <div class="client-header" onclick="toggle('fisiodrid')">
@@ -195,7 +280,7 @@ function toggle(id) {
   chev.classList.toggle('open');
 }
 function toggleAll() {
-  const clients = ['fisiodrid','atitlan','velasco','bestmedia','articulo14','larazon','dasme'];
+  const clients = ['formacion','fisiodrid','atitlan','velasco','bestmedia','articulo14','larazon','dasme'];
   allOpen = !allOpen;
   clients.forEach(id => {
     const tasks = document.getElementById('tasks-' + id);
