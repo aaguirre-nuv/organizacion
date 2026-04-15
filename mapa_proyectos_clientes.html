@@ -207,6 +207,7 @@
       <div class="task-row"><div class="task-label">Cargos con fechas inicio/fin</div><div class="task-done">Todos los contactos con cargos y fechas cargadas</div></div>
       <div class="task-row"><div class="task-label">Formación equipo laboral (4 personas)</div><div class="task-done">4 sesiones de 45 min completadas</div></div>
       <div class="task-row"><div class="task-label">Tabla de contratos</div><div class="task-done">A definir — mejora futura</div></div>
+      <div class="task-row"><div class="task-label">Power BI financiero — P&amp;G trimestral</div><div class="task-done">Asignación de cuentas a bloques de P&amp;G revisada y modelo mostrando resultados trimestrales correctos</div></div>
     </div>
   </div>
 
@@ -290,6 +291,24 @@ function toggleAll() {
   });
   document.querySelector('.toggle-all').textContent = allOpen ? 'colapsar todo ▴' : 'expandir todo ▾';
 }
+</script>
+
+<div style="position:sticky; bottom:1.5rem; text-align:right; pointer-events:none;">
+  <a id="chat-link" href="https://claude.ai" target="_blank" style="pointer-events:all; display:inline-flex; align-items:center; gap:8px; background:#534AB7; color:#fff; font-size:13px; font-weight:500; padding:10px 16px; border-radius:999px; text-decoration:none; box-shadow:0 2px 8px rgba(83,74,183,0.3);">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+    Abrir chat con Álvaro
+  </a>
+</div>
+<script>
+  const savedUrl = localStorage.getItem('chat_url');
+  if (savedUrl) document.getElementById('chat-link').href = savedUrl;
+  document.getElementById('chat-link').addEventListener('click', function(e) {
+    const url = prompt('Pega aquí la URL de tu chat con Claude (se guardará para siempre):', this.href);
+    if (url && url.startsWith('http')) {
+      localStorage.setItem('chat_url', url);
+      this.href = url;
+    }
+  });
 </script>
 </body>
 </html>
