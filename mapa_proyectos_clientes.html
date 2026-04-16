@@ -3,313 +3,349 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mapa de proyectos por cliente</title>
+<title>Planificación Álvaro</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: system-ui, sans-serif; background: #fff; color: #1a1a1a; padding: 1.5rem; }
-  .container { max-width: 860px; margin: 0 auto; }
-  h1 { font-size: 18px; font-weight: 500; margin-bottom: 1rem; color: #1a1a1a; }
-  .client-card { background: #fff; border: 0.5px solid rgba(0,0,0,0.15); border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
-  .client-header { display: flex; align-items: center; gap: 10px; padding: 10px 14px; cursor: pointer; border-bottom: 0.5px solid rgba(0,0,0,0.1); }
-  .client-header:hover { background: #f8f8f6; }
-  .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-  .client-name { font-size: 15px; font-weight: 500; color: #1a1a1a; flex: 1; }
-  .badge { font-size: 11px; padding: 3px 8px; border-radius: 8px; font-weight: 500; }
-  .badge-red { background: #FCEBEB; color: #A32D2D; }
-  .badge-amber { background: #FAEEDA; color: #854F0B; }
-  .badge-green { background: #EAF3DE; color: #3B6D11; }
-  .badge-gray { background: #F1EFE8; color: #5F5E5A; }
-  .chevron { font-size: 12px; color: #aaa; transition: transform 0.2s; }
-  .chevron.open { transform: rotate(90deg); }
-  .tasks { display: none; }
-  .tasks.open { display: block; }
-  .task-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 8px 14px; border-bottom: 0.5px solid rgba(0,0,0,0.08); }
-  .task-row:last-child { border-bottom: none; }
-  .task-label { font-size: 13px; color: #1a1a1a; }
-  .task-done { font-size: 12px; color: #666; }
-  .section-header { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 6px 14px; background: #f8f8f6; }
-  .section-header span { font-size: 11px; color: #aaa; text-transform: uppercase; letter-spacing: 0.05em; }
-  .toggle-all { font-size: 12px; color: #666; cursor: pointer; text-align: right; padding-bottom: 10px; }
-  .toggle-all:hover { color: #1a1a1a; }
-  .deadline { font-size: 11px; color: #A32D2D; background: #FCEBEB; padding: 2px 6px; border-radius: 8px; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: system-ui, sans-serif; background: #f8f8f6; color: #1a1a1a; padding: 1.5rem; }
+.container { max-width: 860px; margin: 0 auto; }
+h1 { font-size: 18px; font-weight: 500; margin-bottom: 1.5rem; color: #1a1a1a; }
+h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
+.tabs { display: flex; gap: 6px; margin-bottom: 1.5rem; }
+.tab { font-size: 13px; padding: 6px 14px; border-radius: 999px; border: 0.5px solid rgba(0,0,0,0.15); cursor: pointer; background: #fff; color: #666; }
+.tab.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
+.section { display: none; }
+.section.active { display: block; }
+.hoy-card { background: #FAEEDA; border-radius: 12px; padding: 14px 16px; border: 0.5px solid #FAC775; margin-bottom: 1.5rem; }
+.hoy-label { font-size: 11px; color: #854F0B; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 10px; }
+.hoy-row { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
+.hoy-row:last-child { margin-bottom: 0; }
+.hoy-time { font-size: 11px; background: #fff; color: #854F0B; border-radius: 6px; padding: 2px 7px; white-space: nowrap; margin-top: 1px; }
+.hoy-titulo { font-size: 13px; font-weight: 500; color: #1a1a1a; }
+.hoy-desc { font-size: 12px; color: #666; margin-left: 6px; }
+.hoy-footer { margin-top: 10px; padding-top: 10px; border-top: 0.5px solid #FAC775; font-size: 12px; color: #854F0B; }
+.semana-grid { display: grid; grid-template-columns: 90px 1fr 1fr; border: 0.5px solid rgba(0,0,0,0.12); border-radius: 12px; overflow: hidden; margin-bottom: 6px; background: #fff; }
+.semana-header { background: #f8f8f6; padding: 6px 10px; font-size: 11px; color: #aaa; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 0.5px solid rgba(0,0,0,0.08); }
+.semana-cell { padding: 8px 10px; font-size: 12px; color: #444; border-bottom: 0.5px solid rgba(0,0,0,0.05); }
+.semana-cell:nth-last-child(-n+3) { border-bottom: none; }
+.semana-dia { font-weight: 500; color: #1a1a1a; font-size: 12px; }
+.semana-note { font-size: 11px; color: #aaa; margin-bottom: 1.5rem; padding: 0 2px; }
+.pill { font-size: 11px; padding: 2px 7px; border-radius: 6px; display: inline-block; margin: 1px 2px 1px 0; }
+.client-card { background: #fff; border: 0.5px solid rgba(0,0,0,0.12); border-radius: 12px; margin-bottom: 10px; overflow: hidden; }
+.client-header { display: flex; align-items: center; gap: 10px; padding: 10px 14px; cursor: pointer; }
+.client-header:hover { background: #f8f8f6; }
+.dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.client-name { font-size: 14px; font-weight: 500; color: #1a1a1a; flex: 1; }
+.badge { font-size: 11px; padding: 2px 8px; border-radius: 6px; font-weight: 500; }
+.badge-red { background: #FCEBEB; color: #A32D2D; }
+.badge-amber { background: #FAEEDA; color: #854F0B; }
+.badge-green { background: #EAF3DE; color: #3B6D11; }
+.badge-gray { background: #F1EFE8; color: #5F5E5A; }
+.deadline { font-size: 11px; color: #A32D2D; background: #FCEBEB; padding: 2px 6px; border-radius: 6px; }
+.chevron { font-size: 11px; color: #ccc; transition: transform 0.2s; }
+.chevron.open { transform: rotate(90deg); }
+.tasks { display: none; border-top: 0.5px solid rgba(0,0,0,0.08); }
+.tasks.open { display: block; }
+.tasks-header { display: grid; grid-template-columns: 26px 1fr 1fr; padding: 5px 14px; background: #f8f8f6; }
+.tasks-header span { font-size: 11px; color: #bbb; text-transform: uppercase; letter-spacing: 0.05em; }
+.task-row { display: grid; grid-template-columns: 26px 1fr 1fr; gap: 6px; padding: 8px 14px; border-top: 0.5px solid rgba(0,0,0,0.05); align-items: start; }
+.task-row:hover { background: #fafaf8; }
+.task-status { cursor: pointer; font-size: 13px; line-height: 1.4; user-select: none; }
+.task-label { font-size: 13px; color: #1a1a1a; }
+.task-label.done-text { color: #bbb; text-decoration: line-through; }
+.task-criteria { font-size: 11px; color: #999; }
+.toggle-all { font-size: 12px; color: #999; cursor: pointer; text-align: right; margin-bottom: 8px; }
+.toggle-all:hover { color: #1a1a1a; }
+.historico-semana { background: #fff; border: 0.5px solid rgba(0,0,0,0.12); border-radius: 12px; margin-bottom: 10px; overflow: hidden; }
+.historico-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; cursor: pointer; }
+.historico-header:hover { background: #f8f8f6; }
+.historico-body { display: none; border-top: 0.5px solid rgba(0,0,0,0.08); }
+.historico-body.open { display: block; }
+.hist-row { display: grid; grid-template-columns: 70px 1fr 1fr 80px; gap: 6px; padding: 7px 14px; border-top: 0.5px solid rgba(0,0,0,0.05); font-size: 12px; color: #444; align-items: start; }
+.hist-hrow { display: grid; grid-template-columns: 70px 1fr 1fr 80px; gap: 6px; padding: 5px 14px; background: #f8f8f6; }
+.hist-hrow span { font-size: 11px; color: #bbb; text-transform: uppercase; letter-spacing: 0.05em; }
+.hist-pill { font-size: 11px; padding: 2px 6px; border-radius: 6px; text-align: center; display: inline-block; }
+.hp-ok { background: #EAF3DE; color: #3B6D11; }
+.hp-parcial { background: #FAEEDA; color: #854F0B; }
+.hp-no { background: #FCEBEB; color: #A32D2D; }
+.hp-pend { background: #F1EFE8; color: #5F5E5A; }
+.chat-btn { position: sticky; bottom: 1.5rem; text-align: right; pointer-events: none; margin-top: 1.5rem; }
+.chat-btn a { pointer-events: all; display: inline-flex; align-items: center; gap: 8px; background: #534AB7; color: #fff; font-size: 13px; font-weight: 500; padding: 10px 16px; border-radius: 999px; text-decoration: none; }
 </style>
 </head>
 <body>
 <div class="container">
-  <h1>Planificación semanal + mapa de proyectos</h1>
+  <h1>Planificación Álvaro — Nuvirta</h1>
+
+  <div class="tabs">
+    <div class="tab active" onclick="showTab('hoy',this)">Hoy</div>
+    <div class="tab" onclick="showTab('semanas',this)">Semanas</div>
+    <div class="tab" onclick="showTab('proyectos',this)">Proyectos</div>
+    <div class="tab" onclick="showTab('historico',this)">Histórico</div>
+  </div>
 
   <!-- HOY -->
-  <div style="margin-bottom:1.5rem; background:#FAEEDA; border-radius:12px; padding:14px 16px; border:0.5px solid #FAC775;">
-    <div style="font-size:11px; color:#854F0B; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:8px;">Hoy — jueves 16 de abril</div>
-    <div style="display:flex; flex-direction:column; gap:8px;">
-      <div style="display:flex; align-items:flex-start; gap:10px;">
-        <span style="font-size:11px; background:#fff; color:#854F0B; border-radius:6px; padding:2px 7px; white-space:nowrap; margin-top:1px;">mañana</span>
-        <div>
-          <span style="font-size:13px; font-weight:500; color:#1a1a1a;">Sin tiempo técnico</span>
-          <span style="font-size:12px; color:#666; margin-left:6px;">Power Hive + CSC Torrejón</span>
-        </div>
+  <div class="section active" id="tab-hoy">
+    <div class="hoy-card">
+      <div class="hoy-label">Hoy — jueves 16 de abril</div>
+      <div class="hoy-row"><span class="hoy-time">mañana</span><div><span class="hoy-titulo">Sin tiempo técnico</span><span class="hoy-desc">Power Hive + CSC Torrejón</span></div></div>
+      <div class="hoy-row"><span class="hoy-time">16h</span><div><span class="hoy-titulo">Vibe Coding</span><span class="hoy-desc">Webinar Climbea — IA en Power BI</span></div></div>
+      <div class="hoy-row"><span class="hoy-time">post webinar</span><div><span class="hoy-titulo">La Razón</span><span class="hoy-desc">Probar flujo de carga — dejarlo listo para la reunión de mañana</span></div></div>
+      <div class="hoy-footer">Mañana viernes — Atitlán: bloque técnico largo, liquidaciones</div>
+    </div>
+  </div>
+
+  <!-- SEMANAS -->
+  <div class="section" id="tab-semanas">
+    <h2>Semana 16 — 14 al 19 abril <span style="font-size:11px;color:#aaa;font-weight:400;">en curso</span></h2>
+    <div class="semana-grid">
+      <div class="semana-header">día</div><div class="semana-header">cliente</div><div class="semana-header">tarea</div>
+      <div class="semana-cell semana-dia">Mar 14</div>
+      <div class="semana-cell"><span class="pill" style="background:#FAEEDA;color:#854F0B;">Central</span></div>
+      <div class="semana-cell">Consulta SAGE — <strong style="color:#3B6D11;">resuelto ✓</strong></div>
+      <div class="semana-cell semana-dia">Mié 15</div>
+      <div class="semana-cell"><span class="pill" style="background:#FCEBEB;color:#A32D2D;">La Razón</span> <span class="pill" style="background:#E1F5EE;color:#0F6E56;">Velasco</span> <span class="pill" style="background:#FBEAF0;color:#72243E;">Atitlán</span></div>
+      <div class="semana-cell">Flujos nóminas / Renombrado archivos / Liquidaciones — <span style="color:#854F0B;">parcial</span></div>
+      <div class="semana-cell semana-dia">Jue 16</div>
+      <div class="semana-cell"><span class="pill" style="background:#E1F5EE;color:#0F6E56;">Velasco</span> <span class="pill" style="background:#EEEDFE;color:#3C3489;">Vibe Coding</span></div>
+      <div class="semana-cell">Flujo contactos inactivos Sage + webinar Climbea 16h</div>
+      <div class="semana-cell semana-dia">Vie 17</div>
+      <div class="semana-cell"><span class="pill" style="background:#FCEBEB;color:#A32D2D;">La Razón</span> <span class="pill" style="background:#EEEDFE;color:#3C3489;">Vibe Coding</span></div>
+      <div class="semana-cell">Reunión flujos nóminas + bloque 1h Vibe Coding</div>
+      <div class="semana-cell semana-dia">Fin semana</div>
+      <div class="semana-cell"><span class="pill" style="background:#FCEBEB;color:#A32D2D;">Fisiodrid</span></div>
+      <div class="semana-cell">Modelo BI Sanitas — cerrar antes del 25</div>
+    </div>
+    <div class="semana-note">BestMedia: toque enviado, en espera de respuesta sobre ClickUp.</div>
+
+    <h2>Semana 17 — 20 al 26 abril <span style="font-size:11px;color:#aaa;font-weight:400;">planificado</span></h2>
+    <div class="semana-grid">
+      <div class="semana-header">día</div><div class="semana-header">cliente</div><div class="semana-header">tarea</div>
+      <div class="semana-cell semana-dia">Lun 20</div>
+      <div class="semana-cell"><span class="pill" style="background:#FBEAF0;color:#72243E;">Atitlán</span> <span class="pill" style="background:#FCEBEB;color:#A32D2D;">La Razón</span></div>
+      <div class="semana-cell">Preparar reunión Atitlán + terminar flujos nóminas La Razón (arrastrado)</div>
+      <div class="semana-cell semana-dia">Mar 21</div>
+      <div class="semana-cell"><span class="pill" style="background:#5DCAA5;color:#04342C;">Nuvirta</span></div>
+      <div class="semana-cell">Firma constitución Nuvirta</div>
+      <div class="semana-cell semana-dia">Mié 22</div>
+      <div class="semana-cell"><span class="pill" style="background:#FBEAF0;color:#72243E;">Atitlán</span> <span class="pill" style="background:#FCEBEB;color:#A32D2D;">Fisiodrid</span></div>
+      <div class="semana-cell">Reunión Atitlán + último empujón Fisiodrid antes del 25</div>
+      <div class="semana-cell semana-dia">Jue 23</div>
+      <div class="semana-cell"><span class="pill" style="background:#E1F5EE;color:#0F6E56;">Velasco</span></div>
+      <div class="semana-cell">Formación equipo laboral — fecha pendiente de confirmar</div>
+      <div class="semana-cell semana-dia">Vie 24</div>
+      <div class="semana-cell"><span class="pill" style="background:#FBEAF0;color:#72243E;">Atitlán</span> <span class="pill" style="background:#EEEDFE;color:#3C3489;">Vibe Coding</span></div>
+      <div class="semana-cell">Bloque técnico Atitlán (mañana) + 1h Vibe Coding (tarde)</div>
+    </div>
+    <div class="semana-note">BestMedia: pendiente respuesta ClickUp. Formación laboral Velasco: pendiente confirmar fecha.</div>
+  </div>
+
+  <!-- PROYECTOS -->
+  <div class="section" id="tab-proyectos">
+    <div style="font-size:11px;color:#aaa;margin-bottom:10px;">Estado: ⚪ pendiente &nbsp;·&nbsp; 🔵 en curso &nbsp;·&nbsp; ✅ hecho — clic para cambiar</div>
+    <div class="toggle-all" onclick="toggleAll()">expandir todo ▾</div>
+
+    <div class="client-card">
+      <div class="client-header" onclick="toggle('formacion')">
+        <div class="dot" style="background:#7F77DD;"></div>
+        <span class="client-name">Formación propia</span>
+        <span class="badge" style="background:#EEEDFE;color:#3C3489;">inversión</span>
+        <span class="chevron" id="chev-formacion">▶</span>
       </div>
-      <div style="display:flex; align-items:flex-start; gap:10px;">
-        <span style="font-size:11px; background:#fff; color:#854F0B; border-radius:6px; padding:2px 7px; white-space:nowrap; margin-top:1px;">16h</span>
-        <div>
-          <span style="font-size:13px; font-weight:500; color:#1a1a1a;">Vibe Coding</span>
-          <span style="font-size:12px; color:#666; margin-left:6px;">Webinar Climbea — IA en Power BI</span>
-        </div>
-      </div>
-      <div style="display:flex; align-items:flex-start; gap:10px;">
-        <span style="font-size:11px; background:#fff; color:#854F0B; border-radius:6px; padding:2px 7px; white-space:nowrap; margin-top:1px;">post webinar</span>
-        <div>
-          <span style="font-size:13px; font-weight:500; color:#1a1a1a;">La Razón</span>
-          <span style="font-size:12px; color:#666; margin-left:6px;">Probar flujo de carga — dejarlo listo para la reunión de mañana</span>
-        </div>
+      <div class="tasks" id="tasks-formacion">
+        <div class="tasks-header"><span></span><span>tema</span><span>done cuando</span></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Vibe Coding — IA aplicada a Power BI y desarrollo</div><div class="task-criteria">Capaz de generar y adaptar código con IA de forma autónoma</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Code Apps en Power Apps</div><div class="task-criteria">Canvas App completa desde cero (Dasme como primer caso real)</div></div>
       </div>
     </div>
-    <div style="margin-top:10px; padding-top:10px; border-top:0.5px solid #FAC775; font-size:12px; color:#854F0B;">Mañana viernes — Atitlán: bloque técnico largo, liquidaciones</div>
-  </div>
 
-  <!-- SEMANA 16 -->
-  <div style="margin-bottom:1.5rem;">
-    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
-      <span style="font-size:13px; font-weight:500; color:#1a1a1a;">Semana 16 — 14 al 19 abril</span>
-      <span style="font-size:11px; color:#aaa;">resumen</span>
-    </div>
-    <div style="display:grid; grid-template-columns: 90px 1fr 1fr; gap:0; border:0.5px solid rgba(0,0,0,0.12); border-radius:12px; overflow:hidden;">
-      <div style="background:#f8f8f6; padding:6px 10px; font-size:11px; color:#aaa; text-transform:uppercase; letter-spacing:0.05em; border-bottom:0.5px solid rgba(0,0,0,0.08);">día</div>
-      <div style="background:#f8f8f6; padding:6px 10px; font-size:11px; color:#aaa; text-transform:uppercase; letter-spacing:0.05em; border-bottom:0.5px solid rgba(0,0,0,0.08);">cliente</div>
-      <div style="background:#f8f8f6; padding:6px 10px; font-size:11px; color:#aaa; text-transform:uppercase; letter-spacing:0.05em; border-bottom:0.5px solid rgba(0,0,0,0.08);">tarea</div>
-
-      <div style="padding:8px 10px; font-size:12px; font-weight:500; color:#1a1a1a; border-bottom:0.5px solid rgba(0,0,0,0.06);">Mar 14</div>
-      <div style="padding:8px 10px; border-bottom:0.5px solid rgba(0,0,0,0.06);"><span style="font-size:11px; padding:2px 7px; border-radius:6px; background:#FAEEDA; color:#854F0B;">Central</span></div>
-      <div style="padding:8px 10px; font-size:12px; color:#444; border-bottom:0.5px solid rgba(0,0,0,0.06);">Consulta SAGE — resuelto ✓</div>
-
-      <div style="padding:8px 10px; font-size:12px; font-weight:500; color:#1a1a1a; border-bottom:0.5px solid rgba(0,0,0,0.06);">Mié 15</div>
-      <div style="padding:8px 10px; border-bottom:0.5px solid rgba(0,0,0,0.06); display:flex; flex-direction:column; gap:4px;">
-        <span style="font-size:11px; padding:2px 7px; border-radius:6px; background:#FCEBEB; color:#A32D2D; width:fit-content;">La Razón</span>
-        <span style="font-size:11px; padding:2px 7px; border-radius:6px; background:#E1F5EE; color:#0F6E56; width:fit-content;">Velasco</span>
-        <span style="font-size:11px; padding:2px 7px; border-radius:6px; background:#FBEAF0; color:#72243E; width:fit-content;">Atitlán</span>
+    <div class="client-card">
+      <div class="client-header" onclick="toggle('fisiodrid')">
+        <div class="dot" style="background:#E24B4A;"></div>
+        <span class="client-name">Fisiodrid</span>
+        <span class="deadline">25 abril</span>
+        <span class="badge badge-red">urgente</span>
+        <span class="chevron" id="chev-fisiodrid">▶</span>
       </div>
-      <div style="padding:8px 10px; font-size:12px; color:#444; border-bottom:0.5px solid rgba(0,0,0,0.06);">Flujos nóminas / Renombrado archivos CRM / Liquidaciones</div>
-
-      <div style="padding:8px 10px; font-size:12px; font-weight:500; color:#1a1a1a; border-bottom:0.5px solid rgba(0,0,0,0.06);">Jue 16</div>
-      <div style="padding:8px 10px; border-bottom:0.5px solid rgba(0,0,0,0.06); display:flex; flex-direction:column; gap:4px;"><span style="font-size:11px; padding:2px 7px; border-radius:6px; background:#E1F5EE; color:#0F6E56; width:fit-content;">Velasco</span><span style="font-size:11px; padding:2px 7px; border-radius:6px; background:#EEEDFE; color:#3C3489; width:fit-content;">Vibe Coding</span></div>
-      <div style="padding:8px 10px; font-size:12px; color:#444; border-bottom:0.5px solid rgba(0,0,0,0.06);">Flujo contactos inactivos Sage (post CSC) + webinar IA en Power BI con Vibe Coding — Climbea 16h</div>
-
-      <div style="padding:8px 10px; font-size:12px; font-weight:500; color:#1a1a1a; border-bottom:0.5px solid rgba(0,0,0,0.06);">Vie 17</div>
-      <div style="padding:8px 10px; border-bottom:0.5px solid rgba(0,0,0,0.06); display:flex; flex-direction:column; gap:4px;"><span style="font-size:11px; padding:2px 7px; border-radius:6px; background:#FCEBEB; color:#A32D2D; width:fit-content;">La Razón</span><span style="font-size:11px; padding:2px 7px; border-radius:6px; background:#EEEDFE; color:#3C3489; width:fit-content;">Vibe Coding</span></div>
-      <div style="padding:8px 10px; font-size:12px; color:#444; border-bottom:0.5px solid rgba(0,0,0,0.06);">Reunión revisión flujos nóminas + bloque 1h Vibe Coding si termina pronto</div>
-
-      <div style="padding:8px 10px; font-size:12px; font-weight:500; color:#1a1a1a;">Fin semana</div>
-      <div style="padding:8px 10px;"><span style="font-size:11px; padding:2px 7px; border-radius:6px; background:#FCEBEB; color:#A32D2D;">Fisiodrid</span></div>
-      <div style="padding:8px 10px; font-size:12px; color:#444;">Modelo BI Sanitas — cerrar antes del 25</div>
+      <div class="tasks" id="tasks-fisiodrid">
+        <div class="tasks-header"><span></span><span>tema</span><span>done cuando</span></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Modelo BI facturación Sanitas</div><div class="task-criteria">Usuario identifica facturas correctas, errores y puede resolverlos</div></div>
+      </div>
     </div>
-    <div style="margin-top:6px; font-size:11px; color:#aaa;">BestMedia: toque enviado, en espera de respuesta sobre ClickUp.</div>
+
+    <div class="client-card">
+      <div class="client-header" onclick="toggle('atitlan')">
+        <div class="dot" style="background:#D4537E;"></div>
+        <span class="client-name">Atitlán</span>
+        <span class="deadline">~15 mayo</span>
+        <span class="badge badge-red">en curso</span>
+        <span class="chevron" id="chev-atitlan">▶</span>
+      </div>
+      <div class="tasks" id="tasks-atitlan">
+        <div class="tasks-header"><span></span><span>tema</span><span>done cuando</span></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Flujo borrador liquidaciones</div><div class="task-criteria">Se genera y notifica al usuario interno</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Flujo aprobación y envío liquidaciones</div><div class="task-criteria">Se ejecuta y envía correo al inversor</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Proceso rebalanceo</div><div class="task-criteria">Flujo end-to-end correcto</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Notificación rebalanceo</div><div class="task-criteria">Flujo completo correcto</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Power BI Atitlán → ATGR0</div><div class="task-criteria">Modelo operativo en tenant destino</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Power BI externo → ATGR0</div><div class="task-criteria">Modelo disponible y funcional en ATGR0</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Validación de datos (model-driven app)</div><div class="task-criteria">Usuarios ven, filtran y modifican datos autónomamente</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Gestión de usuarios y grupos de seguridad</div><div class="task-criteria">Todos los perfiles de acceso definidos y operativos</div></div>
+      </div>
+    </div>
+
+    <div class="client-card">
+      <div class="client-header" onclick="toggle('velasco')">
+        <div class="dot" style="background:#1D9E75;"></div>
+        <span class="client-name">Velasco Abogados</span>
+        <span class="badge badge-amber">cerca del fin</span>
+        <span class="chevron" id="chev-velasco">▶</span>
+      </div>
+      <div class="tasks" id="tasks-velasco">
+        <div class="tasks-header"><span></span><span>tema</span><span>done cuando</span></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Migración documentos (expedientes y clientes)</div><div class="task-criteria">BI no muestra ningún archivo pendiente</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Contactos inactivos Sage</div><div class="task-criteria">Flujo diario operativo, registros actualizados</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Cargos con fechas inicio/fin</div><div class="task-criteria">Todos los contactos con cargos y fechas cargadas</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Formación equipo laboral (4 personas)</div><div class="task-criteria">4 sesiones de 45 min completadas</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Power BI financiero — P&amp;G trimestral</div><div class="task-criteria">Asignación de cuentas revisada, resultados trimestrales correctos</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Tabla de contratos</div><div class="task-criteria">A definir — mejora futura</div></div>
+      </div>
+    </div>
+
+    <div class="client-card">
+      <div class="client-header" onclick="toggle('bestmedia')">
+        <div class="dot" style="background:#378ADD;"></div>
+        <span class="client-name">BestMedia</span>
+        <span class="badge badge-amber">reactivar</span>
+        <span class="chevron" id="chev-bestmedia">▶</span>
+      </div>
+      <div class="tasks" id="tasks-bestmedia">
+        <div class="tasks-header"><span></span><span>tema</span><span>done cuando</span></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Proceso ClickUp — costes</div><div class="task-criteria">Flujo operativo, costes registrándose correctamente</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Notificación estado POs</div><div class="task-criteria">Sin dependencia de Google Sheet, en plataforma propia</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Generación de facturas desde Power Apps</div><div class="task-criteria">Usuario genera factura sin replicar datos manualmente</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">RLS Power BI — filtro por squad</div><div class="task-criteria">Cada responsable ve solo los datos de su squad</div></div>
+      </div>
+    </div>
+
+    <div class="client-card">
+      <div class="client-header" onclick="toggle('articulo14')">
+        <div class="dot" style="background:#7F77DD;"></div>
+        <span class="client-name">Artículo 14</span>
+        <span class="badge badge-amber">en curso</span>
+        <span class="chevron" id="chev-articulo14">▶</span>
+      </div>
+      <div class="tasks" id="tasks-articulo14">
+        <div class="tasks-header"><span></span><span>tema</span><span>done cuando</span></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Informes Power BI (artículos, audiencia, costes)</div><div class="task-criteria">Inversor accede y ve la información correctamente</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">BBDD contactos + Customer Insights</div><div class="task-criteria">Contactos migrados, creables, clasificados correctamente</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Gestión contactos-eventos</div><div class="task-criteria">Cruce contacto-evento registrado y consultable</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Modelo de audiencias</div><div class="task-criteria">Reporte actualizado automáticamente</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Modelo financiero — visual HTML</div><div class="task-criteria">Visual HTML operativo en informe financiero</div></div>
+      </div>
+    </div>
+
+    <div class="client-card">
+      <div class="client-header" onclick="toggle('larazon')">
+        <div class="dot" style="background:#E24B4A;"></div>
+        <span class="client-name">La Razón</span>
+        <span class="badge badge-green">sin urgencia</span>
+        <span class="chevron" id="chev-larazon">▶</span>
+      </div>
+      <div class="tasks" id="tasks-larazon">
+        <div class="tasks-header"><span></span><span>tema</span><span>done cuando</span></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Flujos carga nóminas Planeta</div><div class="task-criteria">Usuario sube ficheros, flujos cargan datos en ambas tablas</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Modelo Power BI nóminas</div><div class="task-criteria">Modelo publicado y navegable</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Canvas App gestión nóminas</div><div class="task-criteria">A definir en fase posterior</div></div>
+      </div>
+    </div>
+
+    <div class="client-card">
+      <div class="client-header" onclick="toggle('dasme')">
+        <div class="dot" style="background:#BA7517;"></div>
+        <span class="client-name">Dasme Control</span>
+        <span class="badge badge-gray">bloqueado</span>
+        <span class="chevron" id="chev-dasme">▶</span>
+      </div>
+      <div class="tasks" id="tasks-dasme">
+        <div class="tasks-header"><span></span><span>tema</span><span>done cuando</span></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Conexión Telegram → Dataverse/Excel</div><div class="task-criteria">Avisos llegan automáticamente sin intervención manual</div></div>
+      </div>
+    </div>
+
   </div>
 
-  <!-- SEMANA 17 -->
-  <div style="margin-bottom:1.5rem;">
-    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
-      <span style="font-size:13px; font-weight:500; color:#1a1a1a;">Semana 17 — 20 al 26 abril</span>
-      <span style="font-size:11px; color:#aaa;">planificado</span>
-    </div>
-    <div style="display:grid; grid-template-columns: 90px 1fr 1fr; gap:0; border:0.5px solid rgba(0,0,0,0.12); border-radius:12px; overflow:hidden;">
-      <div style="background:#f8f8f6; padding:6px 10px; font-size:11px; color:#aaa; text-transform:uppercase; letter-spacing:0.05em; border-bottom:0.5px solid rgba(0,0,0,0.08);">día</div>
-      <div style="background:#f8f8f6; padding:6px 10px; font-size:11px; color:#aaa; text-transform:uppercase; letter-spacing:0.05em; border-bottom:0.5px solid rgba(0,0,0,0.08);">cliente</div>
-      <div style="background:#f8f8f6; padding:6px 10px; font-size:11px; color:#aaa; text-transform:uppercase; letter-spacing:0.05em; border-bottom:0.5px solid rgba(0,0,0,0.08);">tarea</div>
-
-      <div style="padding:8px 10px; font-size:12px; font-weight:500; color:#1a1a1a; border-bottom:0.5px solid rgba(0,0,0,0.06);">Lun 20</div>
-      <div style="padding:8px 10px; border-bottom:0.5px solid rgba(0,0,0,0.06); display:flex; flex-direction:column; gap:4px;"><span style="font-size:11px; padding:2px 7px; border-radius:6px; background:#FBEAF0; color:#72243E; width:fit-content;">Atitlán</span><span style="font-size:11px; padding:2px 7px; border-radius:6px; background:#FCEBEB; color:#A32D2D; width:fit-content;">La Razón</span></div>
-      <div style="padding:8px 10px; font-size:12px; color:#444; border-bottom:0.5px solid rgba(0,0,0,0.06);">Preparar reunión Atitlán del miércoles + terminar flujos nóminas La Razón (arrastrado)</div>
-
-      <div style="padding:8px 10px; font-size:12px; font-weight:500; color:#1a1a1a; border-bottom:0.5px solid rgba(0,0,0,0.06);">Mar 21</div>
-      <div style="padding:8px 10px; border-bottom:0.5px solid rgba(0,0,0,0.06); display:flex; flex-direction:column; gap:4px;"><span style="font-size:11px; padding:2px 7px; border-radius:6px; background:#5DCAA5; color:#04342C; width:fit-content;">Nuvirta</span></div>
-      <div style="padding:8px 10px; font-size:12px; color:#444; border-bottom:0.5px solid rgba(0,0,0,0.06);">Firma constitución Nuvirta — resto del día libre para avanzar técnico</div>
-
-      <div style="padding:8px 10px; font-size:12px; font-weight:500; color:#1a1a1a; border-bottom:0.5px solid rgba(0,0,0,0.06);">Mié 22</div>
-      <div style="padding:8px 10px; border-bottom:0.5px solid rgba(0,0,0,0.06); display:flex; flex-direction:column; gap:4px;"><span style="font-size:11px; padding:2px 7px; border-radius:6px; background:#FBEAF0; color:#72243E; width:fit-content;">Atitlán</span><span style="font-size:11px; padding:2px 7px; border-radius:6px; background:#FCEBEB; color:#A32D2D; width:fit-content;">Fisiodrid</span></div>
-      <div style="padding:8px 10px; font-size:12px; color:#444; border-bottom:0.5px solid rgba(0,0,0,0.06);">Reunión Atitlán + último empujón Fisiodrid antes del deadline del 25</div>
-
-      <div style="padding:8px 10px; font-size:12px; font-weight:500; color:#1a1a1a; border-bottom:0.5px solid rgba(0,0,0,0.06);">Jue 23</div>
-      <div style="padding:8px 10px; border-bottom:0.5px solid rgba(0,0,0,0.06);"><span style="font-size:11px; padding:2px 7px; border-radius:6px; background:#E1F5EE; color:#0F6E56;">Velasco</span></div>
-      <div style="padding:8px 10px; font-size:12px; color:#444; border-bottom:0.5px solid rgba(0,0,0,0.06);">Formación equipo laboral — fecha pendiente de confirmar</div>
-
-      <div style="padding:8px 10px; font-size:12px; font-weight:500; color:#1a1a1a;">Vie 24</div>
-      <div style="padding:8px 10px; display:flex; flex-direction:column; gap:4px;"><span style="font-size:11px; padding:2px 7px; border-radius:6px; background:#FBEAF0; color:#72243E; width:fit-content;">Atitlán</span><span style="font-size:11px; padding:2px 7px; border-radius:6px; background:#EEEDFE; color:#3C3489; width:fit-content;">Vibe Coding</span></div>
-      <div style="padding:8px 10px; font-size:12px; color:#444;">Bloque técnico Atitlán (mañana) + bloque 1h Vibe Coding (tarde) — día más libre</div>
-    </div>
-    <div style="margin-top:6px; font-size:11px; color:#aaa;">BestMedia: pendiente respuesta ClickUp. Formación laboral Velasco: pendiente confirmar fecha.</div>
-  </div>
-
-  <div style="border-top:0.5px solid rgba(0,0,0,0.1); margin-bottom:1.5rem; padding-top:1.5rem;">
-    <h2 style="font-size:15px; font-weight:500; margin-bottom:10px; color:#1a1a1a;">Mapa de proyectos por cliente</h2>
-  </div>
-
-  <div class="toggle-all" onclick="toggleAll()">expandir todo ▾</div>
-
-  <div class="client-card">
-    <div class="client-header" onclick="toggle('formacion')">
-      <div class="dot" style="background:#7F77DD;"></div>
-      <span class="client-name">Formación propia</span>
-      <span class="badge" style="background:#EEEDFE; color:#3C3489;">inversión</span>
-      <span class="chevron" id="chev-formacion">▶</span>
-    </div>
-    <div class="tasks" id="tasks-formacion">
-      <div class="section-header"><span>tema</span><span>done cuando</span></div>
-      <div class="task-row"><div class="task-label">Vibe Coding — IA aplicada a Power BI y desarrollo</div><div class="task-done">Capaz de generar y adaptar código con IA de forma autónoma y documentada</div></div>
-      <div class="task-row"><div class="task-label">Code Apps en Power Apps</div><div class="task-done">Capaz de construir una Canvas App completa desde cero (Dasme como primer caso real)</div></div>
-    </div>
-  </div>
-
-  <div class="client-card">
-    <div class="client-header" onclick="toggle('fisiodrid')">
-      <div class="dot" style="background:#E24B4A;"></div>
-      <span class="client-name">Fisiodrid</span>
-      <span class="deadline">25 abril</span>
-      <span class="badge badge-red">urgente</span>
-      <span class="chevron" id="chev-fisiodrid">▶</span>
-    </div>
-    <div class="tasks" id="tasks-fisiodrid">
-      <div class="section-header"><span>tema</span><span>done cuando</span></div>
-      <div class="task-row"><div class="task-label">Modelo BI facturación Sanitas</div><div class="task-done">Usuario identifica facturas correctas, errores y puede resolverlos</div></div>
-    </div>
-  </div>
-
-  <div class="client-card">
-    <div class="client-header" onclick="toggle('atitlan')">
-      <div class="dot" style="background:#D4537E;"></div>
-      <span class="client-name">Atitlán</span>
-      <span class="deadline">~15 mayo</span>
-      <span class="badge badge-red">en curso</span>
-      <span class="chevron" id="chev-atitlan">▶</span>
-    </div>
-    <div class="tasks" id="tasks-atitlan">
-      <div class="section-header"><span>tema</span><span>done cuando</span></div>
-      <div class="task-row"><div class="task-label">Flujo borrador liquidaciones</div><div class="task-done">Se genera y notifica al usuario interno</div></div>
-      <div class="task-row"><div class="task-label">Flujo aprobación y envío liquidaciones</div><div class="task-done">Se ejecuta y envía correo al inversor</div></div>
-      <div class="task-row"><div class="task-label">Proceso rebalanceo</div><div class="task-done">Flujo end-to-end correcto</div></div>
-      <div class="task-row"><div class="task-label">Notificación rebalanceo</div><div class="task-done">Flujo completo correcto</div></div>
-      <div class="task-row"><div class="task-label">Power BI Atitlán → ATGR0</div><div class="task-done">Modelo operativo en tenant destino</div></div>
-      <div class="task-row"><div class="task-label">Power BI externo → ATGR0</div><div class="task-done">Modelo disponible y funcional en ATGR0</div></div>
-      <div class="task-row"><div class="task-label">Validación de datos (model-driven app)</div><div class="task-done">Usuarios ven, filtran y modifican datos autónomamente</div></div>
-      <div class="task-row"><div class="task-label">Gestión de usuarios y grupos de seguridad</div><div class="task-done">Todos los perfiles de acceso definidos y operativos</div></div>
-    </div>
-  </div>
-
-  <div class="client-card">
-    <div class="client-header" onclick="toggle('velasco')">
-      <div class="dot" style="background:#1D9E75;"></div>
-      <span class="client-name">Velasco Abogados</span>
-      <span class="badge badge-amber">cerca del fin</span>
-      <span class="chevron" id="chev-velasco">▶</span>
-    </div>
-    <div class="tasks" id="tasks-velasco">
-      <div class="section-header"><span>tema</span><span>done cuando</span></div>
-      <div class="task-row"><div class="task-label">Migración documentos (expedientes y clientes)</div><div class="task-done">BI no muestra ningún archivo pendiente</div></div>
-      <div class="task-row"><div class="task-label">Contactos inactivos Sage</div><div class="task-done">Flujo diario operativo, registros actualizados</div></div>
-      <div class="task-row"><div class="task-label">Cargos con fechas inicio/fin</div><div class="task-done">Todos los contactos con cargos y fechas cargadas</div></div>
-      <div class="task-row"><div class="task-label">Formación equipo laboral (4 personas)</div><div class="task-done">4 sesiones de 45 min completadas</div></div>
-      <div class="task-row"><div class="task-label">Tabla de contratos</div><div class="task-done">A definir — mejora futura</div></div>
-      <div class="task-row"><div class="task-label">Power BI financiero — P&amp;G trimestral</div><div class="task-done">Asignación de cuentas a bloques de P&amp;G revisada y modelo mostrando resultados trimestrales correctos</div></div>
-    </div>
-  </div>
-
-  <div class="client-card">
-    <div class="client-header" onclick="toggle('bestmedia')">
-      <div class="dot" style="background:#378ADD;"></div>
-      <span class="client-name">BestMedia</span>
-      <span class="badge badge-amber">reactivar</span>
-      <span class="chevron" id="chev-bestmedia">▶</span>
-    </div>
-    <div class="tasks" id="tasks-bestmedia">
-      <div class="section-header"><span>tema</span><span>done cuando</span></div>
-      <div class="task-row"><div class="task-label">Proceso ClickUp — costes</div><div class="task-done">Flujo operativo, costes registrándose correctamente</div></div>
-      <div class="task-row"><div class="task-label">Notificación estado POs</div><div class="task-done">Sin dependencia de Google Sheet, en plataforma propia</div></div>
-      <div class="task-row"><div class="task-label">Generación de facturas desde Power Apps</div><div class="task-done">Usuario genera factura sin replicar datos manualmente</div></div>
-    </div>
-  </div>
-
-  <div class="client-card">
-    <div class="client-header" onclick="toggle('articulo14')">
-      <div class="dot" style="background:#7F77DD;"></div>
-      <span class="client-name">Artículo 14</span>
-      <span class="badge badge-amber">en curso</span>
-      <span class="chevron" id="chev-articulo14">▶</span>
-    </div>
-    <div class="tasks" id="tasks-articulo14">
-      <div class="section-header"><span>tema</span><span>done cuando</span></div>
-      <div class="task-row"><div class="task-label">Informes Power BI (artículos, audiencia, costes)</div><div class="task-done">Inversor accede y ve la información correctamente</div></div>
-      <div class="task-row"><div class="task-label">BBDD contactos + Customer Insights</div><div class="task-done">Contactos migrados, creables, clasificados correctamente</div></div>
-      <div class="task-row"><div class="task-label">Gestión contactos-eventos</div><div class="task-done">Cruce contacto-evento registrado y consultable</div></div>
-      <div class="task-row"><div class="task-label">Modelo de audiencias</div><div class="task-done">Reporte actualizado automáticamente</div></div>
-      <div class="task-row"><div class="task-label">Modelo financiero — visual HTML</div><div class="task-done">Visual HTML operativo en informe financiero</div></div>
-    </div>
-  </div>
-
-  <div class="client-card">
-    <div class="client-header" onclick="toggle('larazon')">
-      <div class="dot" style="background:#E24B4A;"></div>
-      <span class="client-name">La Razón</span>
-      <span class="badge badge-green">sin urgencia</span>
-      <span class="chevron" id="chev-larazon">▶</span>
-    </div>
-    <div class="tasks" id="tasks-larazon">
-      <div class="section-header"><span>tema</span><span>done cuando</span></div>
-      <div class="task-row"><div class="task-label">Flujos carga nóminas Planeta</div><div class="task-done">Usuario sube ficheros, flujos cargan datos en ambas tablas</div></div>
-      <div class="task-row"><div class="task-label">Modelo Power BI nóminas</div><div class="task-done">Modelo publicado y navegable</div></div>
-      <div class="task-row"><div class="task-label">Canvas App gestión nóminas</div><div class="task-done">A definir en fase posterior</div></div>
-    </div>
-  </div>
-
-  <div class="client-card">
-    <div class="client-header" onclick="toggle('dasme')">
-      <div class="dot" style="background:#BA7517;"></div>
-      <span class="client-name">Dasme Control</span>
-      <span class="badge badge-gray">bloqueado</span>
-      <span class="chevron" id="chev-dasme">▶</span>
-    </div>
-    <div class="tasks" id="tasks-dasme">
-      <div class="section-header"><span>tema</span><span>done cuando</span></div>
-      <div class="task-row"><div class="task-label">Conexión Telegram → Dataverse/Excel</div><div class="task-done">Avisos llegan automáticamente a tabla sin intervención manual</div></div>
+  <!-- HISTÓRICO -->
+  <div class="section" id="tab-historico">
+    <div class="historico-semana">
+      <div class="historico-header" onclick="toggleHist('h16')">
+        <span style="font-size:13px;font-weight:500;">Semana 16 — 14 al 19 abril</span>
+        <span style="font-size:11px;color:#aaa;" id="hchev-h16">▶</span>
+      </div>
+      <div class="historico-body" id="h16">
+        <div class="hist-hrow"><span>día</span><span>planificado</span><span>ejecutado</span><span>resultado</span></div>
+        <div class="hist-row"><div>Mar 14</div><div>Atitlán — liquidaciones (tarde)</div><div>Central SAGE ✓ · Atitlán — sin terminar</div><div><span class="hist-pill hp-parcial">parcial</span></div></div>
+        <div class="hist-row"><div>Mié 15</div><div>La Razón · Velasco · Atitlán</div><div>Flujos sin probar · Renombrado sin cerrar · Liquidaciones sin avanzar</div><div><span class="hist-pill hp-no">no hecho</span></div></div>
+        <div class="hist-row"><div>Jue 16</div><div>Velasco post-CSC · Webinar 16h · La Razón post-webinar</div><div>—</div><div><span class="hist-pill hp-pend">en curso</span></div></div>
+        <div class="hist-row"><div>Vie 17</div><div>Reunión La Razón · Vibe Coding 1h</div><div>—</div><div><span class="hist-pill hp-pend">pendiente</span></div></div>
+        <div class="hist-row"><div>Fin semana</div><div>Fisiodrid — modelo BI Sanitas</div><div>—</div><div><span class="hist-pill hp-pend">pendiente</span></div></div>
+      </div>
     </div>
   </div>
 
 </div>
+
+<div class="chat-btn">
+  <a href="https://claude.ai/chat/b290861f-a351-4d74-bbe5-afc7d794e48d" target="_blank">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+    Abrir chat
+  </a>
+</div>
+
 <script>
-let allOpen = false;
-function toggle(id) {
-  const tasks = document.getElementById('tasks-' + id);
-  const chev = document.getElementById('chev-' + id);
-  tasks.classList.toggle('open');
-  chev.classList.toggle('open');
+function showTab(name, el) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  el.classList.add('active');
 }
+function toggle(id) {
+  document.getElementById('tasks-' + id).classList.toggle('open');
+  document.getElementById('chev-' + id).classList.toggle('open');
+}
+let allOpen = false;
 function toggleAll() {
   const clients = ['formacion','fisiodrid','atitlan','velasco','bestmedia','articulo14','larazon','dasme'];
   allOpen = !allOpen;
   clients.forEach(id => {
-    const tasks = document.getElementById('tasks-' + id);
-    const chev = document.getElementById('chev-' + id);
-    if (allOpen) { tasks.classList.add('open'); chev.classList.add('open'); }
-    else { tasks.classList.remove('open'); chev.classList.remove('open'); }
+    document.getElementById('tasks-' + id).classList.toggle('open', allOpen);
+    document.getElementById('chev-' + id).classList.toggle('open', allOpen);
   });
   document.querySelector('.toggle-all').textContent = allOpen ? 'colapsar todo ▴' : 'expandir todo ▾';
 }
-</script>
-
-<div style="position:sticky; bottom:1.5rem; text-align:right; pointer-events:none;">
-  <a id="chat-link" href="https://claude.ai/chat/b290861f-a351-4d74-bbe5-afc7d794e48d" target="_blank" style="pointer-events:all; display:inline-flex; align-items:center; gap:8px; background:#534AB7; color:#fff; font-size:13px; font-weight:500; padding:10px 16px; border-radius:999px; text-decoration:none; box-shadow:0 2px 8px rgba(83,74,183,0.3);">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-    Abrir chat con Álvaro
-  </a>
-</div>
-<script>
-  const savedUrl = localStorage.getItem('chat_url');
-  if (savedUrl) document.getElementById('chat-link').href = savedUrl;
-  document.getElementById('chat-link').addEventListener('click', function(e) {
-    const url = prompt('Pega aquí la URL de tu chat con Claude (se guardará para siempre):', this.href);
-    if (url && url.startsWith('http')) {
-      localStorage.setItem('chat_url', url);
-      this.href = url;
-    }
-  });
+function toggleHist(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+const estados = ['⚪','🔵','✅'];
+function cycleStatus(el) {
+  const idx = estados.indexOf(el.textContent);
+  el.textContent = estados[(idx + 1) % estados.length];
+  el.nextElementSibling.classList.toggle('done-text', el.textContent === '✅');
+  saveStates();
+}
+function saveStates() {
+  const s = {};
+  document.querySelectorAll('.task-status').forEach((el, i) => { s[i] = el.textContent; });
+  try { localStorage.setItem('alvaro_task_states', JSON.stringify(s)); } catch(e) {}
+}
+function loadStates() {
+  try {
+    const s = JSON.parse(localStorage.getItem('alvaro_task_states') || '{}');
+    document.querySelectorAll('.task-status').forEach((el, i) => {
+      if (s[i]) { el.textContent = s[i]; if (s[i] === '✅') el.nextElementSibling.classList.add('done-text'); }
+    });
+  } catch(e) {}
+}
+loadStates();
 </script>
 </body>
 </html>
