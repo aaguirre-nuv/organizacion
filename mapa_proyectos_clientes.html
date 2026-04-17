@@ -86,11 +86,12 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
   <!-- HOY -->
   <div class="section active" id="tab-hoy">
     <div class="hoy-card">
-      <div class="hoy-label">Hoy — jueves 16 de abril</div>
-      <div class="hoy-row"><span class="hoy-time">mañana</span><div><span class="hoy-titulo">Sin tiempo técnico</span><span class="hoy-desc">Power Hive + CSC Torrejón</span></div></div>
-      <div class="hoy-row"><span class="hoy-time">16h</span><div><span class="hoy-titulo">Vibe Coding</span><span class="hoy-desc">Webinar Climbea — IA en Power BI</span></div></div>
-      <div class="hoy-row"><span class="hoy-time">post webinar</span><div><span class="hoy-titulo">La Razón</span><span class="hoy-desc">Probar flujo de carga — dejarlo listo para la reunión de mañana</span></div></div>
-      <div class="hoy-footer">Mañana viernes — Atitlán: bloque técnico largo, liquidaciones</div>
+      <div class="hoy-label">Hoy — viernes 17 de abril</div>
+      <div class="hoy-row"><span class="hoy-time">mañana</span><div><span class="hoy-titulo">La Razón</span><span class="hoy-desc">Reunión con Clara — flujos validados, mostrar potencia del modelo</span></div></div>
+      <div class="hoy-row"><span class="hoy-time">mediodía</span><div><span class="hoy-titulo">Velasco</span><span class="hoy-desc">Rematar renombrado de archivos al cambiar título en CRM — en producción, urgente</span></div></div>
+      <div class="hoy-row"><span class="hoy-time">tarde</span><div><span class="hoy-titulo">Atitlán</span><span class="hoy-desc">Liquidaciones — bloque largo</span></div></div>
+      <div class="hoy-row"><span class="hoy-time">último hueco</span><div><span class="hoy-titulo">Vibe Coding</span><span class="hoy-desc">Bloque 1h — como teníamos previsto</span></div></div>
+      <div class="hoy-footer">Lunes — Atitlán + La Razón (arrastrado si queda algo) · Martes — Firma Nuvirta + Notario</div>
     </div>
   </div>
 
@@ -253,7 +254,12 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
       </div>
       <div class="tasks" id="tasks-larazon">
         <div class="tasks-header"><span></span><span>tema</span><span>done cuando</span></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Flujos carga nóminas Planeta</div><div class="task-criteria">Usuario sube ficheros, flujos cargan datos en ambas tablas</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">✅</div><div class="task-label done-text">Flujos carga nóminas Planeta</div><div class="task-criteria">Flujo validado ✓ — pendiente añadir control fecha máxima en subida</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Control fecha máxima en subida de ficheros</div><div class="task-criteria">No permite cargar ficheros con fecha anterior a la máxima cargada</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Cargar histórico menos último mes (para Clara)</div><div class="task-criteria">Datos cargados, último mes reservado para que lo haga Clara — antes del 24</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Revisar carga informe de retribuciones</div><div class="task-criteria">Carga correcta y validada — antes del 24</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Propuesta de diseño nómina y masa salarial</div><div class="task-criteria">Propuesta lista para presentar a Clara el 24</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Rescatar cálculo actual de masa salarial</div><div class="task-criteria">Cálculo localizado y revisado — antes del 24</div></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Modelo Power BI nóminas</div><div class="task-criteria">Modelo publicado y navegable</div></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Canvas App gestión nóminas</div><div class="task-criteria">A definir en fase posterior</div></div>
       </div>
@@ -285,8 +291,8 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
         <div class="hist-hrow"><span>día</span><span>planificado</span><span>ejecutado</span><span>resultado</span></div>
         <div class="hist-row"><div>Mar 14</div><div>Atitlán — liquidaciones (tarde)</div><div>Central SAGE ✓ · Atitlán — sin terminar</div><div><span class="hist-pill hp-parcial">parcial</span></div></div>
         <div class="hist-row"><div>Mié 15</div><div>La Razón · Velasco · Atitlán</div><div>Flujos sin probar · Renombrado sin cerrar · Liquidaciones sin avanzar</div><div><span class="hist-pill hp-no">no hecho</span></div></div>
-        <div class="hist-row"><div>Jue 16</div><div>Velasco post-CSC · Webinar 16h · La Razón post-webinar</div><div>—</div><div><span class="hist-pill hp-pend">en curso</span></div></div>
-        <div class="hist-row"><div>Vie 17</div><div>Reunión La Razón · Vibe Coding 1h</div><div>—</div><div><span class="hist-pill hp-pend">pendiente</span></div></div>
+        <div class="hist-row"><div>Jue 16</div><div>Velasco post-CSC · Webinar 16h · La Razón post-webinar</div><div>Webinar Vibe Coding ✓ · La Razón flujos avanzados · Velasco — no tocado</div><div><span class="hist-pill hp-parcial">parcial</span></div></div>
+        <div class="hist-row"><div>Vie 17</div><div>Reunión La Razón · Velasco renombrado · Atitlán tarde · Vibe Coding 1h</div><div>Reunión Clara ✓ — flujo validado, próxima reunión vie 24</div><div><span class="hist-pill hp-parcial">parcial</span></div></div>
         <div class="hist-row"><div>Fin semana</div><div>Fisiodrid — modelo BI Sanitas</div><div>—</div><div><span class="hist-pill hp-pend">pendiente</span></div></div>
       </div>
     </div>
