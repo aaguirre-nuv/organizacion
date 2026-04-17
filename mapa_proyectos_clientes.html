@@ -87,11 +87,11 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
   <div class="section active" id="tab-hoy">
     <div class="hoy-card">
       <div class="hoy-label">Hoy — viernes 17 de abril</div>
-      <div class="hoy-row"><span class="hoy-time">mañana</span><div><span class="hoy-titulo">La Razón</span><span class="hoy-desc">Reunión con Clara — flujos validados, mostrar potencia del modelo</span></div></div>
-      <div class="hoy-row"><span class="hoy-time">mediodía</span><div><span class="hoy-titulo">Velasco</span><span class="hoy-desc">Rematar renombrado de archivos al cambiar título en CRM — en producción, urgente</span></div></div>
+      <div class="hoy-row"><span class="hoy-time">mañana</span><div><span class="hoy-titulo">La Razón ✓</span><span class="hoy-desc">Reunión con Clara completada — flujo validado</span></div></div>
+      <div class="hoy-row"><span class="hoy-time">mediodía</span><div><span class="hoy-titulo">Velasco</span><span class="hoy-desc">Flujo renombrado — condición CDN_Titulo_Ya_Coincide + dos ramas + probar cadena completa</span></div></div>
       <div class="hoy-row"><span class="hoy-time">tarde</span><div><span class="hoy-titulo">Atitlán</span><span class="hoy-desc">Liquidaciones — bloque largo</span></div></div>
-      <div class="hoy-row"><span class="hoy-time">último hueco</span><div><span class="hoy-titulo">Vibe Coding</span><span class="hoy-desc">Bloque 1h — como teníamos previsto</span></div></div>
-      <div class="hoy-footer">Lunes — Atitlán + La Razón (arrastrado si queda algo) · Martes — Firma Nuvirta + Notario</div>
+      <div class="hoy-row"><span class="hoy-time">último hueco</span><div><span class="hoy-titulo">Vibe Coding</span><span class="hoy-desc">Bloque 1h</span></div></div>
+      <div class="hoy-footer">Mañana sábado — Fisiodrid: modelo BI Sanitas (deadline 25) · Lunes — Atitlán + La Razón prep · Martes — Firma Nuvirta</div>
     </div>
   </div>
 
@@ -134,8 +134,8 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
       <div class="semana-cell"><span class="pill" style="background:#E1F5EE;color:#0F6E56;">Velasco</span></div>
       <div class="semana-cell">Formación equipo laboral — fecha pendiente de confirmar</div>
       <div class="semana-cell semana-dia">Vie 24</div>
-      <div class="semana-cell"><span class="pill" style="background:#FBEAF0;color:#72243E;">Atitlán</span> <span class="pill" style="background:#EEEDFE;color:#3C3489;">Vibe Coding</span></div>
-      <div class="semana-cell">Bloque técnico Atitlán (mañana) + 1h Vibe Coding (tarde)</div>
+      <div class="semana-cell"><span class="pill" style="background:#FBEAF0;color:#72243E;">Atitlán</span> <span class="pill" style="background:#FCEBEB;color:#A32D2D;">La Razón</span> <span class="pill" style="background:#EEEDFE;color:#3C3489;">Vibe Coding</span></div>
+      <div class="semana-cell">Reunión La Razón con Clara 10h · Bloque técnico Atitlán · 1h Vibe Coding (tarde)</div>
     </div>
     <div class="semana-note">BestMedia: pendiente respuesta ClickUp. Formación laboral Velasco: pendiente confirmar fecha.</div>
   </div>
@@ -205,6 +205,11 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
         <div class="tasks-header"><span></span><span>tema</span><span>done cuando</span></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Migración documentos (expedientes y clientes)</div><div class="task-criteria">BI no muestra ningún archivo pendiente</div></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Contactos inactivos Sage</div><div class="task-criteria">Flujo diario operativo, registros actualizados</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Flujo modificación cuentas — condición CDN_Titulo_Ya_Coincide + dos ramas (como V6 expedientes)</div><div class="task-criteria">Condición aplicada y probada en biblioteca de cuentas</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Flujo carga cuentas — vel_titulo y vel_nombrevisible sin extensión</div><div class="task-criteria">Cambios aplicados y validados</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Flujo carga expedientes V7 — sin extensión</div><div class="task-criteria">Cambios aplicados y validados</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Probar cadena completa en ambas bibliotecas</div><div class="task-criteria">Cadena funciona end-to-end en cuentas y expedientes</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Migración de cuentas</div><div class="task-criteria">Mismo enfoque que expedientes — pendiente planificar</div></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Cargos con fechas inicio/fin</div><div class="task-criteria">Todos los contactos con cargos y fechas cargadas</div></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Formación equipo laboral (4 personas)</div><div class="task-criteria">4 sesiones de 45 min completadas</div></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Power BI financiero — P&amp;G trimestral</div><div class="task-criteria">Asignación de cuentas revisada, resultados trimestrales correctos</div></div>
