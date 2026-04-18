@@ -431,65 +431,42 @@ function cycleStatus(el) {
   saveStates();
 }
 
-// GITHUB SYNC
-const GH_REPO = 'aaguirre-nuv/organizacion';
-const GH_FILE = 'mapa_proyectos_clientes.html';
-const GH_API  = `https://api.github.com/repos/${GH_REPO}/contents/${GH_FILE}`;
-
-function getToken() {
-  let t = localStorage.getItem('gh_token');
-  if (!t) { t = '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'; localStorage.setItem('gh_token', t); }
-  return t;
-}
+// JSONBIN SYNC
+const BIN_ID  = '69e32a6aaaba88219710600a';
+const BIN_KEY = '$2a$10$2Y9gS7sOIARKbtHusrv.B.gSVjDbAB.ggWQ4GqafsJc24MRrjodrG';
+const BIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
 
 async function saveStates() {
   const s = {};
   document.querySelectorAll('.task-status').forEach((el, i) => { s[i] = el.textContent; });
   try { localStorage.setItem('alvaro_task_states', JSON.stringify(s)); } catch(e) {}
-  syncToGitHub(s);
-}
-
-async function syncToGitHub(states) {
-  const token = getToken();
-  if (!token) return;
   try {
-    const res = await fetch(GH_API, { headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json' } });
-    if (!res.ok) return;
-    const data = await res.json();
-    let content = atob(data.content.replace(/\n/g,''));
-    const marker_start = '/*__STATES_START__*/';
-    const marker_end   = '/*__STATES_END__*/';
-    const newBlock = `${marker_start}${JSON.stringify(states)}${marker_end}`;
-    if (content.includes(marker_start)) {
-      content = content.replace(new RegExp(`\\/\\*__STATES_START__\\*\\/.*?\\/\\*__STATES_END__\\*\\/`, 's'), newBlock);
-    } else {
-      content = content.replace('renderHoy();', newBlock + '\nrenderHoy();');
-    }
-    const encoded = btoa(unescape(encodeURIComponent(content)));
-    await fetch(GH_API, {
+    await fetch(BIN_URL, {
       method: 'PUT',
-      headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: 'update task states', content: encoded, sha: data.sha })
+      headers: { 'Content-Type': 'application/json', 'X-Master-Key': BIN_KEY },
+      body: JSON.stringify({ states: s })
     });
-  } catch(e) { console.warn('GitHub sync error:', e); }
+  } catch(e) { console.warn('jsonbin sync error:', e); }
 }
 
-function loadStates() {
-  // Primero intenta cargar desde el bloque embebido (sincronizado desde GitHub)
-  const marker_start = '/*__STATES_START__*/';
-  const marker_end   = '/*__STATES_END__*/';
-  const scripts = document.querySelectorAll('script');
-  let embedded = null;
-  scripts.forEach(s => {
-    if (s.textContent.includes(marker_start)) {
-      const match = s.textContent.match(/\/\*__STATES_START__\*\/(.*?)\/\*__STATES_END__\*\//s);
-      if (match) { try { embedded = JSON.parse(match[1]); } catch(e) {} }
-    }
-  });
-  const source = embedded || JSON.parse(localStorage.getItem('alvaro_task_states') || '{}');
-  document.querySelectorAll('.task-status').forEach((el, i) => {
-    if (source[i]) { el.textContent = source[i]; if (source[i] === '✅') el.nextElementSibling.classList.add('done-text'); }
-  });
+async function loadStates() {
+  try {
+    const res = await fetch(BIN_URL + '/latest', {
+      headers: { 'X-Master-Key': BIN_KEY, 'X-Bin-Meta': 'false' }
+    });
+    if (!res.ok) throw new Error('fetch failed');
+    const data = await res.json();
+    const s = data.states || {};
+    document.querySelectorAll('.task-status').forEach((el, i) => {
+      if (s[i]) { el.textContent = s[i]; if (s[i] === '✅') el.nextElementSibling.classList.add('done-text'); }
+    });
+    localStorage.setItem('alvaro_task_states', JSON.stringify(s));
+  } catch(e) {
+    const s = JSON.parse(localStorage.getItem('alvaro_task_states') || '{}');
+    document.querySelectorAll('.task-status').forEach((el, i) => {
+      if (s[i]) { el.textContent = s[i]; if (s[i] === '✅') el.nextElementSibling.classList.add('done-text'); }
+    });
+  }
 }
 
 renderHoy();
