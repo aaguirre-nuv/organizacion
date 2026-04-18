@@ -239,7 +239,23 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
     </div>
 
     <div class="client-card">
-      <div class="client-header" onclick="toggle('dasme')">
+      <div class="client-header" onclick="toggle('rizkider')">
+        <div class="dot" style="background:#639922;"></div><span class="client-name">Anuario Rizkider</span>
+        <span class="badge badge-green">personal</span>
+        <span class="chevron" id="chev-rizkider">▶</span>
+      </div>
+      <div class="tasks" id="tasks-rizkider">
+        <div class="tasks-header"><span></span><span>tema</span><span>done cuando</span></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Estructurar datos históricos desde Excel/GameBook</div><div class="task-criteria">JSON con todas las ediciones, jugadores y partidos listo</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Orden de Mérito — histórico campeones y puntos</div><div class="task-criteria">Vista por año con parejas + individual navegable</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Ediciones — timeline año a año</div><div class="task-criteria">Detalle completo por edición: equipos, jornadas, resultados</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Perfil de jugador</div><div class="task-criteria">Historial individual: ediciones, récord, equipos, partidos</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Top 10 — rankings por métricas</div><div class="task-criteria">Toggle Individual/Parejas operativo</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Próxima Rizkider — edición en curso</div><div class="task-criteria">Info de la edición actual visible y actualizable</div></div>
+      </div>
+    </div>
+
+    <div class="client-card">
         <div class="dot" style="background:#BA7517;"></div><span class="client-name">Dasme Control</span>
         <span class="badge badge-gray">bloqueado</span>
         <span class="chevron" id="chev-dasme">▶</span>
@@ -410,7 +426,7 @@ function toggle(id) {
 }
 let allOpen = false;
 function toggleAll() {
-  const clients = ['formacion','fisiodrid','atitlan','velasco','bestmedia','articulo14','larazon','dasme'];
+  const clients = ['formacion','rizkider','fisiodrid','atitlan','velasco','bestmedia','articulo14','larazon','dasme'];
   allOpen = !allOpen;
   clients.forEach(id => {
     document.getElementById('tasks-' + id).classList.toggle('open', allOpen);
