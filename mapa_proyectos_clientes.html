@@ -215,6 +215,7 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Gestión contactos-eventos</div><div class="task-criteria">Cruce contacto-evento registrado y consultable</div></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Modelo de audiencias</div><div class="task-criteria">Reporte actualizado automáticamente</div></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Modelo financiero — visual HTML</div><div class="task-criteria">Visual HTML operativo en informe financiero</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Revisión previsión de tesorería (Santi)</div><div class="task-criteria">Cobros del mes en curso incluidos correctamente — vencimientos posteriores excluidos</div></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Automatización datos podcasts (Spotify, Amazon, Apple, Ivoox)</div><div class="task-criteria">Consulta automática vía API sin intervención manual — valorar con Miguel Ángel</div></div>
       </div>
     </div>
@@ -256,6 +257,7 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
     </div>
 
     <div class="client-card">
+      <div class="client-header" onclick="toggle('dasme')">
         <div class="dot" style="background:#BA7517;"></div><span class="client-name">Dasme Control</span>
         <span class="badge badge-gray">bloqueado</span>
         <span class="chevron" id="chev-dasme">▶</span>
@@ -321,10 +323,12 @@ const PLAN = [
   {
     fecha: "2026-04-20",
     bloques: [
-      { tiempo: "mañana", cliente: "IVA", tarea: "Cerrar declaración IVA — vence hoy" },
-      { tiempo: "tarde", cliente: "Atitlán", tarea: "Continuar flujo liquidaciones" }
+      { tiempo: "mañana", cliente: "Admin", tarea: "Firmar contratos asesoría Velasco" },
+      { tiempo: "mañana", cliente: "Admin", tarea: "Revisar documentación para mañana — escrituras Nuvirta" },
+      { tiempo: "mañana", cliente: "Admin", tarea: "Enviar facturas del mes a clientes" },
+      { tiempo: "mañana", cliente: "IVA", tarea: "Cerrar presentación IVA — registrar datos y enviar" }
     ],
-    footer: "Mañana martes — Firma constitución Nuvirta + Atitlán tarde",
+    footer: "Mañana martes — Firma constitución Nuvirta (hito importante) + Atitlán tarde",
     avisos: ["⚑ Hablar con Miguel Ángel: automatización podcasts Artículo 14"]
   },
   {
@@ -374,7 +378,8 @@ const COLORES = {
   "Dasme":      { bg: "#FAEEDA", fg: "#854F0B" },
   "Nuvirta":    { bg: "#E1F5EE", fg: "#04342C" },
   "Vibe Coding":{ bg: "#EEEDFE", fg: "#3C3489" },
-  "IVA":        { bg: "#F1EFE8", fg: "#5F5E5A" }
+  "IVA":        { bg: "#F1EFE8", fg: "#5F5E5A" },
+  "Admin":      { bg: "#F1EFE8", fg: "#5F5E5A" }
 };
 
 function renderHoy() {
