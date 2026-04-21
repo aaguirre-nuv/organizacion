@@ -108,6 +108,27 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
       <div class="semana-cell">Reunión Clara 10h + reunión MA/Nuvirta (mañana) · tarde: BBDD contactos Artículo 14</div>
     </div>
     <div class="semana-note">⚠️ Gen1 Power BI deprecation junio — Fisiodrid (urgente), Velasco y Artículo 14 afectados. Planificar migración.</div>
+
+    <h2>Semana 18 — 27 abril al 1 mayo <span style="font-size:11px;color:#aaa;font-weight:400;">planificado</span></h2>
+    <div class="semana-grid">
+      <div class="semana-header">día</div><div class="semana-header">cliente</div><div class="semana-header">tarea</div>
+      <div class="semana-cell semana-dia">Lun 27</div>
+      <div class="semana-cell"><span class="pill" style="background:#FCEBEB;color:#A32D2D;">Fisiodrid</span> <span class="pill" style="background:#FBEAF0;color:#72243E;">Atitlán</span></div>
+      <div class="semana-cell">Mañana: planteamiento sustitución Gen1 Fisiodrid · Tarde: rebalanceo Atitlán</div>
+      <div class="semana-cell semana-dia">Mar 28</div>
+      <div class="semana-cell"><span class="pill" style="background:#FBEAF0;color:#72243E;">Atitlán</span> <span class="pill" style="background:#E1F5EE;color:#0F6E56;">Velasco</span></div>
+      <div class="semana-cell">Mañana: rebalanceo Atitlán · Tarde: migrar ficheros cuentas Velasco (cierre)</div>
+      <div class="semana-cell semana-dia">Mié 29</div>
+      <div class="semana-cell"><span class="pill" style="background:#378ADD;color:#fff;">BestMedia</span> <span class="pill" style="background:#7F77DD;color:#fff;">Art.14</span></div>
+      <div class="semana-cell">Mañana: recuperar costes BestMedia · Tarde: flujo Holded tesorería Art.14</div>
+      <div class="semana-cell semana-dia">Jue 30</div>
+      <div class="semana-cell"><span class="pill" style="background:#E1F5EE;color:#0F6E56;">Velasco</span></div>
+      <div class="semana-cell">CSC Fresnillo (todo el día) + Comida NCG — sin tiempo técnico</div>
+      <div class="semana-cell semana-dia">Vie 1</div>
+      <div class="semana-cell"><span class="pill" style="background:#F1EFE8;color:#5F5E5A;">Festivo</span></div>
+      <div class="semana-cell">Día del Trabajo — descanso</div>
+    </div>
+    <div class="semana-note">Semana corta — viernes festivo. Foco: cerrar Velasco, avanzar Atitlán rebalanceo, reactivar BestMedia.</div>
   </div>
 
   <!-- PROYECTOS -->
@@ -150,7 +171,7 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
       <div class="tasks" id="tasks-atitlan">
         <div class="tasks-header"><span></span><span>tema</span><span>done cuando</span></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">✅</div><div class="task-label done-text">Flujo borrador liquidaciones</div><div class="task-criteria">Completado ✓</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Flujo aprobación y envío liquidaciones</div><div class="task-criteria">Se ejecuta y envía correo al inversor</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">✅</div><div class="task-label done-text">Flujo aprobación y envío liquidaciones</div><div class="task-criteria">Completado ✓</div></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Proceso rebalanceo</div><div class="task-criteria">Flujo end-to-end correcto</div></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Notificación rebalanceo</div><div class="task-criteria">Flujo completo correcto</div></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Power BI Atitlán → ATGR0</div><div class="task-criteria">Modelo operativo en tenant destino</div></div>
@@ -329,10 +350,12 @@ const PLAN = [
   {
     fecha: "2026-04-21",
     bloques: [
-      { tiempo: "mañana", cliente: "Nuvirta", tarea: "Firma constitución Nuvirta" },
-      { tiempo: "tarde", cliente: "Atitlán", tarea: "Bloque técnico liquidaciones" }
+      { tiempo: "mañana ✅", cliente: "Nuvirta", tarea: "Firma constitución Nuvirta — completada 🎉" },
+      { tiempo: "tarde", cliente: "Admin", tarea: "Tanatorio" },
+      { tiempo: "tarde", cliente: "Nuvirta", tarea: "Reunión Dani + Miguel Ángel — temas pendientes Nuvirta" },
+      { tiempo: "post-reunión", cliente: "Artículo 14", tarea: "Flujo Holded — añadir un año al filtro de movimientos (30-60 min si hay energía)" }
     ],
-    footer: "Mañana miércoles — formación Velasco ×4 + reunión Atitlán (mañana) · migración Velasco (tarde)"
+    footer: "Mañana miércoles — formación Velasco ×4 + reunión Atitlán (mañana) · comida Praksia · migración cuentas Velasco (tarde)"
   },
   {
     fecha: "2026-04-22",
