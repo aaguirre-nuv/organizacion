@@ -209,7 +209,8 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
       <div class="tasks" id="tasks-velasco">
         <div class="tasks-header"><span></span><span>tema</span><span>done cuando</span></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Migración documentos (expedientes y clientes)</div><div class="task-criteria">BI no muestra ningún archivo pendiente</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Contactos inactivos Sage</div><div class="task-criteria">Flujo diario operativo, registros actualizados</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">✅</div><div class="task-label done-text">Contactos inactivos Sage</div><div class="task-criteria">Completado ✓ — contactos eliminados en Sage → Inactivo + campo Eliminación Sage = Sí</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Notificaciones fichas → nuevo CRM</div><div class="task-criteria">Variables de entorno revisadas y actualizadas al nuevo CRM</div></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Bug fecha documentos — huso horario a las 00:00</div><div class="task-criteria">Campo fecha muestra valor correcto independientemente de la zona horaria</div></div><div class="task-criteria">Condición aplicada y probada en biblioteca de cuentas</div></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Flujo carga cuentas — vel_titulo y vel_nombrevisible sin extensión</div><div class="task-criteria">Cambios aplicados y validados</div></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Flujo carga expedientes V7 — sin extensión</div><div class="task-criteria">Cambios aplicados y validados</div></div>
@@ -445,13 +446,12 @@ const PLAN = [
     footer: "Jueves — CSC Fresnillo Velasco + Comida NCG · sin tiempo técnico"
   },
   {
-    fecha: "2026-04-30",
+    fecha: "2026-05-06",
     bloques: [
-      { tiempo: "todo el día", cliente: "Velasco", tarea: "CSC Fresnillo + Comida NCG — sin tiempo técnico" }
+      { tiempo: "10-12h", cliente: "Artículo 14", tarea: "Formación Carlota — colaboraciones" }
     ],
-    footer: "Viernes 1 mayo — festivo · Semana 19 arranca el lunes 4 con reunión La Razón el lunes tarde"
+    footer: ""
   }
-];
 
 // Colores por cliente
 const COLORES = {
