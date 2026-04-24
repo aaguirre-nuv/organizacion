@@ -113,28 +113,44 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
     <div class="semana-grid">
       <div class="semana-header">día</div><div class="semana-header">cliente</div><div class="semana-header">tarea</div>
       <div class="semana-cell semana-dia">Lun 27</div>
-      <div class="semana-cell"><span class="pill" style="background:#FCEBEB;color:#A32D2D;">Fisiodrid</span> <span class="pill" style="background:#FBEAF0;color:#72243E;">Atitlán</span></div>
-      <div class="semana-cell">Mañana: planteamiento sustitución Gen1 Fisiodrid · Tarde: rebalanceo Atitlán</div>
+      <div class="semana-cell"><span class="pill" style="background:#E1F5EE;color:#0F6E56;">Velasco</span> <span class="pill" style="background:#FBEAF0;color:#72243E;">Atitlán</span></div>
+      <div class="semana-cell">Mañana: migración + contactos Sage + cargos Velasco · Tarde: reunión Atitlán + valoración VL</div>
       <div class="semana-cell semana-dia">Mar 28</div>
       <div class="semana-cell"><span class="pill" style="background:#FBEAF0;color:#72243E;">Atitlán</span> <span class="pill" style="background:#E1F5EE;color:#0F6E56;">Velasco</span></div>
-      <div class="semana-cell">Mañana: rebalanceo Atitlán · Tarde: migrar ficheros cuentas Velasco (cierre)</div>
+      <div class="semana-cell">Mañana: rebalanceo Atitlán · Tarde: cierre migración cuentas Velasco</div>
       <div class="semana-cell semana-dia">Mié 29</div>
       <div class="semana-cell"><span class="pill" style="background:#378ADD;color:#fff;">BestMedia</span> <span class="pill" style="background:#7F77DD;color:#fff;">Art.14</span></div>
-      <div class="semana-cell">Mañana: recuperar costes BestMedia · Tarde: flujo Holded tesorería Art.14</div>
+      <div class="semana-cell">Mañana: costes ClickUp + bugs BAM · Tarde: flujo Holded tesorería Art.14</div>
       <div class="semana-cell semana-dia">Jue 30</div>
       <div class="semana-cell"><span class="pill" style="background:#E1F5EE;color:#0F6E56;">Velasco</span></div>
-      <div class="semana-cell">CSC Fresnillo (todo el día) + Comida NCG — sin tiempo técnico</div>
+      <div class="semana-cell">CSC Fresnillo + Comida NCG — sin tiempo técnico</div>
       <div class="semana-cell semana-dia">Vie 1</div>
       <div class="semana-cell"><span class="pill" style="background:#F1EFE8;color:#5F5E5A;">Festivo</span></div>
-      <div class="semana-cell">Día del Trabajo — descanso</div>
+      <div class="semana-cell">Día del Trabajo — descanso 🎉</div>
     </div>
-    <div class="semana-note">Semana corta — viernes festivo. Foco: cerrar Velasco, avanzar Atitlán rebalanceo, reactivar BestMedia.</div>
+    <div class="semana-note">Objetivos semana 18: 1) Velasco todo cerrado 2) Atitlán valoración + rebalanceo · Reunión La Razón lunes 4 mayo tarde.</div>
   </div>
 
   <!-- PROYECTOS -->
   <div class="section" id="tab-proyectos">
     <div style="font-size:11px;color:#aaa;margin-bottom:10px;">Estado: ⚪ pendiente · 🔵 en curso · ✅ hecho — clic para cambiar</div>
     <div class="toggle-all" onclick="toggleAll()">expandir todo ▾</div>
+
+    <div class="client-card">
+      <div class="client-header" onclick="toggle('nuvirta')">
+        <div class="dot" style="background:#1D9E75;"></div><span class="client-name">Nuvirta</span>
+        <span class="badge badge-green">propio</span>
+        <span class="chevron" id="chev-nuvirta">▶</span>
+      </div>
+      <div class="tasks" id="tasks-nuvirta">
+        <div class="tasks-header"><span></span><span>tema</span><span>done cuando</span></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">✅</div><div class="task-label done-text">Firma constitución Nuvirta</div><div class="task-criteria">Completada 21/04/2026 ✓</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Diseñar proceso de trabajo Nuvirta (captación → cobro)</div><div class="task-criteria">Procesos definidos · base para diseño de agentes y método de trabajo</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Inscripción Registro Mercantil (~05/05)</div><div class="task-criteria">CIF definitivo obtenido</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Solicitud Microsoft AI Cloud Partner Program (~06/05)</div><div class="task-criteria">Correo @nuvirta.com configurado + landing online antes de solicitar</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Obtener licencias Microsoft Partners Launch Benefits (~14/05)</div><div class="task-criteria">Licencias asignadas a usuarios en M365</div></div>
+      </div>
+    </div>
 
     <div class="client-card">
       <div class="client-header" onclick="toggle('formacion')">
@@ -198,9 +214,11 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Flujo carga cuentas — vel_titulo y vel_nombrevisible sin extensión</div><div class="task-criteria">Cambios aplicados y validados</div></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Flujo carga expedientes V7 — sin extensión</div><div class="task-criteria">Cambios aplicados y validados</div></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Probar cadena completa en ambas bibliotecas</div><div class="task-criteria">Cadena funciona end-to-end en cuentas y expedientes</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Migración de cuentas</div><div class="task-criteria">Mismo enfoque que expedientes — pendiente planificar</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Flujo eliminación contactos por vencimiento de cargos</div><div class="task-criteria">Contactos inactivados automáticamente al vencer su cargo</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Migración documentos clientes → SP + actualizar ABS</div><div class="task-criteria">Documentos migrados a SharePoint y Azure Blob Storage actualizado</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Mapear nombres documentos con campo título en Dataverse</div><div class="task-criteria">Todos los documentos con título mapeado correctamente — listo para producción</div></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Cargos con fechas inicio/fin</div><div class="task-criteria">Todos los contactos con cargos y fechas cargadas</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Formación equipo laboral (4 personas)</div><div class="task-criteria">4 sesiones de 45 min completadas</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">✅</div><div class="task-label done-text">Formación equipo laboral (4 personas)</div><div class="task-criteria">Completada ✓</div></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Power BI financiero — P&amp;G trimestral</div><div class="task-criteria">Asignación de cuentas revisada, resultados trimestrales correctos</div></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Tabla de contratos</div><div class="task-criteria">A definir — mejora futura</div></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Flujo eliminación documentos SharePoint → inactivar + backup Azure Blob</div><div class="task-criteria">Registro inactivado en DocumentosAG con quién/cuándo + copia en Azure Blob + enlace al documento recuperable</div></div>
@@ -216,6 +234,8 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
       </div>
       <div class="tasks" id="tasks-bestmedia">
         <div class="tasks-header"><span></span><span>tema</span><span>done cuando</span></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Bug BAM — IdCabTrabajo no visible en formulario crear línea con presupuesto</div><div class="task-criteria">Campo visible y funcional en el formulario</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Bug BAM — conPresupuesto en cabecera no se actualiza al vincular presupuesto posterior</div><div class="task-criteria">Campo actualizado automáticamente aunque el enlace sea posterior a la creación</div></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Proceso ClickUp — costes</div><div class="task-criteria">Flujo operativo, costes registrándose correctamente</div></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Notificación estado POs</div><div class="task-criteria">Sin dependencia de Google Sheet, en plataforma propia</div></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Generación de facturas desde Power Apps</div><div class="task-criteria">Usuario genera factura sin replicar datos manualmente</div></div>
@@ -378,19 +398,58 @@ const PLAN = [
   {
     fecha: "2026-04-23",
     bloques: [
-      { tiempo: "mañana", cliente: "La Razón", tarea: "Cargar retribuciones + nóminas 6 meses + preparar presentación masa salarial" },
-      { tiempo: "tarde", cliente: "Artículo 14", tarea: "Flujo Holded — añadir un año al filtro de movimientos" }
+      { tiempo: "mañana ✅", cliente: "Velasco", tarea: "Formaciones equipo laboral — todas completadas 🎉" },
+      { tiempo: "mañana", cliente: "Atitlán", tarea: "Tabla valor liquidativo — crear estructura + campos coinversión + flujo actualización" },
+      { tiempo: "tarde", cliente: "La Razón", tarea: "Cargar datos nóminas + retribuciones para reunión de mañana con Clara" },
+      { tiempo: "tarde", cliente: "Artículo 14", tarea: "Flujo facturas años anteriores" }
     ],
-    footer: "Mañana viernes — Reunión Clara La Razón 10h + reunión MA/Nuvirta + tarde Art.14 BBDD"
+    footer: "Mañana viernes — Reunión Clara La Razón 10h + reunión MA/Nuvirta + tarde Art.14 BBDD",
+    avisos: ["⚑ Preparar antes de la reunión MA: diseño proceso Nuvirta captación→cobro"]
   },
   {
     fecha: "2026-04-24",
     bloques: [
-      { tiempo: "10h", cliente: "La Razón", tarea: "Reunión con Clara — revisión diseño nóminas y masa salarial" },
-      { tiempo: "mañana", cliente: "Nuvirta", tarea: "Reunión Miguel Ángel — temas pendientes Nuvirta" },
-      { tiempo: "tarde", cliente: "Artículo 14", tarea: "BBDD contactos marketing — siguiente paso con el equipo" }
+      { tiempo: "10h", cliente: "La Razón", tarea: "Reunión con Clara — revisión diseño nóminas y masa salarial · a espera clasificación tipo salario" },
+      { tiempo: "mañana", cliente: "Nuvirta", tarea: "Reunión Miguel Ángel — temas pendientes + diseño proceso captación→cobro" },
+      { tiempo: "tarde", cliente: "Atitlán", tarea: "Terminar tabla valor liquidativo si no quedó cerrada ayer" }
     ],
-    footer: "Semana 18 — Lunes: Fisiodrid Gen1→PQ Azure + Atitlán rebalanceo"
+    footer: "Semana 18 — Objetivos: 1) Velasco todo cerrado 2) Atitlán valoración + reunión lunes tarde",
+    arrastres: [
+      { dia: "Mié 22", items: ["Velasco — migración cuentas sin terminar", "Velasco — contactos inactivos Sage pendiente", "Velasco — cargos con fechas pendiente", "Nuvirta — propuesta honorarios Dani pendiente"] },
+      { dia: "Jue 23", items: ["Atitlán — tabla valor liquidativo sin terminar", "Art.14 — BBDD marketing no avanzado", "Art.14 — flujo Holded pendiente", "Fisiodrid — PQ Azure no tocado", "BestMedia — bugs BAM no tocado"] }
+    ]
+  },
+  {
+    fecha: "2026-04-27",
+    bloques: [
+      { tiempo: "mañana", cliente: "Velasco", tarea: "Migración documentos clientes → SP + actualizar ABS + mapear títulos DV" },
+      { tiempo: "mañana", cliente: "Velasco", tarea: "Flujo contactos inactivos Sage + cargos con fechas" },
+      { tiempo: "tarde", cliente: "Atitlán", tarea: "Reunión Atitlán + continuar valoración valor liquidativo" }
+    ],
+    footer: "Martes — Atitlán rebalanceo + Velasco cierre · Miércoles — BestMedia + Art.14 Holded"
+  },
+  {
+    fecha: "2026-04-28",
+    bloques: [
+      { tiempo: "mañana", cliente: "Atitlán", tarea: "Proceso rebalanceo — flujo end-to-end" },
+      { tiempo: "tarde", cliente: "Velasco", tarea: "Cierre migración cuentas — últimos documentos" }
+    ],
+    footer: "Miércoles — BestMedia costes + Art.14 flujo Holded"
+  },
+  {
+    fecha: "2026-04-29",
+    bloques: [
+      { tiempo: "mañana", cliente: "BestMedia", tarea: "Recuperar costes ClickUp + bugs BAM (IdCabTrabajo + conPresupuesto)" },
+      { tiempo: "tarde", cliente: "Artículo 14", tarea: "Flujo Holded — añadir un año al filtro de movimientos" }
+    ],
+    footer: "Jueves — CSC Fresnillo Velasco + Comida NCG · sin tiempo técnico"
+  },
+  {
+    fecha: "2026-04-30",
+    bloques: [
+      { tiempo: "todo el día", cliente: "Velasco", tarea: "CSC Fresnillo + Comida NCG — sin tiempo técnico" }
+    ],
+    footer: "Viernes 1 mayo — festivo · Semana 19 arranca el lunes 4 con reunión La Razón el lunes tarde"
   }
 ];
 
@@ -439,6 +498,20 @@ function renderHoy() {
     if (plan.footer) {
       html += `<div class="hoy-footer">${plan.footer}</div>`;
     }
+    // Arrastres de días anteriores
+    if (plan.arrastres && plan.arrastres.length) {
+      html += `<div style="margin-top:14px;padding-top:12px;border-top:0.5px solid #FAC775;">
+        <div style="font-size:11px;color:#854F0B;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;">⚠ Pendiente de días anteriores</div>`;
+      plan.arrastres.forEach(a => {
+        html += `<div style="margin-bottom:8px;">
+          <div style="font-size:11px;font-weight:500;color:#854F0B;margin-bottom:4px;">${a.dia}</div>`;
+        a.items.forEach(item => {
+          html += `<div style="font-size:12px;color:#666;padding:2px 0 2px 10px;border-left:2px solid #FAC775;margin-bottom:2px;">${item}</div>`;
+        });
+        html += `</div>`;
+      });
+      html += `</div>`;
+    }
   }
   html += `</div>`;
   cont.innerHTML = html;
@@ -459,7 +532,7 @@ function toggle(id) {
 }
 let allOpen = false;
 function toggleAll() {
-  const clients = ['formacion','rizkider','fisiodrid','atitlan','velasco','bestmedia','articulo14','larazon','dasme'];
+  const clients = ['nuvirta','formacion','rizkider','fisiodrid','atitlan','velasco','bestmedia','articulo14','larazon','dasme'];
   allOpen = !allOpen;
   clients.forEach(id => {
     document.getElementById('tasks-' + id).classList.toggle('open', allOpen);
