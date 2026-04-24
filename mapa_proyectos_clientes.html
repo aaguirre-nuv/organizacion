@@ -211,7 +211,8 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Migración documentos (expedientes y clientes)</div><div class="task-criteria">BI no muestra ningún archivo pendiente</div></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">✅</div><div class="task-label done-text">Contactos inactivos Sage</div><div class="task-criteria">Completado ✓ — contactos eliminados en Sage → Inactivo + campo Eliminación Sage = Sí</div></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Notificaciones fichas → nuevo CRM</div><div class="task-criteria">Variables de entorno revisadas y actualizadas al nuevo CRM</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Bug fecha documentos — huso horario a las 00:00</div><div class="task-criteria">Campo fecha muestra valor correcto independientemente de la zona horaria</div></div><div class="task-criteria">Condición aplicada y probada en biblioteca de cuentas</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Bug fecha documentos — huso horario a las 00:00</div><div class="task-criteria">Campo fecha muestra valor correcto independientemente de la zona horaria</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Flujo modificación cuentas — CDN_Titulo_Ya_Coincide + dos ramas</div><div class="task-criteria">Condición aplicada y probada en biblioteca de cuentas</div></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Flujo carga cuentas — vel_titulo y vel_nombrevisible sin extensión</div><div class="task-criteria">Cambios aplicados y validados</div></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Flujo carga expedientes V7 — sin extensión</div><div class="task-criteria">Cambios aplicados y validados</div></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Probar cadena completa en ambas bibliotecas</div><div class="task-criteria">Cadena funciona end-to-end en cuentas y expedientes</div></div>
@@ -446,14 +447,20 @@ const PLAN = [
     footer: "Jueves — CSC Fresnillo Velasco + Comida NCG · sin tiempo técnico"
   },
   {
+    fecha: "2026-04-30",
+    bloques: [
+      { tiempo: "todo el día", cliente: "Velasco", tarea: "CSC Fresnillo + Comida NCG — sin tiempo técnico" }
+    ],
+    footer: "Viernes 1 mayo — festivo · Semana 19 arranca el lunes 4 con reunión La Razón el lunes tarde"
+  },
+  {
     fecha: "2026-05-06",
     bloques: [
       { tiempo: "10-12h", cliente: "Artículo 14", tarea: "Formación Carlota — colaboraciones" }
     ],
     footer: ""
   }
-
-// Colores por cliente
+];
 const COLORES = {
   "Atitlán":    { bg: "#FBEAF0", fg: "#72243E" },
   "Velasco":    { bg: "#E1F5EE", fg: "#0F6E56" },
@@ -471,7 +478,7 @@ const COLORES = {
 
 function renderHoy() {
   const hoy = new Date();
-  const fechaHoy = hoy.toISOString().slice(0, 10);
+  const fechaHoy = `${hoy.getFullYear()}-${String(hoy.getMonth()+1).padStart(2,'0')}-${String(hoy.getDate()).padStart(2,'0')}`;
   const dias = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
   const meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
   const labelFecha = `Hoy — ${dias[hoy.getDay()]} ${hoy.getDate()} de ${meses[hoy.getMonth()]}`;
