@@ -104,7 +104,7 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
       <div class="pend-header"><span>estimado</span><span>cliente</span><span>tarea</span><span></span></div>
       <div class="pend-row" id="pend-0"><div class="pend-fecha">Mié 22</div><div><span class="pend-cliente" style="background:#E1F5EE;color:#0F6E56;">Velasco</span></div><div class="pend-tarea">Cargos con fechas inicio/fin</div><div class="pend-check" onclick="togglePend(0)">⚪</div></div>
       <div class="pend-row" id="pend-1"><div class="pend-fecha">Mié 22</div><div><span class="pend-cliente" style="background:#E1F5EE;color:#04342C;">Nuvirta</span></div><div class="pend-tarea">Propuesta honorarios a Dani — valoración extra + nuevas tareas</div><div class="pend-check" onclick="togglePend(1)">⚪</div></div>
-      <div class="pend-row" id="pend-2"><div class="pend-fecha">Jue 23</div><div><span class="pend-cliente" style="background:#FBEAF0;color:#72243E;">Atitlán</span></div><div class="pend-tarea">Tabla valor liquidativo — estructura + campos coinversión + flujo</div><div class="pend-check" onclick="togglePend(2)">⚪</div></div>
+      <div class="pend-row pend-done" id="pend-2"><div class="pend-fecha">Jue 23</div><div><span class="pend-cliente" style="background:#FBEAF0;color:#72243E;">Atitlán</span></div><div class="pend-tarea" style="color:#bbb;text-decoration:line-through;">Tabla valor liquidativo — estructura + campos coinversión + flujo</div><div class="pend-check" onclick="togglePend(2)">✅</div></div>
       <div class="pend-row" id="pend-3"><div class="pend-fecha">Jue 23</div><div><span class="pend-cliente" style="background:#EEEDFE;color:#3C3489;">Art.14</span></div><div class="pend-tarea">BBDD marketing — siguiente paso con el equipo</div><div class="pend-check" onclick="togglePend(3)">⚪</div></div>
       <div class="pend-row" id="pend-4"><div class="pend-fecha">Jue 23</div><div><span class="pend-cliente" style="background:#EEEDFE;color:#3C3489;">Art.14</span></div><div class="pend-tarea">Flujo Holded — añadir un año al filtro de movimientos de tesorería</div><div class="pend-check" onclick="togglePend(4)">⚪</div></div>
       <div class="pend-row" id="pend-5"><div class="pend-fecha">Jue 23</div><div><span class="pend-cliente" style="background:#FCEBEB;color:#A32D2D;">Fisiodrid</span></div><div class="pend-tarea">Sustituir Gen1 por Power Query directo a Azure Blob</div><div class="pend-check" onclick="togglePend(5)">⚪</div></div>
@@ -198,7 +198,9 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Validación de datos (model-driven app)</div><div class="task-criteria">Usuarios ven, filtran y modifican datos autónomamente</div></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Campos acumulados devolución principal — quitar de vista</div><div class="task-criteria">Campos ocultos en formulario pero mantenidos en tabla</div></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Portal Nerea — visibilidad líneas Capital Call y Liquidaciones</div><div class="task-criteria">Estados borrador/enviado correctamente visibles · comunicado a Nerea</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Valor liquidativo — tabla nueva + campos coinversión + flujo actualización</div><div class="task-criteria">Tabla VL (inversión+fecha+VL) · nº acciones en coinversión · último VL con fecha · campo calculado VL×acciones · flujo actualización automática</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">✅</div><div class="task-label done-text">Valor liquidativo — tabla nueva + campos coinversión + flujo actualización (Atgro)</div><div class="task-criteria">Completado ✓ — aplica solo para Atgro</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Campaña exprés — configurar buzón para envío con correo general</div><div class="task-criteria">Correo sale desde la dirección general, no del usuario emisor</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Poner en producción CRM Atitlán (desde semana 4/05)</div><div class="task-criteria">CRM migrado de pruebas a producción y operativo para el equipo</div></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">2 plantillas nuevas de estado — mapear y actualizar flujos</div><div class="task-criteria">Plantillas mapeadas y flujos de generación de documentos actualizados</div></div>
       </div>
     </div>
@@ -473,7 +475,14 @@ const PLAN = [
     footer: "Viernes 1 mayo — festivo · Semana 19 arranca el lunes 4 con reunión La Razón el lunes tarde"
   },
   {
-    fecha: "2026-05-06",
+    fecha: "2026-05-04",
+    bloques: [
+      { tiempo: "10:30h", cliente: "Atitlán", tarea: "Reunión Atitlán — revisión CRM + puesta en producción" },
+      { tiempo: "tarde", cliente: "La Razón", tarea: "Reunión La Razón — revisión modelo nóminas y masa salarial" }
+    ],
+    footer: "Semana del 4/05 — puesta en producción CRM Atitlán"
+  },
+  {
     bloques: [
       { tiempo: "10-12h", cliente: "Artículo 14", tarea: "Formación Carlota — colaboraciones" }
     ],
