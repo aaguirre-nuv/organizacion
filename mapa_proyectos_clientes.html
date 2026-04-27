@@ -72,6 +72,16 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
 .hp-pend { background: #F1EFE8; color: #5F5E5A; }
 .chat-btn { position: sticky; bottom: 1.5rem; text-align: right; pointer-events: none; margin-top: 1.5rem; }
 .chat-btn a { pointer-events: all; display: inline-flex; align-items: center; gap: 8px; background: #534AB7; color: #fff; font-size: 13px; font-weight: 500; padding: 10px 16px; border-radius: 999px; text-decoration: none; }
+.pend-row { display: grid; grid-template-columns: 70px 120px 1fr 28px; gap: 8px; padding: 8px 14px; border-top: 0.5px solid rgba(0,0,0,0.05); align-items: center; }
+.pend-row:hover { background: #fafaf8; }
+.pend-fecha { font-size: 11px; color: #aaa; }
+.pend-cliente { font-size: 12px; font-weight: 500; padding: 2px 8px; border-radius: 6px; display: inline-block; }
+.pend-tarea { font-size: 13px; color: #1a1a1a; }
+.pend-check { cursor: pointer; font-size: 14px; user-select: none; text-align: center; }
+.pend-done .pend-tarea { color: #bbb; text-decoration: line-through; }
+.pend-header { display: grid; grid-template-columns: 70px 120px 1fr 28px; gap: 8px; padding: 5px 14px; background: #f8f8f6; }
+.pend-header span { font-size: 11px; color: #bbb; text-transform: uppercase; letter-spacing: 0.05em; }
+.pend-card { background: #fff; border: 0.5px solid rgba(0,0,0,0.12); border-radius: 12px; overflow: hidden; margin-bottom: 16px; }
 </style>
 </head>
 <body>
@@ -79,6 +89,7 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
   <h1>Planificación Álvaro — Nuvirta</h1>
   <div class="tabs">
     <div class="tab active" onclick="showTab('hoy',this)">Hoy</div>
+    <div class="tab" onclick="showTab('pendientes',this)">Pendientes</div>
     <div class="tab" onclick="showTab('semanas',this)">Semanas</div>
     <div class="tab" onclick="showTab('proyectos',this)">Proyectos</div>
     <div class="tab" onclick="showTab('historico',this)">Histórico</div>
@@ -86,35 +97,27 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
 
   <div class="section active" id="tab-hoy"><div id="hoy-content"></div></div>
 
-  <!-- SEMANAS -->
-  <div class="section" id="tab-semanas">
-    <h2>Semana 17 — 20 al 24 abril <span style="font-size:11px;color:#aaa;font-weight:400;">en curso</span></h2>
-    <div class="semana-grid">
-      <div class="semana-header">día</div><div class="semana-header">cliente</div><div class="semana-header">tarea</div>
-      <div class="semana-cell semana-dia">Lun 20</div>
-      <div class="semana-cell"><span class="pill" style="background:#F1EFE8;color:#5F5E5A;">Admin ✅</span> <span class="pill" style="background:#FBEAF0;color:#72243E;">Atitlán</span> <span class="pill" style="background:#7F77DD;color:#fff;">Art.14</span></div>
-      <div class="semana-cell">Admin completado · Borrador liquidaciones ✅ · tarde: envío liquidaciones + tesorería Art.14</div>
-      <div class="semana-cell semana-dia">Mar 21</div>
-      <div class="semana-cell"><span class="pill" style="background:#5DCAA5;color:#04342C;">Nuvirta</span> <span class="pill" style="background:#E1F5EE;color:#0F6E56;">Velasco</span></div>
-      <div class="semana-cell">Firma constitución Nuvirta (mañana) 🎉 + migración Velasco (tarde)</div>
-      <div class="semana-cell semana-dia">Mié 22</div>
-      <div class="semana-cell"><span class="pill" style="background:#E1F5EE;color:#0F6E56;">Velasco</span> <span class="pill" style="background:#FBEAF0;color:#72243E;">Atitlán</span> <span class="pill" style="background:#FAEEDA;color:#854F0B;">Praksia</span></div>
-      <div class="semana-cell">Mañana: formación laboral ×4 + reunión Atitlán · Comida Praksia · Tarde: contactos inactivos Sage + Cargos</div>
-      <div class="semana-cell semana-dia">Jue 23</div>
-      <div class="semana-cell"><span class="pill" style="background:#BA7517;color:#fff;">Dasme</span> <span class="pill" style="background:#FCEBEB;color:#A32D2D;">La Razón</span></div>
-      <div class="semana-cell">Reunión Dasme (hora TBD) + retribuciones + nóminas 6 meses + presentación masa salarial</div>
-      <div class="semana-cell semana-dia">Vie 24</div>
-      <div class="semana-cell"><span class="pill" style="background:#FCEBEB;color:#A32D2D;">La Razón</span> <span class="pill" style="background:#5DCAA5;color:#04342C;">Nuvirta</span> <span class="pill" style="background:#7F77DD;color:#fff;">Art.14</span></div>
-      <div class="semana-cell">Reunión Clara 10h + reunión MA/Nuvirta (mañana) · tarde: BBDD contactos Artículo 14</div>
+  <!-- PENDIENTES -->
+  <div class="section" id="tab-pendientes">
+    <div style="font-size:11px;color:#aaa;margin-bottom:12px;">Cola operativa — tareas planificadas que no se completaron. Fecha = primera vez que se incluyó en el plan del día.</div>
+    <div class="pend-card">
+      <div class="pend-header"><span>estimado</span><span>cliente</span><span>tarea</span><span></span></div>
+      <div class="pend-row" id="pend-0"><div class="pend-fecha">Mié 22</div><div><span class="pend-cliente" style="background:#E1F5EE;color:#0F6E56;">Velasco</span></div><div class="pend-tarea">Cargos con fechas inicio/fin</div><div class="pend-check" onclick="togglePend(0)">⚪</div></div>
+      <div class="pend-row" id="pend-1"><div class="pend-fecha">Mié 22</div><div><span class="pend-cliente" style="background:#E1F5EE;color:#04342C;">Nuvirta</span></div><div class="pend-tarea">Propuesta honorarios a Dani — valoración extra + nuevas tareas</div><div class="pend-check" onclick="togglePend(1)">⚪</div></div>
+      <div class="pend-row" id="pend-2"><div class="pend-fecha">Jue 23</div><div><span class="pend-cliente" style="background:#FBEAF0;color:#72243E;">Atitlán</span></div><div class="pend-tarea">Tabla valor liquidativo — estructura + campos coinversión + flujo</div><div class="pend-check" onclick="togglePend(2)">⚪</div></div>
+      <div class="pend-row" id="pend-3"><div class="pend-fecha">Jue 23</div><div><span class="pend-cliente" style="background:#EEEDFE;color:#3C3489;">Art.14</span></div><div class="pend-tarea">BBDD marketing — siguiente paso con el equipo</div><div class="pend-check" onclick="togglePend(3)">⚪</div></div>
+      <div class="pend-row" id="pend-4"><div class="pend-fecha">Jue 23</div><div><span class="pend-cliente" style="background:#EEEDFE;color:#3C3489;">Art.14</span></div><div class="pend-tarea">Flujo Holded — añadir un año al filtro de movimientos de tesorería</div><div class="pend-check" onclick="togglePend(4)">⚪</div></div>
+      <div class="pend-row" id="pend-5"><div class="pend-fecha">Jue 23</div><div><span class="pend-cliente" style="background:#FCEBEB;color:#A32D2D;">Fisiodrid</span></div><div class="pend-tarea">Sustituir Gen1 por Power Query directo a Azure Blob</div><div class="pend-check" onclick="togglePend(5)">⚪</div></div>
+      <div class="pend-row" id="pend-6"><div class="pend-fecha">Jue 23</div><div><span class="pend-cliente" style="background:#E6F1FB;color:#185FA5;">BestMedia</span></div><div class="pend-tarea">Bugs BAM — IdCabTrabajo + conPresupuesto</div><div class="pend-check" onclick="togglePend(6)">⚪</div></div>
     </div>
-    <div class="semana-note">⚠️ Gen1 Power BI deprecation junio — Fisiodrid (urgente), Velasco y Artículo 14 afectados. Planificar migración.</div>
-
-    <h2>Semana 18 — 27 abril al 1 mayo <span style="font-size:11px;color:#aaa;font-weight:400;">planificado</span></h2>
+  </div>
+  <div class="section" id="tab-semanas">
+    <h2>Semana 18 — 27 abril al 1 mayo <span style="font-size:11px;color:#aaa;font-weight:400;">en curso</span></h2>
     <div class="semana-grid">
       <div class="semana-header">día</div><div class="semana-header">cliente</div><div class="semana-header">tarea</div>
       <div class="semana-cell semana-dia">Lun 27</div>
       <div class="semana-cell"><span class="pill" style="background:#E1F5EE;color:#0F6E56;">Velasco</span> <span class="pill" style="background:#FBEAF0;color:#72243E;">Atitlán</span></div>
-      <div class="semana-cell">Mañana: migración + contactos Sage + cargos Velasco · Tarde: reunión Atitlán + valoración VL</div>
+      <div class="semana-cell">Mañana: validar migración + cargos Velasco · Tarde: reunión Atitlán + tabla VL</div>
       <div class="semana-cell semana-dia">Mar 28</div>
       <div class="semana-cell"><span class="pill" style="background:#FBEAF0;color:#72243E;">Atitlán</span> <span class="pill" style="background:#E1F5EE;color:#0F6E56;">Velasco</span></div>
       <div class="semana-cell">Mañana: rebalanceo Atitlán · Tarde: cierre migración cuentas Velasco</div>
@@ -128,7 +131,7 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
       <div class="semana-cell"><span class="pill" style="background:#F1EFE8;color:#5F5E5A;">Festivo</span></div>
       <div class="semana-cell">Día del Trabajo — descanso 🎉</div>
     </div>
-    <div class="semana-note">Objetivos semana 18: 1) Velasco todo cerrado 2) Atitlán valoración + rebalanceo · Reunión La Razón lunes 4 mayo tarde.</div>
+    <div class="semana-note">Objetivos: 1) Velasco validado y cerrado 2) Atitlán tabla VL + rebalanceo · Reunión La Razón lunes 4 mayo.</div>
   </div>
 
   <!-- PROYECTOS -->
@@ -318,6 +321,22 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
   <!-- HISTÓRICO -->
   <div class="section" id="tab-historico">
     <div class="historico-semana">
+      <div class="historico-header" onclick="toggleHist('h17')">
+        <span style="font-size:13px;font-weight:500;">Semana 17 — 20 al 24 abril</span>
+        <span style="font-size:11px;color:#aaa;">▶</span>
+      </div>
+      <div class="historico-body" id="h17">
+        <div class="hist-hrow"><span>día</span><span>planificado</span><span>ejecutado</span><span>resultado</span></div>
+        <div class="hist-row"><div>Lun 20</div><div>Admin + Atitlán + Art.14</div><div>Admin ✅ · Borrador liquidaciones ✅ · Envío liquidaciones ✅ · Tesorería Art.14 — detectado problema Holded</div><div><span class="hist-pill hp-ok">ok</span></div></div>
+        <div class="hist-row"><div>Mar 21</div><div>Firma Nuvirta + reunión Dani/MA</div><div>Firma Nuvirta ✅ · Tanatorio · Reunión MA ✅ · Holded — sin tiempo</div><div><span class="hist-pill hp-parcial">parcial</span></div></div>
+        <div class="hist-row"><div>Mié 22</div><div>Formación Velasco + Atitlán + Praksia + Dasme</div><div>Formaciones ✅ · Reunión Atitlán ✅ · Comida Praksia ✅ · Reunión Dasme ✅ · Cargos y migración — sin terminar</div><div><span class="hist-pill hp-parcial">parcial</span></div></div>
+        <div class="hist-row"><div>Jue 23</div><div>La Razón + Art.14 + Atitlán VL</div><div>Carga nóminas La Razón ✅ · Tabla VL sin terminar · BBDD A14 no tocado · Holded pendiente</div><div><span class="hist-pill hp-parcial">parcial</span></div></div>
+        <div class="hist-row"><div>Vie 24</div><div>Reunión Clara + MA/Nuvirta + Art.14 BBDD</div><div>Reunión Clara ✅ · Reunión MA ✅ · BBDD A14 no avanzado · VL Atitlán sin cerrar</div><div><span class="hist-pill hp-parcial">parcial</span></div></div>
+        <div class="hist-row"><div>Fin semana</div><div>Migración Velasco</div><div>Migración avanzada ✅ · Contactos Velasco ✅ · Pendiente validar</div><div><span class="hist-pill hp-parcial">parcial</span></div></div>
+      </div>
+    </div>
+
+    <div class="historico-semana">
       <div class="historico-header" onclick="toggleHist('h16')">
         <span style="font-size:13px;font-weight:500;">Semana 16 — 14 al 19 abril</span>
         <span style="font-size:11px;color:#aaa;">▶</span>
@@ -424,11 +443,11 @@ const PLAN = [
   {
     fecha: "2026-04-27",
     bloques: [
-      { tiempo: "mañana", cliente: "Velasco", tarea: "Migración documentos clientes → SP + actualizar ABS + mapear títulos DV" },
-      { tiempo: "mañana", cliente: "Velasco", tarea: "Flujo contactos inactivos Sage + cargos con fechas" },
-      { tiempo: "tarde", cliente: "Atitlán", tarea: "Reunión Atitlán + continuar valoración valor liquidativo" }
+      { tiempo: "mañana", cliente: "Velasco", tarea: "Validar migración documentos clientes — comprobar que todo ha ido correctamente" },
+      { tiempo: "mañana", cliente: "Velasco", tarea: "Cargos con fechas inicio/fin — rematar" },
+      { tiempo: "tarde", cliente: "Atitlán", tarea: "Reunión Atitlán + arrancar tabla valor liquidativo" }
     ],
-    footer: "Martes — Atitlán rebalanceo + Velasco cierre · Miércoles — BestMedia + Art.14 Holded"
+    footer: "Martes — Atitlán rebalanceo · Miércoles — BestMedia + Art.14 Holded"
   },
   {
     fecha: "2026-04-28",
@@ -524,6 +543,29 @@ function renderHoy() {
   cont.innerHTML = html;
 }
 
+// PENDIENTES
+function togglePend(idx) {
+  const row = document.getElementById('pend-' + idx);
+  const check = row.querySelector('.pend-check');
+  const isDone = check.textContent === '✅';
+  check.textContent = isDone ? '⚪' : '✅';
+  row.classList.toggle('pend-done', !isDone);
+  savePendStates();
+}
+function savePendStates() {
+  const s = {};
+  document.querySelectorAll('.pend-check').forEach((el, i) => { s[i] = el.textContent; });
+  try { localStorage.setItem('alvaro_pend_states', JSON.stringify(s)); } catch(e) {}
+}
+function loadPendStates() {
+  try {
+    const s = JSON.parse(localStorage.getItem('alvaro_pend_states') || '{}');
+    document.querySelectorAll('.pend-check').forEach((el, i) => {
+      if (s[i] === '✅') { el.textContent = '✅'; el.closest('.pend-row').classList.add('pend-done'); }
+    });
+  } catch(e) {}
+}
+
 // TABS
 function showTab(name, el) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
@@ -600,6 +642,7 @@ async function loadStates() {
 
 renderHoy();
 loadStates();
+loadPendStates();
 </script>
 </body>
 </html>
