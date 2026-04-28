@@ -109,8 +109,16 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
       <div class="pend-row" id="pend-4"><div class="pend-fecha">Jue 23</div><div><span class="pend-cliente" style="background:#EEEDFE;color:#3C3489;">Art.14</span></div><div class="pend-tarea">Flujo Holded — añadir un año al filtro de movimientos de tesorería</div><div class="pend-check" onclick="togglePend(4)">⚪</div></div>
       <div class="pend-row" id="pend-5"><div class="pend-fecha">Jue 23</div><div><span class="pend-cliente" style="background:#FCEBEB;color:#A32D2D;">Fisiodrid</span></div><div class="pend-tarea">Sustituir Gen1 por Power Query directo a Azure Blob</div><div class="pend-check" onclick="togglePend(5)">⚪</div></div>
       <div class="pend-row" id="pend-6"><div class="pend-fecha">Jue 23</div><div><span class="pend-cliente" style="background:#E6F1FB;color:#185FA5;">BestMedia</span></div><div class="pend-tarea">Bugs BAM — IdCabTrabajo + conPresupuesto</div><div class="pend-check" onclick="togglePend(6)">⚪</div></div>
+      <div class="pend-row" id="pend-7"><div class="pend-fecha">Lun 27</div><div><span class="pend-cliente" style="background:#FBEAF0;color:#72243E;">Atitlán</span></div><div class="pend-tarea">Campaña exprés — validar correos con dirección general</div><div class="pend-check" onclick="togglePend(7)">⚪</div></div>
+      <div class="pend-row" id="pend-8"><div class="pend-fecha">Lun 27</div><div><span class="pend-cliente" style="background:#E1F5EE;color:#0F6E56;">Velasco</span></div><div class="pend-tarea">Cargos con fechas inicio/fin — rematar</div><div class="pend-check" onclick="togglePend(8)">⚪</div></div>
+      <div class="pend-row" id="pend-9"><div class="pend-fecha">Lun 27</div><div><span class="pend-cliente" style="background:#E1F5EE;color:#0F6E56;">Velasco</span></div><div class="pend-tarea">Informe migración para Eloy — histórico mes a mes</div><div class="pend-check" onclick="togglePend(9)">⚪</div></div>
+      <div class="pend-row" id="pend-10"><div class="pend-fecha">Lun 27</div><div><span class="pend-cliente" style="background:#E1F5EE;color:#04342C;">Nuvirta</span></div><div class="pend-tarea">Nota para Dani — facturable Atitlán proporción horas</div><div class="pend-check" onclick="togglePend(10)">⚪</div></div>
+      <div class="pend-row" id="pend-11"><div class="pend-fecha">Lun 27</div><div><span class="pend-cliente" style="background:#EEEDFE;color:#3C3489;">Art.14</span></div><div class="pend-tarea">Nota a Vicky — disculpa retraso BBDD, quedamos mié 6</div><div class="pend-check" onclick="togglePend(11)">⚪</div></div>
+      <div class="pend-row" id="pend-12"><div class="pend-fecha">Lun 27</div><div><span class="pend-cliente" style="background:#EEEDFE;color:#3C3489;">Art.14</span></div><div class="pend-tarea">Flujo Holded — añadir un año al filtro de movimientos</div><div class="pend-check" onclick="togglePend(12)">⚪</div></div>
     </div>
   </div>
+
+  <!-- SEMANAS -->
   <div class="section" id="tab-semanas">
     <h2>Semana 18 — 27 abril al 1 mayo <span style="font-size:11px;color:#aaa;font-weight:400;">en curso</span></h2>
     <div class="semana-grid">
@@ -447,23 +455,22 @@ const PLAN = [
   {
     fecha: "2026-04-27",
     bloques: [
-      { tiempo: "mañana", cliente: "Atitlán", tarea: "Validar campaña exprés — correos saliendo con dirección general" },
-      { tiempo: "mañana", cliente: "Velasco", tarea: "Rematar cargos con fechas inicio/fin" },
-      { tiempo: "mañana", cliente: "Velasco", tarea: "Informe de migración para Eloy — histórico mes a mes, horas y proyectos" },
-      { tiempo: "tarde", cliente: "Nuvirta", tarea: "Nota para Dani — facturable Atitlán: base + proporción horas previstas vs realizadas + pendiente" },
-      { tiempo: "tarde", cliente: "Artículo 14", tarea: "Flujo Holded — añadir un año al filtro de movimientos de tesorería" },
-      { tiempo: "tarde", cliente: "Artículo 14", tarea: "📧 Nota a Vicky — disculpa retraso BBDD, nos vemos el miércoles 6 in situ" }
+      { tiempo: "tarde ✅", cliente: "Atitlán", tarea: "Reunión Atitlán — todo bien ✓" }
     ],
-    footer: "Tarde: reunión Atitlán · Semana del 4/05 — reuniones Atitlán 10:30 + La Razón + visita A14 miércoles 6",
-    avisos: ["⚑ Prioridad: campaña Atitlán → cargos Velasco → nota Dani → nota Eloy → tesorería A14"]
+    footer: "Nada más completado — resto arrastrado al martes"
   },
   {
     fecha: "2026-04-28",
     bloques: [
-      { tiempo: "mañana", cliente: "Atitlán", tarea: "Proceso rebalanceo — flujo end-to-end" },
-      { tiempo: "tarde", cliente: "Velasco", tarea: "Cierre migración cuentas — últimos documentos" }
+      { tiempo: "mañana", cliente: "Atitlán", tarea: "Validar campaña exprés — correos saliendo con dirección general" },
+      { tiempo: "mañana", cliente: "Velasco", tarea: "Rematar cargos con fechas inicio/fin" },
+      { tiempo: "mañana", cliente: "Velasco", tarea: "Informe de migración para Eloy — histórico mes a mes, horas y proyectos" },
+      { tiempo: "tarde", cliente: "Nuvirta", tarea: "Nota para Dani — facturable Atitlán: base + proporción horas previstas vs realizadas + pendiente" },
+      { tiempo: "tarde", cliente: "Artículo 14", tarea: "📧 Nota a Vicky — disculpa retraso BBDD, nos vemos el miércoles 6 in situ" },
+      { tiempo: "tarde", cliente: "Artículo 14", tarea: "Flujo Holded — añadir un año al filtro de movimientos de tesorería" }
     ],
-    footer: "Miércoles — BestMedia costes + Art.14 flujo Holded"
+    footer: "Miércoles — BestMedia costes + bugs BAM · Jueves — CSC Fresnillo sin tiempo técnico",
+    avisos: ["✅ Reunión Atitlán ayer — todo bien"]
   },
   {
     fecha: "2026-04-29",
