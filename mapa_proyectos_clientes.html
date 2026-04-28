@@ -265,6 +265,8 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Modelo financiero — visual HTML</div><div class="task-criteria">Visual HTML operativo en informe financiero</div></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Flujo Holded — añadir un año al filtro de movimientos de tesorería</div><div class="task-criteria">Cobros del mes en curso incluidos correctamente en la previsión</div></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Revisión previsión de tesorería (Santi)</div><div class="task-criteria">Cobros del mes en curso incluidos correctamente — vencimientos posteriores excluidos</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Reunión Queco — cierre + acceso Arce a datos Power BI</div><div class="task-criteria">Queco informado del cierre · Arce con acceso configurado a sus datos</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Diseño nuevo reporting A14</div><div class="task-criteria">Pasos definidos e implementación iniciada — evaluar complejidad real</div></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Automatización datos podcasts (Spotify, Amazon, Apple, Ivoox)</div><div class="task-criteria">Consulta automática vía API sin intervención manual — valorar con Miguel Ángel</div></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">⚠️ Migración Gen1 → Gen2 (deprecation junio)</div><div class="task-criteria">Flujos de datos analíticos migrados antes de junio 2026</div></div>
       </div>
@@ -445,11 +447,15 @@ const PLAN = [
   {
     fecha: "2026-04-27",
     bloques: [
-      { tiempo: "mañana", cliente: "Velasco", tarea: "Validar migración documentos clientes — comprobar que todo ha ido correctamente" },
-      { tiempo: "mañana", cliente: "Velasco", tarea: "Cargos con fechas inicio/fin — rematar" },
-      { tiempo: "tarde", cliente: "Atitlán", tarea: "Reunión Atitlán + arrancar tabla valor liquidativo" }
+      { tiempo: "mañana", cliente: "Atitlán", tarea: "Validar campaña exprés — correos saliendo con dirección general" },
+      { tiempo: "mañana", cliente: "Velasco", tarea: "Rematar cargos con fechas inicio/fin" },
+      { tiempo: "mañana", cliente: "Velasco", tarea: "Informe de migración para Eloy — histórico mes a mes, horas y proyectos" },
+      { tiempo: "tarde", cliente: "Nuvirta", tarea: "Nota para Dani — facturable Atitlán: base + proporción horas previstas vs realizadas + pendiente" },
+      { tiempo: "tarde", cliente: "Artículo 14", tarea: "Flujo Holded — añadir un año al filtro de movimientos de tesorería" },
+      { tiempo: "tarde", cliente: "Artículo 14", tarea: "📧 Nota a Vicky — disculpa retraso BBDD, nos vemos el miércoles 6 in situ" }
     ],
-    footer: "Martes — Atitlán rebalanceo · Miércoles — BestMedia + Art.14 Holded"
+    footer: "Tarde: reunión Atitlán · Semana del 4/05 — reuniones Atitlán 10:30 + La Razón + visita A14 miércoles 6",
+    avisos: ["⚑ Prioridad: campaña Atitlán → cargos Velasco → nota Dani → nota Eloy → tesorería A14"]
   },
   {
     fecha: "2026-04-28",
@@ -483,8 +489,11 @@ const PLAN = [
     footer: "Semana del 4/05 — puesta en producción CRM Atitlán"
   },
   {
+    fecha: "2026-05-06",
     bloques: [
-      { tiempo: "10-12h", cliente: "Artículo 14", tarea: "Formación Carlota — colaboraciones" }
+      { tiempo: "10-12h", cliente: "Artículo 14", tarea: "Formación Carlota — colaboraciones" },
+      { tiempo: "mañana", cliente: "Artículo 14", tarea: "Reunión Vicky — BBDD marketing in situ" },
+      { tiempo: "mañana", cliente: "Artículo 14", tarea: "Reunión Queco — cierre + acceso Arce a datos Power BI" }
     ],
     footer: ""
   }
