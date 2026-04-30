@@ -112,7 +112,7 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
       <div class="pend-row" id="pend-7"><div class="pend-fecha">Lun 27</div><div><span class="pend-cliente" style="background:#FBEAF0;color:#72243E;">Atitlán</span></div><div class="pend-tarea">Campaña exprés — validar correos con dirección general</div><div class="pend-check" onclick="togglePend(7)">⚪</div></div>
       <div class="pend-row" id="pend-8"><div class="pend-fecha">Lun 27</div><div><span class="pend-cliente" style="background:#E1F5EE;color:#0F6E56;">Velasco</span></div><div class="pend-tarea">Cargos con fechas inicio/fin — rematar</div><div class="pend-check" onclick="togglePend(8)">⚪</div></div>
       <div class="pend-row" id="pend-9"><div class="pend-fecha">Lun 27</div><div><span class="pend-cliente" style="background:#E1F5EE;color:#0F6E56;">Velasco</span></div><div class="pend-tarea">Informe migración para Eloy — histórico mes a mes</div><div class="pend-check" onclick="togglePend(9)">⚪</div></div>
-      <div class="pend-row" id="pend-10"><div class="pend-fecha">Lun 27</div><div><span class="pend-cliente" style="background:#E1F5EE;color:#04342C;">Nuvirta</span></div><div class="pend-tarea">Nota para Dani — facturable Atitlán proporción horas</div><div class="pend-check" onclick="togglePend(10)">⚪</div></div>
+      <div class="pend-row pend-done" id="pend-10"><div class="pend-fecha">Lun 27</div><div><span class="pend-cliente" style="background:#E1F5EE;color:#04342C;">Nuvirta</span></div><div class="pend-tarea" style="color:#bbb;text-decoration:line-through;">Nota para Dani — facturable Atitlán proporción horas</div><div class="pend-check" onclick="togglePend(10)">✅</div></div>
       <div class="pend-row" id="pend-11"><div class="pend-fecha">Lun 27</div><div><span class="pend-cliente" style="background:#EEEDFE;color:#3C3489;">Art.14</span></div><div class="pend-tarea">Nota a Vicky — disculpa retraso BBDD, quedamos mié 6</div><div class="pend-check" onclick="togglePend(11)">⚪</div></div>
       <div class="pend-row" id="pend-12"><div class="pend-fecha">Lun 27</div><div><span class="pend-cliente" style="background:#EEEDFE;color:#3C3489;">Art.14</span></div><div class="pend-tarea">Flujo Holded — añadir un año al filtro de movimientos</div><div class="pend-check" onclick="togglePend(12)">⚪</div></div>
     </div>
@@ -120,26 +120,53 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
 
   <!-- SEMANAS -->
   <div class="section" id="tab-semanas">
-    <h2>Semana 18 — 27 abril al 1 mayo <span style="font-size:11px;color:#aaa;font-weight:400;">en curso</span></h2>
+    <h2>Semana 18 — 27 abril al 3 mayo <span style="font-size:11px;color:#aaa;font-weight:400;">en curso</span></h2>
     <div class="semana-grid">
       <div class="semana-header">día</div><div class="semana-header">cliente</div><div class="semana-header">tarea</div>
       <div class="semana-cell semana-dia">Lun 27</div>
       <div class="semana-cell"><span class="pill" style="background:#E1F5EE;color:#0F6E56;">Velasco</span> <span class="pill" style="background:#FBEAF0;color:#72243E;">Atitlán</span></div>
-      <div class="semana-cell">Mañana: validar migración + cargos Velasco · Tarde: reunión Atitlán + tabla VL</div>
+      <div class="semana-cell">Reunión Atitlán ✅ · resto arrastrado al martes</div>
       <div class="semana-cell semana-dia">Mar 28</div>
-      <div class="semana-cell"><span class="pill" style="background:#FBEAF0;color:#72243E;">Atitlán</span> <span class="pill" style="background:#E1F5EE;color:#0F6E56;">Velasco</span></div>
-      <div class="semana-cell">Mañana: rebalanceo Atitlán · Tarde: cierre migración cuentas Velasco</div>
+      <div class="semana-cell"><span class="pill" style="background:#FBEAF0;color:#72243E;">Atitlán</span> <span class="pill" style="background:#E1F5EE;color:#0F6E56;">Velasco</span> <span class="pill" style="background:#EEEDFE;color:#3C3489;">Art.14</span></div>
+      <div class="semana-cell">Campaña exprés · cargos Velasco · informe Eloy · nota Vicky · Holded</div>
       <div class="semana-cell semana-dia">Mié 29</div>
-      <div class="semana-cell"><span class="pill" style="background:#378ADD;color:#fff;">BestMedia</span> <span class="pill" style="background:#7F77DD;color:#fff;">Art.14</span></div>
-      <div class="semana-cell">Mañana: costes ClickUp + bugs BAM · Tarde: flujo Holded tesorería Art.14</div>
+      <div class="semana-cell"><span class="pill" style="background:#378ADD;color:#fff;">BestMedia</span> <span class="pill" style="background:#EEEDFE;color:#3C3489;">Art.14</span></div>
+      <div class="semana-cell">Costes ClickUp + bugs BAM · flujo Holded tesorería</div>
       <div class="semana-cell semana-dia">Jue 30</div>
       <div class="semana-cell"><span class="pill" style="background:#E1F5EE;color:#0F6E56;">Velasco</span></div>
       <div class="semana-cell">CSC Fresnillo + Comida NCG — sin tiempo técnico</div>
-      <div class="semana-cell semana-dia">Vie 1</div>
-      <div class="semana-cell"><span class="pill" style="background:#F1EFE8;color:#5F5E5A;">Festivo</span></div>
-      <div class="semana-cell">Día del Trabajo — descanso 🎉</div>
+      <div class="semana-cell semana-dia">Vie 1 🎉</div>
+      <div class="semana-cell"><span class="pill" style="background:#EEEDFE;color:#3C3489;">Art.14</span> <span class="pill" style="background:#FCEBEB;color:#A32D2D;">La Razón</span></div>
+      <div class="semana-cell">BBDD marketing + flujo Holded + propuesta BI La Razón</div>
+      <div class="semana-cell semana-dia">Sáb 2</div>
+      <div class="semana-cell"><span class="pill" style="background:#E1F5EE;color:#0F6E56;">Velasco</span> <span class="pill" style="background:#FBEAF0;color:#72243E;">Atitlán</span></div>
+      <div class="semana-cell">Validar migración Velasco + revisar estado Atgro/Atitlán + cerrar migración cuentas</div>
+      <div class="semana-cell semana-dia">Dom 3</div>
+      <div class="semana-cell"><span class="pill" style="background:#378ADD;color:#fff;">BestMedia</span></div>
+      <div class="semana-cell">Cuentas + RLS Power BI + bug IdCabTrabajo</div>
     </div>
-    <div class="semana-note">Objetivos: 1) Velasco validado y cerrado 2) Atitlán tabla VL + rebalanceo · Reunión La Razón lunes 4 mayo.</div>
+    <div class="semana-note">Objetivo finde: salir liberado del ruido para arrancar Velasco, Atitlán y plan Nuvirta la semana que viene.</div>
+
+    <h2>Semana 19 — 4 al 8 mayo <span style="font-size:11px;color:#aaa;font-weight:400;">planificado</span></h2>
+    <div class="semana-grid">
+      <div class="semana-header">día</div><div class="semana-header">cliente</div><div class="semana-header">tarea</div>
+      <div class="semana-cell semana-dia">Lun 4</div>
+      <div class="semana-cell"><span class="pill" style="background:#FBEAF0;color:#72243E;">Atitlán</span> <span class="pill" style="background:#FCEBEB;color:#A32D2D;">La Razón</span></div>
+      <div class="semana-cell">10:30 reunión Atitlán · 16:30 reunión La Razón</div>
+      <div class="semana-cell semana-dia">Mar 5</div>
+      <div class="semana-cell"><span class="pill" style="background:#FBEAF0;color:#72243E;">Atitlán</span> <span class="pill" style="background:#E1F5EE;color:#0F6E56;">Velasco</span></div>
+      <div class="semana-cell">Atitlán CRM producción + Velasco cierre migración</div>
+      <div class="semana-cell semana-dia">Mié 6</div>
+      <div class="semana-cell"><span class="pill" style="background:#7F77DD;color:#fff;">Art.14</span></div>
+      <div class="semana-cell">Visita Art.14: formación Carlota 10h + reunión Vicky BBDD 12h + reunión Queco</div>
+      <div class="semana-cell semana-dia">Jue 7</div>
+      <div class="semana-cell"><span class="pill" style="background:#378ADD;color:#fff;">BestMedia</span> <span class="pill" style="background:#FCEBEB;color:#A32D2D;">Fisiodrid</span></div>
+      <div class="semana-cell">BestMedia costes + bugs · Fisiodrid PQ Azure</div>
+      <div class="semana-cell semana-dia">Vie 8</div>
+      <div class="semana-cell"><span class="pill" style="background:#FBEAF0;color:#72243E;">Atitlán</span> <span class="pill" style="background:#EEEDFE;color:#3C3489;">Vibe Coding</span></div>
+      <div class="semana-cell">Atitlán técnico + 1h Vibe Coding</div>
+    </div>
+    <div class="semana-note">Semana 19 — visita Art.14 el miércoles · festivo pasado · objetivo cerrar Velasco y arrancar CRM Atitlán en producción.</div>
   </div>
 
   <!-- PROYECTOS -->
@@ -232,7 +259,8 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Flujo eliminación contactos por vencimiento de cargos</div><div class="task-criteria">Contactos inactivados automáticamente al vencer su cargo</div></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Migración documentos clientes → SP + actualizar ABS</div><div class="task-criteria">Documentos migrados a SharePoint y Azure Blob Storage actualizado</div></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Mapear nombres documentos con campo título en Dataverse</div><div class="task-criteria">Todos los documentos con título mapeado correctamente — listo para producción</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Cargos con fechas inicio/fin</div><div class="task-criteria">Todos los contactos con cargos y fechas cargadas</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Cargos con fechas inicio/fin</div><div class="task-criteria">Montado · pendiente confirmar con Velasco vencimientos poderes vs cargos — ¿van siempre unidos?</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Nuevo reporting financiero</div><div class="task-criteria">Alcance a definir con Velasco</div></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">✅</div><div class="task-label done-text">Formación equipo laboral (4 personas)</div><div class="task-criteria">Completada ✓</div></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Power BI financiero — P&amp;G trimestral</div><div class="task-criteria">Asignación de cuentas revisada, resultados trimestrales correctos</div></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Tabla de contratos</div><div class="task-criteria">A definir — mejora futura</div></div>
@@ -254,7 +282,8 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Proceso ClickUp — costes</div><div class="task-criteria">Flujo operativo, costes registrándose correctamente</div></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Notificación estado POs</div><div class="task-criteria">Sin dependencia de Google Sheet, en plataforma propia</div></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Generación de facturas desde Power Apps</div><div class="task-criteria">Usuario genera factura sin replicar datos manualmente</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">RLS Power BI — filtro por squad</div><div class="task-criteria">Cada responsable ve solo los datos de su squad</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Actualizar reporting financiero mensual</div><div class="task-criteria">Reporting actualizado y operativo cada mes</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">RLS Power BI — filtro por squad</div><div class="task-criteria">Cada responsable ve solo los datos de su squad</div></div>
       </div>
     </div>
 
@@ -485,21 +514,48 @@ const PLAN = [
     bloques: [
       { tiempo: "todo el día", cliente: "Velasco", tarea: "CSC Fresnillo + Comida NCG — sin tiempo técnico" }
     ],
-    footer: "Viernes 1 mayo — festivo · Semana 19 arranca el lunes 4 con reunión La Razón el lunes tarde"
+    footer: "Mañana festivo — preparar BBDD Art.14 + revisar Atgro/Atitlán + migración Velasco + cuentas BestMedia"
+  },
+  {
+    fecha: "2026-05-01",
+    bloques: [
+      { tiempo: "mañana", cliente: "Artículo 14", tarea: "Preparar BBDD marketing — listo para reunión Vicky mié 6" },
+      { tiempo: "mañana", cliente: "Artículo 14", tarea: "Tesorería — flujo Holded, añadir un año al filtro" },
+      { tiempo: "tarde", cliente: "La Razón", tarea: "Propuesta diseño Power BI nóminas y masa salarial" }
+    ],
+    footer: "Mañana sábado — validar migración Velasco + Atgro/Atitlán"
+  },
+  {
+    fecha: "2026-05-02",
+    bloques: [
+      { tiempo: "mañana", cliente: "Velasco", tarea: "Validar migración — confirmar que todo está correcto" },
+      { tiempo: "mañana", cliente: "Atitlán", tarea: "Revisar estado solución Atgro y Atitlán" },
+      { tiempo: "tarde", cliente: "Velasco", tarea: "Migración cuentas — cerrar definitivamente" }
+    ],
+    footer: "Mañana domingo — BestMedia cuentas + RLS + bug IdCabTrabajo"
+  },
+  {
+    fecha: "2026-05-03",
+    bloques: [
+      { tiempo: "mañana", cliente: "BestMedia", tarea: "Cuentas BestMedia" },
+      { tiempo: "mañana", cliente: "BestMedia", tarea: "RLS Power BI — filtro por squad" },
+      { tiempo: "tarde", cliente: "BestMedia", tarea: "Bug IdCabTrabajo — campo no visible en formulario" }
+    ],
+    footer: "Lunes 4 — Atitlán 10:30 + La Razón 16:30 · Semana de poner en marcha Velasco, Atitlán y plan Nuvirta"
   },
   {
     fecha: "2026-05-04",
     bloques: [
       { tiempo: "10:30h", cliente: "Atitlán", tarea: "Reunión Atitlán — revisión CRM + puesta en producción" },
-      { tiempo: "tarde", cliente: "La Razón", tarea: "Reunión La Razón — revisión modelo nóminas y masa salarial" }
+      { tiempo: "16:30h", cliente: "La Razón", tarea: "Reunión La Razón — revisión modelo nóminas y masa salarial" }
     ],
-    footer: "Semana del 4/05 — puesta en producción CRM Atitlán"
+    footer: "Miércoles — visita Art.14: formación Carlota 10h + reunión Vicky BBDD 12h"
   },
   {
     fecha: "2026-05-06",
     bloques: [
-      { tiempo: "10-12h", cliente: "Artículo 14", tarea: "Formación Carlota — colaboraciones" },
-      { tiempo: "mañana", cliente: "Artículo 14", tarea: "Reunión Vicky — BBDD marketing in situ" },
+      { tiempo: "10h", cliente: "Artículo 14", tarea: "Formación Carlota — colaboraciones" },
+      { tiempo: "12h", cliente: "Artículo 14", tarea: "Reunión Vicky — BBDD marketing in situ" },
       { tiempo: "mañana", cliente: "Artículo 14", tarea: "Reunión Queco — cierre + acceso Arce a datos Power BI" }
     ],
     footer: ""
