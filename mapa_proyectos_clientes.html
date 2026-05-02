@@ -99,22 +99,10 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
 
   <!-- PENDIENTES -->
   <div class="section" id="tab-pendientes">
-    <div style="font-size:11px;color:#aaa;margin-bottom:12px;">Cola operativa — tareas planificadas que no se completaron. Fecha = primera vez que se incluyó en el plan del día.</div>
+    <div style="font-size:11px;color:#aaa;margin-bottom:12px;">Cola operativa — tareas planificadas que no se completaron. Fecha = primera vez que se incluyó en el plan del día. Marca ✅ en la pestaña Hoy para sacarlas de aquí.</div>
     <div class="pend-card">
       <div class="pend-header"><span>estimado</span><span>cliente</span><span>tarea</span><span></span></div>
-      <div class="pend-row" id="pend-0"><div class="pend-fecha">Mié 22</div><div><span class="pend-cliente" style="background:#E1F5EE;color:#0F6E56;">Velasco</span></div><div class="pend-tarea">Cargos con fechas inicio/fin</div><div class="pend-check" onclick="togglePend(0)">⚪</div></div>
-      <div class="pend-row" id="pend-1"><div class="pend-fecha">Mié 22</div><div><span class="pend-cliente" style="background:#E1F5EE;color:#04342C;">Nuvirta</span></div><div class="pend-tarea">Propuesta honorarios a Dani — valoración extra + nuevas tareas</div><div class="pend-check" onclick="togglePend(1)">⚪</div></div>
-      <div class="pend-row pend-done" id="pend-2"><div class="pend-fecha">Jue 23</div><div><span class="pend-cliente" style="background:#FBEAF0;color:#72243E;">Atitlán</span></div><div class="pend-tarea" style="color:#bbb;text-decoration:line-through;">Tabla valor liquidativo — estructura + campos coinversión + flujo</div><div class="pend-check" onclick="togglePend(2)">✅</div></div>
-      <div class="pend-row" id="pend-3"><div class="pend-fecha">Jue 23</div><div><span class="pend-cliente" style="background:#EEEDFE;color:#3C3489;">Art.14</span></div><div class="pend-tarea">BBDD marketing — siguiente paso con el equipo</div><div class="pend-check" onclick="togglePend(3)">⚪</div></div>
-      <div class="pend-row" id="pend-4"><div class="pend-fecha">Jue 23</div><div><span class="pend-cliente" style="background:#EEEDFE;color:#3C3489;">Art.14</span></div><div class="pend-tarea">Flujo Holded — añadir un año al filtro de movimientos de tesorería</div><div class="pend-check" onclick="togglePend(4)">⚪</div></div>
-      <div class="pend-row" id="pend-5"><div class="pend-fecha">Jue 23</div><div><span class="pend-cliente" style="background:#FCEBEB;color:#A32D2D;">Fisiodrid</span></div><div class="pend-tarea">Sustituir Gen1 por Power Query directo a Azure Blob</div><div class="pend-check" onclick="togglePend(5)">⚪</div></div>
-      <div class="pend-row" id="pend-6"><div class="pend-fecha">Jue 23</div><div><span class="pend-cliente" style="background:#E6F1FB;color:#185FA5;">BestMedia</span></div><div class="pend-tarea">Bugs BAM — IdCabTrabajo + conPresupuesto</div><div class="pend-check" onclick="togglePend(6)">⚪</div></div>
-      <div class="pend-row" id="pend-7"><div class="pend-fecha">Lun 27</div><div><span class="pend-cliente" style="background:#FBEAF0;color:#72243E;">Atitlán</span></div><div class="pend-tarea">Campaña exprés — validar correos con dirección general</div><div class="pend-check" onclick="togglePend(7)">⚪</div></div>
-      <div class="pend-row" id="pend-8"><div class="pend-fecha">Lun 27</div><div><span class="pend-cliente" style="background:#E1F5EE;color:#0F6E56;">Velasco</span></div><div class="pend-tarea">Cargos con fechas inicio/fin — rematar</div><div class="pend-check" onclick="togglePend(8)">⚪</div></div>
-      <div class="pend-row" id="pend-9"><div class="pend-fecha">Lun 27</div><div><span class="pend-cliente" style="background:#E1F5EE;color:#0F6E56;">Velasco</span></div><div class="pend-tarea">Informe migración para Eloy — histórico mes a mes</div><div class="pend-check" onclick="togglePend(9)">⚪</div></div>
-      <div class="pend-row pend-done" id="pend-10"><div class="pend-fecha">Lun 27</div><div><span class="pend-cliente" style="background:#E1F5EE;color:#04342C;">Nuvirta</span></div><div class="pend-tarea" style="color:#bbb;text-decoration:line-through;">Nota para Dani — facturable Atitlán proporción horas</div><div class="pend-check" onclick="togglePend(10)">✅</div></div>
-      <div class="pend-row" id="pend-11"><div class="pend-fecha">Lun 27</div><div><span class="pend-cliente" style="background:#EEEDFE;color:#3C3489;">Art.14</span></div><div class="pend-tarea">Nota a Vicky — disculpa retraso BBDD, quedamos mié 6</div><div class="pend-check" onclick="togglePend(11)">⚪</div></div>
-      <div class="pend-row" id="pend-12"><div class="pend-fecha">Lun 27</div><div><span class="pend-cliente" style="background:#EEEDFE;color:#3C3489;">Art.14</span></div><div class="pend-tarea">Flujo Holded — añadir un año al filtro de movimientos</div><div class="pend-check" onclick="togglePend(12)">⚪</div></div>
+      <div id="pend-auto"></div>
     </div>
   </div>
 
@@ -160,8 +148,8 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
       <div class="semana-cell"><span class="pill" style="background:#7F77DD;color:#fff;">Art.14</span></div>
       <div class="semana-cell">Visita Art.14: formación Carlota 10h + reunión Vicky BBDD 12h + reunión Queco</div>
       <div class="semana-cell semana-dia">Jue 7</div>
-      <div class="semana-cell"><span class="pill" style="background:#378ADD;color:#fff;">BestMedia</span> <span class="pill" style="background:#FCEBEB;color:#A32D2D;">Fisiodrid</span></div>
-      <div class="semana-cell">BestMedia costes + bugs · Fisiodrid PQ Azure</div>
+      <div class="semana-cell"><span class="pill" style="background:#FCEBEB;color:#A32D2D;">La Razón</span> <span class="pill" style="background:#378ADD;color:#fff;">BestMedia</span> <span class="pill" style="background:#FCEBEB;color:#A32D2D;">Fisiodrid</span></div>
+      <div class="semana-cell">10:30 reunión Clara La Razón · BestMedia costes + bugs · Fisiodrid PQ Azure</div>
       <div class="semana-cell semana-dia">Vie 8</div>
       <div class="semana-cell"><span class="pill" style="background:#FBEAF0;color:#72243E;">Atitlán</span> <span class="pill" style="background:#EEEDFE;color:#3C3489;">Vibe Coding</span></div>
       <div class="semana-cell">Atitlán técnico + 1h Vibe Coding</div>
@@ -546,8 +534,7 @@ const PLAN = [
   {
     fecha: "2026-05-04",
     bloques: [
-      { tiempo: "10:30h", cliente: "Atitlán", tarea: "Reunión Atitlán — revisión CRM + puesta en producción" },
-      { tiempo: "16:30h", cliente: "La Razón", tarea: "Reunión La Razón — revisión modelo nóminas y masa salarial" }
+      { tiempo: "10:30h", cliente: "Atitlán", tarea: "Reunión Atitlán — revisión CRM + puesta en producción" }
     ],
     footer: "Miércoles — visita Art.14: formación Carlota 10h + reunión Vicky BBDD 12h"
   },
@@ -557,6 +544,13 @@ const PLAN = [
       { tiempo: "10h", cliente: "Artículo 14", tarea: "Formación Carlota — colaboraciones" },
       { tiempo: "12h", cliente: "Artículo 14", tarea: "Reunión Vicky — BBDD marketing in situ" },
       { tiempo: "mañana", cliente: "Artículo 14", tarea: "Reunión Queco — cierre + acceso Arce a datos Power BI" }
+    ],
+    footer: "Mañana jueves — reunión Clara La Razón 10:30h"
+  },
+  {
+    fecha: "2026-05-07",
+    bloques: [
+      { tiempo: "10:30h", cliente: "La Razón", tarea: "Reunión con Clara — revisión modelo nóminas y masa salarial" }
     ],
     footer: ""
   }
@@ -584,19 +578,23 @@ function renderHoy() {
   const labelFecha = `Hoy — ${dias[hoy.getDay()]} ${hoy.getDate()} de ${meses[hoy.getMonth()]}`;
   const plan = PLAN.find(p => p.fecha === fechaHoy);
   const cont = document.getElementById('hoy-content');
+  const doneHoy = getDoneHoy();
 
   let html = `<div class="hoy-card"><div class="hoy-label">${labelFecha}</div>`;
   if (!plan) {
     html += `<div class="hoy-empty">No hay plan definido para hoy. Abre el chat para planificarlo.</div>`;
   } else {
-    plan.bloques.forEach(b => {
+    plan.bloques.forEach((b, i) => {
+      const bid = `${fechaHoy}_${i}`;
+      const done = doneHoy[bid] === '✅';
       const c = COLORES[b.cliente] || { bg: "#F1EFE8", fg: "#5F5E5A" };
-      html += `<div class="hoy-row">
+      html += `<div class="hoy-row" style="${done ? 'opacity:0.5' : ''}">
         <span class="hoy-time">${b.tiempo}</span>
-        <div>
+        <div style="flex:1">
           <span class="hoy-titulo" style="color:${c.fg}">${b.cliente}</span>
-          <span class="hoy-desc">${b.tarea}</span>
+          <span class="hoy-desc" style="${done ? 'text-decoration:line-through' : ''}">${b.tarea}</span>
         </div>
+        <span onclick="toggleHoyBloque('${bid}', this)" style="cursor:pointer;font-size:16px;margin-left:8px;user-select:none;">${done ? '✅' : '⚪'}</span>
       </div>`;
     });
     if (plan.avisos && plan.avisos.length) {
@@ -605,46 +603,78 @@ function renderHoy() {
     if (plan.footer) {
       html += `<div class="hoy-footer">${plan.footer}</div>`;
     }
-    // Arrastres de días anteriores
-    if (plan.arrastres && plan.arrastres.length) {
-      html += `<div style="margin-top:14px;padding-top:12px;border-top:0.5px solid #FAC775;">
-        <div style="font-size:11px;color:#854F0B;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;">⚠ Pendiente de días anteriores</div>`;
-      plan.arrastres.forEach(a => {
-        html += `<div style="margin-bottom:8px;">
-          <div style="font-size:11px;font-weight:500;color:#854F0B;margin-bottom:4px;">${a.dia}</div>`;
-        a.items.forEach(item => {
-          html += `<div style="font-size:12px;color:#666;padding:2px 0 2px 10px;border-left:2px solid #FAC775;margin-bottom:2px;">${item}</div>`;
-        });
-        html += `</div>`;
-      });
-      html += `</div>`;
-    }
   }
   html += `</div>`;
   cont.innerHTML = html;
+  renderPendientesAuto();
 }
 
-// PENDIENTES
-function togglePend(idx) {
-  const row = document.getElementById('pend-' + idx);
-  const check = row.querySelector('.pend-check');
-  const isDone = check.textContent === '✅';
-  check.textContent = isDone ? '⚪' : '✅';
-  row.classList.toggle('pend-done', !isDone);
-  savePendStates();
+function getDoneHoy() {
+  try { return JSON.parse(localStorage.getItem('alvaro_hoy_done') || '{}'); } catch(e) { return {}; }
 }
-function savePendStates() {
-  const s = {};
-  document.querySelectorAll('.pend-check').forEach((el, i) => { s[i] = el.textContent; });
-  try { localStorage.setItem('alvaro_pend_states', JSON.stringify(s)); } catch(e) {}
+
+function toggleHoyBloque(bid, el) {
+  const done = getDoneHoy();
+  const isDone = done[bid] === '✅';
+  done[bid] = isDone ? '⚪' : '✅';
+  localStorage.setItem('alvaro_hoy_done', JSON.stringify(done));
+  syncHoyDone(done);
+  renderHoy();
 }
-function loadPendStates() {
+
+async function syncHoyDone(done) {
   try {
-    const s = JSON.parse(localStorage.getItem('alvaro_pend_states') || '{}');
-    document.querySelectorAll('.pend-check').forEach((el, i) => {
-      if (s[i] === '✅') { el.textContent = '✅'; el.closest('.pend-row').classList.add('pend-done'); }
+    const res = await fetch(BIN_URL + '/latest', { headers: { 'X-Master-Key': BIN_KEY, 'X-Bin-Meta': 'false' } });
+    const data = await res.json();
+    const current = data.states || {};
+    await fetch(BIN_URL, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json', 'X-Master-Key': BIN_KEY },
+      body: JSON.stringify({ states: current, hoyDone: done })
     });
-  } catch(e) {}
+  } catch(e) { console.warn('sync error', e); }
+}
+
+function renderPendientesAuto() {
+  const hoy = new Date();
+  const fechaHoy = `${hoy.getFullYear()}-${String(hoy.getMonth()+1).padStart(2,'0')}-${String(hoy.getDate()).padStart(2,'0')}`;
+  const done = getDoneHoy();
+  const pendContainer = document.getElementById('pend-auto');
+  if (!pendContainer) return;
+
+  const diasSemana = ['dom','lun','mar','mié','jue','vie','sáb'];
+  const meses = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+
+  let rows = '';
+  PLAN.forEach(p => {
+    if (p.fecha >= fechaHoy) return; // solo días pasados
+    p.bloques.forEach((b, i) => {
+      const bid = `${p.fecha}_${i}`;
+      if (done[bid] === '✅') return; // completado
+      if (b.tarea.includes('✅')) return; // ya marcado en el texto
+      const d = new Date(p.fecha + 'T12:00:00');
+      const label = `${diasSemana[d.getDay()]} ${d.getDate()} ${meses[d.getMonth()]}`;
+      const c = COLORES[b.cliente] || { bg: "#F1EFE8", fg: "#5F5E5A" };
+      rows += `<div class="pend-row" data-bid="${bid}">
+        <div class="pend-fecha">${label}</div>
+        <div><span class="pend-cliente" style="background:${c.bg};color:${c.fg};">${b.cliente}</span></div>
+        <div class="pend-tarea">${b.tarea}</div>
+        <div class="pend-check" onclick="markPendDone('${bid}', this)">⚪</div>
+      </div>`;
+    });
+  });
+
+  pendContainer.innerHTML = rows || '<div style="padding:12px 14px;font-size:13px;color:#aaa;">Sin pendientes 🎉</div>';
+}
+
+function markPendDone(bid, el) {
+  const done = getDoneHoy();
+  done[bid] = '✅';
+  localStorage.setItem('alvaro_hoy_done', JSON.stringify(done));
+  syncHoyDone(done);
+  // Eliminar la fila de la vista
+  el.closest('.pend-row').style.display = 'none';
+  renderHoy();
 }
 
 // TABS
@@ -709,9 +739,14 @@ async function loadStates() {
     if (!res.ok) throw new Error('fetch failed');
     const data = await res.json();
     const s = data.states || {};
+    // Cargar estados de tareas
     document.querySelectorAll('.task-status').forEach((el, i) => {
       if (s[i]) { el.textContent = s[i]; if (s[i] === '✅') el.nextElementSibling.classList.add('done-text'); }
     });
+    // Cargar estados hoyDone
+    if (data.hoyDone) {
+      localStorage.setItem('alvaro_hoy_done', JSON.stringify(data.hoyDone));
+    }
     localStorage.setItem('alvaro_task_states', JSON.stringify(s));
   } catch(e) {
     const s = JSON.parse(localStorage.getItem('alvaro_task_states') || '{}');
@@ -719,11 +754,11 @@ async function loadStates() {
       if (s[i]) { el.textContent = s[i]; if (s[i] === '✅') el.nextElementSibling.classList.add('done-text'); }
     });
   }
+  renderPendientesAuto();
 }
 
 renderHoy();
 loadStates();
-loadPendStates();
 </script>
 </body>
 </html>
