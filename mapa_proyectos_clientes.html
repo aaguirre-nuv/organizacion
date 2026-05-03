@@ -135,26 +135,26 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
     </div>
     <div class="semana-note">Objetivo finde: salir liberado del ruido para arrancar Velasco, Atitlán y plan Nuvirta la semana que viene.</div>
 
-    <h2>Semana 19 — 4 al 8 mayo <span style="font-size:11px;color:#aaa;font-weight:400;">planificado</span></h2>
+    <h2>Semana 19 — 4 al 8 mayo <span style="font-size:11px;color:#aaa;font-weight:400;">en curso</span></h2>
     <div class="semana-grid">
       <div class="semana-header">día</div><div class="semana-header">cliente</div><div class="semana-header">tarea</div>
       <div class="semana-cell semana-dia">Lun 4</div>
-      <div class="semana-cell"><span class="pill" style="background:#FBEAF0;color:#72243E;">Atitlán</span> <span class="pill" style="background:#FCEBEB;color:#A32D2D;">La Razón</span></div>
-      <div class="semana-cell">10:30 reunión Atitlán · 16:30 reunión La Razón</div>
+      <div class="semana-cell"><span class="pill" style="background:#FBEAF0;color:#72243E;">Atitlán</span> <span class="pill" style="background:#378ADD;color:#fff;">BestMedia</span> <span class="pill" style="background:#7F77DD;color:#fff;">Art.14</span> <span class="pill" style="background:#E1F5EE;color:#0F6E56;">Velasco</span></div>
+      <div class="semana-cell">10:30 Atitlán · bug IdCabTrabajo · propuesta BBDD A14 · tesorería · ⚑ preparar reunión Velasco martes</div>
       <div class="semana-cell semana-dia">Mar 5</div>
-      <div class="semana-cell"><span class="pill" style="background:#FBEAF0;color:#72243E;">Atitlán</span> <span class="pill" style="background:#E1F5EE;color:#0F6E56;">Velasco</span></div>
-      <div class="semana-cell">Atitlán CRM producción + Velasco cierre migración</div>
+      <div class="semana-cell"><span class="pill" style="background:#E1F5EE;color:#0F6E56;">Velasco</span> <span class="pill" style="background:#FBEAF0;color:#72243E;">Atitlán</span> <span class="pill" style="background:#FCEBEB;color:#A32D2D;">La Razón</span></div>
+      <div class="semana-cell">Mañana: visita Velasco (arranque + futuro colaboración) · Tarde: Atitlán + preparar La Razón + A14</div>
       <div class="semana-cell semana-dia">Mié 6</div>
-      <div class="semana-cell"><span class="pill" style="background:#7F77DD;color:#fff;">Art.14</span></div>
-      <div class="semana-cell">Visita Art.14: formación Carlota 10h + reunión Vicky BBDD 12h + reunión Queco</div>
+      <div class="semana-cell"><span class="pill" style="background:#7F77DD;color:#fff;">Art.14</span> <span class="pill" style="background:#FCEBEB;color:#A32D2D;">La Razón</span></div>
+      <div class="semana-cell">Visita A14: Carlota 10h + Vicky 12h + Queco · Tarde: terminar La Razón</div>
       <div class="semana-cell semana-dia">Jue 7</div>
-      <div class="semana-cell"><span class="pill" style="background:#FCEBEB;color:#A32D2D;">La Razón</span> <span class="pill" style="background:#378ADD;color:#fff;">BestMedia</span> <span class="pill" style="background:#FCEBEB;color:#A32D2D;">Fisiodrid</span></div>
-      <div class="semana-cell">10:30 reunión Clara La Razón · BestMedia costes + bugs · Fisiodrid PQ Azure</div>
+      <div class="semana-cell"><span class="pill" style="background:#FCEBEB;color:#A32D2D;">La Razón</span> <span class="pill" style="background:#FBEAF0;color:#72243E;">Atitlán</span></div>
+      <div class="semana-cell">10:30 reunión Clara La Razón · tarde: empujón fuerte Atitlán</div>
       <div class="semana-cell semana-dia">Vie 8</div>
-      <div class="semana-cell"><span class="pill" style="background:#FBEAF0;color:#72243E;">Atitlán</span> <span class="pill" style="background:#EEEDFE;color:#3C3489;">Vibe Coding</span></div>
-      <div class="semana-cell">Atitlán técnico + 1h Vibe Coding</div>
+      <div class="semana-cell"><span class="pill" style="background:#FCEBEB;color:#A32D2D;">Fisiodrid</span> <span class="pill" style="background:#7F77DD;color:#fff;">Art.14</span> <span class="pill" style="background:#378ADD;color:#fff;">BestMedia</span></div>
+      <div class="semana-cell">Fisiodrid PQ Azure + pendientes A14 y BestMedia</div>
     </div>
-    <div class="semana-note">Semana 19 — visita Art.14 el miércoles · festivo pasado · objetivo cerrar Velasco y arrancar CRM Atitlán en producción.</div>
+    <div class="semana-note">Semana 19 — visita Velasco martes + visita Art.14 miércoles · objetivo: cerrar La Razón, empujar Atitlán, arrancar Fisiodrid.</div>
   </div>
 
   <!-- PROYECTOS -->
@@ -529,28 +529,53 @@ const PLAN = [
       { tiempo: "mañana", cliente: "BestMedia", tarea: "RLS Power BI — filtro por squad" },
       { tiempo: "tarde", cliente: "BestMedia", tarea: "Bug IdCabTrabajo — campo no visible en formulario" }
     ],
-    footer: "Lunes 4 — Atitlán 10:30 + La Razón 16:30 · Semana de poner en marcha Velasco, Atitlán y plan Nuvirta"
+    footer: "Lunes 4 — Atitlán 10:30 · Semana de poner en marcha Velasco, Atitlán y plan Nuvirta"
   },
   {
     fecha: "2026-05-04",
     bloques: [
-      { tiempo: "10:30h", cliente: "Atitlán", tarea: "Reunión Atitlán — revisión CRM + puesta en producción" }
+      { tiempo: "10:30h", cliente: "Atitlán", tarea: "Reunión Atitlán — revisión CRM + puesta en producción" },
+      { tiempo: "mañana", cliente: "BestMedia", tarea: "Bug IdCabTrabajo — campo no visible en formulario" },
+      { tiempo: "mañana", cliente: "Artículo 14", tarea: "Propuesta BBDD marketing — definir siguiente paso con Vicky" },
+      { tiempo: "tarde", cliente: "Artículo 14", tarea: "Tesorería — flujo Holded, añadir un año al filtro" },
+      { tiempo: "tarde", cliente: "Velasco", tarea: "⚑ Preparar reunión del martes — futuro colaboración Nuvirta/Velasco (importante)" }
     ],
-    footer: "Miércoles — visita Art.14: formación Carlota 10h + reunión Vicky BBDD 12h"
+    footer: "Mañana martes — Visita Velasco mañana + tarde Atitlán + preparar material La Razón"
+  },
+  {
+    fecha: "2026-05-05",
+    bloques: [
+      { tiempo: "mañana", cliente: "Velasco", tarea: "Visita Velasco — apoyo arranque gestión documental + plantear futuro colaboración" },
+      { tiempo: "tarde", cliente: "Atitlán", tarea: "Avanzar técnico Atitlán" },
+      { tiempo: "tarde", cliente: "La Razón", tarea: "Preparar material para reunión Clara del jueves" },
+      { tiempo: "tarde", cliente: "Artículo 14", tarea: "Pendientes A14 que queden" }
+    ],
+    footer: "Mañana miércoles — visita Art.14: Carlota 10h + Vicky 12h + tarde terminar La Razón"
   },
   {
     fecha: "2026-05-06",
     bloques: [
       { tiempo: "10h", cliente: "Artículo 14", tarea: "Formación Carlota — colaboraciones" },
       { tiempo: "12h", cliente: "Artículo 14", tarea: "Reunión Vicky — BBDD marketing in situ" },
-      { tiempo: "mañana", cliente: "Artículo 14", tarea: "Reunión Queco — cierre + acceso Arce a datos Power BI" }
+      { tiempo: "mañana", cliente: "Artículo 14", tarea: "Reunión Queco — cierre + acceso Arce a datos Power BI" },
+      { tiempo: "tarde", cliente: "La Razón", tarea: "Terminar lo que falte para reunión del jueves con Clara" }
     ],
-    footer: "Mañana jueves — reunión Clara La Razón 10:30h"
+    footer: "Mañana jueves — Reunión Clara La Razón 10:30 + empujón fuerte Atitlán tarde"
   },
   {
     fecha: "2026-05-07",
     bloques: [
-      { tiempo: "10:30h", cliente: "La Razón", tarea: "Reunión con Clara — revisión modelo nóminas y masa salarial" }
+      { tiempo: "10:30h", cliente: "La Razón", tarea: "Reunión con Clara — revisión modelo nóminas y masa salarial" },
+      { tiempo: "tarde", cliente: "Atitlán", tarea: "Empujón fuerte Atitlán — rebalanceo y lo que quede" }
+    ],
+    footer: "Mañana viernes — Fisiodrid + pendientes A14 y BestMedia"
+  },
+  {
+    fecha: "2026-05-08",
+    bloques: [
+      { tiempo: "mañana", cliente: "Fisiodrid", tarea: "Sustituir Gen1 por Power Query directo a Azure Blob" },
+      { tiempo: "tarde", cliente: "Artículo 14", tarea: "Pendientes A14 que queden" },
+      { tiempo: "tarde", cliente: "BestMedia", tarea: "Pendientes BestMedia que queden" }
     ],
     footer: ""
   }
