@@ -108,33 +108,6 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
 
   <!-- SEMANAS -->
   <div class="section" id="tab-semanas">
-    <h2>Semana 18 — 27 abril al 3 mayo <span style="font-size:11px;color:#aaa;font-weight:400;">en curso</span></h2>
-    <div class="semana-grid">
-      <div class="semana-header">día</div><div class="semana-header">cliente</div><div class="semana-header">tarea</div>
-      <div class="semana-cell semana-dia">Lun 27</div>
-      <div class="semana-cell"><span class="pill" style="background:#E1F5EE;color:#0F6E56;">Velasco</span> <span class="pill" style="background:#FBEAF0;color:#72243E;">Atitlán</span></div>
-      <div class="semana-cell">Reunión Atitlán ✅ · resto arrastrado al martes</div>
-      <div class="semana-cell semana-dia">Mar 28</div>
-      <div class="semana-cell"><span class="pill" style="background:#FBEAF0;color:#72243E;">Atitlán</span> <span class="pill" style="background:#E1F5EE;color:#0F6E56;">Velasco</span> <span class="pill" style="background:#EEEDFE;color:#3C3489;">Art.14</span></div>
-      <div class="semana-cell">Campaña exprés · cargos Velasco · informe Eloy · nota Vicky · Holded</div>
-      <div class="semana-cell semana-dia">Mié 29</div>
-      <div class="semana-cell"><span class="pill" style="background:#378ADD;color:#fff;">BestMedia</span> <span class="pill" style="background:#EEEDFE;color:#3C3489;">Art.14</span></div>
-      <div class="semana-cell">Costes ClickUp + bugs BAM · flujo Holded tesorería</div>
-      <div class="semana-cell semana-dia">Jue 30</div>
-      <div class="semana-cell"><span class="pill" style="background:#E1F5EE;color:#0F6E56;">Velasco</span></div>
-      <div class="semana-cell">CSC Fresnillo + Comida NCG — sin tiempo técnico</div>
-      <div class="semana-cell semana-dia">Vie 1 🎉</div>
-      <div class="semana-cell"><span class="pill" style="background:#EEEDFE;color:#3C3489;">Art.14</span> <span class="pill" style="background:#FCEBEB;color:#A32D2D;">La Razón</span></div>
-      <div class="semana-cell">BBDD marketing + flujo Holded + propuesta BI La Razón</div>
-      <div class="semana-cell semana-dia">Sáb 2</div>
-      <div class="semana-cell"><span class="pill" style="background:#E1F5EE;color:#0F6E56;">Velasco</span> <span class="pill" style="background:#FBEAF0;color:#72243E;">Atitlán</span></div>
-      <div class="semana-cell">Validar migración Velasco + revisar estado Atgro/Atitlán + cerrar migración cuentas</div>
-      <div class="semana-cell semana-dia">Dom 3</div>
-      <div class="semana-cell"><span class="pill" style="background:#378ADD;color:#fff;">BestMedia</span></div>
-      <div class="semana-cell">Cuentas + RLS Power BI + bug IdCabTrabajo</div>
-    </div>
-    <div class="semana-note">Objetivo finde: salir liberado del ruido para arrancar Velasco, Atitlán y plan Nuvirta la semana que viene.</div>
-
     <h2>Semana 19 — 4 al 8 mayo <span style="font-size:11px;color:#aaa;font-weight:400;">en curso</span></h2>
     <div class="semana-grid">
       <div class="semana-header">día</div><div class="semana-header">cliente</div><div class="semana-header">tarea</div>
@@ -349,6 +322,23 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
 
   <!-- HISTÓRICO -->
   <div class="section" id="tab-historico">
+    <div class="historico-semana">
+      <div class="historico-header" onclick="toggleHist('h18')">
+        <span style="font-size:13px;font-weight:500;">Semana 18 — 27 abril al 3 mayo</span>
+        <span style="font-size:11px;color:#aaa;">▶</span>
+      </div>
+      <div class="historico-body" id="h18">
+        <div class="hist-hrow"><span>día</span><span>planificado</span><span>ejecutado</span><span>resultado</span></div>
+        <div class="hist-row"><div>Lun 27</div><div>Velasco + Atitlán</div><div>Reunión Atitlán ✅ · resto arrastrado</div><div><span class="hist-pill hp-parcial">parcial</span></div></div>
+        <div class="hist-row"><div>Mar 28</div><div>Atitlán + Velasco + Art.14</div><div>Campaña exprés · cargos · Holded · pendientes</div><div><span class="hist-pill hp-parcial">parcial</span></div></div>
+        <div class="hist-row"><div>Mié 29</div><div>BestMedia + Art.14</div><div>—</div><div><span class="hist-pill hp-pend">pendiente</span></div></div>
+        <div class="hist-row"><div>Jue 30</div><div>CSC Fresnillo</div><div>CSC Fresnillo + Comida NCG</div><div><span class="hist-pill hp-ok">ok</span></div></div>
+        <div class="hist-row"><div>Vie 1</div><div>Art.14 + La Razón</div><div>—</div><div><span class="hist-pill hp-pend">pendiente</span></div></div>
+        <div class="hist-row"><div>Sáb 2</div><div>Velasco + Atitlán</div><div>—</div><div><span class="hist-pill hp-pend">pendiente</span></div></div>
+        <div class="hist-row"><div>Dom 3</div><div>BestMedia</div><div>—</div><div><span class="hist-pill hp-pend">pendiente</span></div></div>
+      </div>
+    </div>
+
     <div class="historico-semana">
       <div class="historico-header" onclick="toggleHist('h17')">
         <span style="font-size:13px;font-weight:500;">Semana 17 — 20 al 24 abril</span>
