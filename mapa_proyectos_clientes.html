@@ -152,6 +152,31 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
     </div>
 
     <div class="client-card">
+      <div class="client-header" onclick="toggle('aar')">
+        <div class="dot" style="background:#888;"></div><span class="client-name">AAR Personal</span>
+        <span class="badge badge-gray">personal</span>
+        <span class="chevron" id="chev-aar">▶</span>
+      </div>
+      <div class="tasks" id="tasks-aar">
+        <div class="tasks-header"><span></span><span>tema</span><span>done cuando</span></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Recopilar facturas abril para asesoría</div><div class="task-criteria">Facturas enviadas a asesoría — esta semana</div></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Renovar certificado digital</div><div class="task-criteria">Certificado renovado y operativo — esta semana</div></div>
+      </div>
+    </div>
+
+    <div class="client-card">
+      <div class="client-header" onclick="toggle('central')">
+        <div class="dot" style="background:#FAEEDA;"></div><span class="client-name">Central de Producción</span>
+        <span class="badge badge-amber">puntual</span>
+        <span class="chevron" id="chev-central">▶</span>
+      </div>
+      <div class="tasks" id="tasks-central">
+        <div class="tasks-header"><span></span><span>tema</span><span>done cuando</span></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Cierre 2025 — ver con Afianza cuentas de tesorería</div><div class="task-criteria">Cuentas de tesorería revisadas y cerradas con Afianza</div></div>
+      </div>
+    </div>
+
+    <div class="client-card">
       <div class="client-header" onclick="toggle('formacion')">
         <div class="dot" style="background:#7F77DD;"></div><span class="client-name">Formación propia</span>
         <span class="badge" style="background:#EEEDFE;color:#3C3489;">inversión</span>
@@ -536,6 +561,11 @@ const PLAN = [
     fecha: "2026-05-05",
     bloques: [
       { tiempo: "mañana", cliente: "Velasco", tarea: "Visita Velasco — apoyo arranque gestión documental + plantear futuro colaboración" },
+      { tiempo: "mañana", cliente: "Atitlán", tarea: "Seguimiento bug correo ir@atgro.com — envío campañas ATGRO" },
+      { tiempo: "mañana", cliente: "Nuvirta", tarea: "📧 Escribir a Sara — licencias GitHub Copilot" },
+      { tiempo: "mañana", cliente: "Nuvirta", tarea: "📧 Seguimiento correo César — borrador contratos" },
+      { tiempo: "mañana", cliente: "Nuvirta", tarea: "Ver con Dani — propuesta facturar ampliación Atitlán con Nuvirta" },
+      { tiempo: "mañana", cliente: "BestMedia", tarea: "📧 Reclamar diario 2025" },
       { tiempo: "tarde", cliente: "Atitlán", tarea: "Avanzar técnico Atitlán" },
       { tiempo: "tarde", cliente: "La Razón", tarea: "Preparar material para reunión Clara del jueves" },
       { tiempo: "tarde", cliente: "Artículo 14", tarea: "Pendientes A14 que queden" }
@@ -556,6 +586,7 @@ const PLAN = [
     fecha: "2026-05-07",
     bloques: [
       { tiempo: "10:30h", cliente: "La Razón", tarea: "Reunión con Clara — revisión modelo nóminas y masa salarial" },
+      { tiempo: "mañana", cliente: "BestMedia", tarea: "Revisar propuesta Ramón sobre ClickUp" },
       { tiempo: "tarde", cliente: "Atitlán", tarea: "Empujón fuerte Atitlán — rebalanceo y lo que quede" }
     ],
     footer: "Mañana viernes — Fisiodrid + pendientes A14 y BestMedia"
@@ -582,7 +613,9 @@ const COLORES = {
   "Vibe Coding":{ bg: "#EEEDFE", fg: "#3C3489" },
   "IVA":        { bg: "#F1EFE8", fg: "#5F5E5A" },
   "Admin":      { bg: "#F1EFE8", fg: "#5F5E5A" },
-  "Praksia":    { bg: "#FAEEDA", fg: "#854F0B" }
+  "Praksia":    { bg: "#FAEEDA", fg: "#854F0B" },
+  "AAR Personal": { bg: "#F1EFE8", fg: "#5F5E5A" },
+  "Central":    { bg: "#FAEEDA", fg: "#854F0B" }
 };
 
 function renderHoy() {
@@ -707,7 +740,7 @@ function toggle(id) {
 }
 let allOpen = false;
 function toggleAll() {
-  const clients = ['nuvirta','formacion','rizkider','fisiodrid','atitlan','velasco','bestmedia','articulo14','larazon','dasme'];
+  const clients = ['nuvirta','aar','central','formacion','rizkider','fisiodrid','atitlan','velasco','bestmedia','articulo14','larazon','dasme'];
   allOpen = !allOpen;
   clients.forEach(id => {
     document.getElementById('tasks-' + id).classList.toggle('open', allOpen);
