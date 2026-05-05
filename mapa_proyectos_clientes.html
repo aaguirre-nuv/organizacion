@@ -159,6 +159,7 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
       </div>
       <div class="tasks" id="tasks-aar">
         <div class="tasks-header"><span></span><span>tema</span><span>done cuando</span></div>
+        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">📧 Enviar a David escrito Audiencia Provincial — PA 430/2025</div><div class="task-criteria">Escrito enviado a David hoy</div></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Recopilar facturas abril para asesoría</div><div class="task-criteria">Facturas enviadas a asesoría — esta semana</div></div>
         <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Renovar certificado digital</div><div class="task-criteria">Certificado renovado y operativo — esta semana</div></div>
       </div>
@@ -553,7 +554,8 @@ const PLAN = [
       { tiempo: "mañana", cliente: "BestMedia", tarea: "Bug IdCabTrabajo — campo no visible en formulario" },
       { tiempo: "mañana", cliente: "Artículo 14", tarea: "Propuesta BBDD marketing — definir siguiente paso con Vicky" },
       { tiempo: "tarde", cliente: "Artículo 14", tarea: "Tesorería — flujo Holded, añadir un año al filtro" },
-      { tiempo: "tarde", cliente: "Velasco", tarea: "⚑ Preparar reunión del martes — futuro colaboración Nuvirta/Velasco (importante)" }
+      { tiempo: "tarde", cliente: "Velasco", tarea: "⚑ Preparar reunión del martes — futuro colaboración Nuvirta/Velasco (importante)" },
+      { tiempo: "hoy", cliente: "AAR Personal", tarea: "📧 Enviar a David escrito Audiencia Provincial — PA 430/2025" }
     ],
     footer: "Mañana martes — Visita Velasco mañana + tarde Atitlán + preparar material La Razón"
   },
