@@ -10,7 +10,7 @@ body { font-family: system-ui, sans-serif; background: #f8f8f6; color: #1a1a1a; 
 .container { max-width: 860px; margin: 0 auto; }
 h1 { font-size: 18px; font-weight: 500; margin-bottom: 1.5rem; color: #1a1a1a; }
 h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
-.tabs { display: flex; gap: 6px; margin-bottom: 1.5rem; }
+.tabs { display: flex; gap: 6px; margin-bottom: 1.5rem; flex-wrap: wrap; }
 .tab { font-size: 13px; padding: 6px 14px; border-radius: 999px; border: 0.5px solid rgba(0,0,0,0.15); cursor: pointer; background: #fff; color: #666; }
 .tab.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
 .section { display: none; }
@@ -18,9 +18,8 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
 .hoy-card { background: #FAEEDA; border-radius: 12px; padding: 14px 16px; border: 0.5px solid #FAC775; margin-bottom: 1.5rem; }
 .hoy-label { font-size: 11px; color: #854F0B; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 10px; }
 .hoy-row { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
-.hoy-row:last-child { margin-bottom: 0; }
 .hoy-time { font-size: 11px; background: #fff; color: #854F0B; border-radius: 6px; padding: 2px 7px; white-space: nowrap; margin-top: 1px; flex-shrink: 0; }
-.hoy-titulo { font-size: 13px; font-weight: 500; color: #1a1a1a; }
+.hoy-titulo { font-size: 13px; font-weight: 500; }
 .hoy-desc { font-size: 12px; color: #666; margin-left: 6px; }
 .hoy-footer { margin-top: 10px; padding-top: 10px; border-top: 0.5px solid #FAC775; font-size: 12px; color: #854F0B; }
 .hoy-empty { font-size: 13px; color: #854F0B; font-style: italic; }
@@ -42,21 +41,32 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
 .badge-amber { background: #FAEEDA; color: #854F0B; }
 .badge-green { background: #EAF3DE; color: #3B6D11; }
 .badge-gray { background: #F1EFE8; color: #5F5E5A; }
+.badge-inversion { background: #EEEDFE; color: #3C3489; }
 .deadline { font-size: 11px; color: #A32D2D; background: #FCEBEB; padding: 2px 6px; border-radius: 6px; }
 .chevron { font-size: 11px; color: #ccc; transition: transform 0.2s; }
 .chevron.open { transform: rotate(90deg); }
 .tasks { display: none; border-top: 0.5px solid rgba(0,0,0,0.08); }
 .tasks.open { display: block; }
-.tasks-header { display: grid; grid-template-columns: 26px 1fr 1fr; padding: 5px 14px; background: #f8f8f6; }
+.tasks-header { display: grid; grid-template-columns: 26px 60px 1fr 1fr; padding: 5px 14px; background: #f8f8f6; }
 .tasks-header span { font-size: 11px; color: #bbb; text-transform: uppercase; letter-spacing: 0.05em; }
-.task-row { display: grid; grid-template-columns: 26px 1fr 1fr; gap: 6px; padding: 8px 14px; border-top: 0.5px solid rgba(0,0,0,0.05); align-items: start; }
+.task-row { display: grid; grid-template-columns: 26px 60px 1fr 1fr; gap: 6px; padding: 8px 14px; border-top: 0.5px solid rgba(0,0,0,0.05); align-items: start; }
 .task-row:hover { background: #fafaf8; }
 .task-status { cursor: pointer; font-size: 13px; line-height: 1.4; user-select: none; }
+.task-id { font-size: 10px; color: #ccc; padding-top: 2px; }
 .task-label { font-size: 13px; color: #1a1a1a; }
 .task-label.done-text { color: #bbb; text-decoration: line-through; }
 .task-criteria { font-size: 11px; color: #999; }
 .toggle-all { font-size: 12px; color: #999; cursor: pointer; text-align: right; margin-bottom: 8px; }
 .toggle-all:hover { color: #1a1a1a; }
+.pend-row { display: grid; grid-template-columns: 70px 120px 1fr 28px; gap: 8px; padding: 8px 14px; border-top: 0.5px solid rgba(0,0,0,0.05); align-items: center; }
+.pend-row:hover { background: #fafaf8; }
+.pend-fecha { font-size: 11px; color: #aaa; }
+.pend-cliente { font-size: 12px; font-weight: 500; padding: 2px 8px; border-radius: 6px; display: inline-block; }
+.pend-tarea { font-size: 13px; color: #1a1a1a; }
+.pend-check { cursor: pointer; font-size: 14px; user-select: none; text-align: center; }
+.pend-card { background: #fff; border: 0.5px solid rgba(0,0,0,0.12); border-radius: 12px; overflow: hidden; margin-bottom: 16px; }
+.pend-header { display: grid; grid-template-columns: 70px 120px 1fr 28px; gap: 8px; padding: 5px 14px; background: #f8f8f6; }
+.pend-header span { font-size: 11px; color: #bbb; text-transform: uppercase; letter-spacing: 0.05em; }
 .historico-semana { background: #fff; border: 0.5px solid rgba(0,0,0,0.12); border-radius: 12px; margin-bottom: 10px; overflow: hidden; }
 .historico-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; cursor: pointer; }
 .historico-header:hover { background: #f8f8f6; }
@@ -70,18 +80,17 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
 .hp-parcial { background: #FAEEDA; color: #854F0B; }
 .hp-no { background: #FCEBEB; color: #A32D2D; }
 .hp-pend { background: #F1EFE8; color: #5F5E5A; }
+.logros-semana { background: #fff; border: 0.5px solid rgba(0,0,0,0.12); border-radius: 12px; margin-bottom: 10px; overflow: hidden; }
+.logros-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; cursor: pointer; }
+.logros-header:hover { background: #f8f8f6; }
+.logros-body { display: none; border-top: 0.5px solid rgba(0,0,0,0.08); }
+.logros-body.open { display: block; }
+.logro-row { display: grid; grid-template-columns: 100px 120px 1fr 90px; gap: 6px; padding: 8px 14px; border-top: 0.5px solid rgba(0,0,0,0.05); font-size: 12px; color: #444; align-items: start; }
+.logro-hrow { display: grid; grid-template-columns: 100px 120px 1fr 90px; gap: 6px; padding: 5px 14px; background: #f8f8f6; }
+.logro-hrow span { font-size: 11px; color: #bbb; text-transform: uppercase; letter-spacing: 0.05em; }
+.loading { font-size: 13px; color: #aaa; padding: 20px; text-align: center; }
 .chat-btn { position: sticky; bottom: 1.5rem; text-align: right; pointer-events: none; margin-top: 1.5rem; }
 .chat-btn a { pointer-events: all; display: inline-flex; align-items: center; gap: 8px; background: #534AB7; color: #fff; font-size: 13px; font-weight: 500; padding: 10px 16px; border-radius: 999px; text-decoration: none; }
-.pend-row { display: grid; grid-template-columns: 70px 120px 1fr 28px; gap: 8px; padding: 8px 14px; border-top: 0.5px solid rgba(0,0,0,0.05); align-items: center; }
-.pend-row:hover { background: #fafaf8; }
-.pend-fecha { font-size: 11px; color: #aaa; }
-.pend-cliente { font-size: 12px; font-weight: 500; padding: 2px 8px; border-radius: 6px; display: inline-block; }
-.pend-tarea { font-size: 13px; color: #1a1a1a; }
-.pend-check { cursor: pointer; font-size: 14px; user-select: none; text-align: center; }
-.pend-done .pend-tarea { color: #bbb; text-decoration: line-through; }
-.pend-header { display: grid; grid-template-columns: 70px 120px 1fr 28px; gap: 8px; padding: 5px 14px; background: #f8f8f6; }
-.pend-header span { font-size: 11px; color: #bbb; text-transform: uppercase; letter-spacing: 0.05em; }
-.pend-card { background: #fff; border: 0.5px solid rgba(0,0,0,0.12); border-radius: 12px; overflow: hidden; margin-bottom: 16px; }
 </style>
 </head>
 <body>
@@ -92,21 +101,20 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
     <div class="tab" onclick="showTab('pendientes',this)">Pendientes</div>
     <div class="tab" onclick="showTab('semanas',this)">Semanas</div>
     <div class="tab" onclick="showTab('proyectos',this)">Proyectos</div>
+    <div class="tab" onclick="showTab('logros',this)">Logros</div>
     <div class="tab" onclick="showTab('historico',this)">Histórico</div>
   </div>
 
-  <div class="section active" id="tab-hoy"><div id="hoy-content"></div></div>
+  <div class="section active" id="tab-hoy"><div id="hoy-content"><div class="loading">Cargando...</div></div></div>
 
-  <!-- PENDIENTES -->
   <div class="section" id="tab-pendientes">
-    <div style="font-size:11px;color:#aaa;margin-bottom:12px;">Cola operativa — tareas planificadas que no se completaron. Fecha = primera vez que se incluyó en el plan del día. Marca ✅ en la pestaña Hoy para sacarlas de aquí.</div>
+    <div style="font-size:11px;color:#aaa;margin-bottom:12px;">Cola operativa — tareas planificadas que no se completaron. Marca ✅ en Hoy para sacarlas de aquí.</div>
     <div class="pend-card">
       <div class="pend-header"><span>estimado</span><span>cliente</span><span>tarea</span><span></span></div>
-      <div id="pend-auto"></div>
+      <div id="pend-auto"><div class="loading">Cargando...</div></div>
     </div>
   </div>
 
-  <!-- SEMANAS -->
   <div class="section" id="tab-semanas">
     <h2>Semana 19 — 4 al 8 mayo <span style="font-size:11px;color:#aaa;font-weight:400;">en curso</span></h2>
     <div class="semana-grid">
@@ -151,231 +159,17 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
     <div class="semana-note">Semana 20 — objetivo: propuesta Velasco, avanzar Atitlán, cerrar pendientes A14 y BestMedia.</div>
   </div>
 
-  <!-- PROYECTOS -->
   <div class="section" id="tab-proyectos">
     <div style="font-size:11px;color:#aaa;margin-bottom:10px;">Estado: ⚪ pendiente · 🔵 en curso · ✅ hecho — clic para cambiar</div>
     <div class="toggle-all" onclick="toggleAll()">expandir todo ▾</div>
-
-    <div class="client-card">
-      <div class="client-header" onclick="toggle('nuvirta')">
-        <div class="dot" style="background:#1D9E75;"></div><span class="client-name">Nuvirta</span>
-        <span class="badge badge-green">propio</span>
-        <span class="chevron" id="chev-nuvirta">▶</span>
-      </div>
-      <div class="tasks" id="tasks-nuvirta">
-        <div class="tasks-header"><span></span><span>tema</span><span>done cuando</span></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">✅</div><div class="task-label done-text">Firma constitución Nuvirta</div><div class="task-criteria">Completada 21/04/2026 ✓</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Propuesta colaboración Velasco — preparar y enviar</div><div class="task-criteria">Propuesta enviada y valorada por Velasco</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Nota a Dani — licencias GitHub Copilot</div><div class="task-criteria">Dani informado y decisión tomada</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Comentar a MA el viaje a Almería</div><div class="task-criteria">MA informado</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Concepto factura Atitlán — definir y enviar</div><div class="task-criteria">Factura enviada con concepto correcto</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Diseñar proceso de trabajo Nuvirta (captación → cobro)</div><div class="task-criteria">Procesos definidos · base para diseño de agentes y método de trabajo</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Inscripción Registro Mercantil (~05/05)</div><div class="task-criteria">CIF definitivo obtenido</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Solicitud Microsoft AI Cloud Partner Program (~06/05)</div><div class="task-criteria">Correo @nuvirta.com configurado + landing online antes de solicitar</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Obtener licencias Microsoft Partners Launch Benefits (~14/05)</div><div class="task-criteria">Licencias asignadas a usuarios en M365</div></div>
-      </div>
-    </div>
-
-    <div class="client-card">
-      <div class="client-header" onclick="toggle('aar')">
-        <div class="dot" style="background:#888;"></div><span class="client-name">AAR Personal</span>
-        <span class="badge badge-gray">personal</span>
-        <span class="chevron" id="chev-aar">▶</span>
-      </div>
-      <div class="tasks" id="tasks-aar">
-        <div class="tasks-header"><span></span><span>tema</span><span>done cuando</span></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">📧 Enviar a David escrito Audiencia Provincial — PA 430/2025</div><div class="task-criteria">Escrito enviado a David hoy</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Recopilar facturas abril para asesoría</div><div class="task-criteria">Facturas enviadas a asesoría — esta semana</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Renovar certificado digital</div><div class="task-criteria">Certificado renovado y operativo — esta semana</div></div>
-      </div>
-    </div>
-
-    <div class="client-card">
-      <div class="client-header" onclick="toggle('central')">
-        <div class="dot" style="background:#FAEEDA;"></div><span class="client-name">Central de Producción</span>
-        <span class="badge badge-amber">puntual</span>
-        <span class="chevron" id="chev-central">▶</span>
-      </div>
-      <div class="tasks" id="tasks-central">
-        <div class="tasks-header"><span></span><span>tema</span><span>done cuando</span></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Cierre 2025 — ver con Afianza cuentas de tesorería</div><div class="task-criteria">Cuentas de tesorería revisadas y cerradas con Afianza</div></div>
-      </div>
-    </div>
-
-    <div class="client-card">
-      <div class="client-header" onclick="toggle('formacion')">
-        <div class="dot" style="background:#7F77DD;"></div><span class="client-name">Formación propia</span>
-        <span class="badge" style="background:#EEEDFE;color:#3C3489;">inversión</span>
-        <span class="chevron" id="chev-formacion">▶</span>
-      </div>
-      <div class="tasks" id="tasks-formacion">
-        <div class="tasks-header"><span></span><span>tema</span><span>done cuando</span></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Vibe Coding — IA aplicada a Power BI y desarrollo</div><div class="task-criteria">Capaz de generar y adaptar código con IA de forma autónoma</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Code Apps en Power Apps</div><div class="task-criteria">Canvas App completa desde cero (Dasme como primer caso real)</div></div>
-      </div>
-    </div>
-
-    <div class="client-card">
-      <div class="client-header" onclick="toggle('fisiodrid')">
-        <div class="dot" style="background:#E24B4A;"></div><span class="client-name">Fisiodrid</span>
-        <span class="badge badge-amber">en curso</span>
-        <span class="chevron" id="chev-fisiodrid">▶</span>
-      </div>
-      <div class="tasks" id="tasks-fisiodrid">
-        <div class="tasks-header"><span></span><span>tema</span><span>done cuando</span></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Modelo BI facturación Sanitas</div><div class="task-criteria">Usuario identifica facturas correctas, errores y puede resolverlos</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">⚠️ Sustituir Gen1 por Power Query directo a Azure Blob (deprecation junio)</div><div class="task-criteria">Conexión PQ directa a Azure con tabla/consulta mínima — resto del modelo intacto. Antes de junio 2026</div></div>
-      </div>
-    </div>
-
-    <div class="client-card">
-      <div class="client-header" onclick="toggle('atitlan')">
-        <div class="dot" style="background:#D4537E;"></div><span class="client-name">Atitlán</span>
-        <span class="deadline">~15 mayo</span><span class="badge badge-red">en curso</span>
-        <span class="chevron" id="chev-atitlan">▶</span>
-      </div>
-      <div class="tasks" id="tasks-atitlan">
-        <div class="tasks-header"><span></span><span>tema</span><span>done cuando</span></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">✅</div><div class="task-label done-text">Flujo borrador liquidaciones</div><div class="task-criteria">Completado ✓</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">✅</div><div class="task-label done-text">Flujo aprobación y envío liquidaciones</div><div class="task-criteria">Completado ✓</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Proceso rebalanceo</div><div class="task-criteria">Flujo end-to-end correcto</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Notificación rebalanceo</div><div class="task-criteria">Flujo completo correcto</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Power BI Atitlán → ATGR0</div><div class="task-criteria">Modelo operativo en tenant destino</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Power BI externo → ATGR0</div><div class="task-criteria">Modelo disponible y funcional en ATGR0</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Validación de datos (model-driven app)</div><div class="task-criteria">Usuarios ven, filtran y modifican datos autónomamente</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Campos acumulados devolución principal — quitar de vista</div><div class="task-criteria">Campos ocultos en formulario pero mantenidos en tabla</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Portal Nerea — visibilidad líneas Capital Call y Liquidaciones</div><div class="task-criteria">Estados borrador/enviado correctamente visibles · comunicado a Nerea</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">✅</div><div class="task-label done-text">Valor liquidativo — tabla nueva + campos coinversión + flujo actualización (Atgro)</div><div class="task-criteria">Completado ✓ — aplica solo para Atgro</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Campaña exprés — configurar buzón para envío con correo general</div><div class="task-criteria">Correo sale desde la dirección general, no del usuario emisor</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Poner en producción CRM Atitlán (desde semana 4/05)</div><div class="task-criteria">CRM migrado de pruebas a producción y operativo para el equipo</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">2 plantillas nuevas de estado — mapear y actualizar flujos</div><div class="task-criteria">Plantillas mapeadas y flujos de generación de documentos actualizados</div></div>
-      </div>
-    </div>
-
-    <div class="client-card">
-      <div class="client-header" onclick="toggle('velasco')">
-        <div class="dot" style="background:#1D9E75;"></div><span class="client-name">Velasco Abogados</span>
-        <span class="badge badge-amber">cerca del fin</span>
-        <span class="chevron" id="chev-velasco">▶</span>
-      </div>
-      <div class="tasks" id="tasks-velasco">
-        <div class="tasks-header"><span></span><span>tema</span><span>done cuando</span></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Migración documentos (expedientes y clientes)</div><div class="task-criteria">BI no muestra ningún archivo pendiente</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">✅</div><div class="task-label done-text">Contactos inactivos Sage</div><div class="task-criteria">Completado ✓ — contactos eliminados en Sage → Inactivo + campo Eliminación Sage = Sí</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Notificaciones fichas → nuevo CRM</div><div class="task-criteria">Variables de entorno revisadas y actualizadas al nuevo CRM</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Bug fecha documentos — huso horario a las 00:00</div><div class="task-criteria">Campo fecha muestra valor correcto independientemente de la zona horaria</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Flujo modificación cuentas — CDN_Titulo_Ya_Coincide + dos ramas</div><div class="task-criteria">Condición aplicada y probada en biblioteca de cuentas</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Flujo carga cuentas — vel_titulo y vel_nombrevisible sin extensión</div><div class="task-criteria">Cambios aplicados y validados</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Flujo carga expedientes V7 — sin extensión</div><div class="task-criteria">Cambios aplicados y validados</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Probar cadena completa en ambas bibliotecas</div><div class="task-criteria">Cadena funciona end-to-end en cuentas y expedientes</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Flujo eliminación contactos por vencimiento de cargos</div><div class="task-criteria">Contactos inactivados automáticamente al vencer su cargo</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Migración documentos clientes → SP + actualizar ABS</div><div class="task-criteria">Documentos migrados a SharePoint y Azure Blob Storage actualizado</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Mapear nombres documentos con campo título en Dataverse</div><div class="task-criteria">Todos los documentos con título mapeado correctamente — listo para producción</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Cargos con fechas inicio/fin</div><div class="task-criteria">Montado · pendiente confirmar con Velasco vencimientos poderes vs cargos — ¿van siempre unidos?</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Nuevo reporting financiero</div><div class="task-criteria">Alcance a definir con Velasco</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">✅</div><div class="task-label done-text">Formación equipo laboral (4 personas)</div><div class="task-criteria">Completada ✓</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Power BI financiero — P&amp;G trimestral</div><div class="task-criteria">Asignación de cuentas revisada, resultados trimestrales correctos</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Tabla de contratos</div><div class="task-criteria">A definir — mejora futura</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Flujo eliminación documentos SharePoint → inactivar + backup Azure Blob</div><div class="task-criteria">Registro inactivado en DocumentosAG con quién/cuándo + copia en Azure Blob + enlace al documento recuperable</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">⚠️ Migración Gen1 → Power Query directo Azure (deprecation junio)</div><div class="task-criteria">Conexión Gen1 sustituida por PQ directo a Azure Blob — antes de junio 2026</div></div>
-      </div>
-    </div>
-
-    <div class="client-card">
-      <div class="client-header" onclick="toggle('bestmedia')">
-        <div class="dot" style="background:#378ADD;"></div><span class="client-name">BestMedia</span>
-        <span class="badge badge-amber">reactivar</span>
-        <span class="chevron" id="chev-bestmedia">▶</span>
-      </div>
-      <div class="tasks" id="tasks-bestmedia">
-        <div class="tasks-header"><span></span><span>tema</span><span>done cuando</span></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Bug BAM — IdCabTrabajo no visible en formulario crear línea con presupuesto</div><div class="task-criteria">Campo visible y funcional en el formulario</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Bug BAM — conPresupuesto en cabecera no se actualiza al vincular presupuesto posterior</div><div class="task-criteria">Campo actualizado automáticamente aunque el enlace sea posterior a la creación</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Proceso ClickUp — costes</div><div class="task-criteria">Flujo operativo, costes registrándose correctamente</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Notificación estado POs</div><div class="task-criteria">Sin dependencia de Google Sheet, en plataforma propia</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Generación de facturas desde Power Apps</div><div class="task-criteria">Usuario genera factura sin replicar datos manualmente</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Actualizar reporting financiero mensual</div><div class="task-criteria">Reporting actualizado y operativo cada mes</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">RLS Power BI — filtro por squad</div><div class="task-criteria">Cada responsable ve solo los datos de su squad</div></div>
-      </div>
-    </div>
-
-    <div class="client-card">
-      <div class="client-header" onclick="toggle('articulo14')">
-        <div class="dot" style="background:#7F77DD;"></div><span class="client-name">Artículo 14</span>
-        <span class="badge badge-amber">en curso</span>
-        <span class="chevron" id="chev-articulo14">▶</span>
-      </div>
-      <div class="tasks" id="tasks-articulo14">
-        <div class="tasks-header"><span></span><span>tema</span><span>done cuando</span></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Informes Power BI (artículos, audiencia, costes)</div><div class="task-criteria">Inversor accede y ve la información correctamente</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">BBDD contactos + Customer Insights</div><div class="task-criteria">Contactos migrados, creables, clasificados correctamente</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Gestión contactos-eventos</div><div class="task-criteria">Cruce contacto-evento registrado y consultable</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Modelo de audiencias</div><div class="task-criteria">Reporte actualizado automáticamente</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Modelo financiero — visual HTML</div><div class="task-criteria">Visual HTML operativo en informe financiero</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Flujo Holded — añadir un año al filtro de movimientos de tesorería</div><div class="task-criteria">Cobros del mes en curso incluidos correctamente en la previsión</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Revisión previsión de tesorería (Santi)</div><div class="task-criteria">Cobros del mes en curso incluidos correctamente — vencimientos posteriores excluidos</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Revisar mejoras/correcciones en colaboraciones</div><div class="task-criteria">Correcciones aplicadas tras formación Carlota</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Avanzar eventos en MKT</div><div class="task-criteria">Módulo eventos operativo con Vicky</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Solicitar licencia para Vicky — administrador del sistema</div><div class="task-criteria">Licencia asignada y Vicky operativa como admin</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Plan de formación Copilot (futuro)</div><div class="task-criteria">Plan definido y fechas acordadas con A14</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Reunión Queco — cierre + acceso Arce a datos Power BI</div><div class="task-criteria">Queco informado del cierre · Arce con acceso configurado a sus datos</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Diseño nuevo reporting A14</div><div class="task-criteria">Pasos definidos e implementación iniciada — evaluar complejidad real</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Automatización datos podcasts (Spotify, Amazon, Apple, Ivoox)</div><div class="task-criteria">Consulta automática vía API sin intervención manual — valorar con Miguel Ángel</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">⚠️ Migración Gen1 → Gen2 (deprecation junio)</div><div class="task-criteria">Flujos de datos analíticos migrados antes de junio 2026</div></div>
-      </div>
-    </div>
-
-    <div class="client-card">
-      <div class="client-header" onclick="toggle('larazon')">
-        <div class="dot" style="background:#E24B4A;"></div><span class="client-name">La Razón</span>
-        <span class="badge badge-amber">en curso</span>
-        <span class="chevron" id="chev-larazon">▶</span>
-      </div>
-      <div class="tasks" id="tasks-larazon">
-        <div class="tasks-header"><span></span><span>tema</span><span>done cuando</span></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">✅</div><div class="task-label done-text">Flujos carga nóminas Planeta</div><div class="task-criteria">Flujo validado ✓</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Control fecha máxima en subida de ficheros</div><div class="task-criteria">No permite cargar ficheros con fecha anterior a la máxima cargada</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Cargar histórico menos último mes (para Clara)</div><div class="task-criteria">Datos cargados, último mes reservado — antes del 24</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Revisar carga informe de retribuciones</div><div class="task-criteria">Carga correcta y validada — antes del 24</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Propuesta de diseño nómina y masa salarial</div><div class="task-criteria">Propuesta lista para presentar a Clara el 24</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">🔵</div><div class="task-label">Rescatar cálculo actual de masa salarial</div><div class="task-criteria">Cálculo localizado y revisado — antes del 24</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Modelo Power BI nóminas</div><div class="task-criteria">Modelo publicado y navegable</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Canvas App gestión nóminas</div><div class="task-criteria">A definir en fase posterior</div></div>
-      </div>
-    </div>
-
-    <div class="client-card">
-      <div class="client-header" onclick="toggle('rizkider')">
-        <div class="dot" style="background:#639922;"></div><span class="client-name">Anuario Rizkider</span>
-        <span class="badge badge-green">personal</span>
-        <span class="chevron" id="chev-rizkider">▶</span>
-      </div>
-      <div class="tasks" id="tasks-rizkider">
-        <div class="tasks-header"><span></span><span>tema</span><span>done cuando</span></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Estructurar datos históricos desde Excel/GameBook</div><div class="task-criteria">JSON con todas las ediciones, jugadores y partidos listo</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Orden de Mérito — histórico campeones y puntos</div><div class="task-criteria">Vista por año con parejas + individual navegable</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Ediciones — timeline año a año</div><div class="task-criteria">Detalle completo por edición: equipos, jornadas, resultados</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Perfil de jugador</div><div class="task-criteria">Historial individual: ediciones, récord, equipos, partidos</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Top 10 — rankings por métricas</div><div class="task-criteria">Toggle Individual/Parejas operativo</div></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Próxima Rizkider — edición en curso</div><div class="task-criteria">Info de la edición actual visible y actualizable</div></div>
-      </div>
-    </div>
-
-    <div class="client-card">
-      <div class="client-header" onclick="toggle('dasme')">
-        <div class="dot" style="background:#BA7517;"></div><span class="client-name">Dasme Control</span>
-        <span class="badge badge-gray">bloqueado</span>
-        <span class="chevron" id="chev-dasme">▶</span>
-      </div>
-      <div class="tasks" id="tasks-dasme">
-        <div class="tasks-header"><span></span><span>tema</span><span>done cuando</span></div>
-        <div class="task-row"><div class="task-status" onclick="cycleStatus(this)">⚪</div><div class="task-label">Conexión Telegram → Dataverse/Excel</div><div class="task-criteria">Avisos llegan automáticamente sin intervención manual</div></div>
-      </div>
-    </div>
-
+    <div id="proyectos-content"><div class="loading">Cargando proyectos...</div></div>
   </div>
 
-  <!-- HISTÓRICO -->
+  <div class="section" id="tab-logros">
+    <div style="font-size:11px;color:#aaa;margin-bottom:12px;">Tareas completadas — ordenadas por semana. Fecha estimada vs fecha real.</div>
+    <div id="logros-content"><div class="loading">Cargando logros...</div></div>
+  </div>
+
   <div class="section" id="tab-historico">
     <div class="historico-semana">
       <div class="historico-header" onclick="toggleHist('h18')">
@@ -387,13 +181,12 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
         <div class="hist-row"><div>Lun 27</div><div>Velasco + Atitlán</div><div>Reunión Atitlán ✅ · resto arrastrado</div><div><span class="hist-pill hp-parcial">parcial</span></div></div>
         <div class="hist-row"><div>Mar 28</div><div>Atitlán + Velasco + Art.14</div><div>Campaña exprés · cargos · Holded · pendientes</div><div><span class="hist-pill hp-parcial">parcial</span></div></div>
         <div class="hist-row"><div>Mié 29</div><div>BestMedia + Art.14</div><div>—</div><div><span class="hist-pill hp-pend">pendiente</span></div></div>
-        <div class="hist-row"><div>Jue 30</div><div>CSC Fresnillo</div><div>CSC Fresnillo + Comida NCG</div><div><span class="hist-pill hp-ok">ok</span></div></div>
+        <div class="hist-row"><div>Jue 30</div><div>CSC Fresnillo</div><div>CSC Fresnillo + Comida NCG ✅</div><div><span class="hist-pill hp-ok">ok</span></div></div>
         <div class="hist-row"><div>Vie 1</div><div>Art.14 + La Razón</div><div>—</div><div><span class="hist-pill hp-pend">pendiente</span></div></div>
         <div class="hist-row"><div>Sáb 2</div><div>Velasco + Atitlán</div><div>—</div><div><span class="hist-pill hp-pend">pendiente</span></div></div>
         <div class="hist-row"><div>Dom 3</div><div>BestMedia</div><div>—</div><div><span class="hist-pill hp-pend">pendiente</span></div></div>
       </div>
     </div>
-
     <div class="historico-semana">
       <div class="historico-header" onclick="toggleHist('h17')">
         <span style="font-size:13px;font-weight:500;">Semana 17 — 20 al 24 abril</span>
@@ -401,15 +194,14 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
       </div>
       <div class="historico-body" id="h17">
         <div class="hist-hrow"><span>día</span><span>planificado</span><span>ejecutado</span><span>resultado</span></div>
-        <div class="hist-row"><div>Lun 20</div><div>Admin + Atitlán + Art.14</div><div>Admin ✅ · Borrador liquidaciones ✅ · Envío liquidaciones ✅ · Tesorería Art.14 — detectado problema Holded</div><div><span class="hist-pill hp-ok">ok</span></div></div>
-        <div class="hist-row"><div>Mar 21</div><div>Firma Nuvirta + reunión Dani/MA</div><div>Firma Nuvirta ✅ · Tanatorio · Reunión MA ✅ · Holded — sin tiempo</div><div><span class="hist-pill hp-parcial">parcial</span></div></div>
-        <div class="hist-row"><div>Mié 22</div><div>Formación Velasco + Atitlán + Praksia + Dasme</div><div>Formaciones ✅ · Reunión Atitlán ✅ · Comida Praksia ✅ · Reunión Dasme ✅ · Cargos y migración — sin terminar</div><div><span class="hist-pill hp-parcial">parcial</span></div></div>
-        <div class="hist-row"><div>Jue 23</div><div>La Razón + Art.14 + Atitlán VL</div><div>Carga nóminas La Razón ✅ · Tabla VL sin terminar · BBDD A14 no tocado · Holded pendiente</div><div><span class="hist-pill hp-parcial">parcial</span></div></div>
-        <div class="hist-row"><div>Vie 24</div><div>Reunión Clara + MA/Nuvirta + Art.14 BBDD</div><div>Reunión Clara ✅ · Reunión MA ✅ · BBDD A14 no avanzado · VL Atitlán sin cerrar</div><div><span class="hist-pill hp-parcial">parcial</span></div></div>
-        <div class="hist-row"><div>Fin semana</div><div>Migración Velasco</div><div>Migración avanzada ✅ · Contactos Velasco ✅ · Pendiente validar</div><div><span class="hist-pill hp-parcial">parcial</span></div></div>
+        <div class="hist-row"><div>Lun 20</div><div>Admin + Atitlán + Art.14</div><div>Admin ✅ · Borrador liquidaciones ✅ · Envío liquidaciones ✅</div><div><span class="hist-pill hp-ok">ok</span></div></div>
+        <div class="hist-row"><div>Mar 21</div><div>Firma Nuvirta + reunión Dani/MA</div><div>Firma Nuvirta ✅ · Tanatorio · Reunión MA ✅</div><div><span class="hist-pill hp-parcial">parcial</span></div></div>
+        <div class="hist-row"><div>Mié 22</div><div>Formación Velasco + Atitlán + Praksia + Dasme</div><div>Formaciones ✅ · Reunión Atitlán ✅ · Comida Praksia ✅ · Reunión Dasme ✅</div><div><span class="hist-pill hp-parcial">parcial</span></div></div>
+        <div class="hist-row"><div>Jue 23</div><div>La Razón + Art.14 + Atitlán VL</div><div>Carga nóminas La Razón ✅ · Tabla VL sin terminar</div><div><span class="hist-pill hp-parcial">parcial</span></div></div>
+        <div class="hist-row"><div>Vie 24</div><div>Reunión Clara + MA/Nuvirta + Art.14 BBDD</div><div>Reunión Clara ✅ · Reunión MA ✅ · BBDD A14 no avanzado</div><div><span class="hist-pill hp-parcial">parcial</span></div></div>
+        <div class="hist-row"><div>Fin semana</div><div>Migración Velasco</div><div>Migración avanzada ✅ · Contactos Velasco ✅</div><div><span class="hist-pill hp-parcial">parcial</span></div></div>
       </div>
     </div>
-
     <div class="historico-semana">
       <div class="historico-header" onclick="toggleHist('h16')">
         <span style="font-size:13px;font-weight:500;">Semana 16 — 14 al 19 abril</span>
@@ -419,8 +211,8 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
         <div class="hist-hrow"><span>día</span><span>planificado</span><span>ejecutado</span><span>resultado</span></div>
         <div class="hist-row"><div>Mar 14</div><div>Atitlán — liquidaciones tarde</div><div>Central SAGE ✓ · Atitlán sin terminar</div><div><span class="hist-pill hp-parcial">parcial</span></div></div>
         <div class="hist-row"><div>Mié 15</div><div>La Razón · Velasco · Atitlán</div><div>Nada completado</div><div><span class="hist-pill hp-no">no hecho</span></div></div>
-        <div class="hist-row"><div>Jue 16</div><div>Velasco post-CSC · Webinar · La Razón</div><div>Webinar Vibe Coding ✓ · La Razón avanzado · Velasco no tocado</div><div><span class="hist-pill hp-parcial">parcial</span></div></div>
-        <div class="hist-row"><div>Vie 17</div><div>Reunión La Razón · Velasco · Atitlán · Vibe Coding</div><div>Reunión Clara ✓ flujo validado · resto sin hacer</div><div><span class="hist-pill hp-parcial">parcial</span></div></div>
+        <div class="hist-row"><div>Jue 16</div><div>Velasco post-CSC · Webinar · La Razón</div><div>Webinar Vibe Coding ✅ · La Razón avanzado · Velasco no tocado</div><div><span class="hist-pill hp-parcial">parcial</span></div></div>
+        <div class="hist-row"><div>Vie 17</div><div>Reunión La Razón · Velasco · Atitlán</div><div>Reunión Clara ✅ flujo validado · resto sin hacer</div><div><span class="hist-pill hp-parcial">parcial</span></div></div>
       </div>
     </div>
   </div>
@@ -436,146 +228,17 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
 
 <script>
 // ============================================================
-// DATOS — solo tocar este bloque para actualizar el plan diario
-// fecha: "YYYY-MM-DD"
-// bloques: array de { tiempo, cliente, tarea }
-// footer: texto de contexto para el día siguiente
-// avisos: array de strings (opcional)
+// CONFIG
+// ============================================================
+const DATA_URL  = 'https://raw.githubusercontent.com/aaguirre-nuv/organizacion/main/data.json';
+const BIN_ID    = '69e32a6aaaba88219710600a';
+const BIN_KEY   = '$2a$10$2Y9gS7sOIARKbtHusrv.B.gSVjDbAB.ggWQ4GqafsJc24MRrjodrG';
+const BIN_URL   = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
+
+// ============================================================
+// PLAN DIARIO (solo yo actualizo esto)
 // ============================================================
 const PLAN = [
-  {
-    fecha: "2026-04-18",
-    bloques: [
-      { tiempo: "mañana", cliente: "IVA", tarea: "Declaración IVA — cerrar hoy si es posible" },
-      { tiempo: "tarde", cliente: "Atitlán", tarea: "Arrancar interior Aplicar_a_cada_uno del flujo liquidaciones" }
-    ],
-    footer: "Domingo — Atitlán todo el día: terminar bucle + statuscode Borrador + prueba end-to-end"
-  },
-  {
-    fecha: "2026-04-19",
-    bloques: [
-      { tiempo: "todo el día", cliente: "Atitlán", tarea: "Terminar bucle Aplicar_a_cada_uno + statuscode Borrador + prueba end-to-end" }
-    ],
-    footer: "Lunes — IVA si queda pendiente (vence hoy) + Atitlán · ⚑ Hablar con MA: podcasts Artículo 14"
-  },
-  {
-    fecha: "2026-04-20",
-    bloques: [
-      { tiempo: "mañana ✅", cliente: "Admin", tarea: "Contratos Velasco · facturas del mes · IVA · documentación Nuvirta — todo completado" },
-      { tiempo: "tarde", cliente: "Atitlán", tarea: "Flujo borrador liquidaciones ✅ completado · Flujo envío liquidaciones en curso" },
-      { tiempo: "tarde", cliente: "Artículo 14", tarea: "Revisar previsión de tesorería Santi — cobros mes en curso" }
-    ],
-    footer: "Mañana martes — Firma Nuvirta (mañana) + migración Velasco (tarde)"
-  },
-  {
-    fecha: "2026-04-21",
-    bloques: [
-      { tiempo: "mañana ✅", cliente: "Nuvirta", tarea: "Firma constitución Nuvirta — completada 🎉" },
-      { tiempo: "tarde", cliente: "Admin", tarea: "Tanatorio" },
-      { tiempo: "tarde", cliente: "Nuvirta", tarea: "Reunión Dani + Miguel Ángel — temas pendientes Nuvirta" },
-      { tiempo: "post-reunión", cliente: "Artículo 14", tarea: "Flujo Holded — añadir un año al filtro de movimientos (30-60 min si hay energía)" }
-    ],
-    footer: "Mañana miércoles — formación Velasco ×4 + reunión Atitlán (mañana) · comida Praksia · migración cuentas Velasco (tarde)"
-  },
-  {
-    fecha: "2026-04-22",
-    bloques: [
-      { tiempo: "8h", cliente: "Velasco", tarea: "Formación 2 personas laboral que faltaron ayer (en el despacho)" },
-      { tiempo: "mañana", cliente: "Velasco", tarea: "Formación resto equipo laboral" },
-      { tiempo: "mañana", cliente: "Atitlán", tarea: "Reunión Atitlán" },
-      { tiempo: "mediodía", cliente: "Praksia", tarea: "Comida Praksia" },
-      { tiempo: "tarde", cliente: "Velasco", tarea: "Migración ficheros cuentas + contactos inactivos Sage si cabe" },
-      { tiempo: "tarde", cliente: "Dasme", tarea: "Reunión Dasme — avanzar conexión Telegram" },
-      { tiempo: "tarde", cliente: "Nuvirta", tarea: "⚑ Enviar propuesta honorarios a Dani — valoración extra + nuevas tareas Atitlán" }
-    ],
-    footer: "Mañana jueves — La Razón (retribuciones + nóminas + masa salarial) + flujo Holded Art.14"
-  },
-  {
-    fecha: "2026-04-23",
-    bloques: [
-      { tiempo: "mañana ✅", cliente: "Velasco", tarea: "Formaciones equipo laboral — todas completadas 🎉" },
-      { tiempo: "mañana", cliente: "Atitlán", tarea: "Tabla valor liquidativo — crear estructura + campos coinversión + flujo actualización" },
-      { tiempo: "tarde", cliente: "La Razón", tarea: "Cargar datos nóminas + retribuciones para reunión de mañana con Clara" },
-      { tiempo: "tarde", cliente: "Artículo 14", tarea: "Flujo facturas años anteriores" }
-    ],
-    footer: "Mañana viernes — Reunión Clara La Razón 10h + reunión MA/Nuvirta + tarde Art.14 BBDD",
-    avisos: ["⚑ Preparar antes de la reunión MA: diseño proceso Nuvirta captación→cobro"]
-  },
-  {
-    fecha: "2026-04-24",
-    bloques: [
-      { tiempo: "10h", cliente: "La Razón", tarea: "Reunión con Clara — revisión diseño nóminas y masa salarial · a espera clasificación tipo salario" },
-      { tiempo: "mañana", cliente: "Nuvirta", tarea: "Reunión Miguel Ángel — temas pendientes + diseño proceso captación→cobro" },
-      { tiempo: "tarde", cliente: "Atitlán", tarea: "Terminar tabla valor liquidativo si no quedó cerrada ayer" }
-    ],
-    footer: "Semana 18 — Objetivos: 1) Velasco todo cerrado 2) Atitlán valoración + reunión lunes tarde",
-    arrastres: [
-      { dia: "Mié 22", items: ["Velasco — migración cuentas sin terminar", "Velasco — contactos inactivos Sage pendiente", "Velasco — cargos con fechas pendiente", "Nuvirta — propuesta honorarios Dani pendiente"] },
-      { dia: "Jue 23", items: ["Atitlán — tabla valor liquidativo sin terminar", "Art.14 — BBDD marketing no avanzado", "Art.14 — flujo Holded pendiente", "Fisiodrid — PQ Azure no tocado", "BestMedia — bugs BAM no tocado"] }
-    ]
-  },
-  {
-    fecha: "2026-04-27",
-    bloques: [
-      { tiempo: "tarde ✅", cliente: "Atitlán", tarea: "Reunión Atitlán — todo bien ✓" }
-    ],
-    footer: "Nada más completado — resto arrastrado al martes"
-  },
-  {
-    fecha: "2026-04-28",
-    bloques: [
-      { tiempo: "mañana", cliente: "Atitlán", tarea: "Validar campaña exprés — correos saliendo con dirección general" },
-      { tiempo: "mañana", cliente: "Velasco", tarea: "Rematar cargos con fechas inicio/fin" },
-      { tiempo: "mañana", cliente: "Velasco", tarea: "Informe de migración para Eloy — histórico mes a mes, horas y proyectos" },
-      { tiempo: "tarde", cliente: "Nuvirta", tarea: "Nota para Dani — facturable Atitlán: base + proporción horas previstas vs realizadas + pendiente" },
-      { tiempo: "tarde", cliente: "Artículo 14", tarea: "📧 Nota a Vicky — disculpa retraso BBDD, nos vemos el miércoles 6 in situ" },
-      { tiempo: "tarde", cliente: "Artículo 14", tarea: "Flujo Holded — añadir un año al filtro de movimientos de tesorería" }
-    ],
-    footer: "Miércoles — BestMedia costes + bugs BAM · Jueves — CSC Fresnillo sin tiempo técnico",
-    avisos: ["✅ Reunión Atitlán ayer — todo bien"]
-  },
-  {
-    fecha: "2026-04-29",
-    bloques: [
-      { tiempo: "mañana", cliente: "BestMedia", tarea: "Recuperar costes ClickUp + bugs BAM (IdCabTrabajo + conPresupuesto)" },
-      { tiempo: "tarde", cliente: "Artículo 14", tarea: "Flujo Holded — añadir un año al filtro de movimientos" }
-    ],
-    footer: "Jueves — CSC Fresnillo Velasco + Comida NCG · sin tiempo técnico"
-  },
-  {
-    fecha: "2026-04-30",
-    bloques: [
-      { tiempo: "todo el día", cliente: "Velasco", tarea: "CSC Fresnillo + Comida NCG — sin tiempo técnico" }
-    ],
-    footer: "Mañana festivo — preparar BBDD Art.14 + revisar Atgro/Atitlán + migración Velasco + cuentas BestMedia"
-  },
-  {
-    fecha: "2026-05-01",
-    bloques: [
-      { tiempo: "mañana", cliente: "Artículo 14", tarea: "Preparar BBDD marketing — listo para reunión Vicky mié 6" },
-      { tiempo: "mañana", cliente: "Artículo 14", tarea: "Tesorería — flujo Holded, añadir un año al filtro" },
-      { tiempo: "tarde", cliente: "La Razón", tarea: "Propuesta diseño Power BI nóminas y masa salarial" }
-    ],
-    footer: "Mañana sábado — validar migración Velasco + Atgro/Atitlán"
-  },
-  {
-    fecha: "2026-05-02",
-    bloques: [
-      { tiempo: "mañana", cliente: "Velasco", tarea: "Validar migración — confirmar que todo está correcto" },
-      { tiempo: "mañana", cliente: "Atitlán", tarea: "Revisar estado solución Atgro y Atitlán" },
-      { tiempo: "tarde", cliente: "Velasco", tarea: "Migración cuentas — cerrar definitivamente" }
-    ],
-    footer: "Mañana domingo — BestMedia cuentas + RLS + bug IdCabTrabajo"
-  },
-  {
-    fecha: "2026-05-03",
-    bloques: [
-      { tiempo: "mañana", cliente: "BestMedia", tarea: "Cuentas BestMedia" },
-      { tiempo: "mañana", cliente: "BestMedia", tarea: "RLS Power BI — filtro por squad" },
-      { tiempo: "tarde", cliente: "BestMedia", tarea: "Bug IdCabTrabajo — campo no visible en formulario" }
-    ],
-    footer: "Lunes 4 — Atitlán 10:30 · Semana de poner en marcha Velasco, Atitlán y plan Nuvirta"
-  },
   {
     fecha: "2026-05-04",
     bloques: [
@@ -676,131 +339,293 @@ const PLAN = [
     footer: ""
   }
 ];
+
+// Colores por nombre de cliente (para pills en Hoy/Semanas)
 const COLORES = {
-  "Atitlán":    { bg: "#FBEAF0", fg: "#72243E" },
-  "Velasco":    { bg: "#E1F5EE", fg: "#0F6E56" },
-  "La Razón":   { bg: "#FCEBEB", fg: "#A32D2D" },
-  "Fisiodrid":  { bg: "#FCEBEB", fg: "#A32D2D" },
-  "BestMedia":  { bg: "#E6F1FB", fg: "#185FA5" },
-  "Artículo 14":{ bg: "#EEEDFE", fg: "#3C3489" },
-  "Dasme":      { bg: "#FAEEDA", fg: "#854F0B" },
-  "Nuvirta":    { bg: "#E1F5EE", fg: "#04342C" },
-  "Vibe Coding":{ bg: "#EEEDFE", fg: "#3C3489" },
-  "IVA":        { bg: "#F1EFE8", fg: "#5F5E5A" },
-  "Admin":      { bg: "#F1EFE8", fg: "#5F5E5A" },
-  "Praksia":    { bg: "#FAEEDA", fg: "#854F0B" },
-  "AAR Personal": { bg: "#F1EFE8", fg: "#5F5E5A" },
-  "Central":    { bg: "#FAEEDA", fg: "#854F0B" }
+  "Atitlán":       { bg: "#FBEAF0", fg: "#72243E" },
+  "Velasco":       { bg: "#E1F5EE", fg: "#0F6E56" },
+  "La Razón":      { bg: "#FCEBEB", fg: "#A32D2D" },
+  "Fisiodrid":     { bg: "#FCEBEB", fg: "#A32D2D" },
+  "BestMedia":     { bg: "#E6F1FB", fg: "#185FA5" },
+  "Artículo 14":   { bg: "#EEEDFE", fg: "#3C3489" },
+  "Dasme":         { bg: "#FAEEDA", fg: "#854F0B" },
+  "Nuvirta":       { bg: "#E1F5EE", fg: "#04342C" },
+  "Vibe Coding":   { bg: "#EEEDFE", fg: "#3C3489" },
+  "IVA":           { bg: "#F1EFE8", fg: "#5F5E5A" },
+  "Admin":         { bg: "#F1EFE8", fg: "#5F5E5A" },
+  "AAR Personal":  { bg: "#F1EFE8", fg: "#5F5E5A" },
+  "Central":       { bg: "#FAEEDA", fg: "#854F0B" },
+  "Praksia":       { bg: "#FAEEDA", fg: "#854F0B" }
 };
 
+// ============================================================
+// ESTADO GLOBAL
+// ============================================================
+let DATA = null;      // data.json de GitHub
+let BIN  = null;      // jsonbin
+
+async function init() {
+  try {
+    const [dataRes, binRes] = await Promise.all([
+      fetch(DATA_URL + '?t=' + Date.now()),
+      fetch(BIN_URL + '/latest', { headers: { 'X-Master-Key': BIN_KEY, 'X-Bin-Meta': 'false' } })
+    ]);
+    DATA = await dataRes.json();
+    BIN  = await binRes.json();
+  } catch(e) {
+    console.warn('Error cargando datos:', e);
+    DATA = { clientes: [], projects: [] };
+    BIN  = { states: {}, completed: [], hoyDone: {} };
+  }
+  renderHoy();
+  renderProyectos();
+  renderLogros();
+  renderPendientesAuto();
+}
+
+async function saveBin() {
+  try {
+    await fetch(BIN_URL, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json', 'X-Master-Key': BIN_KEY },
+      body: JSON.stringify(BIN)
+    });
+  } catch(e) { console.warn('Error guardando en jsonbin:', e); }
+}
+
+// ============================================================
+// HOY
+// ============================================================
+function getHoy() {
+  const h = new Date();
+  return `${h.getFullYear()}-${String(h.getMonth()+1).padStart(2,'0')}-${String(h.getDate()).padStart(2,'0')}`;
+}
+
 function renderHoy() {
+  const fechaHoy = getHoy();
   const hoy = new Date();
-  const fechaHoy = `${hoy.getFullYear()}-${String(hoy.getMonth()+1).padStart(2,'0')}-${String(hoy.getDate()).padStart(2,'0')}`;
   const dias = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
   const meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
-  const labelFecha = `Hoy — ${dias[hoy.getDay()]} ${hoy.getDate()} de ${meses[hoy.getMonth()]}`;
+  const label = `Hoy — ${dias[hoy.getDay()]} ${hoy.getDate()} de ${meses[hoy.getMonth()]}`;
   const plan = PLAN.find(p => p.fecha === fechaHoy);
+  const done = BIN.hoyDone || {};
   const cont = document.getElementById('hoy-content');
-  const doneHoy = getDoneHoy();
 
-  let html = `<div class="hoy-card"><div class="hoy-label">${labelFecha}</div>`;
+  let html = `<div class="hoy-card"><div class="hoy-label">${label}</div>`;
   if (!plan) {
     html += `<div class="hoy-empty">No hay plan definido para hoy. Abre el chat para planificarlo.</div>`;
   } else {
     plan.bloques.forEach((b, i) => {
       const bid = `${fechaHoy}_${i}`;
-      const done = doneHoy[bid] === '✅';
+      const isDone = done[bid] === '✅';
       const c = COLORES[b.cliente] || { bg: "#F1EFE8", fg: "#5F5E5A" };
-      html += `<div class="hoy-row" style="${done ? 'opacity:0.5' : ''}">
+      html += `<div class="hoy-row" style="${isDone ? 'opacity:0.5' : ''}">
         <span class="hoy-time">${b.tiempo}</span>
         <div style="flex:1">
           <span class="hoy-titulo" style="color:${c.fg}">${b.cliente}</span>
-          <span class="hoy-desc" style="${done ? 'text-decoration:line-through' : ''}">${b.tarea}</span>
+          <span class="hoy-desc" style="${isDone ? 'text-decoration:line-through' : ''}">${b.tarea}</span>
         </div>
-        <span onclick="toggleHoyBloque('${bid}', this)" style="cursor:pointer;font-size:16px;margin-left:8px;user-select:none;">${done ? '✅' : '⚪'}</span>
+        <span onclick="toggleHoyBloque('${bid}',this)" style="cursor:pointer;font-size:16px;margin-left:8px;user-select:none;flex-shrink:0">${isDone ? '✅' : '⚪'}</span>
       </div>`;
     });
-    if (plan.avisos && plan.avisos.length) {
-      plan.avisos.forEach(a => { html += `<div class="aviso">${a}</div>`; });
-    }
-    if (plan.footer) {
-      html += `<div class="hoy-footer">${plan.footer}</div>`;
-    }
+    if (plan.avisos) plan.avisos.forEach(a => { html += `<div class="aviso">${a}</div>`; });
+    if (plan.footer) html += `<div class="hoy-footer">${plan.footer}</div>`;
   }
   html += `</div>`;
   cont.innerHTML = html;
   renderPendientesAuto();
 }
 
-function getDoneHoy() {
-  try { return JSON.parse(localStorage.getItem('alvaro_hoy_done') || '{}'); } catch(e) { return {}; }
-}
-
 function toggleHoyBloque(bid, el) {
-  const done = getDoneHoy();
-  const isDone = done[bid] === '✅';
-  done[bid] = isDone ? '⚪' : '✅';
-  localStorage.setItem('alvaro_hoy_done', JSON.stringify(done));
-  syncHoyDone(done);
+  if (!BIN.hoyDone) BIN.hoyDone = {};
+  const isDone = BIN.hoyDone[bid] === '✅';
+  BIN.hoyDone[bid] = isDone ? '⚪' : '✅';
+  saveBin();
   renderHoy();
 }
 
-async function syncHoyDone(done) {
-  try {
-    const res = await fetch(BIN_URL + '/latest', { headers: { 'X-Master-Key': BIN_KEY, 'X-Bin-Meta': 'false' } });
-    const data = await res.json();
-    const current = data.states || {};
-    await fetch(BIN_URL, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json', 'X-Master-Key': BIN_KEY },
-      body: JSON.stringify({ states: current, hoyDone: done })
-    });
-  } catch(e) { console.warn('sync error', e); }
-}
-
+// ============================================================
+// PENDIENTES AUTOMÁTICOS
+// ============================================================
 function renderPendientesAuto() {
-  const hoy = new Date();
-  const fechaHoy = `${hoy.getFullYear()}-${String(hoy.getMonth()+1).padStart(2,'0')}-${String(hoy.getDate()).padStart(2,'0')}`;
-  const done = getDoneHoy();
-  const pendContainer = document.getElementById('pend-auto');
-  if (!pendContainer) return;
-
-  const diasSemana = ['dom','lun','mar','mié','jue','vie','sáb'];
+  const fechaHoy = getHoy();
+  const done = BIN.hoyDone || {};
+  const cont = document.getElementById('pend-auto');
+  if (!cont) return;
+  const dias = ['dom','lun','mar','mié','jue','vie','sáb'];
   const meses = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
-
   let rows = '';
   PLAN.forEach(p => {
-    if (p.fecha >= fechaHoy) return; // solo días pasados
+    if (p.fecha >= fechaHoy) return;
     p.bloques.forEach((b, i) => {
       const bid = `${p.fecha}_${i}`;
-      if (done[bid] === '✅') return; // completado
-      if (b.tarea.includes('✅')) return; // ya marcado en el texto
+      if (done[bid] === '✅') return;
+      if (b.tarea.includes('✅')) return;
       const d = new Date(p.fecha + 'T12:00:00');
-      const label = `${diasSemana[d.getDay()]} ${d.getDate()} ${meses[d.getMonth()]}`;
+      const label = `${dias[d.getDay()]} ${d.getDate()} ${meses[d.getMonth()]}`;
       const c = COLORES[b.cliente] || { bg: "#F1EFE8", fg: "#5F5E5A" };
-      rows += `<div class="pend-row" data-bid="${bid}">
+      rows += `<div class="pend-row">
         <div class="pend-fecha">${label}</div>
         <div><span class="pend-cliente" style="background:${c.bg};color:${c.fg};">${b.cliente}</span></div>
         <div class="pend-tarea">${b.tarea}</div>
-        <div class="pend-check" onclick="markPendDone('${bid}', this)">⚪</div>
+        <div class="pend-check" onclick="markPendDone('${bid}',this)">⚪</div>
       </div>`;
     });
   });
-
-  pendContainer.innerHTML = rows || '<div style="padding:12px 14px;font-size:13px;color:#aaa;">Sin pendientes 🎉</div>';
+  cont.innerHTML = rows || '<div style="padding:12px 14px;font-size:13px;color:#aaa;">Sin pendientes 🎉</div>';
 }
 
 function markPendDone(bid, el) {
-  const done = getDoneHoy();
-  done[bid] = '✅';
-  localStorage.setItem('alvaro_hoy_done', JSON.stringify(done));
-  syncHoyDone(done);
-  // Eliminar la fila de la vista
+  if (!BIN.hoyDone) BIN.hoyDone = {};
+  BIN.hoyDone[bid] = '✅';
+  saveBin();
   el.closest('.pend-row').style.display = 'none';
   renderHoy();
 }
 
-// TABS
+// ============================================================
+// PROYECTOS (desde data.json)
+// ============================================================
+function renderProyectos() {
+  if (!DATA || !DATA.clientes) return;
+  const cont = document.getElementById('proyectos-content');
+  const states = BIN.states || {};
+  let html = '';
+  const clienteIds = DATA.clientes.map(c => c.id);
+
+  DATA.clientes.forEach(cliente => {
+    const tareas = DATA.projects.filter(p => p.cliente === cliente.id);
+    if (!tareas.length) return;
+    const badgeClass = cliente.badgeColor || 'badge-gray';
+    const badgeStyle = badgeClass === 'badge-inversion'
+      ? 'style="background:#EEEDFE;color:#3C3489;"'
+      : `class="badge ${badgeClass}"`;
+
+    html += `<div class="client-card">
+      <div class="client-header" onclick="toggle('${cliente.id}')">
+        <div class="dot" style="background:${cliente.color};"></div>
+        <span class="client-name">${cliente.nombre}</span>
+        ${cliente.deadline ? `<span class="deadline">${cliente.deadline}</span>` : ''}
+        <span ${badgeStyle}>${cliente.badge}</span>
+        <span class="chevron" id="chev-${cliente.id}">▶</span>
+      </div>
+      <div class="tasks" id="tasks-${cliente.id}">
+        <div class="tasks-header"><span></span><span>id</span><span>tema</span><span>done cuando</span></div>`;
+
+    tareas.forEach(t => {
+      const estado = states[t.id] || t.estado || '⚪';
+      const isDone = estado === '✅';
+      html += `<div class="task-row">
+        <div class="task-status" onclick="cycleStatus('${t.id}',this)">${estado}</div>
+        <div class="task-id">${t.id}</div>
+        <div class="task-label ${isDone ? 'done-text' : ''}">${t.tarea}</div>
+        <div class="task-criteria">${t.criterio}</div>
+      </div>`;
+    });
+
+    html += `</div></div>`;
+  });
+
+  cont.innerHTML = html;
+}
+
+function cycleStatus(id, el) {
+  const estados = ['⚪','🔵','✅'];
+  const idx = estados.indexOf(el.textContent);
+  const next = estados[(idx + 1) % estados.length];
+  el.textContent = next;
+  el.nextElementSibling.nextElementSibling.classList.toggle('done-text', next === '✅');
+  if (!BIN.states) BIN.states = {};
+  BIN.states[id] = next;
+
+  // Registrar en completed si se marca como ✅
+  if (!BIN.completed) BIN.completed = [];
+  const tarea = DATA.projects.find(p => p.id === id);
+  if (next === '✅' && tarea) {
+    const existing = BIN.completed.findIndex(c => c.id === id);
+    const entry = {
+      id,
+      cliente: tarea.cliente,
+      tarea: tarea.tarea,
+      fechaEstimada: tarea.fechaEstimada || null,
+      fechaHecho: getHoy()
+    };
+    if (existing >= 0) BIN.completed[existing] = entry;
+    else BIN.completed.push(entry);
+  } else if (next !== '✅') {
+    BIN.completed = (BIN.completed || []).filter(c => c.id !== id);
+  }
+
+  saveBin();
+  renderLogros();
+}
+
+// ============================================================
+// LOGROS
+// ============================================================
+function renderLogros() {
+  const cont = document.getElementById('logros-content');
+  if (!cont) return;
+  const completed = (BIN.completed || []).filter(c => c.fechaHecho);
+  if (!completed.length) {
+    cont.innerHTML = '<div style="padding:20px;font-size:13px;color:#aaa;text-align:center;">Aún no hay logros registrados con fecha.</div>';
+    return;
+  }
+
+  // Agrupar por semana
+  const semanas = {};
+  completed.forEach(c => {
+    const d = new Date(c.fechaHecho + 'T12:00:00');
+    const lunes = new Date(d);
+    lunes.setDate(d.getDate() - ((d.getDay() + 6) % 7));
+    const key = lunes.toISOString().slice(0,10);
+    if (!semanas[key]) semanas[key] = [];
+    semanas[key].push(c);
+  });
+
+  const meses = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+  let html = '';
+  Object.keys(semanas).sort().reverse().forEach(key => {
+    const lunes = new Date(key + 'T12:00:00');
+    const viernes = new Date(lunes); viernes.setDate(lunes.getDate() + 4);
+    const titulo = `Semana del ${lunes.getDate()} ${meses[lunes.getMonth()]} — ${viernes.getDate()} ${meses[viernes.getMonth()]}`;
+    const count = semanas[key].length;
+    const bodyId = 'logros-' + key.replace(/-/g,'');
+
+    html += `<div class="logros-semana">
+      <div class="logros-header" onclick="toggleLogros('${bodyId}')">
+        <span style="font-size:13px;font-weight:500;">${titulo}</span>
+        <span style="font-size:11px;background:#EAF3DE;color:#3B6D11;padding:2px 8px;border-radius:6px;">${count} completada${count>1?'s':''}</span>
+      </div>
+      <div class="logros-body" id="${bodyId}">
+        <div class="logro-hrow"><span>completado</span><span>cliente</span><span>tarea</span><span>estimado</span></div>`;
+
+    semanas[key].forEach(c => {
+      const clienteData = DATA && DATA.clientes ? DATA.clientes.find(cl => cl.id === c.cliente) : null;
+      const color = clienteData ? clienteData.color : '#888';
+      const nombre = clienteData ? clienteData.nombre : c.cliente;
+      const estimado = c.fechaEstimada ? c.fechaEstimada.slice(5).replace('-','/') : '—';
+      const hecho = c.fechaHecho.slice(5).replace('-','/');
+      const aldia = c.fechaEstimada && c.fechaHecho <= c.fechaEstimada;
+      html += `<div class="logro-row">
+        <div style="font-size:12px;color:#444;">${hecho}</div>
+        <div><span style="font-size:11px;padding:2px 7px;border-radius:6px;background:${color}22;color:${color};font-weight:500;">${nombre}</span></div>
+        <div style="font-size:12px;color:#444;">${c.tarea}</div>
+        <div style="font-size:11px;color:${aldia ? '#3B6D11' : '#854F0B'}">${estimado}</div>
+      </div>`;
+    });
+
+    html += `</div></div>`;
+  });
+
+  cont.innerHTML = html;
+}
+
+function toggleLogros(id) { document.getElementById(id).classList.toggle('open'); }
+
+// ============================================================
+// NAVEGACIÓN
+// ============================================================
 function showTab(name, el) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -808,80 +633,30 @@ function showTab(name, el) {
   el.classList.add('active');
 }
 
-// PROYECTOS
 function toggle(id) {
   document.getElementById('tasks-' + id).classList.toggle('open');
   document.getElementById('chev-' + id).classList.toggle('open');
 }
+
 let allOpen = false;
 function toggleAll() {
-  const clients = ['nuvirta','aar','central','formacion','rizkider','fisiodrid','atitlan','velasco','bestmedia','articulo14','larazon','dasme'];
+  if (!DATA) return;
   allOpen = !allOpen;
-  clients.forEach(id => {
-    document.getElementById('tasks-' + id).classList.toggle('open', allOpen);
-    document.getElementById('chev-' + id).classList.toggle('open', allOpen);
+  DATA.clientes.forEach(c => {
+    const t = document.getElementById('tasks-' + c.id);
+    const ch = document.getElementById('chev-' + c.id);
+    if (t) t.classList.toggle('open', allOpen);
+    if (ch) ch.classList.toggle('open', allOpen);
   });
   document.querySelector('.toggle-all').textContent = allOpen ? 'colapsar todo ▴' : 'expandir todo ▾';
 }
 
-// HISTÓRICO
 function toggleHist(id) { document.getElementById(id).classList.toggle('open'); }
 
-// ESTADOS
-const estados = ['⚪','🔵','✅'];
-function cycleStatus(el) {
-  const idx = estados.indexOf(el.textContent);
-  el.textContent = estados[(idx + 1) % estados.length];
-  el.nextElementSibling.classList.toggle('done-text', el.textContent === '✅');
-  saveStates();
-}
-
-// JSONBIN SYNC
-const BIN_ID  = '69e32a6aaaba88219710600a';
-const BIN_KEY = '$2a$10$2Y9gS7sOIARKbtHusrv.B.gSVjDbAB.ggWQ4GqafsJc24MRrjodrG';
-const BIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
-
-async function saveStates() {
-  const s = {};
-  document.querySelectorAll('.task-status').forEach((el, i) => { s[i] = el.textContent; });
-  try { localStorage.setItem('alvaro_task_states', JSON.stringify(s)); } catch(e) {}
-  try {
-    await fetch(BIN_URL, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json', 'X-Master-Key': BIN_KEY },
-      body: JSON.stringify({ states: s })
-    });
-  } catch(e) { console.warn('jsonbin sync error:', e); }
-}
-
-async function loadStates() {
-  try {
-    const res = await fetch(BIN_URL + '/latest', {
-      headers: { 'X-Master-Key': BIN_KEY, 'X-Bin-Meta': 'false' }
-    });
-    if (!res.ok) throw new Error('fetch failed');
-    const data = await res.json();
-    const s = data.states || {};
-    // Cargar estados de tareas
-    document.querySelectorAll('.task-status').forEach((el, i) => {
-      if (s[i]) { el.textContent = s[i]; if (s[i] === '✅') el.nextElementSibling.classList.add('done-text'); }
-    });
-    // Cargar estados hoyDone
-    if (data.hoyDone) {
-      localStorage.setItem('alvaro_hoy_done', JSON.stringify(data.hoyDone));
-    }
-    localStorage.setItem('alvaro_task_states', JSON.stringify(s));
-  } catch(e) {
-    const s = JSON.parse(localStorage.getItem('alvaro_task_states') || '{}');
-    document.querySelectorAll('.task-status').forEach((el, i) => {
-      if (s[i]) { el.textContent = s[i]; if (s[i] === '✅') el.nextElementSibling.classList.add('done-text'); }
-    });
-  }
-  renderPendientesAuto();
-}
-
-renderHoy();
-loadStates();
+// ============================================================
+// ARRANQUE
+// ============================================================
+init();
 </script>
 </body>
 </html>
