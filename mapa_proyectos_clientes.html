@@ -361,20 +361,25 @@ let DATA = null;      // data.json de GitHub
 let BIN  = null;      // jsonbin
 
 async function init() {
+  const log = (msg) => {
+    document.getElementById('hoy-content').innerHTML = `<div style="padding:12px;font-size:12px;color:#666;">${msg}</div>`;
+  };
   try {
-    const [dataRes, binRes] = await Promise.all([
-      fetch(DATA_URL + '?t=' + Date.now()),
-      fetch(BIN_URL + '/latest', { headers: { 'X-Master-Key': BIN_KEY, 'X-Bin-Meta': 'false' } })
-    ]);
+    log('Cargando data.json...');
+    const dataRes = await fetch(DATA_URL + '?t=' + Date.now());
     if (!dataRes.ok) throw new Error('data.json error: ' + dataRes.status);
     DATA = await dataRes.json();
+    log('data.json OK ✓ Cargando jsonbin...');
+    const binRes = await fetch(BIN_URL + '/latest', { headers: { 'X-Master-Key': BIN_KEY, 'X-Bin-Meta': 'false' } });
+    if (!binRes.ok) throw new Error('jsonbin error: ' + binRes.status);
     const binRaw = await binRes.json();
     BIN = binRaw.record || binRaw;
     if (!BIN.states) BIN.states = {};
     if (!BIN.completed) BIN.completed = [];
     if (!BIN.hoyDone) BIN.hoyDone = {};
+    log('jsonbin OK ✓ Renderizando...');
   } catch(e) {
-    console.warn('Error cargando datos:', e);
+    console.warn('Error:', e);
     document.getElementById('hoy-content').innerHTML = `<div style="padding:16px;background:#FCEBEB;border-radius:12px;font-size:13px;color:#A32D2D;">⚠ Error: ${e.message}</div>`;
     DATA = { clientes: [], projects: [] };
     BIN  = { states: {}, completed: [], hoyDone: {} };
