@@ -235,12 +235,8 @@ const BIN_ID    = '69e32a6aaaba88219710600a';
 const BIN_KEY   = '$2a$10$2Y9gS7sOIARKbtHusrv.B.gSVjDbAB.ggWQ4GqafsJc24MRrjodrG';
 const BIN_URL   = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
 
-// ============================================================
-// PLAN DIARIO (solo yo actualizo esto)
-// ============================================================
-const PLAN = [
-  {
-    fecha: "2026-05-04",
+// PLAN legacy — solo para footers/avisos mientras se migran al data.json
+const PLAN = [];
     bloques: [
       { tiempo: "10:30h", cliente: "Atitlán", tarea: "Reunión Atitlán — revisión CRM + puesta en producción" },
       { tiempo: "mañana", cliente: "BestMedia", tarea: "Bug IdCabTrabajo — campo no visible en formulario" },
@@ -401,100 +397,143 @@ function getHoy() {
   return `${h.getFullYear()}-${String(h.getMonth()+1).padStart(2,'0')}-${String(h.getDate()).padStart(2,'0')}`;
 }
 
+// ============================================================
+// HOY — lee acciones de data.json con fecha = hoy
+// ============================================================
 function renderHoy() {
   const fechaHoy = getHoy();
   const hoy = new Date();
   const dias = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
   const meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
   const label = `Hoy — ${dias[hoy.getDay()]} ${hoy.getDate()} de ${meses[hoy.getMonth()]}`;
-  const plan = PLAN.find(p => p.fecha === fechaHoy);
-  const done = BIN.hoyDone || {};
+  const states = BIN.states || {};
   const cont = document.getElementById('hoy-content');
+  if (!DATA) { cont.innerHTML = '<div class="loading">Cargando...</div>'; return; }
+
+  const accionesHoy = DATA.projects.filter(p => p.tipo === 'accion' && p.fecha === fechaHoy);
 
   let html = `<div class="hoy-card"><div class="hoy-label">${label}</div>`;
-  if (!plan) {
-    html += `<div class="hoy-empty">No hay plan definido para hoy. Abre el chat para planificarlo.</div>`;
+  if (!accionesHoy.length) {
+    html += `<div class="hoy-empty">No hay acciones planificadas para hoy. Abre el chat para planificarlo.</div>`;
   } else {
-    plan.bloques.forEach((b, i) => {
-      const bid = `${fechaHoy}_${i}`;
-      const isDone = done[bid] === '✅';
-      const c = COLORES[b.cliente] || { bg: "#F1EFE8", fg: "#5F5E5A" };
+    accionesHoy.forEach(t => {
+      const estado = states[t.id] || t.estado || '⚪';
+      const isDone = estado === '✅';
+      const clienteData = DATA.clientes.find(c => c.id === t.cliente);
+      const color = clienteData ? clienteData.color : '#888';
+      const nombre = clienteData ? clienteData.nombre : t.cliente;
       html += `<div class="hoy-row" style="${isDone ? 'opacity:0.5' : ''}">
-        <span class="hoy-time">${b.tiempo}</span>
+        <span class="hoy-time" style="background:#fff;color:#854F0B;">${t.tiempo || '—'}</span>
         <div style="flex:1">
-          <span class="hoy-titulo" style="color:${c.fg}">${b.cliente}</span>
-          <span class="hoy-desc" style="${isDone ? 'text-decoration:line-through' : ''}">${b.tarea}</span>
+          <span class="hoy-titulo" style="color:${color}">${nombre}</span>
+          <span class="hoy-desc" style="${isDone ? 'text-decoration:line-through' : ''}">${t.tarea}</span>
         </div>
-        <span onclick="toggleHoyBloque('${bid}',this)" style="cursor:pointer;font-size:16px;margin-left:8px;user-select:none;flex-shrink:0">${isDone ? '✅' : '⚪'}</span>
+        <span onclick="toggleAccion('${t.id}',this)" style="cursor:pointer;font-size:16px;margin-left:8px;user-select:none;flex-shrink:0">${isDone ? '✅' : '⚪'}</span>
       </div>`;
     });
-    if (plan.avisos) plan.avisos.forEach(a => { html += `<div class="aviso">${a}</div>`; });
-    if (plan.footer) html += `<div class="hoy-footer">${plan.footer}</div>`;
+
+    // Footer del día si existe
+    const planLegacy = PLAN ? PLAN.find(p => p.fecha === fechaHoy) : null;
+    if (planLegacy && planLegacy.footer) {
+      html += `<div class="hoy-footer">${planLegacy.footer}</div>`;
+    }
+    if (planLegacy && planLegacy.avisos) {
+      planLegacy.avisos.forEach(a => { html += `<div class="aviso">${a}</div>`; });
+    }
   }
   html += `</div>`;
   cont.innerHTML = html;
   renderPendientesAuto();
 }
 
-function toggleHoyBloque(bid, el) {
-  if (!BIN.hoyDone) BIN.hoyDone = {};
-  const isDone = BIN.hoyDone[bid] === '✅';
-  BIN.hoyDone[bid] = isDone ? '⚪' : '✅';
+function toggleAccion(id, el) {
+  const estados = ['⚪','🔵','✅'];
+  const idx = estados.indexOf(el.textContent);
+  const next = estados[(idx + 1) % estados.length];
+  if (!BIN.states) BIN.states = {};
+  BIN.states[id] = next;
+  const tarea = DATA.projects.find(p => p.id === id);
+  if (next === '✅' && tarea) {
+    if (!BIN.completed) BIN.completed = [];
+    const existing = BIN.completed.findIndex(c => c.id === id);
+    const entry = { id, cliente: tarea.cliente, tarea: tarea.tarea, fechaEstimada: tarea.fecha || null, fechaHecho: getHoy() };
+    if (existing >= 0) BIN.completed[existing] = entry;
+    else BIN.completed.push(entry);
+  } else if (next !== '✅') {
+    BIN.completed = (BIN.completed || []).filter(c => c.id !== id);
+  }
   saveBin();
   renderHoy();
+  renderLogros();
 }
 
 // ============================================================
-// PENDIENTES AUTOMÁTICOS
+// PENDIENTES — acciones pasadas sin completar
 // ============================================================
 function renderPendientesAuto() {
   const fechaHoy = getHoy();
-  const done = BIN.hoyDone || {};
+  const states = BIN.states || {};
   const cont = document.getElementById('pend-auto');
-  if (!cont) return;
+  if (!cont || !DATA) return;
   const dias = ['dom','lun','mar','mié','jue','vie','sáb'];
   const meses = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+
+  const pendientes = DATA.projects.filter(p =>
+    p.tipo === 'accion' &&
+    p.fecha && p.fecha < fechaHoy &&
+    (states[p.id] || p.estado || '⚪') !== '✅'
+  );
+
+  if (!pendientes.length) {
+    cont.innerHTML = '<div style="padding:12px 14px;font-size:13px;color:#aaa;">Sin pendientes 🎉</div>';
+    return;
+  }
+
   let rows = '';
-  PLAN.forEach(p => {
-    if (p.fecha >= fechaHoy) return;
-    p.bloques.forEach((b, i) => {
-      const bid = `${p.fecha}_${i}`;
-      if (done[bid] === '✅') return;
-      if (b.tarea.includes('✅')) return;
-      const d = new Date(p.fecha + 'T12:00:00');
-      const label = `${dias[d.getDay()]} ${d.getDate()} ${meses[d.getMonth()]}`;
-      const c = COLORES[b.cliente] || { bg: "#F1EFE8", fg: "#5F5E5A" };
-      rows += `<div class="pend-row">
-        <div class="pend-fecha">${label}</div>
-        <div><span class="pend-cliente" style="background:${c.bg};color:${c.fg};">${b.cliente}</span></div>
-        <div class="pend-tarea">${b.tarea}</div>
-        <div class="pend-check" onclick="markPendDone('${bid}',this)">⚪</div>
-      </div>`;
-    });
+  pendientes.forEach(t => {
+    const d = new Date(t.fecha + 'T12:00:00');
+    const label = `${dias[d.getDay()]} ${d.getDate()} ${meses[d.getMonth()]}`;
+    const clienteData = DATA.clientes.find(c => c.id === t.cliente);
+    const color = clienteData ? clienteData.color : '#888';
+    const nombre = clienteData ? clienteData.nombre : t.cliente;
+    rows += `<div class="pend-row">
+      <div class="pend-fecha">${label}</div>
+      <div><span class="pend-cliente" style="background:${color}22;color:${color};">${nombre}</span></div>
+      <div class="pend-tarea">${t.tarea}</div>
+      <div class="pend-check" onclick="markPendDone('${t.id}',this)">⚪</div>
+    </div>`;
   });
-  cont.innerHTML = rows || '<div style="padding:12px 14px;font-size:13px;color:#aaa;">Sin pendientes 🎉</div>';
+  cont.innerHTML = rows;
 }
 
-function markPendDone(bid, el) {
-  if (!BIN.hoyDone) BIN.hoyDone = {};
-  BIN.hoyDone[bid] = '✅';
+function markPendDone(id, el) {
+  if (!BIN.states) BIN.states = {};
+  BIN.states[id] = '✅';
+  const tarea = DATA.projects.find(p => p.id === id);
+  if (tarea) {
+    if (!BIN.completed) BIN.completed = [];
+    const existing = BIN.completed.findIndex(c => c.id === id);
+    const entry = { id, cliente: tarea.cliente, tarea: tarea.tarea, fechaEstimada: tarea.fecha || null, fechaHecho: getHoy() };
+    if (existing >= 0) BIN.completed[existing] = entry;
+    else BIN.completed.push(entry);
+  }
   saveBin();
   el.closest('.pend-row').style.display = 'none';
   renderHoy();
+  renderLogros();
 }
 
 // ============================================================
-// PROYECTOS (desde data.json)
+// PROYECTOS — solo tipo proyecto (sin tipo o tipo != accion)
 // ============================================================
 function renderProyectos() {
   if (!DATA || !DATA.clientes) return;
   const cont = document.getElementById('proyectos-content');
   const states = BIN.states || {};
   let html = '';
-  const clienteIds = DATA.clientes.map(c => c.id);
 
   DATA.clientes.forEach(cliente => {
-    const tareas = DATA.projects.filter(p => p.cliente === cliente.id);
+    const tareas = DATA.projects.filter(p => p.cliente === cliente.id && p.tipo !== 'accion');
     if (!tareas.length) return;
     const badgeClass = cliente.badgeColor || 'badge-gray';
     const badgeStyle = badgeClass === 'badge-inversion'
@@ -519,7 +558,7 @@ function renderProyectos() {
         <div class="task-status" onclick="cycleStatus('${t.id}',this)">${estado}</div>
         <div class="task-id">${t.id}</div>
         <div class="task-label ${isDone ? 'done-text' : ''}">${t.tarea}</div>
-        <div class="task-criteria">${t.criterio}</div>
+        <div class="task-criteria">${t.criterio || ''}</div>
       </div>`;
     });
 
@@ -537,25 +576,16 @@ function cycleStatus(id, el) {
   el.nextElementSibling.nextElementSibling.classList.toggle('done-text', next === '✅');
   if (!BIN.states) BIN.states = {};
   BIN.states[id] = next;
-
-  // Registrar en completed si se marca como ✅
   if (!BIN.completed) BIN.completed = [];
   const tarea = DATA.projects.find(p => p.id === id);
   if (next === '✅' && tarea) {
     const existing = BIN.completed.findIndex(c => c.id === id);
-    const entry = {
-      id,
-      cliente: tarea.cliente,
-      tarea: tarea.tarea,
-      fechaEstimada: tarea.fechaEstimada || null,
-      fechaHecho: getHoy()
-    };
+    const entry = { id, cliente: tarea.cliente, tarea: tarea.tarea, fechaEstimada: tarea.fechaEstimada || null, fechaHecho: getHoy() };
     if (existing >= 0) BIN.completed[existing] = entry;
     else BIN.completed.push(entry);
   } else if (next !== '✅') {
-    BIN.completed = (BIN.completed || []).filter(c => c.id !== id);
+    BIN.completed = BIN.completed.filter(c => c.id !== id);
   }
-
   saveBin();
   renderLogros();
 }
