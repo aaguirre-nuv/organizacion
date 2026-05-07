@@ -1,0 +1,190 @@
+{
+  "clientes": [
+    {
+      "id": "nuvirta",
+      "nombre": "Nuvirta",
+      "color": "#1D9E75",
+      "badge": "propio",
+      "badgeColor": "badge-green"
+    },
+    {
+      "id": "aar",
+      "nombre": "AAR Personal",
+      "color": "#888888",
+      "badge": "personal",
+      "badgeColor": "badge-gray"
+    },
+    {
+      "id": "central",
+      "nombre": "Central de Producción",
+      "color": "#BA7517",
+      "badge": "puntual",
+      "badgeColor": "badge-amber"
+    },
+    {
+      "id": "formacion",
+      "nombre": "Formación propia",
+      "color": "#7F77DD",
+      "badge": "inversión",
+      "badgeColor": "badge-inversion"
+    },
+    {
+      "id": "fisiodrid",
+      "nombre": "Fisiodrid",
+      "color": "#E24B4A",
+      "badge": "en curso",
+      "badgeColor": "badge-amber"
+    },
+    {
+      "id": "atitlan",
+      "nombre": "Atitlán",
+      "color": "#D4537E",
+      "badge": "en curso",
+      "badgeColor": "badge-red",
+      "deadline": "~15 mayo"
+    },
+    {
+      "id": "velasco",
+      "nombre": "Velasco Abogados",
+      "color": "#1D9E75",
+      "badge": "cerca del fin",
+      "badgeColor": "badge-amber"
+    },
+    {
+      "id": "bestmedia",
+      "nombre": "BestMedia",
+      "color": "#378ADD",
+      "badge": "reactivar",
+      "badgeColor": "badge-amber"
+    },
+    {
+      "id": "articulo14",
+      "nombre": "Artículo 14",
+      "color": "#7F77DD",
+      "badge": "en curso",
+      "badgeColor": "badge-amber"
+    },
+    {
+      "id": "larazon",
+      "nombre": "La Razón",
+      "color": "#E24B4A",
+      "badge": "en curso",
+      "badgeColor": "badge-amber"
+    },
+    {
+      "id": "rizkider",
+      "nombre": "Anuario Rizkider",
+      "color": "#639922",
+      "badge": "personal",
+      "badgeColor": "badge-green"
+    },
+    {
+      "id": "dasme",
+      "nombre": "Dasme Control",
+      "color": "#BA7517",
+      "badge": "bloqueado",
+      "badgeColor": "badge-gray"
+    }
+  ],
+  "projects": [
+    { "id": "NUV-001", "cliente": "nuvirta", "tarea": "Firma constitución Nuvirta", "criterio": "Completada 21/04/2026 ✓", "estado": "✅", "fechaEstimada": "2026-04-21", "fechaHecho": "2026-04-21" },
+    { "id": "NUV-002", "cliente": "nuvirta", "tarea": "Propuesta colaboración Velasco — preparar y enviar", "criterio": "Propuesta enviada y valorada por Velasco", "estado": "🔵", "fechaEstimada": "2026-05-11" },
+    { "id": "NUV-003", "cliente": "nuvirta", "tarea": "Nota a Dani — licencias GitHub Copilot", "criterio": "Dani informado y decisión tomada", "estado": "🔵", "fechaEstimada": "2026-05-15" },
+    { "id": "NUV-004", "cliente": "nuvirta", "tarea": "Comentar a MA el viaje a Almería", "criterio": "MA informado", "estado": "🔵", "fechaEstimada": "2026-05-15" },
+    { "id": "NUV-005", "cliente": "nuvirta", "tarea": "Concepto factura Atitlán — definir y enviar", "criterio": "Factura enviada con concepto correcto", "estado": "🔵", "fechaEstimada": "2026-05-11" },
+    { "id": "NUV-006", "cliente": "nuvirta", "tarea": "Diseñar proceso de trabajo Nuvirta (captación → cobro)", "criterio": "Procesos definidos · base para diseño de agentes y método de trabajo", "estado": "🔵", "fechaEstimada": null },
+    { "id": "NUV-007", "cliente": "nuvirta", "tarea": "Inscripción Registro Mercantil (~05/05)", "criterio": "CIF definitivo obtenido", "estado": "⚪", "fechaEstimada": "2026-05-05" },
+    { "id": "NUV-008", "cliente": "nuvirta", "tarea": "Solicitud Microsoft AI Cloud Partner Program (~06/05)", "criterio": "Correo @nuvirta.com configurado + landing online antes de solicitar", "estado": "⚪", "fechaEstimada": "2026-05-06" },
+    { "id": "NUV-009", "cliente": "nuvirta", "tarea": "Obtener licencias Microsoft Partners Launch Benefits (~14/05)", "criterio": "Licencias asignadas a usuarios en M365", "estado": "⚪", "fechaEstimada": "2026-05-14" },
+
+    { "id": "AAR-001", "cliente": "aar", "tarea": "Enviar a David escrito Audiencia Provincial — PA 430/2025", "criterio": "Escrito enviado a David", "estado": "🔵", "fechaEstimada": "2026-05-04" },
+    { "id": "AAR-002", "cliente": "aar", "tarea": "Recopilar facturas abril para asesoría", "criterio": "Facturas enviadas a asesoría", "estado": "🔵", "fechaEstimada": "2026-05-15" },
+    { "id": "AAR-003", "cliente": "aar", "tarea": "Renovar certificado digital", "criterio": "Certificado renovado y operativo", "estado": "🔵", "fechaEstimada": "2026-05-15" },
+
+    { "id": "CEN-001", "cliente": "central", "tarea": "Cierre 2025 — ver con Afianza cuentas de tesorería", "criterio": "Cuentas de tesorería revisadas y cerradas con Afianza", "estado": "🔵", "fechaEstimada": null },
+
+    { "id": "FOR-001", "cliente": "formacion", "tarea": "Vibe Coding — IA aplicada a Power BI y desarrollo", "criterio": "Capaz de generar y adaptar código con IA de forma autónoma", "estado": "⚪", "fechaEstimada": null },
+    { "id": "FOR-002", "cliente": "formacion", "tarea": "Code Apps en Power Apps", "criterio": "Canvas App completa desde cero (Dasme como primer caso real)", "estado": "⚪", "fechaEstimada": null },
+
+    { "id": "FIS-001", "cliente": "fisiodrid", "tarea": "Modelo BI facturación Sanitas", "criterio": "Usuario identifica facturas correctas, errores y puede resolverlos", "estado": "🔵", "fechaEstimada": null },
+    { "id": "FIS-002", "cliente": "fisiodrid", "tarea": "Sustituir Gen1 por Power Query directo a Azure Blob (deprecation junio)", "criterio": "Conexión PQ directa a Azure con tabla/consulta mínima — antes de junio 2026", "estado": "⚪", "fechaEstimada": "2026-05-12" },
+
+    { "id": "ATI-001", "cliente": "atitlan", "tarea": "Flujo borrador liquidaciones", "criterio": "Se genera y notifica al usuario interno", "estado": "✅", "fechaEstimada": "2026-04-20", "fechaHecho": "2026-04-20" },
+    { "id": "ATI-002", "cliente": "atitlan", "tarea": "Flujo aprobación y envío liquidaciones", "criterio": "Se ejecuta y envía correo al inversor", "estado": "✅", "fechaEstimada": "2026-04-21", "fechaHecho": "2026-04-21" },
+    { "id": "ATI-003", "cliente": "atitlan", "tarea": "Proceso rebalanceo", "criterio": "Flujo end-to-end correcto", "estado": "⚪", "fechaEstimada": null },
+    { "id": "ATI-004", "cliente": "atitlan", "tarea": "Notificación rebalanceo", "criterio": "Flujo completo correcto", "estado": "⚪", "fechaEstimada": null },
+    { "id": "ATI-005", "cliente": "atitlan", "tarea": "Power BI Atitlán → ATGR0", "criterio": "Modelo operativo en tenant destino", "estado": "⚪", "fechaEstimada": null },
+    { "id": "ATI-006", "cliente": "atitlan", "tarea": "Power BI externo → ATGR0", "criterio": "Modelo disponible y funcional en ATGR0", "estado": "⚪", "fechaEstimada": null },
+    { "id": "ATI-007", "cliente": "atitlan", "tarea": "Validación de datos (model-driven app)", "criterio": "Usuarios ven, filtran y modifican datos autónomamente", "estado": "⚪", "fechaEstimada": null },
+    { "id": "ATI-008", "cliente": "atitlan", "tarea": "Gestión de usuarios y grupos de seguridad", "criterio": "Todos los perfiles de acceso definidos y operativos", "estado": "✅", "fechaEstimada": "2026-04-22", "fechaHecho": "2026-04-22" },
+    { "id": "ATI-009", "cliente": "atitlan", "tarea": "Campos acumulados devolución principal — quitar de vista", "criterio": "Campos ocultos en formulario pero mantenidos en tabla", "estado": "✅", "fechaEstimada": "2026-04-27", "fechaHecho": "2026-04-27" },
+    { "id": "ATI-010", "cliente": "atitlan", "tarea": "Portal Nerea — visibilidad líneas Capital Call y Liquidaciones", "criterio": "Estados borrador/enviado correctamente visibles · comunicado a Nerea", "estado": "✅", "fechaEstimada": "2026-04-27", "fechaHecho": "2026-04-27" },
+    { "id": "ATI-011", "cliente": "atitlan", "tarea": "Valor liquidativo — tabla nueva + campos coinversión + flujo (Atgro)", "criterio": "Tabla VL operativa · nº acciones · último VL con fecha · campo calculado · flujo actualización", "estado": "✅", "fechaEstimada": "2026-04-27", "fechaHecho": "2026-04-28" },
+    { "id": "ATI-012", "cliente": "atitlan", "tarea": "Campaña exprés — configurar buzón para envío con correo general", "criterio": "Correo sale desde la dirección general, no del usuario emisor", "estado": "🔵", "fechaEstimada": "2026-05-05" },
+    { "id": "ATI-013", "cliente": "atitlan", "tarea": "Poner en producción CRM Atitlán (desde semana 4/05)", "criterio": "CRM migrado de pruebas a producción y operativo para el equipo", "estado": "🔵", "fechaEstimada": "2026-05-04" },
+    { "id": "ATI-014", "cliente": "atitlan", "tarea": "2 plantillas nuevas de estado — mapear y actualizar flujos", "criterio": "Plantillas mapeadas y flujos de generación de documentos actualizados", "estado": "⚪", "fechaEstimada": null },
+    { "id": "ATI-015", "cliente": "atitlan", "tarea": "Seguimiento bug correo ir@atgro.com — envío campañas ATGRO", "criterio": "Bug resuelto y correos enviándose correctamente desde ir@atgro.com", "estado": "🔵", "fechaEstimada": "2026-05-05" },
+
+    { "id": "VEL-001", "cliente": "velasco", "tarea": "Migración documentos (expedientes y clientes)", "criterio": "BI no muestra ningún archivo pendiente", "estado": "🔵", "fechaEstimada": null },
+    { "id": "VEL-002", "cliente": "velasco", "tarea": "Bug fecha documentos — huso horario a las 00:00", "criterio": "Campo fecha muestra valor correcto independientemente de la zona horaria", "estado": "🔵", "fechaEstimada": null },
+    { "id": "VEL-003", "cliente": "velasco", "tarea": "Notificaciones fichas → nuevo CRM", "criterio": "Variables de entorno revisadas y actualizadas al nuevo CRM", "estado": "🔵", "fechaEstimada": null },
+    { "id": "VEL-004", "cliente": "velasco", "tarea": "Contactos inactivos Sage", "criterio": "Completado ✓ — contactos eliminados en Sage → Inactivo + campo Eliminación Sage = Sí", "estado": "✅", "fechaEstimada": "2026-04-22", "fechaHecho": "2026-04-28" },
+    { "id": "VEL-005", "cliente": "velasco", "tarea": "Flujo modificación cuentas — CDN_Titulo_Ya_Coincide + dos ramas", "criterio": "Condición aplicada y probada en biblioteca de cuentas", "estado": "🔵", "fechaEstimada": null },
+    { "id": "VEL-006", "cliente": "velasco", "tarea": "Flujo carga cuentas — vel_titulo y vel_nombrevisible sin extensión", "criterio": "Cambios aplicados y validados", "estado": "🔵", "fechaEstimada": null },
+    { "id": "VEL-007", "cliente": "velasco", "tarea": "Flujo carga expedientes V7 — sin extensión", "criterio": "Cambios aplicados y validados", "estado": "✅", "fechaEstimada": null, "fechaHecho": null },
+    { "id": "VEL-008", "cliente": "velasco", "tarea": "Probar cadena completa en ambas bibliotecas", "criterio": "Cadena funciona end-to-end en cuentas y expedientes", "estado": "✅", "fechaEstimada": null, "fechaHecho": null },
+    { "id": "VEL-009", "cliente": "velasco", "tarea": "Flujo eliminación contactos por vencimiento de cargos", "criterio": "Contactos inactivados automáticamente al vencer su cargo", "estado": "🔵", "fechaEstimada": null },
+    { "id": "VEL-010", "cliente": "velasco", "tarea": "Migración documentos clientes → SP + actualizar ABS", "criterio": "Documentos migrados a SharePoint y Azure Blob Storage actualizado", "estado": "🔵", "fechaEstimada": null },
+    { "id": "VEL-011", "cliente": "velasco", "tarea": "Mapear nombres documentos con campo título en Dataverse", "criterio": "Todos los documentos con título mapeado correctamente — listo para producción", "estado": "✅", "fechaEstimada": null, "fechaHecho": null },
+    { "id": "VEL-012", "cliente": "velasco", "tarea": "Cargos con fechas inicio/fin", "criterio": "Montado · pendiente confirmar con Velasco vencimientos poderes vs cargos", "estado": "🔵", "fechaEstimada": null },
+    { "id": "VEL-013", "cliente": "velasco", "tarea": "Formación equipo laboral (4 personas)", "criterio": "Completada ✓", "estado": "✅", "fechaEstimada": "2026-04-22", "fechaHecho": "2026-04-23" },
+    { "id": "VEL-014", "cliente": "velasco", "tarea": "Power BI financiero — P&G trimestral", "criterio": "Asignación de cuentas revisada, resultados trimestrales correctos", "estado": "🔵", "fechaEstimada": null },
+    { "id": "VEL-015", "cliente": "velasco", "tarea": "Tabla de contratos", "criterio": "A definir — mejora futura", "estado": "⚪", "fechaEstimada": null },
+    { "id": "VEL-016", "cliente": "velasco", "tarea": "Flujo eliminación documentos SharePoint → inactivar + backup Azure Blob", "criterio": "Registro inactivado en DocumentosAG con quién/cuándo + copia en Azure Blob + enlace recuperable", "estado": "⚪", "fechaEstimada": null },
+    { "id": "VEL-017", "cliente": "velasco", "tarea": "Migración Gen1 → Power Query directo Azure (deprecation junio)", "criterio": "Conexión Gen1 sustituida por PQ directo a Azure Blob — antes de junio 2026", "estado": "🔵", "fechaEstimada": null },
+    { "id": "VEL-018", "cliente": "velasco", "tarea": "Nuevo reporting financiero", "criterio": "Alcance a definir con Velasco", "estado": "⚪", "fechaEstimada": null },
+
+    { "id": "BES-001", "cliente": "bestmedia", "tarea": "Bug BAM — IdCabTrabajo no visible en formulario crear línea con presupuesto", "criterio": "Campo visible y funcional en el formulario", "estado": "🔵", "fechaEstimada": "2026-05-04" },
+    { "id": "BES-002", "cliente": "bestmedia", "tarea": "Bug BAM — conPresupuesto en cabecera no se actualiza al vincular presupuesto posterior", "criterio": "Campo actualizado automáticamente aunque el enlace sea posterior a la creación", "estado": "🔵", "fechaEstimada": "2026-05-04" },
+    { "id": "BES-003", "cliente": "bestmedia", "tarea": "Proceso ClickUp — costes", "criterio": "Flujo operativo, costes registrándose correctamente", "estado": "⚪", "fechaEstimada": "2026-05-12" },
+    { "id": "BES-004", "cliente": "bestmedia", "tarea": "Notificación estado POs", "criterio": "Sin dependencia de Google Sheet, en plataforma propia", "estado": "⚪", "fechaEstimada": null },
+    { "id": "BES-005", "cliente": "bestmedia", "tarea": "Generación de facturas desde Power Apps", "criterio": "Usuario genera factura sin replicar datos manualmente", "estado": "⚪", "fechaEstimada": null },
+    { "id": "BES-006", "cliente": "bestmedia", "tarea": "Actualizar reporting financiero mensual", "criterio": "Reporting actualizado y operativo cada mes", "estado": "⚪", "fechaEstimada": null },
+    { "id": "BES-007", "cliente": "bestmedia", "tarea": "RLS Power BI — filtro por squad", "criterio": "Cada responsable ve solo los datos de su squad", "estado": "🔵", "fechaEstimada": null },
+    { "id": "BES-008", "cliente": "bestmedia", "tarea": "Revisar propuesta Ramón sobre ClickUp", "criterio": "Propuesta revisada y decisión tomada", "estado": "⚪", "fechaEstimada": "2026-05-07" },
+
+    { "id": "A14-001", "cliente": "articulo14", "tarea": "Informes Power BI (artículos, audiencia, costes)", "criterio": "Inversor accede y ve la información correctamente", "estado": "🔵", "fechaEstimada": null },
+    { "id": "A14-002", "cliente": "articulo14", "tarea": "BBDD contactos + Customer Insights", "criterio": "Contactos migrados, creables, clasificados correctamente", "estado": "🔵", "fechaEstimada": "2026-05-06" },
+    { "id": "A14-003", "cliente": "articulo14", "tarea": "Gestión contactos-eventos", "criterio": "Cruce contacto-evento registrado y consultable", "estado": "⚪", "fechaEstimada": null },
+    { "id": "A14-004", "cliente": "articulo14", "tarea": "Modelo de audiencias", "criterio": "Reporte actualizado automáticamente", "estado": "⚪", "fechaEstimada": null },
+    { "id": "A14-005", "cliente": "articulo14", "tarea": "Modelo financiero — visual HTML", "criterio": "Visual HTML operativo en informe financiero", "estado": "⚪", "fechaEstimada": null },
+    { "id": "A14-006", "cliente": "articulo14", "tarea": "Flujo Holded — añadir un año al filtro de movimientos de tesorería", "criterio": "Cobros del mes en curso incluidos correctamente en la previsión", "estado": "🔵", "fechaEstimada": "2026-05-13" },
+    { "id": "A14-007", "cliente": "articulo14", "tarea": "Revisión previsión de tesorería (Santi)", "criterio": "Cobros del mes en curso incluidos correctamente — vencimientos posteriores excluidos", "estado": "⚪", "fechaEstimada": null },
+    { "id": "A14-008", "cliente": "articulo14", "tarea": "Revisar mejoras/correcciones en colaboraciones", "criterio": "Correcciones aplicadas tras formación Carlota", "estado": "🔵", "fechaEstimada": "2026-05-06" },
+    { "id": "A14-009", "cliente": "articulo14", "tarea": "Avanzar eventos en MKT", "criterio": "Módulo eventos operativo con Vicky", "estado": "🔵", "fechaEstimada": "2026-05-13" },
+    { "id": "A14-010", "cliente": "articulo14", "tarea": "Solicitar licencia para Vicky — administrador del sistema", "criterio": "Licencia asignada y Vicky operativa como admin", "estado": "🔵", "fechaEstimada": "2026-05-06" },
+    { "id": "A14-011", "cliente": "articulo14", "tarea": "Plan de formación Copilot (futuro)", "criterio": "Plan definido y fechas acordadas con A14", "estado": "⚪", "fechaEstimada": null },
+    { "id": "A14-012", "cliente": "articulo14", "tarea": "Reunión Queco — cierre + acceso Arce a datos Power BI", "criterio": "Queco informado del cierre · Arce con acceso configurado a sus datos", "estado": "🔵", "fechaEstimada": "2026-05-06" },
+    { "id": "A14-013", "cliente": "articulo14", "tarea": "Diseño nuevo reporting A14", "criterio": "Pasos definidos e implementación iniciada — evaluar complejidad real", "estado": "⚪", "fechaEstimada": null },
+    { "id": "A14-014", "cliente": "articulo14", "tarea": "Automatización datos podcasts (Spotify, Amazon, Apple, Ivoox)", "criterio": "Consulta automática vía API sin intervención manual — valorar con Miguel Ángel", "estado": "⚪", "fechaEstimada": null },
+    { "id": "A14-015", "cliente": "articulo14", "tarea": "Migración Gen1 → Gen2 (deprecation junio)", "criterio": "Flujos de datos analíticos migrados antes de junio 2026", "estado": "⚪", "fechaEstimada": null },
+
+    { "id": "LR-001", "cliente": "larazon", "tarea": "Flujos carga nóminas Planeta", "criterio": "Flujo validado ✓", "estado": "✅", "fechaEstimada": "2026-04-17", "fechaHecho": "2026-04-17" },
+    { "id": "LR-002", "cliente": "larazon", "tarea": "Control fecha máxima en subida de ficheros", "criterio": "No permite cargar ficheros con fecha anterior a la máxima cargada", "estado": "🔵", "fechaEstimada": null },
+    { "id": "LR-003", "cliente": "larazon", "tarea": "Cargar histórico menos último mes (para Clara)", "criterio": "Datos cargados, último mes reservado", "estado": "🔵", "fechaEstimada": null },
+    { "id": "LR-004", "cliente": "larazon", "tarea": "Revisar carga informe de retribuciones", "criterio": "Carga correcta y validada", "estado": "🔵", "fechaEstimada": null },
+    { "id": "LR-005", "cliente": "larazon", "tarea": "Propuesta de diseño nómina y masa salarial", "criterio": "Propuesta lista para presentar a Clara", "estado": "🔵", "fechaEstimada": null },
+    { "id": "LR-006", "cliente": "larazon", "tarea": "Rescatar cálculo actual de masa salarial", "criterio": "Cálculo localizado y revisado", "estado": "🔵", "fechaEstimada": null },
+    { "id": "LR-007", "cliente": "larazon", "tarea": "Modelo Power BI nóminas", "criterio": "Modelo publicado y navegable", "estado": "⚪", "fechaEstimada": null },
+    { "id": "LR-008", "cliente": "larazon", "tarea": "Canvas App gestión nóminas", "criterio": "A definir en fase posterior", "estado": "⚪", "fechaEstimada": null },
+
+    { "id": "RIZ-001", "cliente": "rizkider", "tarea": "Estructurar datos históricos desde Excel/GameBook", "criterio": "JSON con todas las ediciones, jugadores y partidos listo", "estado": "⚪", "fechaEstimada": null },
+    { "id": "RIZ-002", "cliente": "rizkider", "tarea": "Orden de Mérito — histórico campeones y puntos", "criterio": "Vista por año con parejas + individual navegable", "estado": "⚪", "fechaEstimada": null },
+    { "id": "RIZ-003", "cliente": "rizkider", "tarea": "Ediciones — timeline año a año", "criterio": "Detalle completo por edición: equipos, jornadas, resultados", "estado": "⚪", "fechaEstimada": null },
+    { "id": "RIZ-004", "cliente": "rizkider", "tarea": "Perfil de jugador", "criterio": "Historial individual: ediciones, récord, equipos, partidos", "estado": "⚪", "fechaEstimada": null },
+    { "id": "RIZ-005", "cliente": "rizkider", "tarea": "Top 10 — rankings por métricas", "criterio": "Toggle Individual/Parejas operativo", "estado": "⚪", "fechaEstimada": null },
+    { "id": "RIZ-006", "cliente": "rizkider", "tarea": "Próxima Rizkider — edición en curso", "criterio": "Info de la edición actual visible y actualizable", "estado": "⚪", "fechaEstimada": null },
+
+    { "id": "DAS-001", "cliente": "dasme", "tarea": "Conexión Telegram → Dataverse/Excel", "criterio": "Avisos llegan automáticamente sin intervención manual", "estado": "⚪", "fechaEstimada": null }
+  ]
+}
