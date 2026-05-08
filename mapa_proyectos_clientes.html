@@ -402,7 +402,7 @@ function renderProximas() {
   const meses = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
 
   const proximas = DATA.projects
-    .filter(p => p.tipo === 'accion' && p.fecha && p.fecha > fechaHoy && (states[p.id] || p.estado || '⚪') !== '✅')
+    .filter(p => p.tipo === 'accion' && p.fecha && p.fecha >= fechaHoy && (states[p.id] || p.estado || '⚪') !== '✅')
     .sort((a, b) => a.fecha.localeCompare(b.fecha));
 
   if (!proximas.length) {
