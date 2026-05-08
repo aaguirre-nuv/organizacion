@@ -99,6 +99,7 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
   <div class="tabs">
     <div class="tab active" onclick="showTab('hoy',this)">Hoy</div>
     <div class="tab" onclick="showTab('pendientes',this)">Pendientes</div>
+    <div class="tab" onclick="showTab('proximas',this)">Próximas</div>
     <div class="tab" onclick="showTab('semanas',this)">Semanas</div>
     <div class="tab" onclick="showTab('proyectos',this)">Proyectos</div>
     <div class="tab" onclick="showTab('logros',this)">Logros</div>
@@ -112,6 +113,14 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
     <div class="pend-card">
       <div class="pend-header"><span>estimado</span><span>cliente</span><span>tarea</span><span></span></div>
       <div id="pend-auto"><div class="loading">Cargando...</div></div>
+    </div>
+  </div>
+
+  <div class="section" id="tab-proximas">
+    <div style="font-size:11px;color:#aaa;margin-bottom:12px;">Acciones planificadas con fecha futura — ordenadas por fecha.</div>
+    <div class="pend-card">
+      <div class="pend-header"><span>fecha</span><span>cliente</span><span>tarea</span><span></span></div>
+      <div id="proximas-content"><div class="loading">Cargando...</div></div>
     </div>
   </div>
 
@@ -290,6 +299,7 @@ async function init() {
   renderProyectos();
   renderLogros();
   renderPendientesAuto();
+  renderProximas();
 }
 
 async function saveBin() {
@@ -378,6 +388,43 @@ function toggleAccion(id, el) {
   saveBin();
   renderHoy();
   renderLogros();
+}
+
+// ============================================================
+// PRÓXIMAS — acciones con fecha futura no completadas
+// ============================================================
+function renderProximas() {
+  const fechaHoy = getHoy();
+  const states = BIN.states || {};
+  const cont = document.getElementById('proximas-content');
+  if (!cont || !DATA) return;
+  const dias = ['dom','lun','mar','mié','jue','vie','sáb'];
+  const meses = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+
+  const proximas = DATA.projects
+    .filter(p => p.tipo === 'accion' && p.fecha && p.fecha > fechaHoy && (states[p.id] || p.estado || '⚪') !== '✅')
+    .sort((a, b) => a.fecha.localeCompare(b.fecha));
+
+  if (!proximas.length) {
+    cont.innerHTML = '<div style="padding:12px 14px;font-size:13px;color:#aaa;">No hay acciones futuras planificadas.</div>';
+    return;
+  }
+
+  let rows = '';
+  proximas.forEach(t => {
+    const d = new Date(t.fecha + 'T12:00:00');
+    const label = `${dias[d.getDay()]} ${d.getDate()} ${meses[d.getMonth()]}`;
+    const clienteData = DATA.clientes.find(c => c.id === t.cliente);
+    const color = clienteData ? clienteData.color : '#888';
+    const nombre = clienteData ? clienteData.nombre : t.cliente;
+    rows += `<div class="pend-row">
+      <div class="pend-fecha">${label}</div>
+      <div><span class="pend-cliente" style="background:${color}22;color:${color};">${nombre}</span></div>
+      <div class="pend-tarea">${t.tarea}</div>
+      <div style="font-size:11px;color:#ccc;text-align:center;">${t.tiempo || ''}</div>
+    </div>`;
+  });
+  cont.innerHTML = rows;
 }
 
 // ============================================================
