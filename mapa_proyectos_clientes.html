@@ -520,56 +520,93 @@ function markPendDone(id, el) {
 }
 
 // ============================================================
-// PLAN — proyectos por cliente con horas y mes
+// PLAN — tabla por meses con desplegable por cliente
 // ============================================================
 function renderPlan() {
   const cont = document.getElementById('plan-content');
   if (!cont || !DATA) return;
   const states = BIN.states || {};
-  const meses = ['may','jun','jul','ago','sep'];
-  const mesLabel = { 'may':'Mayo','jun':'Junio','jul':'Julio','ago':'Agosto','sep':'Septiembre','may-jun':'May-Jun','jun-jul':'Jun-Jul','jul-ago':'Jul-Ago','ago-sep':'Ago-Sep','may-jun-jul':'May-Jul','sep':'Sep' };
-  let html = '';
+  const planes = DATA.planificacion || [];
 
-  DATA.clientes.forEach(cliente => {
-    const tareas = DATA.projects.filter(p => p.cliente === cliente.id && p.tipo !== 'accion' && p.horas > 0);
-    if (!tareas.length) return;
-    const planCliente = (DATA.planificacion || []).find(p => p.cliente === cliente.id);
-    const totalPlan = planCliente ? planCliente.total : 0;
-    const bodyId = 'plan-body-' + cliente.id;
+  // Tabla resumen por meses
+  let html = `<div style="background:#fff;border:0.5px solid rgba(0,0,0,0.12);border-radius:12px;overflow:hidden;margin-bottom:16px;">
+    <div style="display:grid;grid-template-columns:160px repeat(5,1fr) 70px;background:#f8f8f6;padding:6px 14px;">
+      <span style="font-size:11px;color:#bbb;text-transform:uppercase;letter-spacing:0.05em;">cliente</span>
+      <span style="font-size:11px;color:#bbb;text-transform:uppercase;letter-spacing:0.05em;text-align:right;">Mayo</span>
+      <span style="font-size:11px;color:#bbb;text-transform:uppercase;letter-spacing:0.05em;text-align:right;">Junio</span>
+      <span style="font-size:11px;color:#bbb;text-transform:uppercase;letter-spacing:0.05em;text-align:right;">Julio</span>
+      <span style="font-size:11px;color:#bbb;text-transform:uppercase;letter-spacing:0.05em;text-align:right;">Agosto</span>
+      <span style="font-size:11px;color:#bbb;text-transform:uppercase;letter-spacing:0.05em;text-align:right;">Sep</span>
+      <span style="font-size:11px;color:#bbb;text-transform:uppercase;letter-spacing:0.05em;text-align:right;">Total</span>
+    </div>`;
 
-    html += `<div class="plan-card">
-      <div class="plan-header" onclick="togglePlan('${bodyId}')">
-        <div class="dot" style="background:${cliente.color};"></div>
-        <span style="font-size:14px;font-weight:500;flex:1;">${cliente.nombre}</span>
-        ${planCliente ? `<div class="mes-pills">${meses.filter(m=>planCliente[m]>0).map(m=>`<span class="mes-pill">${mesLabel[m]||m} ${planCliente[m]}h</span>`).join('')}</div>` : ''}
-        <span style="font-size:12px;font-weight:500;color:#1a1a1a;margin-left:12px;">${totalPlan}h plan</span>
-        <span style="font-size:11px;color:#ccc;margin-left:8px;">▶</span>
+  let totMay=0, totJun=0, totJul=0, totAgo=0, totSep=0, totTotal=0;
+
+  planes.forEach(plan => {
+    const cliente = DATA.clientes.find(c => c.id === plan.cliente);
+    if (!cliente) return;
+    totMay+=plan.may||0; totJun+=plan.jun||0; totJul+=plan.jul||0;
+    totAgo+=plan.ago||0; totSep+=plan.sep||0; totTotal+=plan.total||0;
+    const bodyId = 'plan-det-' + plan.cliente;
+
+    html += `<div style="border-top:0.5px solid rgba(0,0,0,0.06);">
+      <div onclick="togglePlan('${bodyId}')" style="display:grid;grid-template-columns:160px repeat(5,1fr) 70px;padding:9px 14px;cursor:pointer;align-items:center;" onmouseover="this.style.background='#fafaf8'" onmouseout="this.style.background=''">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div style="width:8px;height:8px;border-radius:50%;background:${cliente.color};flex-shrink:0;"></div>
+          <span style="font-size:13px;font-weight:500;">${cliente.nombre}</span>
+        </div>
+        <span style="font-size:12px;text-align:right;color:${plan.may?'#1a1a1a':'#ddd'};">${plan.may||'—'}${plan.may?'h':''}</span>
+        <span style="font-size:12px;text-align:right;color:${plan.jun?'#1a1a1a':'#ddd'};">${plan.jun||'—'}${plan.jun?'h':''}</span>
+        <span style="font-size:12px;text-align:right;color:${plan.jul?'#1a1a1a':'#ddd'};">${plan.jul||'—'}${plan.jul?'h':''}</span>
+        <span style="font-size:12px;text-align:right;color:${plan.ago?'#1a1a1a':'#ddd'};">${plan.ago||'—'}${plan.ago?'h':''}</span>
+        <span style="font-size:12px;text-align:right;color:${plan.sep?'#1a1a1a':'#ddd'};">${plan.sep||'—'}${plan.sep?'h':''}</span>
+        <span style="font-size:12px;font-weight:500;text-align:right;color:#1a1a1a;">${plan.total}h</span>
       </div>
-      <div class="plan-body" id="${bodyId}">
-        <div class="plan-hrow"><span>mes</span><span>tarea</span><span>horas</span><span>estado</span></div>`;
+      <div id="${bodyId}" style="display:none;border-top:0.5px solid rgba(0,0,0,0.06);">
+        <div style="display:grid;grid-template-columns:55px 1fr 50px 30px;gap:6px;padding:5px 14px;background:#f8f8f6;">
+          <span style="font-size:11px;color:#bbb;text-transform:uppercase;">mes</span>
+          <span style="font-size:11px;color:#bbb;text-transform:uppercase;">tarea</span>
+          <span style="font-size:11px;color:#bbb;text-transform:uppercase;text-align:right;">horas</span>
+          <span style="font-size:11px;color:#bbb;text-transform:uppercase;text-align:center;"></span>
+        </div>`;
 
+    const tareas = DATA.projects.filter(p => p.cliente === plan.cliente && p.tipo !== 'accion' && p.horas > 0);
     tareas.forEach(t => {
       const estado = states[t.id] || t.estado || '⚪';
       const isDone = estado === '✅';
-      html += `<div class="plan-row" style="${isDone ? 'opacity:0.5' : ''}">
-        <div class="plan-mes">${t.mes || '—'}</div>
-        <div style="font-size:12px;color:#1a1a1a;${isDone ? 'text-decoration:line-through' : ''}">${t.tarea}</div>
-        <div class="plan-horas">${t.horas}h</div>
-        <div style="font-size:13px;text-align:center;">${estado}</div>
+      html += `<div style="display:grid;grid-template-columns:55px 1fr 50px 30px;gap:6px;padding:7px 14px;border-top:0.5px solid rgba(0,0,0,0.04);align-items:start;${isDone?'opacity:0.4':''}">
+        <span style="font-size:11px;color:#aaa;">${t.mes||'—'}</span>
+        <span style="font-size:12px;color:#1a1a1a;${isDone?'text-decoration:line-through':''}">${t.tarea}</span>
+        <span style="font-size:12px;text-align:right;color:#666;">${t.horas}h</span>
+        <span style="font-size:13px;text-align:center;">${estado}</span>
       </div>`;
     });
 
-    const totalEst = tareas.reduce((s,t) => s + (t.horas||0), 0);
-    html += `<div style="padding:8px 14px;background:#f8f8f6;border-top:0.5px solid rgba(0,0,0,0.08);display:flex;justify-content:flex-end;gap:20px;">
-      <span style="font-size:11px;color:#aaa;">Total estimado: <strong style="color:#1a1a1a;">${totalEst}h</strong></span>
-    </div>
-    </div></div>`;
+    const totalEst = tareas.reduce((s,t) => s+(t.horas||0), 0);
+    html += `<div style="padding:6px 14px;background:#f8f8f6;border-top:0.5px solid rgba(0,0,0,0.06);text-align:right;">
+        <span style="font-size:11px;color:#aaa;">Total estimado tareas: <strong style="color:#1a1a1a;">${totalEst}h</strong></span>
+      </div>
+      </div></div>`;
   });
 
-  cont.innerHTML = html || '<div style="padding:20px;font-size:13px;color:#aaa;">No hay tareas con horas estimadas.</div>';
+  // Fila de totales
+  html += `<div style="border-top:0.5px solid rgba(0,0,0,0.12);display:grid;grid-template-columns:160px repeat(5,1fr) 70px;padding:9px 14px;background:#f8f8f6;">
+    <span style="font-size:12px;font-weight:500;">Total</span>
+    <span style="font-size:12px;font-weight:500;text-align:right;">${totMay}h</span>
+    <span style="font-size:12px;font-weight:500;text-align:right;">${totJun}h</span>
+    <span style="font-size:12px;font-weight:500;text-align:right;">${totJul}h</span>
+    <span style="font-size:12px;font-weight:500;text-align:right;">${totAgo}h</span>
+    <span style="font-size:12px;font-weight:500;text-align:right;">${totSep}h</span>
+    <span style="font-size:12px;font-weight:500;text-align:right;">${totTotal}h</span>
+  </div></div>`;
+
+  cont.innerHTML = html;
 }
 
-function togglePlan(id) { document.getElementById(id).classList.toggle('open'); }
+function togglePlan(id) {
+  const el = document.getElementById(id);
+  el.style.display = el.style.display === 'none' ? 'block' : 'none';
+}
 
 // ============================================================
 // RITMO — planificado vs estimado vs real
