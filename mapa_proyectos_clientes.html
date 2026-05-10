@@ -570,7 +570,10 @@ function renderPlan() {
           <span style="font-size:11px;color:#bbb;text-transform:uppercase;text-align:center;"></span>
         </div>`;
 
-    const tareas = DATA.projects.filter(p => p.cliente === plan.cliente && p.tipo !== 'accion' && p.horas > 0);
+    const ordenMes = {'may':1,'may-jun':2,'jun':3,'jun-jul':4,'jul':5,'jul-ago':6,'ago':7,'ago-sep':8,'sep':9};
+    const tareas = DATA.projects
+      .filter(p => p.cliente === plan.cliente && p.tipo !== 'accion' && p.horas > 0)
+      .sort((a,b) => (ordenMes[a.mes]||99) - (ordenMes[b.mes]||99));
     tareas.forEach(t => {
       const estado = states[t.id] || t.estado || '⚪';
       const isDone = estado === '✅';
