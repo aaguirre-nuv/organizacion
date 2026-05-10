@@ -88,7 +88,24 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
 .logro-row { display: grid; grid-template-columns: 100px 120px 1fr 90px; gap: 6px; padding: 8px 14px; border-top: 0.5px solid rgba(0,0,0,0.05); font-size: 12px; color: #444; align-items: start; }
 .logro-hrow { display: grid; grid-template-columns: 100px 120px 1fr 90px; gap: 6px; padding: 5px 14px; background: #f8f8f6; }
 .logro-hrow span { font-size: 11px; color: #bbb; text-transform: uppercase; letter-spacing: 0.05em; }
-.loading { font-size: 13px; color: #aaa; padding: 20px; text-align: center; }
+.plan-card { background: #fff; border: 0.5px solid rgba(0,0,0,0.12); border-radius: 12px; margin-bottom: 10px; overflow: hidden; }
+.plan-header { display: flex; align-items: center; gap: 10px; padding: 10px 14px; cursor: pointer; }
+.plan-header:hover { background: #f8f8f6; }
+.plan-body { display: none; border-top: 0.5px solid rgba(0,0,0,0.08); }
+.plan-body.open { display: block; }
+.plan-row { display: grid; grid-template-columns: 55px 1fr 45px 55px; gap: 8px; padding: 8px 14px; border-top: 0.5px solid rgba(0,0,0,0.05); align-items: start; }
+.plan-row:hover { background: #fafaf8; }
+.plan-hrow { display: grid; grid-template-columns: 55px 1fr 45px 55px; gap: 8px; padding: 5px 14px; background: #f8f8f6; }
+.plan-hrow span { font-size: 11px; color: #bbb; text-transform: uppercase; letter-spacing: 0.05em; }
+.plan-mes { font-size: 11px; color: #aaa; }
+.plan-horas { font-size: 12px; color: #666; text-align: right; }
+.plan-total { font-size: 12px; font-weight: 500; color: #1a1a1a; text-align: right; }
+.ritmo-row { display: grid; grid-template-columns: 140px 70px 70px 70px 70px 60px; gap: 8px; padding: 9px 14px; border-top: 0.5px solid rgba(0,0,0,0.05); align-items: center; font-size: 12px; }
+.ritmo-hrow { display: grid; grid-template-columns: 140px 70px 70px 70px 70px 60px; gap: 8px; padding: 5px 14px; background: #f8f8f6; }
+.ritmo-hrow span { font-size: 11px; color: #bbb; text-transform: uppercase; letter-spacing: 0.05em; }
+.semaforo { font-size: 16px; text-align: center; }
+.mes-pills { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 6px; }
+.mes-pill { font-size: 10px; padding: 1px 6px; border-radius: 4px; background: #f1efe8; color: #666; }
 .chat-btn { position: sticky; bottom: 1.5rem; text-align: right; pointer-events: none; margin-top: 1.5rem; }
 .chat-btn a { pointer-events: all; display: inline-flex; align-items: center; gap: 8px; background: #534AB7; color: #fff; font-size: 13px; font-weight: 500; padding: 10px 16px; border-radius: 999px; text-decoration: none; }
 </style>
@@ -101,7 +118,9 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
     <div class="tab" onclick="showTab('pendientes',this)">Pendientes</div>
     <div class="tab" onclick="showTab('proximas',this)">Próximas</div>
     <div class="tab" onclick="showTab('semanas',this)">Semanas</div>
+    <div class="tab" onclick="showTab('plan',this)">Plan</div>
     <div class="tab" onclick="showTab('proyectos',this)">Proyectos</div>
+    <div class="tab" onclick="showTab('ritmo',this)">Ritmo</div>
     <div class="tab" onclick="showTab('logros',this)">Logros</div>
     <div class="tab" onclick="showTab('historico',this)">Histórico</div>
   </div>
@@ -121,6 +140,21 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
     <div class="pend-card">
       <div class="pend-header"><span>fecha</span><span>cliente</span><span>tarea</span><span></span></div>
       <div id="proximas-content"><div class="loading">Cargando...</div></div>
+    </div>
+  </div>
+
+  <!-- PLAN -->
+  <div class="section" id="tab-plan">
+    <div style="font-size:11px;color:#aaa;margin-bottom:12px;">Plan de trabajo mayo–septiembre 2026 — tareas por cliente con horas estimadas y mes planificado.</div>
+    <div id="plan-content"><div class="loading">Cargando...</div></div>
+  </div>
+
+  <!-- RITMO -->
+  <div class="section" id="tab-ritmo">
+    <div style="font-size:11px;color:#aaa;margin-bottom:12px;">Seguimiento de ritmo por cliente — horas planificadas vs estimadas vs reales. Álvaro pasa horas reales cada semana.</div>
+    <div style="background:#fff;border:0.5px solid rgba(0,0,0,0.12);border-radius:12px;overflow:hidden;">
+      <div class="ritmo-hrow"><span>cliente</span><span>plan total</span><span>est. hecho</span><span>est. pend.</span><span>real ded.</span><span>ritmo</span></div>
+      <div id="ritmo-content"><div class="loading">Cargando...</div></div>
     </div>
   </div>
 
@@ -297,6 +331,8 @@ async function init() {
   }
   renderHoy();
   renderProyectos();
+  renderPlan();
+  renderRitmo();
   renderLogros();
   renderPendientesAuto();
   renderProximas();
@@ -481,6 +517,116 @@ function markPendDone(id, el) {
   el.closest('.pend-row').style.display = 'none';
   renderHoy();
   renderLogros();
+}
+
+// ============================================================
+// PLAN — proyectos por cliente con horas y mes
+// ============================================================
+function renderPlan() {
+  const cont = document.getElementById('plan-content');
+  if (!cont || !DATA) return;
+  const states = BIN.states || {};
+  const meses = ['may','jun','jul','ago','sep'];
+  const mesLabel = { 'may':'Mayo','jun':'Junio','jul':'Julio','ago':'Agosto','sep':'Septiembre','may-jun':'May-Jun','jun-jul':'Jun-Jul','jul-ago':'Jul-Ago','ago-sep':'Ago-Sep','may-jun-jul':'May-Jul','sep':'Sep' };
+  let html = '';
+
+  DATA.clientes.forEach(cliente => {
+    const tareas = DATA.projects.filter(p => p.cliente === cliente.id && p.tipo !== 'accion' && p.horas > 0);
+    if (!tareas.length) return;
+    const planCliente = (DATA.planificacion || []).find(p => p.cliente === cliente.id);
+    const totalPlan = planCliente ? planCliente.total : 0;
+    const bodyId = 'plan-body-' + cliente.id;
+
+    html += `<div class="plan-card">
+      <div class="plan-header" onclick="togglePlan('${bodyId}')">
+        <div class="dot" style="background:${cliente.color};"></div>
+        <span style="font-size:14px;font-weight:500;flex:1;">${cliente.nombre}</span>
+        ${planCliente ? `<div class="mes-pills">${meses.filter(m=>planCliente[m]>0).map(m=>`<span class="mes-pill">${mesLabel[m]||m} ${planCliente[m]}h</span>`).join('')}</div>` : ''}
+        <span style="font-size:12px;font-weight:500;color:#1a1a1a;margin-left:12px;">${totalPlan}h plan</span>
+        <span style="font-size:11px;color:#ccc;margin-left:8px;">▶</span>
+      </div>
+      <div class="plan-body" id="${bodyId}">
+        <div class="plan-hrow"><span>mes</span><span>tarea</span><span>horas</span><span>estado</span></div>`;
+
+    tareas.forEach(t => {
+      const estado = states[t.id] || t.estado || '⚪';
+      const isDone = estado === '✅';
+      html += `<div class="plan-row" style="${isDone ? 'opacity:0.5' : ''}">
+        <div class="plan-mes">${t.mes || '—'}</div>
+        <div style="font-size:12px;color:#1a1a1a;${isDone ? 'text-decoration:line-through' : ''}">${t.tarea}</div>
+        <div class="plan-horas">${t.horas}h</div>
+        <div style="font-size:13px;text-align:center;">${estado}</div>
+      </div>`;
+    });
+
+    const totalEst = tareas.reduce((s,t) => s + (t.horas||0), 0);
+    html += `<div style="padding:8px 14px;background:#f8f8f6;border-top:0.5px solid rgba(0,0,0,0.08);display:flex;justify-content:flex-end;gap:20px;">
+      <span style="font-size:11px;color:#aaa;">Total estimado: <strong style="color:#1a1a1a;">${totalEst}h</strong></span>
+    </div>
+    </div></div>`;
+  });
+
+  cont.innerHTML = html || '<div style="padding:20px;font-size:13px;color:#aaa;">No hay tareas con horas estimadas.</div>';
+}
+
+function togglePlan(id) { document.getElementById(id).classList.toggle('open'); }
+
+// ============================================================
+// RITMO — planificado vs estimado vs real
+// ============================================================
+function renderRitmo() {
+  const cont = document.getElementById('ritmo-content');
+  if (!cont || !DATA) return;
+  const states = BIN.states || {};
+  const registros = DATA.registros || [];
+  let html = '';
+
+  const clientesConPlan = (DATA.planificacion || []);
+
+  clientesConPlan.forEach(plan => {
+    const cliente = DATA.clientes.find(c => c.id === plan.cliente);
+    if (!cliente) return;
+    const tareas = DATA.projects.filter(p => p.cliente === plan.cliente && p.tipo !== 'accion');
+    const estHecho = tareas.filter(t => (states[t.id] || t.estado) === '✅').reduce((s,t) => s+(t.horas||0), 0);
+    const estPend = tareas.filter(t => (states[t.id] || t.estado) !== '✅').reduce((s,t) => s+(t.horas||0), 0);
+    const realDed = registros.filter(r => r.cliente === plan.cliente).reduce((s,r) => s+(r.horas||0), 0);
+
+    // Semáforo: comparar horas reales vs ritmo esperado
+    let semaforo = '⚪';
+    if (realDed > 0 && plan.total > 0) {
+      const ratio = realDed / plan.total;
+      if (estHecho === 0) semaforo = '🔴';
+      else if (ratio >= 0.8) semaforo = '🟢';
+      else if (ratio >= 0.5) semaforo = '🟡';
+      else semaforo = '🔴';
+    }
+
+    html += `<div class="ritmo-row">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div class="dot" style="background:${cliente.color};width:8px;height:8px;"></div>
+        <span style="font-size:12px;font-weight:500;">${cliente.nombre}</span>
+      </div>
+      <div style="font-size:12px;text-align:right;color:#666;">${plan.total}h</div>
+      <div style="font-size:12px;text-align:right;color:#3B6D11;">${estHecho}h</div>
+      <div style="font-size:12px;text-align:right;color:#854F0B;">${estPend}h</div>
+      <div style="font-size:12px;text-align:right;color:#185FA5;">${realDed}h</div>
+      <div class="semaforo">${semaforo}</div>
+    </div>`;
+  });
+
+  // Total
+  const totalPlan = clientesConPlan.reduce((s,p) => s+p.total, 0);
+  const totalReal = registros.reduce((s,r) => s+(r.horas||0), 0);
+  html += `<div class="ritmo-row" style="background:#f8f8f6;font-weight:500;">
+    <div style="font-size:12px;">Total</div>
+    <div style="font-size:12px;text-align:right;">${totalPlan}h</div>
+    <div style="font-size:12px;text-align:right;"></div>
+    <div style="font-size:12px;text-align:right;"></div>
+    <div style="font-size:12px;text-align:right;color:#185FA5;">${totalReal}h</div>
+    <div></div>
+  </div>`;
+
+  cont.innerHTML = html;
 }
 
 // ============================================================
