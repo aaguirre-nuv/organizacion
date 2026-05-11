@@ -527,18 +527,109 @@ function renderPlan() {
   if (!cont || !DATA) return;
   const states = BIN.states || {};
   const planes = DATA.planificacion || [];
+  const semanas = { may: 3.5, jun: 4, jul: 4, ago: 1, sep: 4 };
 
-  // Tabla resumen por meses
+  const hSem = (h, mes) => {
+    const s = semanas[mes] || 1;
+    const v = Math.round(h / s);
+    return v > 0 ? `<span style="font-size:10px;color:#aaa;display:block;">${v}h/sem</span>` : '';
+  };
+
+  const celda = (h, mes) => h
+    ? `<div style="text-align:right;"><span style="font-size:12px;color:#1a1a1a;">${h}h</span>${hSem(h,mes)}</div>`
+    : `<div style="text-align:right;color:#ddd;font-size:12px;">—</div>`;
+
   let html = `<div style="background:#fff;border:0.5px solid rgba(0,0,0,0.12);border-radius:12px;overflow:hidden;margin-bottom:16px;">
     <div style="display:grid;grid-template-columns:160px repeat(5,1fr) 70px;background:#f8f8f6;padding:6px 14px;">
       <span style="font-size:11px;color:#bbb;text-transform:uppercase;letter-spacing:0.05em;">cliente</span>
-      <span style="font-size:11px;color:#bbb;text-transform:uppercase;letter-spacing:0.05em;text-align:right;">Mayo</span>
-      <span style="font-size:11px;color:#bbb;text-transform:uppercase;letter-spacing:0.05em;text-align:right;">Junio</span>
-      <span style="font-size:11px;color:#bbb;text-transform:uppercase;letter-spacing:0.05em;text-align:right;">Julio</span>
-      <span style="font-size:11px;color:#bbb;text-transform:uppercase;letter-spacing:0.05em;text-align:right;">Agosto</span>
-      <span style="font-size:11px;color:#bbb;text-transform:uppercase;letter-spacing:0.05em;text-align:right;">Sep</span>
+      <span style="font-size:11px;color:#bbb;text-transform:uppercase;letter-spacing:0.05em;text-align:right;">Mayo<span style="display:block;font-weight:400;">3,5 sem</span></span>
+      <span style="font-size:11px;color:#bbb;text-transform:uppercase;letter-spacing:0.05em;text-align:right;">Junio<span style="display:block;font-weight:400;">4 sem</span></span>
+      <span style="font-size:11px;color:#bbb;text-transform:uppercase;letter-spacing:0.05em;text-align:right;">Julio<span style="display:block;font-weight:400;">4 sem</span></span>
+      <span style="font-size:11px;color:#bbb;text-transform:uppercase;letter-spacing:0.05em;text-align:right;">Agosto<span style="display:block;font-weight:400;">1 sem</span></span>
+      <span style="font-size:11px;color:#bbb;text-transform:uppercase;letter-spacing:0.05em;text-align:right;">Sep<span style="display:block;font-weight:400;">4 sem</span></span>
       <span style="font-size:11px;color:#bbb;text-transform:uppercase;letter-spacing:0.05em;text-align:right;">Total</span>
     </div>`;
+
+  let totMay=0, totJun=0, totJul=0, totAgo=0, totSep=0, totTotal=0;
+
+  // Fila Nuvirta + AAR fija (10h/sem)
+  const nuvMay=35, nuvJun=40, nuvJul=40, nuvAgo=10, nuvSep=40, nuvTot=165;
+  totMay+=nuvMay; totJun+=nuvJun; totJul+=nuvJul; totAgo+=nuvAgo; totSep+=nuvSep; totTotal+=nuvTot;
+  html += `<div style="border-top:0.5px solid rgba(0,0,0,0.06);">
+    <div style="display:grid;grid-template-columns:160px repeat(5,1fr) 70px;padding:9px 14px;align-items:center;background:#f8f8f8;">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div style="width:8px;height:8px;border-radius:50%;background:#1D9E75;flex-shrink:0;"></div>
+        <span style="font-size:12px;font-weight:500;color:#666;">Nuvirta + AAR</span>
+      </div>
+      ${celda(nuvMay,'may')}${celda(nuvJun,'jun')}${celda(nuvJul,'jul')}${celda(nuvAgo,'ago')}${celda(nuvSep,'sep')}
+      <div style="text-align:right;font-size:12px;font-weight:500;">${nuvTot}h</div>
+    </div>
+  </div>`;
+
+  planes.forEach(plan => {
+    const cliente = DATA.clientes.find(c => c.id === plan.cliente);
+    if (!cliente) return;
+    totMay+=plan.may||0; totJun+=plan.jun||0; totJul+=plan.jul||0;
+    totAgo+=plan.ago||0; totSep+=plan.sep||0; totTotal+=plan.total||0;
+    const bodyId = 'plan-det-' + plan.cliente;
+
+    html += `<div style="border-top:0.5px solid rgba(0,0,0,0.06);">
+      <div onclick="togglePlan('${bodyId}')" style="display:grid;grid-template-columns:160px repeat(5,1fr) 70px;padding:9px 14px;cursor:pointer;align-items:center;" onmouseover="this.style.background='#fafaf8'" onmouseout="this.style.background=''">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div style="width:8px;height:8px;border-radius:50%;background:${cliente.color};flex-shrink:0;"></div>
+          <span style="font-size:13px;font-weight:500;">${cliente.nombre}</span>
+        </div>
+        ${celda(plan.may,'may')}${celda(plan.jun,'jun')}${celda(plan.jul,'jul')}${celda(plan.ago,'ago')}${celda(plan.sep,'sep')}
+        <span style="font-size:12px;font-weight:500;text-align:right;color:#1a1a1a;">${plan.total}h</span>
+      </div>
+      <div id="${bodyId}" style="display:none;border-top:0.5px solid rgba(0,0,0,0.06);">
+        <div style="display:grid;grid-template-columns:55px 1fr 50px 30px;gap:6px;padding:5px 14px;background:#f8f8f6;">
+          <span style="font-size:11px;color:#bbb;text-transform:uppercase;">mes</span>
+          <span style="font-size:11px;color:#bbb;text-transform:uppercase;">tarea</span>
+          <span style="font-size:11px;color:#bbb;text-transform:uppercase;text-align:right;">horas</span>
+          <span></span>
+        </div>`;
+
+    const ordenMes = {'may':1,'may-jun':2,'jun':3,'jun-jul':4,'jul':5,'jul-ago':6,'ago':7,'ago-sep':8,'sep':9};
+    const tareas = DATA.projects
+      .filter(p => p.cliente === plan.cliente && p.tipo !== 'accion' && p.horas > 0)
+      .sort((a,b) => (ordenMes[a.mes]||99) - (ordenMes[b.mes]||99));
+
+    tareas.forEach(t => {
+      const estado = states[t.id] || t.estado || '⚪';
+      const isDone = estado === '✅';
+      html += `<div style="display:grid;grid-template-columns:55px 1fr 50px 30px;gap:6px;padding:7px 14px;border-top:0.5px solid rgba(0,0,0,0.04);align-items:start;${isDone?'opacity:0.4':''}">
+        <span style="font-size:11px;color:#aaa;">${t.mes||'—'}</span>
+        <span style="font-size:12px;color:#1a1a1a;${isDone?'text-decoration:line-through':''}">${t.tarea}</span>
+        <span style="font-size:12px;text-align:right;color:#666;">${t.horas}h</span>
+        <span style="font-size:13px;text-align:center;">${estado}</span>
+      </div>`;
+    });
+
+    const totalEst = tareas.reduce((s,t) => s+(t.horas||0), 0);
+    html += `<div style="padding:6px 14px;background:#f8f8f6;border-top:0.5px solid rgba(0,0,0,0.06);text-align:right;">
+        <span style="font-size:11px;color:#aaa;">Total estimado tareas: <strong style="color:#1a1a1a;">${totalEst}h</strong></span>
+      </div></div></div>`;
+  });
+
+  // Totales
+  html += `<div style="border-top:0.5px solid rgba(0,0,0,0.12);display:grid;grid-template-columns:160px repeat(5,1fr) 70px;padding:9px 14px;background:#f8f8f6;">
+    <span style="font-size:12px;font-weight:500;">Total</span>
+    <div style="text-align:right;"><span style="font-size:12px;font-weight:500;">${totMay}h</span>${hSem(totMay,'may')}</div>
+    <div style="text-align:right;"><span style="font-size:12px;font-weight:500;">${totJun}h</span>${hSem(totJun,'jun')}</div>
+    <div style="text-align:right;"><span style="font-size:12px;font-weight:500;">${totJul}h</span>${hSem(totJul,'jul')}</div>
+    <div style="text-align:right;"><span style="font-size:12px;font-weight:500;">${totAgo}h</span>${hSem(totAgo,'ago')}</div>
+    <div style="text-align:right;"><span style="font-size:12px;font-weight:500;">${totSep}h</span>${hSem(totSep,'sep')}</div>
+    <span style="font-size:12px;font-weight:500;text-align:right;">${totTotal}h</span>
+  </div></div>`;
+
+  cont.innerHTML = html;
+}
+
+function togglePlan(id) {
+  const el = document.getElementById(id);
+  el.style.display = el.style.display === 'none' ? 'block' : 'none';
+}
 
   let totMay=0, totJun=0, totJul=0, totAgo=0, totSep=0, totTotal=0;
 
