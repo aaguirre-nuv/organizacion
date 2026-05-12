@@ -361,7 +361,6 @@ async function init() {
   renderLogros();
   renderPendientesAuto();
   renderProximas();
-  calInit();
 }
 
 async function saveBin() {
@@ -408,7 +407,7 @@ function renderHoy() {
       const color = clienteData ? clienteData.color : '#888';
       const nombre = clienteData ? clienteData.nombre : t.cliente;
       html += `<div class="hoy-row" style="${isDone ? 'opacity:0.5' : ''}">
-        <span class="hoy-time" style="background:#fff;color:#854F0B;">${t.tiempo || '—'}</span>
+        <span class="hoy-time" style="background:#fff;color:#854F0B;">${t.tiempo || ''}</span>
         <div style="flex:1">
           <span class="hoy-titulo" style="color:${color}">${nombre}</span>
           <span class="hoy-desc" style="${isDone ? 'text-decoration:line-through' : ''}">${t.tarea}</span>
@@ -1035,6 +1034,7 @@ function toggleHist(id) { document.getElementById(id).classList.toggle('open'); 
 // ARRANQUE
 // ============================================================
 init();
+calInit();
 </script>
 </body>
 </html>
