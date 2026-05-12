@@ -15,13 +15,14 @@
   ],
 
   "planificacion": [
-    { "cliente": "atitlan",    "may": 40, "jun": 50, "jul": 50, "ago": 15, "sep": 50, "total": 205 },
-    { "cliente": "velasco",    "may": 40, "jun": 50, "jul": 18, "ago":  0, "sep":  0, "total": 108 },
-    { "cliente": "articulo14", "may": 25, "jun": 30, "jul": 17, "ago":  0, "sep":  0, "total":  72 },
-    { "cliente": "larazon",    "may": 20, "jun":  8, "jul":  0, "ago":  0, "sep":  0, "total":  28 },
-    { "cliente": "bestmedia",  "may": 12, "jun": 15, "jul":  0, "ago":  0, "sep":  0, "total":  27 },
-    { "cliente": "fisiodrid",  "may":  0, "jun": 10, "jul":  0, "ago":  0, "sep":  0, "total":  10 },
-    { "cliente": "dasme",      "may":  0, "jun":  0, "jul": 40, "ago": 24, "sep": 78, "total": 142 }
+    { "cliente": "nuvirta_aar", "nombre": "Nuvirta + AAR", "may": 45, "jun": 60, "jul": 60, "ago": 0, "sep": 60, "oct": 60, "nov": 60, "dic": 45, "total": 390 },
+    { "cliente": "atitlan",     "may": 35, "jun": 45, "jul": 45, "ago": 0, "sep": 40, "oct": 25, "nov": 15, "dic":  0, "total": 205 },
+    { "cliente": "velasco",     "may":  5, "jun": 10, "jul": 10, "ago": 0, "sep": 10, "oct": 15, "nov": 20, "dic": 30, "total": 100 },
+    { "cliente": "articulo14",  "may": 15, "jun": 20, "jul": 20, "ago": 0, "sep":  0, "oct":  0, "nov":  0, "dic":  0, "total":  55 },
+    { "cliente": "larazon",     "may": 10, "jun": 10, "jul":  8, "ago": 0, "sep":  0, "oct":  0, "nov":  0, "dic":  0, "total":  28 },
+    { "cliente": "bestmedia",   "may":  5, "jun":  0, "jul":  7, "ago": 0, "sep":  8, "oct":  0, "nov":  0, "dic":  0, "total":  20 },
+    { "cliente": "fisiodrid",   "may":  0, "jun":  5, "jul":  5, "ago": 0, "sep":  0, "oct":  0, "nov":  0, "dic":  0, "total":  10 },
+    { "cliente": "dasme",       "may":  0, "jun":  0, "jul":  0, "ago": 0, "sep":  0, "oct": 60, "nov": 65, "dic": 17, "total": 142 }
   ],
 
   "registros": [],
@@ -198,6 +199,30 @@
     { "id": "GEN-049", "cliente": "nuvirta",    "tipo": "accion", "tarea": "Nota a Dani — licencias GitHub Copilot",                       "fecha": "2026-05-15", "estado": "⚪", "horas": 0.5, "fechaHecho": null },
     { "id": "GEN-050", "cliente": "nuvirta",    "tipo": "accion", "tarea": "Comentar a MA el viaje a Almería",                             "fecha": "2026-05-15", "estado": "⚪", "horas": 0.5, "fechaHecho": null },
     { "id": "GEN-051", "cliente": "aar",        "tipo": "accion", "tarea": "Recopilar facturas abril para asesoría",                       "fecha": "2026-05-15", "estado": "⚪", "horas": 1,   "fechaHecho": null },
-    { "id": "GEN-052", "cliente": "aar",        "tipo": "accion", "tarea": "Renovar certificado digital",                                  "fecha": "2026-05-15", "estado": "⚪", "horas": 1,   "fechaHecho": null }
+    { "id": "GEN-052", "cliente": "aar",        "tipo": "accion", "tarea": "Renovar certificado digital",                                  "fecha": "2026-05-15", "estado": "⚪", "horas": 1,   "fechaHecho": null },
+
+    { "id": "NUV-019", "cliente": "nuvirta", "tarea": "Seguimiento licencias GitHub Copilot", "criterio": "Licencias confirmadas o alternativa decidida", "estado": "🔵", "horas": 1, "fechaEstimada": "2026-05-12" },
+    { "id": "NUV-020", "cliente": "nuvirta", "tarea": "Seguimiento factura Climbea", "criterio": "Factura cobrada o acuerdo cerrado", "estado": "🔵", "horas": 1, "fechaEstimada": "2026-05-12" },
+    { "id": "NUV-021", "cliente": "nuvirta", "tarea": "Seguimiento Dashlane — gestión passwords", "criterio": "Solución activada o descartada", "estado": "🔵", "horas": 1, "fechaEstimada": "2026-05-12" },
+    { "id": "NUV-022", "cliente": "nuvirta", "tarea": "Seguimiento registro marca — BestMedia", "criterio": "Estado del registro conocido y siguiente paso definido", "estado": "🔵", "horas": 1, "fechaEstimada": "2026-05-12" },
+
+    { "id": "BES-009", "cliente": "bestmedia", "tarea": "Seguimiento diario 2025", "criterio": "Diario recibido o reclamado formalmente", "estado": "🔵", "horas": 1, "fechaEstimada": "2026-05-12" },
+
+    { "id": "A14-016", "cliente": "articulo14", "tarea": "Incidencia artículos publicados — problema web para obtener artículos", "criterio": "Incidencia resuelta y flujo de datos funcionando correctamente", "estado": "🔵", "horas": 3, "fechaEstimada": "2026-05-12" },
+
+    { "id": "CEN-002", "cliente": "central", "tarea": "Consultar saldos Banco Santander a 31/12/2025 — enviar a JMR", "criterio": "Saldos obtenidos y enviados a JMR", "estado": "⚪", "horas": 1, "fechaEstimada": "2026-05-15" },
+
+    { "id": "AAR-004", "cliente": "aar", "tarea": "Recuperar certificado de empadronamiento (para DNI)", "criterio": "Certificado obtenido", "estado": "⚪", "horas": 1, "fechaEstimada": "2026-05-20" },
+    { "id": "AAR-005", "cliente": "aar", "tarea": "📅 Cita renovación DNI — 9 de junio a las 9:00", "criterio": "DNI renovado", "estado": "⚪", "horas": 2, "fechaEstimada": "2026-06-09" },
+
+    { "id": "GEN-053", "cliente": "nuvirta", "tipo": "accion", "tarea": "Seguimiento licencias GitHub Copilot", "fecha": "2026-05-12", "estado": "⚪", "horas": 1, "fechaHecho": null },
+    { "id": "GEN-054", "cliente": "nuvirta", "tipo": "accion", "tarea": "Seguimiento factura Climbea", "fecha": "2026-05-12", "estado": "⚪", "horas": 1, "fechaHecho": null },
+    { "id": "GEN-055", "cliente": "nuvirta", "tipo": "accion", "tarea": "Seguimiento Dashlane", "fecha": "2026-05-12", "estado": "⚪", "horas": 1, "fechaHecho": null },
+    { "id": "GEN-056", "cliente": "nuvirta", "tipo": "accion", "tarea": "Seguimiento registro marca BestMedia", "fecha": "2026-05-12", "estado": "⚪", "horas": 1, "fechaHecho": null },
+    { "id": "GEN-057", "cliente": "bestmedia", "tipo": "accion", "tarea": "Seguimiento diario 2025", "fecha": "2026-05-12", "estado": "⚪", "horas": 1, "fechaHecho": null },
+    { "id": "GEN-058", "cliente": "articulo14", "tipo": "accion", "tarea": "Incidencia artículos publicados — problema web", "fecha": "2026-05-12", "estado": "⚪", "horas": 3, "fechaHecho": null },
+    { "id": "GEN-059", "cliente": "central", "tipo": "accion", "tarea": "Consultar saldos Banco Santander a 31/12/2025 — enviar a JMR", "fecha": "2026-05-15", "estado": "⚪", "horas": 1, "fechaHecho": null },
+    { "id": "GEN-060", "cliente": "aar", "tipo": "accion", "tarea": "Recuperar certificado de empadronamiento", "fecha": "2026-05-20", "estado": "⚪", "horas": 1, "fechaHecho": null },
+    { "id": "GEN-061", "cliente": "aar", "tipo": "accion", "tarea": "📅 Cita renovación DNI — 9 de junio a las 9:00", "fecha": "2026-06-09", "estado": "⚪", "horas": 2, "fechaHecho": null }
   ]
 }

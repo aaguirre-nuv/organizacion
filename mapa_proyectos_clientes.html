@@ -106,6 +106,22 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
 .semaforo { font-size: 16px; text-align: center; }
 .mes-pills { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 6px; }
 .mes-pill { font-size: 10px; padding: 1px 6px; border-radius: 4px; background: #f1efe8; color: #666; }
+.loading { font-size: 13px; color: #aaa; padding: 20px; text-align: center; }
+.cal-wrap { overflow-x: auto; }
+.cal-grid { display: grid; grid-template-columns: 44px repeat(5, 1fr); min-width: 580px; }
+.cal-header { display: grid; grid-template-columns: 44px repeat(5, 1fr); min-width: 580px; margin-bottom: 2px; }
+.cal-hdcell { font-size: 12px; font-weight: 500; text-align: center; padding: 6px 4px; color: #1a1a1a; }
+.cal-hdcell.today { color: #534AB7; font-weight: 700; }
+.cal-timecol { font-size: 10px; color: #ccc; text-align: right; padding-right: 6px; height: 40px; line-height: 40px; }
+.cal-daycol { position: relative; border-left: 0.5px solid rgba(0,0,0,0.08); }
+.cal-hour { height: 40px; border-top: 0.5px solid rgba(0,0,0,0.08); }
+.cal-block { position: absolute; left: 2px; right: 2px; border-radius: 5px; padding: 3px 5px; font-size: 11px; overflow: hidden; z-index: 1; }
+.cal-block .cb-title { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cal-block .cb-sub { font-size: 10px; opacity: 0.75; }
+.cal-nav { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.cal-nav button { background: #fff; border: 0.5px solid rgba(0,0,0,0.15); border-radius: 8px; padding: 5px 12px; font-size: 12px; cursor: pointer; }
+.cal-nav button:hover { background: #f8f8f6; }
+.cal-nav-label { font-size: 13px; font-weight: 500; flex: 1; text-align: center; }
 .chat-btn { position: sticky; bottom: 1.5rem; text-align: right; pointer-events: none; margin-top: 1.5rem; }
 .chat-btn a { pointer-events: all; display: inline-flex; align-items: center; gap: 8px; background: #534AB7; color: #fff; font-size: 13px; font-weight: 500; padding: 10px 16px; border-radius: 999px; text-decoration: none; }
 </style>
@@ -118,6 +134,7 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
     <div class="tab" onclick="showTab('pendientes',this)">Pendientes</div>
     <div class="tab" onclick="showTab('proximas',this)">Próximas</div>
     <div class="tab" onclick="showTab('semanas',this)">Semanas</div>
+    <div class="tab" onclick="showTab('calendario',this)">Calendario</div>
     <div class="tab" onclick="showTab('plan',this)">Plan</div>
     <div class="tab" onclick="showTab('proyectos',this)">Proyectos</div>
     <div class="tab" onclick="showTab('ritmo',this)">Ritmo</div>
@@ -155,6 +172,20 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
     <div style="background:#fff;border:0.5px solid rgba(0,0,0,0.12);border-radius:12px;overflow:hidden;">
       <div class="ritmo-hrow"><span>cliente</span><span>plan total</span><span>est. hecho</span><span>est. pend.</span><span>real ded.</span><span>ritmo</span></div>
       <div id="ritmo-content"><div class="loading">Cargando...</div></div>
+    </div>
+  </div>
+
+  <!-- CALENDARIO -->
+  <div class="section" id="tab-calendario">
+    <div class="cal-nav">
+      <button onclick="calPrev()">◀</button>
+      <span class="cal-nav-label" id="cal-label"></span>
+      <button onclick="calNext()">▶</button>
+      <button onclick="calHoy()" style="margin-left:4px;">Hoy</button>
+    </div>
+    <div class="cal-wrap">
+      <div class="cal-header" id="cal-header"></div>
+      <div class="cal-grid" id="cal-grid"></div>
     </div>
   </div>
 
@@ -336,6 +367,7 @@ async function init() {
   renderLogros();
   renderPendientesAuto();
   renderProximas();
+  calInit();
 }
 
 async function saveBin() {
@@ -527,7 +559,9 @@ function renderPlan() {
   if (!cont || !DATA) return;
   const states = BIN.states || {};
   const planes = DATA.planificacion || [];
-  const semanas = { may: 3.5, jun: 4, jul: 4, ago: 1, sep: 4 };
+  const meses = ['may','jun','jul','sep','oct','nov','dic'];
+  const mesLabel = { may:'Mayo', jun:'Junio', jul:'Julio', sep:'Sep', oct:'Oct', nov:'Nov', dic:'Dic' };
+  const semanas = { may:3, jun:4, jul:4, sep:4, oct:4, nov:4, dic:3 };
 
   const hSem = (h, mes) => {
     const s = semanas[mes] || 1;
@@ -539,50 +573,44 @@ function renderPlan() {
     ? `<div style="text-align:right;"><span style="font-size:12px;color:#1a1a1a;">${h}h</span>${hSem(h,mes)}</div>`
     : `<div style="text-align:right;color:#ddd;font-size:12px;">—</div>`;
 
+  const cols = `160px repeat(${meses.length},1fr) 70px`;
+
   let html = `<div style="background:#fff;border:0.5px solid rgba(0,0,0,0.12);border-radius:12px;overflow:hidden;margin-bottom:16px;">
-    <div style="display:grid;grid-template-columns:160px repeat(5,1fr) 70px;background:#f8f8f6;padding:6px 14px;">
-      <span style="font-size:11px;color:#bbb;text-transform:uppercase;letter-spacing:0.05em;">cliente</span>
-      <span style="font-size:11px;color:#bbb;text-transform:uppercase;letter-spacing:0.05em;text-align:right;">Mayo<span style="display:block;font-weight:400;">3,5 sem</span></span>
-      <span style="font-size:11px;color:#bbb;text-transform:uppercase;letter-spacing:0.05em;text-align:right;">Junio<span style="display:block;font-weight:400;">4 sem</span></span>
-      <span style="font-size:11px;color:#bbb;text-transform:uppercase;letter-spacing:0.05em;text-align:right;">Julio<span style="display:block;font-weight:400;">4 sem</span></span>
-      <span style="font-size:11px;color:#bbb;text-transform:uppercase;letter-spacing:0.05em;text-align:right;">Agosto<span style="display:block;font-weight:400;">1 sem</span></span>
-      <span style="font-size:11px;color:#bbb;text-transform:uppercase;letter-spacing:0.05em;text-align:right;">Sep<span style="display:block;font-weight:400;">4 sem</span></span>
-      <span style="font-size:11px;color:#bbb;text-transform:uppercase;letter-spacing:0.05em;text-align:right;">Total</span>
+    <div style="display:grid;grid-template-columns:${cols};background:#f8f8f6;padding:6px 14px;gap:4px;">
+      <span style="font-size:11px;color:#bbb;text-transform:uppercase;">cliente</span>
+      ${meses.map(m=>`<span style="font-size:11px;color:#bbb;text-transform:uppercase;text-align:right;">${mesLabel[m]}<span style="display:block;font-weight:400;">${semanas[m]}s</span></span>`).join('')}
+      <span style="font-size:11px;color:#bbb;text-transform:uppercase;text-align:right;">Total</span>
     </div>`;
 
-  let totMay=0, totJun=0, totJul=0, totAgo=0, totSep=0, totTotal=0;
-
-  // Fila Nuvirta + AAR fija (10h/sem)
-  const nuvMay=35, nuvJun=40, nuvJul=40, nuvAgo=10, nuvSep=40, nuvTot=165;
-  totMay+=nuvMay; totJun+=nuvJun; totJul+=nuvJul; totAgo+=nuvAgo; totSep+=nuvSep; totTotal+=nuvTot;
-  html += `<div style="border-top:0.5px solid rgba(0,0,0,0.06);">
-    <div style="display:grid;grid-template-columns:160px repeat(5,1fr) 70px;padding:9px 14px;align-items:center;background:#f8f8f8;">
-      <div style="display:flex;align-items:center;gap:8px;">
-        <div style="width:8px;height:8px;border-radius:50%;background:#1D9E75;flex-shrink:0;"></div>
-        <span style="font-size:12px;font-weight:500;color:#666;">Nuvirta + AAR</span>
-      </div>
-      ${celda(nuvMay,'may')}${celda(nuvJun,'jun')}${celda(nuvJul,'jul')}${celda(nuvAgo,'ago')}${celda(nuvSep,'sep')}
-      <div style="text-align:right;font-size:12px;font-weight:500;">${nuvTot}h</div>
-    </div>
-  </div>`;
+  const tots = {};
+  meses.forEach(m => tots[m] = 0);
+  tots.total = 0;
 
   planes.forEach(plan => {
-    const cliente = DATA.clientes.find(c => c.id === plan.cliente);
+    const esNuvAAR = plan.cliente === 'nuvirta_aar';
+    const cliente = esNuvAAR ? { nombre: 'Nuvirta + AAR', color: '#1D9E75' } : DATA.clientes.find(c => c.id === plan.cliente);
     if (!cliente) return;
-    totMay+=plan.may||0; totJun+=plan.jun||0; totJul+=plan.jul||0;
-    totAgo+=plan.ago||0; totSep+=plan.sep||0; totTotal+=plan.total||0;
+    meses.forEach(m => tots[m] += plan[m] || 0);
+    tots.total += plan.total || 0;
     const bodyId = 'plan-det-' + plan.cliente;
 
     html += `<div style="border-top:0.5px solid rgba(0,0,0,0.06);">
-      <div onclick="togglePlan('${bodyId}')" style="display:grid;grid-template-columns:160px repeat(5,1fr) 70px;padding:9px 14px;cursor:pointer;align-items:center;" onmouseover="this.style.background='#fafaf8'" onmouseout="this.style.background=''">
+      <div onclick="${esNuvAAR ? '' : `togglePlan('${bodyId}')`}" style="display:grid;grid-template-columns:${cols};padding:9px 14px;${esNuvAAR?'':'cursor:pointer;'}align-items:center;background:${esNuvAAR?'#f8f8f8':''};gap:4px;" ${esNuvAAR?'':` onmouseover="this.style.background='#fafaf8'" onmouseout="this.style.background=''"`}>
         <div style="display:flex;align-items:center;gap:8px;">
           <div style="width:8px;height:8px;border-radius:50%;background:${cliente.color};flex-shrink:0;"></div>
-          <span style="font-size:13px;font-weight:500;">${cliente.nombre}</span>
+          <span style="font-size:${esNuvAAR?'12':'13'}px;font-weight:500;color:${esNuvAAR?'#666':'#1a1a1a'};">${cliente.nombre}</span>
         </div>
-        ${celda(plan.may,'may')}${celda(plan.jun,'jun')}${celda(plan.jul,'jul')}${celda(plan.ago,'ago')}${celda(plan.sep,'sep')}
-        <span style="font-size:12px;font-weight:500;text-align:right;color:#1a1a1a;">${plan.total}h</span>
-      </div>
-      <div id="${bodyId}" style="display:none;border-top:0.5px solid rgba(0,0,0,0.06);">
+        ${meses.map(m => celda(plan[m], m)).join('')}
+        <span style="font-size:12px;font-weight:500;text-align:right;">${plan.total}h</span>
+      </div>`;
+
+    if (!esNuvAAR) {
+      const ordenMes = {'may':1,'may-jun':2,'jun':3,'jun-jul':4,'jul':5,'jul-ago':6,'ago':7,'ago-sep':8,'sep':9,'oct':10,'nov':11,'dic':12};
+      const tareas = DATA.projects
+        .filter(p => p.cliente === plan.cliente && p.tipo !== 'accion' && p.horas > 0)
+        .sort((a,b) => (ordenMes[a.mes]||99) - (ordenMes[b.mes]||99));
+
+      html += `<div id="${bodyId}" style="display:none;border-top:0.5px solid rgba(0,0,0,0.06);">
         <div style="display:grid;grid-template-columns:55px 1fr 50px 30px;gap:6px;padding:5px 14px;background:#f8f8f6;">
           <span style="font-size:11px;color:#bbb;text-transform:uppercase;">mes</span>
           <span style="font-size:11px;color:#bbb;text-transform:uppercase;">tarea</span>
@@ -590,37 +618,31 @@ function renderPlan() {
           <span></span>
         </div>`;
 
-    const ordenMes = {'may':1,'may-jun':2,'jun':3,'jun-jul':4,'jul':5,'jul-ago':6,'ago':7,'ago-sep':8,'sep':9};
-    const tareas = DATA.projects
-      .filter(p => p.cliente === plan.cliente && p.tipo !== 'accion' && p.horas > 0)
-      .sort((a,b) => (ordenMes[a.mes]||99) - (ordenMes[b.mes]||99));
+      tareas.forEach(t => {
+        const estado = states[t.id] || t.estado || '⚪';
+        const isDone = estado === '✅';
+        html += `<div style="display:grid;grid-template-columns:55px 1fr 50px 30px;gap:6px;padding:7px 14px;border-top:0.5px solid rgba(0,0,0,0.04);align-items:start;${isDone?'opacity:0.4':''}">
+          <span style="font-size:11px;color:#aaa;">${t.mes||'—'}</span>
+          <span style="font-size:12px;color:#1a1a1a;${isDone?'text-decoration:line-through':''}">${t.tarea}</span>
+          <span style="font-size:12px;text-align:right;color:#666;">${t.horas}h</span>
+          <span style="font-size:13px;text-align:center;">${estado}</span>
+        </div>`;
+      });
 
-    tareas.forEach(t => {
-      const estado = states[t.id] || t.estado || '⚪';
-      const isDone = estado === '✅';
-      html += `<div style="display:grid;grid-template-columns:55px 1fr 50px 30px;gap:6px;padding:7px 14px;border-top:0.5px solid rgba(0,0,0,0.04);align-items:start;${isDone?'opacity:0.4':''}">
-        <span style="font-size:11px;color:#aaa;">${t.mes||'—'}</span>
-        <span style="font-size:12px;color:#1a1a1a;${isDone?'text-decoration:line-through':''}">${t.tarea}</span>
-        <span style="font-size:12px;text-align:right;color:#666;">${t.horas}h</span>
-        <span style="font-size:13px;text-align:center;">${estado}</span>
-      </div>`;
-    });
+      const totalEst = tareas.reduce((s,t) => s+(t.horas||0), 0);
+      html += `<div style="padding:6px 14px;background:#f8f8f6;border-top:0.5px solid rgba(0,0,0,0.06);text-align:right;">
+          <span style="font-size:11px;color:#aaa;">Total estimado tareas: <strong style="color:#1a1a1a;">${totalEst}h</strong></span>
+        </div></div>`;
+    }
 
-    const totalEst = tareas.reduce((s,t) => s+(t.horas||0), 0);
-    html += `<div style="padding:6px 14px;background:#f8f8f6;border-top:0.5px solid rgba(0,0,0,0.06);text-align:right;">
-        <span style="font-size:11px;color:#aaa;">Total estimado tareas: <strong style="color:#1a1a1a;">${totalEst}h</strong></span>
-      </div></div></div>`;
+    html += `</div>`;
   });
 
   // Totales
-  html += `<div style="border-top:0.5px solid rgba(0,0,0,0.12);display:grid;grid-template-columns:160px repeat(5,1fr) 70px;padding:9px 14px;background:#f8f8f6;">
+  html += `<div style="border-top:0.5px solid rgba(0,0,0,0.12);display:grid;grid-template-columns:${cols};padding:9px 14px;background:#f8f8f6;gap:4px;">
     <span style="font-size:12px;font-weight:500;">Total</span>
-    <div style="text-align:right;"><span style="font-size:12px;font-weight:500;">${totMay}h</span>${hSem(totMay,'may')}</div>
-    <div style="text-align:right;"><span style="font-size:12px;font-weight:500;">${totJun}h</span>${hSem(totJun,'jun')}</div>
-    <div style="text-align:right;"><span style="font-size:12px;font-weight:500;">${totJul}h</span>${hSem(totJul,'jul')}</div>
-    <div style="text-align:right;"><span style="font-size:12px;font-weight:500;">${totAgo}h</span>${hSem(totAgo,'ago')}</div>
-    <div style="text-align:right;"><span style="font-size:12px;font-weight:500;">${totSep}h</span>${hSem(totSep,'sep')}</div>
-    <span style="font-size:12px;font-weight:500;text-align:right;">${totTotal}h</span>
+    ${meses.map(m=>`<div style="text-align:right;"><span style="font-size:12px;font-weight:500;">${tots[m]}h</span>${hSem(tots[m],m)}</div>`).join('')}
+    <span style="font-size:12px;font-weight:500;text-align:right;">${tots.total}h</span>
   </div></div>`;
 
   cont.innerHTML = html;
@@ -818,6 +840,178 @@ function renderLogros() {
 }
 
 function toggleLogros(id) { document.getElementById(id).classList.toggle('open'); }
+
+// ============================================================
+// CALENDARIO SEMANAL
+// ============================================================
+const CAL_INICIO = 8;   // hora inicio
+const CAL_FIN   = 20;   // hora fin
+const CAL_H_PX  = 40;   // px por hora
+
+// Bloques fijos recurrentes
+const CAL_FIJOS = [
+  // Pilates lun y vie 8-9 (lun=0, vie=4)
+  { dia: 0, h: 8, m: 0, dur: 60, titulo: 'Pilates', sub: '', color: '#FDBA74', text: '#7C2D12' },
+  { dia: 4, h: 8, m: 0, dur: 60, titulo: 'Pilates', sub: '', color: '#FDBA74', text: '#7C2D12' },
+  // Colmena Climbea lun-jue 9:15-10
+  { dia: 0, h: 9, m: 15, dur: 45, titulo: 'Colmena', sub: 'Climbea', color: '#E0E7FF', text: '#3730A3' },
+  { dia: 1, h: 9, m: 15, dur: 45, titulo: 'Colmena', sub: 'Climbea', color: '#E0E7FF', text: '#3730A3' },
+  { dia: 2, h: 9, m: 15, dur: 45, titulo: 'Colmena', sub: 'Climbea', color: '#E0E7FF', text: '#3730A3' },
+  { dia: 3, h: 9, m: 15, dur: 45, titulo: 'Colmena', sub: 'Climbea', color: '#E0E7FF', text: '#3730A3' },
+  // Comida+personal martes 13-17:30
+  { dia: 1, h: 13, m: 0, dur: 270, titulo: 'Personal', sub: 'comida + osteópata', color: '#F1F5F9', text: '#64748B' },
+  // Pausa comida resto de días 13:30-15:30
+  { dia: 0, h: 13, m: 30, dur: 120, titulo: 'Comida', sub: '', color: '#F8FAFC', text: '#94A3B8' },
+  { dia: 2, h: 13, m: 30, dur: 120, titulo: 'Comida', sub: '', color: '#F8FAFC', text: '#94A3B8' },
+  { dia: 3, h: 13, m: 30, dur: 120, titulo: 'Comida', sub: '', color: '#F8FAFC', text: '#94A3B8' },
+  { dia: 4, h: 13, m: 30, dur: 120, titulo: 'Comida', sub: '', color: '#F8FAFC', text: '#94A3B8' },
+  // Tarde libre viernes desde 13:30
+  { dia: 4, h: 13, m: 30, dur: 390, titulo: 'Libre', sub: 'tarde viernes', color: '#F0FDF4', text: '#15803D' },
+];
+
+// Datos de semanas — cada semana tiene bloques de cliente
+// Los añadimos al data.json pero los tenemos aquí como fallback inicial
+const CAL_SEMANAS = {
+  '2026-05-11': [
+    { dia: 0, h: 8,  m: 0,  dur: 60,  titulo: 'Pilates',        sub: '',             color: '#FDBA74', text: '#7C2D12' },
+    { dia: 0, h: 10, m: 0,  dur: 180, titulo: 'Velasco',         sub: 'CRM',          color: '#BBF7D0', text: '#14532D' },
+    { dia: 0, h: 13, m: 0,  dur: 30,  titulo: 'Artículo 14',     sub: 'Financiero',   color: '#FBCFE8', text: '#831843' },
+    { dia: 1, h: 8,  m: 0,  dur: 60,  titulo: 'BestMedia',       sub: 'Plan Ramón',   color: '#BFDBFE', text: '#1E3A5F' },
+    { dia: 1, h: 10, m: 0,  dur: 120, titulo: 'Velasco',         sub: 'CRM',          color: '#BBF7D0', text: '#14532D' },
+    { dia: 1, h: 12, m: 0,  dur: 60,  titulo: 'Artículo 14',     sub: 'BBDD',         color: '#FBCFE8', text: '#831843' },
+    { dia: 2, h: 8,  m: 0,  dur: 60,  titulo: 'La Razón',        sub: 'Reunión Clara',color: '#FECACA', text: '#7F1D1D' },
+    { dia: 2, h: 10, m: 0,  dur: 60,  titulo: 'La Razón',        sub: 'Preparar',     color: '#FECACA', text: '#7F1D1D' },
+    { dia: 2, h: 11, m: 0,  dur: 60,  titulo: 'La Razón',        sub: 'Masa Salarial',color: '#FECACA', text: '#7F1D1D' },
+    { dia: 2, h: 12, m: 0,  dur: 90,  titulo: 'Velasco',         sub: 'CRM',          color: '#BBF7D0', text: '#14532D' },
+    { dia: 3, h: 10, m: 0,  dur: 120, titulo: 'Atitlán',         sub: '',             color: '#E2E8F0', text: '#1E293B' },
+    { dia: 3, h: 15, m: 0,  dur: 300, titulo: '⛳ Golf',          sub: 'Torneo',       color: '#D1FAE5', text: '#065F46' },
+    { dia: 4, h: 10, m: 0,  dur: 150, titulo: 'Nuvirta',         sub: 'gestiones',    color: '#A7F3D0', text: '#064E3B' },
+  ],
+};
+
+let calSemanaActual = null;
+
+function calLunesDe(fecha) {
+  const d = new Date(fecha);
+  const day = d.getDay();
+  const diff = (day === 0 ? -6 : 1 - day);
+  d.setDate(d.getDate() + diff);
+  d.setHours(0,0,0,0);
+  return d;
+}
+
+function calKeyDe(lunes) {
+  return `${lunes.getFullYear()}-${String(lunes.getMonth()+1).padStart(2,'0')}-${String(lunes.getDate()).padStart(2,'0')}`;
+}
+
+function calInit() {
+  calSemanaActual = calLunesDe(new Date());
+  renderCal();
+}
+
+function calPrev() { calSemanaActual.setDate(calSemanaActual.getDate() - 7); renderCal(); }
+function calNext() { calSemanaActual.setDate(calSemanaActual.getDate() + 7); renderCal(); }
+function calHoy()  { calSemanaActual = calLunesDe(new Date()); renderCal(); }
+
+function renderCal() {
+  const lunes = calSemanaActual;
+  const key = calKeyDe(lunes);
+  const hoy = new Date(); hoy.setHours(0,0,0,0);
+  const dias = ['Lun','Mar','Mié','Jue','Vie'];
+  const meses = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+
+  // Label semana
+  const viernes = new Date(lunes); viernes.setDate(lunes.getDate() + 4);
+  document.getElementById('cal-label').textContent =
+    `Semana del ${lunes.getDate()} ${meses[lunes.getMonth()]} al ${viernes.getDate()} ${meses[viernes.getMonth()]} ${viernes.getFullYear()}`;
+
+  // Header días
+  let header = '<div class="cal-timecol"></div>';
+  for (let d = 0; d < 5; d++) {
+    const fecha = new Date(lunes); fecha.setDate(lunes.getDate() + d);
+    const isHoy = fecha.getTime() === hoy.getTime();
+    header += `<div class="cal-hdcell${isHoy?' today':''}">${dias[d]} ${fecha.getDate()}</div>`;
+  }
+  document.getElementById('cal-header').innerHTML = header;
+
+  // Grid
+  const horas = CAL_FIN - CAL_INICIO;
+  let grid = '';
+
+  // Columna de horas
+  for (let h = CAL_INICIO; h < CAL_FIN; h++) {
+    grid += `<div class="cal-timecol">${h}:00</div>`;
+    for (let d = 0; d < 5; d++) {
+      grid += d === 0 ? '' : '';
+    }
+  }
+
+  // Reconstruir: primero las celdas de fondo, luego los bloques
+  grid = '';
+  // Fila de horas + celdas vacías
+  for (let h = CAL_INICIO; h < CAL_FIN; h++) {
+    grid += `<div class="cal-timecol">${h}:00</div>`;
+    for (let d = 0; d < 5; d++) {
+      grid += `<div class="cal-hour"></div>`;
+    }
+  }
+
+  // Columnas de días con bloques posicionados absolutamente
+  // Wrap en un div relativo por día
+  let gridHtml = `<div class="cal-timecol" style="grid-row:1/${horas+1}"></div>`;
+  for (let d = 0; d < 5; d++) {
+    const fecha = new Date(lunes); fecha.setDate(lunes.getDate() + d);
+    const isHoy = fecha.getTime() === hoy.getTime();
+    let colHtml = `<div class="cal-daycol" style="height:${horas*CAL_H_PX}px;background:${isHoy?'rgba(83,74,183,0.03)':''}">`;
+
+    // Líneas de hora
+    for (let h = 0; h < horas; h++) {
+      colHtml += `<div style="position:absolute;top:${h*CAL_H_PX}px;left:0;right:0;border-top:0.5px solid rgba(0,0,0,0.07);height:${CAL_H_PX}px;"></div>`;
+      colHtml += `<div style="position:absolute;top:${h*CAL_H_PX+20}px;left:0;right:0;border-top:0.5px dashed rgba(0,0,0,0.04);"></div>`;
+    }
+
+    // Bloques fijos (solo los recurrentes, excluyendo pilates viernes si es festivo)
+    const esViernes = d === 4;
+    const semanaKey = calKeyDe(lunes);
+    const fijosHoy = CAL_FIJOS.filter(b => {
+      if (b.dia !== d) return false;
+      // Pilates viernes solo si no es festivo (lo controlamos manualmente por semana)
+      return true;
+    });
+
+    // Bloques de semana específica (del JSON o del fallback CAL_SEMANAS)
+    const bloquesSemana = (DATA && DATA.semanas && DATA.semanas[semanaKey])
+      ? DATA.semanas[semanaKey].filter(b => b.dia === d)
+      : (CAL_SEMANAS[semanaKey] || []).filter(b => b.dia === d);
+
+    const todosLosBloques = [...bloquesSemana];
+
+    todosLosBloques.forEach(b => {
+      const top = ((b.h - CAL_INICIO) * CAL_H_PX) + (b.m / 60 * CAL_H_PX);
+      const height = Math.max(b.dur / 60 * CAL_H_PX - 2, 16);
+      colHtml += `<div class="cal-block" style="top:${top}px;height:${height}px;background:${b.color};color:${b.text};">
+        <div class="cb-title">${b.titulo}</div>
+        ${b.sub ? `<div class="cb-sub">${b.sub}</div>` : ''}
+      </div>`;
+    });
+
+    // Bloques fijos encima
+    fijosHoy.forEach(b => {
+      const top = ((b.h - CAL_INICIO) * CAL_H_PX) + (b.m / 60 * CAL_H_PX);
+      const height = Math.max(b.dur / 60 * CAL_H_PX - 2, 16);
+      colHtml += `<div class="cal-block" style="top:${top}px;height:${height}px;background:${b.color};color:${b.text};opacity:0.85;">
+        <div class="cb-title">${b.titulo}</div>
+        ${b.sub ? `<div class="cb-sub">${b.sub}</div>` : ''}
+      </div>`;
+    });
+
+    colHtml += `</div>`;
+    gridHtml += colHtml;
+  }
+
+  document.getElementById('cal-grid').innerHTML = gridHtml;
+  document.getElementById('cal-grid').style.gridTemplateRows = `repeat(${horas}, ${CAL_H_PX}px)`;
+}
 
 // ============================================================
 // NAVEGACIÓN
