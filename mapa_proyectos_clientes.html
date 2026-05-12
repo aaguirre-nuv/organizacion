@@ -914,11 +914,13 @@ function calNext() { calSemanaActual.setDate(calSemanaActual.getDate() + 7); ren
 function calHoy()  { calSemanaActual = calLunesDe(new Date()); renderCal(); }
 
 function renderCal() {
-  const lunes = calSemanaActual;
+  const lunes = new Date(calSemanaActual);
   const key = calKeyDe(lunes);
   const hoy = new Date(); hoy.setHours(0,0,0,0);
   const dias = ['Lun','Mar','Mié','Jue','Vie'];
   const meses = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+  const horas = CAL_FIN - CAL_INICIO;
+  const alturaTotal = horas * CAL_H_PX;
 
   // Label semana
   const viernes = new Date(lunes); viernes.setDate(lunes.getDate() + 4);
@@ -934,83 +936,59 @@ function renderCal() {
   }
   document.getElementById('cal-header').innerHTML = header;
 
-  // Grid
-  const horas = CAL_FIN - CAL_INICIO;
-  let grid = '';
-
-  // Columna de horas
-  for (let h = CAL_INICIO; h < CAL_FIN; h++) {
-    grid += `<div class="cal-timecol">${h}:00</div>`;
-    for (let d = 0; d < 5; d++) {
-      grid += d === 0 ? '' : '';
-    }
+  // Columna de horas (izquierda)
+  let horasCol = `<div style="width:44px;flex-shrink:0;position:relative;height:${alturaTotal}px;">`;
+  for (let h = 0; h < horas; h++) {
+    horasCol += `<div style="position:absolute;top:${h*CAL_H_PX - 6}px;right:6px;font-size:10px;color:#bbb;line-height:1;">${CAL_INICIO+h}:00</div>`;
   }
+  horasCol += '</div>';
 
-  // Reconstruir: primero las celdas de fondo, luego los bloques
-  grid = '';
-  // Fila de horas + celdas vacías
-  for (let h = CAL_INICIO; h < CAL_FIN; h++) {
-    grid += `<div class="cal-timecol">${h}:00</div>`;
-    for (let d = 0; d < 5; d++) {
-      grid += `<div class="cal-hour"></div>`;
-    }
-  }
+  // Bloques de semana específica
+  const bloquesSemana = (DATA && DATA.semanas && DATA.semanas[key])
+    ? DATA.semanas[key]
+    : (CAL_SEMANAS[key] || []);
 
-  // Columnas de días con bloques posicionados absolutamente
-  // Wrap en un div relativo por día
-  let gridHtml = `<div class="cal-timecol" style="grid-row:1/${horas+1}"></div>`;
+  // Columnas de días
+  let colsHtml = '';
   for (let d = 0; d < 5; d++) {
     const fecha = new Date(lunes); fecha.setDate(lunes.getDate() + d);
     const isHoy = fecha.getTime() === hoy.getTime();
-    let colHtml = `<div class="cal-daycol" style="height:${horas*CAL_H_PX}px;background:${isHoy?'rgba(83,74,183,0.03)':''}">`;
+
+    let colHtml = `<div style="flex:1;position:relative;height:${alturaTotal}px;border-left:0.5px solid rgba(0,0,0,0.08);background:${isHoy?'rgba(83,74,183,0.02)':'#fff'};">`;
 
     // Líneas de hora
     for (let h = 0; h < horas; h++) {
-      colHtml += `<div style="position:absolute;top:${h*CAL_H_PX}px;left:0;right:0;border-top:0.5px solid rgba(0,0,0,0.07);height:${CAL_H_PX}px;"></div>`;
-      colHtml += `<div style="position:absolute;top:${h*CAL_H_PX+20}px;left:0;right:0;border-top:0.5px dashed rgba(0,0,0,0.04);"></div>`;
+      colHtml += `<div style="position:absolute;top:${h*CAL_H_PX}px;left:0;right:0;border-top:0.5px solid rgba(0,0,0,0.07);"></div>`;
+      colHtml += `<div style="position:absolute;top:${h*CAL_H_PX+CAL_H_PX/2}px;left:0;right:0;border-top:0.5px dashed rgba(0,0,0,0.04);"></div>`;
     }
 
-    // Bloques fijos (solo los recurrentes, excluyendo pilates viernes si es festivo)
-    const esViernes = d === 4;
-    const semanaKey = calKeyDe(lunes);
-    const fijosHoy = CAL_FIJOS.filter(b => {
-      if (b.dia !== d) return false;
-      // Pilates viernes solo si no es festivo (lo controlamos manualmente por semana)
-      return true;
-    });
-
-    // Bloques de semana específica (del JSON o del fallback CAL_SEMANAS)
-    const bloquesSemana = (DATA && DATA.semanas && DATA.semanas[semanaKey])
-      ? DATA.semanas[semanaKey].filter(b => b.dia === d)
-      : (CAL_SEMANAS[semanaKey] || []).filter(b => b.dia === d);
-
-    const todosLosBloques = [...bloquesSemana];
-
-    todosLosBloques.forEach(b => {
-      const top = ((b.h - CAL_INICIO) * CAL_H_PX) + (b.m / 60 * CAL_H_PX);
-      const height = Math.max(b.dur / 60 * CAL_H_PX - 2, 16);
-      colHtml += `<div class="cal-block" style="top:${top}px;height:${height}px;background:${b.color};color:${b.text};">
-        <div class="cb-title">${b.titulo}</div>
-        ${b.sub ? `<div class="cb-sub">${b.sub}</div>` : ''}
+    // Función para pintar bloque
+    const pintaBloque = (b, opacity) => {
+      const top = (b.h - CAL_INICIO) * CAL_H_PX + (b.m / 60) * CAL_H_PX;
+      const height = Math.max((b.dur / 60) * CAL_H_PX - 2, 14);
+      return `<div style="position:absolute;top:${top}px;height:${height}px;left:2px;right:2px;border-radius:5px;padding:2px 5px;background:${b.color};color:${b.text};overflow:hidden;z-index:${opacity?1:2};${opacity?'opacity:0.9':''}">
+        <div style="font-size:11px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${b.titulo}</div>
+        ${b.sub ? `<div style="font-size:10px;opacity:0.8;">${b.sub}</div>` : ''}
       </div>`;
+    };
+
+    // Primero fijos (z-index 1)
+    CAL_FIJOS.filter(b => b.dia === d).forEach(b => {
+      colHtml += pintaBloque(b, true);
     });
 
-    // Bloques fijos encima
-    fijosHoy.forEach(b => {
-      const top = ((b.h - CAL_INICIO) * CAL_H_PX) + (b.m / 60 * CAL_H_PX);
-      const height = Math.max(b.dur / 60 * CAL_H_PX - 2, 16);
-      colHtml += `<div class="cal-block" style="top:${top}px;height:${height}px;background:${b.color};color:${b.text};opacity:0.85;">
-        <div class="cb-title">${b.titulo}</div>
-        ${b.sub ? `<div class="cb-sub">${b.sub}</div>` : ''}
-      </div>`;
+    // Luego bloques de semana (z-index 2, encima de fijos)
+    bloquesSemana.filter(b => b.dia === d).forEach(b => {
+      colHtml += pintaBloque(b, false);
     });
 
-    colHtml += `</div>`;
-    gridHtml += colHtml;
+    colHtml += '</div>';
+    colsHtml += colHtml;
   }
 
-  document.getElementById('cal-grid').innerHTML = gridHtml;
-  document.getElementById('cal-grid').style.gridTemplateRows = `repeat(${horas}, ${CAL_H_PX}px)`;
+  document.getElementById('cal-grid').innerHTML =
+    `<div style="display:flex;">${horasCol}${colsHtml}</div>`;
+  document.getElementById('cal-grid').style = '';
 }
 
 // ============================================================
