@@ -431,12 +431,12 @@ function renderHoy() {
 }
 
 function toggleAccion(id, el) {
+  if (!BIN || !BIN.states) return;
   const estados = ['⚪','🔵','✅'];
   const idx = estados.indexOf(el.textContent);
   const next = estados[(idx + 1) % estados.length];
-  if (!BIN.states) BIN.states = {};
   BIN.states[id] = next;
-  const tarea = DATA.projects.find(p => p.id === id);
+  const tarea = DATA && DATA.projects ? DATA.projects.find(p => p.id === id) : null;
   if (next === '✅' && tarea) {
     if (!BIN.completed) BIN.completed = [];
     const existing = BIN.completed.findIndex(c => c.id === id);
@@ -446,8 +446,10 @@ function toggleAccion(id, el) {
   } else if (next !== '✅') {
     BIN.completed = (BIN.completed || []).filter(c => c.id !== id);
   }
+  el.textContent = next;
+  el.closest('.hoy-row').style.opacity = next === '✅' ? '0.5' : '1';
   saveBin();
-  renderHoy();
+  renderPendientesAuto();
   renderLogros();
 }
 
