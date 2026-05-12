@@ -107,17 +107,11 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
 .mes-pills { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 6px; }
 .mes-pill { font-size: 10px; padding: 1px 6px; border-radius: 4px; background: #f1efe8; color: #666; }
 .loading { font-size: 13px; color: #aaa; padding: 20px; text-align: center; }
-.cal-wrap { overflow-x: auto; }
-.cal-grid { display: grid; grid-template-columns: 44px repeat(5, 1fr); min-width: 580px; }
-.cal-header { display: grid; grid-template-columns: 44px repeat(5, 1fr); min-width: 580px; margin-bottom: 2px; }
-.cal-hdcell { font-size: 12px; font-weight: 500; text-align: center; padding: 6px 4px; color: #1a1a1a; }
+.cal-wrap { overflow-x: auto; width: 100%; }
+.cal-header { display: flex; width: 100%; margin-bottom: 2px; }
+.cal-hdcell { flex: 1; font-size: 12px; font-weight: 500; text-align: center; padding: 6px 4px; color: #1a1a1a; min-width: 0; }
 .cal-hdcell.today { color: #534AB7; font-weight: 700; }
-.cal-timecol { font-size: 10px; color: #ccc; text-align: right; padding-right: 6px; height: 40px; line-height: 40px; }
-.cal-daycol { position: relative; border-left: 0.5px solid rgba(0,0,0,0.08); }
-.cal-hour { height: 40px; border-top: 0.5px solid rgba(0,0,0,0.08); }
-.cal-block { position: absolute; left: 2px; right: 2px; border-radius: 5px; padding: 3px 5px; font-size: 11px; overflow: hidden; z-index: 1; }
-.cal-block .cb-title { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.cal-block .cb-sub { font-size: 10px; opacity: 0.75; }
+.cal-timecol { width: 50px; flex-shrink: 0; }
 .cal-nav { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
 .cal-nav button { background: #fff; border: 0.5px solid rgba(0,0,0,0.15); border-radius: 8px; padding: 5px 12px; font-size: 12px; cursor: pointer; }
 .cal-nav button:hover { background: #f8f8f6; }
@@ -938,13 +932,14 @@ function renderCal() {
   bloquesSemana.forEach(b => bloquesXdia[b.dia] && bloquesXdia[b.dia].push({...b, fijo: false}));
 
   // Header
-  let header = '<div style="width:50px;flex-shrink:0;"></div>';
+  let headerHtml = `<div style="width:50px;flex-shrink:0;"></div>`;
   for (let d = 0; d < 5; d++) {
     const fecha = new Date(lunes); fecha.setDate(lunes.getDate() + d);
     const isHoy = fecha.getTime() === hoy.getTime();
-    header += `<div class="cal-hdcell${isHoy?' today':''}" style="flex:1;min-width:0;">${dias[d]} ${fecha.getDate()}</div>`;
+    headerHtml += `<div class="cal-hdcell${isHoy?' today':''}">${dias[d]} ${fecha.getDate()}</div>`;
   }
-  document.getElementById('cal-header').innerHTML = `<div style="display:flex;width:100%;">${header}</div>`;
+  document.getElementById('cal-header').style.cssText = 'display:flex;width:100%;margin-bottom:2px;';
+  document.getElementById('cal-header').innerHTML = headerHtml;
 
   // Grid: usamos una tabla con celdas de posición relativa
   const alturaTotal = horas * CAL_H_PX;
