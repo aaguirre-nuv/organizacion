@@ -867,19 +867,35 @@ const CAL_FIJOS = [
 // Los añadimos al data.json pero los tenemos aquí como fallback inicial
 const CAL_SEMANAS = {
   '2026-05-11': [
-    { dia: 0, h: 8,  m: 0,  dur: 60,  titulo: 'Pilates',        sub: '',             color: '#FDBA74', text: '#7C2D12' },
-    { dia: 0, h: 10, m: 0,  dur: 180, titulo: 'Velasco',         sub: 'CRM',          color: '#BBF7D0', text: '#14532D' },
-    { dia: 0, h: 13, m: 0,  dur: 30,  titulo: 'Artículo 14',     sub: 'Financiero',   color: '#FBCFE8', text: '#831843' },
-    { dia: 1, h: 8,  m: 0,  dur: 60,  titulo: 'BestMedia',       sub: 'Plan Ramón',   color: '#BFDBFE', text: '#1E3A5F' },
-    { dia: 1, h: 10, m: 0,  dur: 120, titulo: 'Velasco',         sub: 'CRM',          color: '#BBF7D0', text: '#14532D' },
-    { dia: 1, h: 12, m: 0,  dur: 60,  titulo: 'Artículo 14',     sub: 'BBDD',         color: '#FBCFE8', text: '#831843' },
-    { dia: 2, h: 8,  m: 0,  dur: 60,  titulo: 'La Razón',        sub: 'Reunión Clara',color: '#FECACA', text: '#7F1D1D' },
-    { dia: 2, h: 10, m: 0,  dur: 60,  titulo: 'La Razón',        sub: 'Preparar',     color: '#FECACA', text: '#7F1D1D' },
-    { dia: 2, h: 11, m: 0,  dur: 60,  titulo: 'La Razón',        sub: 'Masa Salarial',color: '#FECACA', text: '#7F1D1D' },
-    { dia: 2, h: 12, m: 0,  dur: 90,  titulo: 'Velasco',         sub: 'CRM',          color: '#BBF7D0', text: '#14532D' },
-    { dia: 3, h: 10, m: 0,  dur: 120, titulo: 'Atitlán',         sub: '',             color: '#E2E8F0', text: '#1E293B' },
-    { dia: 3, h: 15, m: 0,  dur: 300, titulo: '⛳ Golf',          sub: 'Torneo',       color: '#D1FAE5', text: '#065F46' },
-    { dia: 4, h: 10, m: 0,  dur: 150, titulo: 'Nuvirta',         sub: 'gestiones',    color: '#A7F3D0', text: '#064E3B' },
+    // LUNES 11
+    { dia: 0, h: 8,  m: 0,  dur: 60,  titulo: 'Pilates',       sub: '',                  color: '#FDBA74', text: '#7C2D12' },
+    { dia: 0, h: 10, m: 0,  dur: 180, titulo: 'Velasco',        sub: 'CRM',               color: '#BBF7D0', text: '#14532D' },
+    { dia: 0, h: 13, m: 0,  dur: 30,  titulo: 'Artículo 14',    sub: 'Financiero',        color: '#FBCFE8', text: '#831843' },
+    { dia: 0, h: 16, m: 0,  dur: 60,  titulo: 'Central',        sub: 'Cierre 2025',       color: '#FDE68A', text: '#78350F' },
+    { dia: 0, h: 17, m: 0,  dur: 120, titulo: 'Velasco',        sub: 'CRM',               color: '#BBF7D0', text: '#14532D' },
+    { dia: 0, h: 19, m: 0,  dur: 60,  titulo: 'Artículo 14',    sub: 'Financiero',        color: '#FBCFE8', text: '#831843' },
+    // MARTES 12
+    { dia: 1, h: 8,  m: 0,  dur: 60,  titulo: 'BestMedia',      sub: 'Plan Ramón',        color: '#BFDBFE', text: '#1E3A5F' },
+    { dia: 1, h: 10, m: 0,  dur: 120, titulo: 'Velasco',        sub: 'CRM',               color: '#BBF7D0', text: '#14532D' },
+    { dia: 1, h: 12, m: 0,  dur: 60,  titulo: 'Artículo 14',    sub: 'BBDD',              color: '#FBCFE8', text: '#831843' },
+    { dia: 1, h: 17, m: 30, dur: 120, titulo: 'Nuvirta',        sub: 'Plan 2026',         color: '#A7F3D0', text: '#064E3B' },
+    { dia: 1, h: 17, m: 0,  dur: 120, titulo: 'Atitlán',        sub: 'CRM',               color: '#E2E8F0', text: '#1E293B' },
+    // MIÉRCOLES 13
+    { dia: 2, h: 8,  m: 0,  dur: 60,  titulo: 'La Razón',       sub: 'Reunión Clara',     color: '#FECACA', text: '#7F1D1D' },
+    { dia: 2, h: 10, m: 0,  dur: 60,  titulo: 'La Razón',       sub: 'Preparar',          color: '#FECACA', text: '#7F1D1D' },
+    { dia: 2, h: 11, m: 0,  dur: 60,  titulo: 'La Razón',       sub: 'Masa Salarial',     color: '#FECACA', text: '#7F1D1D' },
+    { dia: 2, h: 12, m: 0,  dur: 90,  titulo: 'Velasco',        sub: 'CRM',               color: '#BBF7D0', text: '#14532D' },
+    { dia: 2, h: 16, m: 0,  dur: 60,  titulo: 'Atitlán',        sub: 'CRM Portal',        color: '#E2E8F0', text: '#1E293B' },
+    { dia: 2, h: 16, m: 0,  dur: 120, titulo: 'Bootcamp IA',    sub: 'Climbea',           color: '#E0E7FF', text: '#3730A3' },
+    { dia: 2, h: 17, m: 0,  dur: 120, titulo: 'Nuvirta',        sub: 'Plan 2026',         color: '#A7F3D0', text: '#064E3B' },
+    { dia: 2, h: 19, m: 0,  dur: 60,  titulo: 'Fisiodrid',      sub: 'Sanitas',           color: '#EDE9FE', text: '#4C1D95' },
+    // JUEVES 14
+    { dia: 3, h: 10, m: 0,  dur: 120, titulo: 'Atitlán',        sub: '',                  color: '#E2E8F0', text: '#1E293B' },
+    { dia: 3, h: 15, m: 0,  dur: 420, titulo: '⛳ Golf',         sub: 'FJD Herrería',      color: '#D1FAE5', text: '#065F46' },
+    // VIERNES 15
+    { dia: 4, h: 8,  m: 0,  dur: 60,  titulo: 'Pilates',        sub: '',                  color: '#FDBA74', text: '#7C2D12' },
+    { dia: 4, h: 10, m: 0,  dur: 150, titulo: 'Nuvirta',        sub: 'gestiones',         color: '#A7F3D0', text: '#064E3B' },
+    { dia: 4, h: 17, m: 0,  dur: 180, titulo: 'Atitlán',        sub: 'CRM',               color: '#E2E8F0', text: '#1E293B' },
   ],
 };
 
