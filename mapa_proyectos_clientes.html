@@ -85,8 +85,8 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
 .logros-header:hover { background: #f8f8f6; }
 .logros-body { display: none; border-top: 0.5px solid rgba(0,0,0,0.08); }
 .logros-body.open { display: block; }
-.logro-row { display: grid; grid-template-columns: 100px 120px 1fr 90px; gap: 6px; padding: 8px 14px; border-top: 0.5px solid rgba(0,0,0,0.05); font-size: 12px; color: #444; align-items: start; }
-.logro-hrow { display: grid; grid-template-columns: 100px 120px 1fr 90px; gap: 6px; padding: 5px 14px; background: #f8f8f6; }
+.logro-row { display: grid; grid-template-columns: 100px 120px 1fr 100px; gap: 6px; padding: 8px 14px; border-top: 0.5px solid rgba(0,0,0,0.05); font-size: 12px; color: #444; align-items: center; }
+.logro-hrow { display: grid; grid-template-columns: 100px 120px 1fr 100px; gap: 6px; padding: 5px 14px; background: #f8f8f6; }
 .logro-hrow span { font-size: 11px; color: #bbb; text-transform: uppercase; letter-spacing: 0.05em; }
 .plan-card { background: #fff; border: 0.5px solid rgba(0,0,0,0.12); border-radius: 12px; margin-bottom: 10px; overflow: hidden; }
 .plan-header { display: flex; align-items: center; gap: 10px; padding: 10px 14px; cursor: pointer; }
@@ -530,20 +530,30 @@ function renderPendientesAuto() {
 }
 
 function markPendDone(id, el) {
-  if (!BIN.states) BIN.states = {};
-  BIN.states[id] = '✅';
-  const tarea = DATA.projects.find(p => p.id === id);
-  if (tarea) {
-    if (!BIN.completed) BIN.completed = [];
-    const existing = BIN.completed.findIndex(c => c.id === id);
-    const entry = { id, cliente: tarea.cliente, tarea: tarea.tarea, fechaEstimada: tarea.fecha || null, fechaHecho: getHoy() };
-    if (existing >= 0) BIN.completed[existing] = entry;
-    else BIN.completed.push(entry);
+  if (!BIN || !BIN.states) return;
+  const estados = ['⚪','🔵','✅'];
+  const current = BIN.states[id] || '⚪';
+  const idx = estados.indexOf(current);
+  const next = estados[(idx + 1) % estados.length];
+  BIN.states[id] = next;
+  el.textContent = next;
+
+  if (next === '✅') {
+    const tarea = DATA && DATA.projects ? DATA.projects.find(p => p.id === id) : null;
+    if (tarea) {
+      if (!BIN.completed) BIN.completed = [];
+      const existing = BIN.completed.findIndex(c => c.id === id);
+      const entry = { id, cliente: tarea.cliente, tarea: tarea.tarea, fechaEstimada: tarea.fecha || null, fechaHecho: getHoy() };
+      if (existing >= 0) BIN.completed[existing] = entry;
+      else BIN.completed.push(entry);
+    }
+    el.closest('.pend-row').style.display = 'none';
+    renderLogros();
+  } else if (next === '⚪') {
+    BIN.completed = (BIN.completed || []).filter(c => c.id !== id);
   }
   saveBin();
-  el.closest('.pend-row').style.display = 'none';
   renderHoy();
-  renderLogros();
 }
 
 // ============================================================
@@ -818,13 +828,16 @@ function renderLogros() {
       const color = clienteData ? clienteData.color : '#888';
       const nombre = clienteData ? clienteData.nombre : c.cliente;
       const estimado = c.fechaEstimada ? c.fechaEstimada.slice(5).replace('-','/') : '—';
-      const hecho = c.fechaHecho.slice(5).replace('-','/');
+      const hecho = c.fechaHecho ? c.fechaHecho.slice(5).replace('-','/') : '—';
       const aldia = c.fechaEstimada && c.fechaHecho <= c.fechaEstimada;
       html += `<div class="logro-row">
         <div style="font-size:12px;color:#444;">${hecho}</div>
         <div><span style="font-size:11px;padding:2px 7px;border-radius:6px;background:${color}22;color:${color};font-weight:500;">${nombre}</span></div>
         <div style="font-size:12px;color:#444;">${c.tarea}</div>
-        <div style="font-size:11px;color:${aldia ? '#3B6D11' : '#854F0B'}">${estimado}</div>
+        <div style="display:flex;align-items:center;gap:6px;">
+          <span style="font-size:11px;color:${aldia ? '#3B6D11' : '#854F0B'}">${estimado}</span>
+          <span onclick="unmarkLogro('${c.id}')" title="Desmarcar" style="cursor:pointer;font-size:13px;color:#ccc;margin-left:4px;" onmouseover="this.style.color='#E24B4A'" onmouseout="this.style.color='#ccc'">↩</span>
+        </div>
       </div>`;
     });
 
@@ -835,6 +848,16 @@ function renderLogros() {
 }
 
 function toggleLogros(id) { document.getElementById(id).classList.toggle('open'); }
+
+function unmarkLogro(id) {
+  if (!BIN) return;
+  BIN.states[id] = '🔵';
+  BIN.completed = (BIN.completed || []).filter(c => c.id !== id);
+  saveBin();
+  renderLogros();
+  renderPendientesAuto();
+  renderHoy();
+}
 
 // ============================================================
 // CALENDARIO SEMANAL
