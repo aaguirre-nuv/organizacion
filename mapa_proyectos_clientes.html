@@ -1011,6 +1011,32 @@ function renderPlantilla() {
   }
 
   gridEl.innerHTML = `<div style="display:flex;width:100%;">${horasHtml}${colsHtml}</div>`;
+
+  // Resumen de horas por categoría
+  const categorias = {
+    'Trabajo':   { tipos: ['Desarrollo','Mant','Admin','Plan'], color: '#BFDBFE', text: '#1E40AF' },
+    'Formación': { tipos: ['Hive','IA / Vibe'], color: '#DDD6FE', text: '#5B21B6' },
+    'Físico':    { tipos: ['Pilates','Ejercicios','Golf'], color: '#A7F3D0', text: '#065F46' },
+    'Personal':  { tipos: ['Mamá','Osteópata','Comida'], color: '#FBCFE8', text: '#9D174D' }
+  };
+
+  const hPorTipo = {};
+  DATA.plantilla.forEach(b => {
+    hPorTipo[b.tipo] = (hPorTipo[b.tipo] || 0) + b.dur / 60;
+  });
+
+  let resumen = `<div style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap;">`;
+  Object.entries(categorias).forEach(([cat, cfg]) => {
+    const total = cfg.tipos.reduce((s, t) => s + (hPorTipo[t] || 0), 0);
+    const detalle = cfg.tipos.filter(t => hPorTipo[t]).map(t => `${t} ${hPorTipo[t]}h`).join(' · ');
+    resumen += `<div style="background:${cfg.color};color:${cfg.text};border-radius:10px;padding:10px 14px;flex:1;min-width:140px;">
+      <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px;">${cat}</div>
+      <div style="font-size:18px;font-weight:700;">${total}h</div>
+      <div style="font-size:10px;opacity:0.8;margin-top:2px;">${detalle}</div>
+    </div>`;
+  });
+  resumen += `</div>`;
+  gridEl.innerHTML += resumen;
 }
 
 // ============================================================
