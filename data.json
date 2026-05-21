@@ -25,7 +25,15 @@
     { "cliente": "dasme",       "may":  0, "jun":  0, "jul":  0, "ago": 0, "sep":  0, "oct": 60, "nov": 65, "dic": 17, "total": 142 }
   ],
 
-  "registros": [],
+  "registros": [
+    { "semana": "2026-05-11", "cliente": "aar",        "horas": 9.9 },
+    { "semana": "2026-05-11", "cliente": "articulo14", "horas": 0.9 },
+    { "semana": "2026-05-11", "cliente": "atitlan",    "horas": 17.8 },
+    { "semana": "2026-05-11", "cliente": "central",    "horas": 0.6 },
+    { "semana": "2026-05-11", "cliente": "fisiodrid",  "horas": 5.1 },
+    { "semana": "2026-05-11", "cliente": "nuvirta",    "horas": 14.3 },
+    { "semana": "2026-05-11", "cliente": "velasco",    "horas": 0.1 }
+  ],
 
   "projects": [
 
