@@ -1026,8 +1026,10 @@ function renderPlantilla() {
     DATA.plantilla.filter(b => b.dia === d).forEach(b => {
       const top = (b.h - PLANT_INICIO) * CAL_H_PX + (b.m / 60) * CAL_H_PX;
       const height = Math.max((b.dur / 60) * CAL_H_PX - 2, 14);
+      const hLabel = b.dur >= 60 ? `${b.dur/60}h` : `${b.dur}min`;
       col += `<div style="position:absolute;top:${top}px;height:${height}px;left:2px;right:2px;border-radius:5px;padding:2px 5px;background:${b.color};color:${b.text};overflow:hidden;">
         <div style="font-size:11px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.3;">${b.tipo}</div>
+        ${height > 22 ? `<div style="font-size:10px;opacity:0.75;">${hLabel}</div>` : ''}
       </div>`;
     });
     col += '</div>';
