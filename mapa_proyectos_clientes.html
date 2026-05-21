@@ -1025,7 +1025,7 @@ function renderPlantilla() {
     hPorTipo[b.tipo] = (hPorTipo[b.tipo] || 0) + b.dur / 60;
   });
 
-  let resumen = `<div style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap;">`;
+  let resumen = `<div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;padding-bottom:16px;">`;
   Object.entries(categorias).forEach(([cat, cfg]) => {
     const total = cfg.tipos.reduce((s, t) => s + (hPorTipo[t] || 0), 0);
     const detalle = cfg.tipos.filter(t => hPorTipo[t]).map(t => `${t} ${hPorTipo[t]}h`).join(' · ');
