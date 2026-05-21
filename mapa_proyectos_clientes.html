@@ -668,25 +668,51 @@ function renderRitmo() {
   const registros = DATA.registros || [];
   let html = '';
 
-  const clientesConPlan = (DATA.planificacion || []);
+  const planes = DATA.planificacion || [];
 
-  clientesConPlan.forEach(plan => {
+  // Calcular horas reales por cliente (sumando todas las semanas)
+  const realesPorCliente = {};
+  registros.forEach(r => {
+    realesPorCliente[r.cliente] = (realesPorCliente[r.cliente] || 0) + r.horas;
+  });
+
+  let totPlan = 0, totReal = 0;
+
+  // Fila Nuvirta+AAR combinada
+  const planNuv = planes.find(p => p.cliente === 'nuvirta_aar');
+  const realNuv = (realesPorCliente['nuvirta'] || 0) + (realesPorCliente['aar'] || 0);
+  if (planNuv || realNuv > 0) {
+    const planTotal = planNuv ? planNuv.total : 0;
+    totPlan += planTotal; totReal += realNuv;
+    const semaforo = realNuv === 0 ? '⚪' : realNuv / Math.max(planTotal,1) >= 0.5 ? '🟢' : '🟡';
+    html += `<div class="ritmo-row" style="background:#f8f8f8;">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div style="width:8px;height:8px;border-radius:50%;background:#1D9E75;flex-shrink:0;"></div>
+        <span style="font-size:12px;font-weight:500;color:#666;">Nuvirta + AAR</span>
+      </div>
+      <div style="font-size:12px;text-align:right;color:#666;">${planTotal}h</div>
+      <div style="font-size:12px;text-align:right;color:#3B6D11;">—</div>
+      <div style="font-size:12px;text-align:right;color:#854F0B;">—</div>
+      <div style="font-size:12px;text-align:right;color:#185FA5;">${Math.round(realNuv*10)/10}h</div>
+      <div class="semaforo">${semaforo}</div>
+    </div>`;
+  }
+
+  // Resto de clientes con plan
+  planes.filter(p => p.cliente !== 'nuvirta_aar').forEach(plan => {
     const cliente = DATA.clientes.find(c => c.id === plan.cliente);
     if (!cliente) return;
-    const tareas = DATA.projects.filter(p => p.cliente === plan.cliente && p.tipo !== 'accion');
+    const tareas = DATA.projects.filter(p2 => p2.cliente === plan.cliente && p2.tipo !== 'accion');
     const estHecho = tareas.filter(t => (states[t.id] || t.estado) === '✅').reduce((s,t) => s+(t.horas||0), 0);
-    const estPend = tareas.filter(t => (states[t.id] || t.estado) !== '✅').reduce((s,t) => s+(t.horas||0), 0);
-    const realDed = registros.filter(r => r.cliente === plan.cliente).reduce((s,r) => s+(r.horas||0), 0);
+    const estPend  = tareas.filter(t => (states[t.id] || t.estado) !== '✅').reduce((s,t) => s+(t.horas||0), 0);
+    const realDed  = realesPorCliente[plan.cliente] || 0;
+    totPlan += plan.total; totReal += realDed;
 
-    // Semáforo: comparar horas reales vs ritmo esperado
     let semaforo = '⚪';
     if (realDed > 0 && plan.total > 0) {
-      const ratio = realDed / plan.total;
-      if (estHecho === 0) semaforo = '🔴';
-      else if (ratio >= 0.8) semaforo = '🟢';
-      else if (ratio >= 0.5) semaforo = '🟡';
-      else semaforo = '🔴';
-    }
+      semaforo = estHecho === 0 ? '🔴' : realDed / plan.total >= 0.5 ? '🟢' : '🟡';
+    } else if (realDed > 0) semaforo = '🟢';
+    else if (plan.total > 0) semaforo = '🔴';
 
     html += `<div class="ritmo-row">
       <div style="display:flex;align-items:center;gap:8px;">
@@ -696,20 +722,38 @@ function renderRitmo() {
       <div style="font-size:12px;text-align:right;color:#666;">${plan.total}h</div>
       <div style="font-size:12px;text-align:right;color:#3B6D11;">${estHecho}h</div>
       <div style="font-size:12px;text-align:right;color:#854F0B;">${estPend}h</div>
-      <div style="font-size:12px;text-align:right;color:#185FA5;">${realDed}h</div>
+      <div style="font-size:12px;text-align:right;color:#185FA5;">${Math.round(realDed*10)/10}h</div>
       <div class="semaforo">${semaforo}</div>
     </div>`;
   });
 
+  // Clientes con horas reales pero sin plan
+  Object.keys(realesPorCliente).forEach(clienteId => {
+    if (clienteId === 'nuvirta' || clienteId === 'aar') return; // ya están en Nuvirta+AAR
+    if (planes.find(p => p.cliente === clienteId)) return; // ya aparece arriba
+    const cliente = DATA.clientes.find(c => c.id === clienteId);
+    if (!cliente) return;
+    const realDed = realesPorCliente[clienteId];
+    totReal += realDed;
+    html += `<div class="ritmo-row" style="opacity:0.7;">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div class="dot" style="background:${cliente.color};width:8px;height:8px;"></div>
+        <span style="font-size:12px;font-weight:500;">${cliente.nombre}</span>
+      </div>
+      <div style="font-size:12px;text-align:right;color:#ccc;">—</div>
+      <div style="font-size:12px;text-align:right;color:#3B6D11;">—</div>
+      <div style="font-size:12px;text-align:right;color:#854F0B;">—</div>
+      <div style="font-size:12px;text-align:right;color:#185FA5;">${Math.round(realDed*10)/10}h</div>
+      <div class="semaforo">⚪</div>
+    </div>`;
+  });
+
   // Total
-  const totalPlan = clientesConPlan.reduce((s,p) => s+p.total, 0);
-  const totalReal = registros.reduce((s,r) => s+(r.horas||0), 0);
-  html += `<div class="ritmo-row" style="background:#f8f8f6;font-weight:500;">
+  html += `<div class="ritmo-row" style="background:#f8f8f6;font-weight:500;border-top:1px solid rgba(0,0,0,0.1);">
     <div style="font-size:12px;">Total</div>
-    <div style="font-size:12px;text-align:right;">${totalPlan}h</div>
-    <div style="font-size:12px;text-align:right;"></div>
-    <div style="font-size:12px;text-align:right;"></div>
-    <div style="font-size:12px;text-align:right;color:#185FA5;">${totalReal}h</div>
+    <div style="font-size:12px;text-align:right;">${totPlan}h</div>
+    <div></div><div></div>
+    <div style="font-size:12px;text-align:right;color:#185FA5;">${Math.round(totReal*10)/10}h</div>
     <div></div>
   </div>`;
 
