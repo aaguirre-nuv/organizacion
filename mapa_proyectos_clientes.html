@@ -100,8 +100,8 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
 .plan-mes { font-size: 11px; color: #aaa; }
 .plan-horas { font-size: 12px; color: #666; text-align: right; }
 .plan-total { font-size: 12px; font-weight: 500; color: #1a1a1a; text-align: right; }
-.ritmo-row { display: grid; grid-template-columns: 140px 70px 70px 70px 70px 60px; gap: 8px; padding: 9px 14px; border-top: 0.5px solid rgba(0,0,0,0.05); align-items: center; font-size: 12px; }
-.ritmo-hrow { display: grid; grid-template-columns: 140px 70px 70px 70px 70px 60px; gap: 8px; padding: 5px 14px; background: #f8f8f6; }
+.ritmo-row { display: grid; grid-template-columns: 160px 80px 80px 80px 60px; gap: 8px; padding: 9px 14px; border-top: 0.5px solid rgba(0,0,0,0.05); align-items: center; font-size: 12px; }
+.ritmo-hrow { display: grid; grid-template-columns: 160px 80px 80px 80px 60px; gap: 8px; padding: 5px 14px; background: #f8f8f6; }
 .ritmo-hrow span { font-size: 11px; color: #bbb; text-transform: uppercase; letter-spacing: 0.05em; }
 .semaforo { font-size: 16px; text-align: center; }
 .mes-pills { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 6px; }
@@ -164,7 +164,7 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
   <div class="section" id="tab-ritmo">
     <div style="font-size:11px;color:#aaa;margin-bottom:12px;">Seguimiento de ritmo por cliente — horas planificadas vs estimadas vs reales. Álvaro pasa horas reales cada semana.</div>
     <div style="background:#fff;border:0.5px solid rgba(0,0,0,0.12);border-radius:12px;overflow:hidden;">
-      <div class="ritmo-hrow"><span>cliente</span><span>plan total</span><span>est. hecho</span><span>est. pend.</span><span>real ded.</span><span>ritmo</span></div>
+      <div class="ritmo-hrow"><span>cliente</span><span>plan total</span><span>esperado</span><span>real ded.</span><span>ritmo</span></div>
       <div id="ritmo-content"><div class="loading">Cargando...</div></div>
     </div>
   </div>
@@ -669,32 +669,83 @@ function renderRitmo() {
   let html = '';
 
   const planes = DATA.planificacion || [];
+  const semanasPorMes = { may:3, jun:4, jul:4, ago:0, sep:4, oct:4, nov:4, dic:3 };
 
-  // Calcular horas reales por cliente (sumando todas las semanas)
+  // Calcular horas reales acumuladas por cliente
   const realesPorCliente = {};
   registros.forEach(r => {
     realesPorCliente[r.cliente] = (realesPorCliente[r.cliente] || 0) + r.horas;
   });
 
-  let totPlan = 0, totReal = 0;
+  // Calcular semanas registradas por mes
+  const semanasPorMesRegistradas = {};
+  const semanasUnicas = {};
+  registros.forEach(r => {
+    const d = new Date(r.semana + 'T12:00:00');
+    const mes = ['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'][d.getMonth()];
+    const mesKey = ['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'].indexOf(mes) === -1
+      ? null
+      : ['may','jun','jul','ago','sep','oct','nov','dic'][d.getMonth() - 4];
+    if (!mesKey) return;
+    if (!semanasUnicas[mesKey]) semanasUnicas[mesKey] = new Set();
+    semanasUnicas[mesKey].add(r.semana);
+  });
+  Object.keys(semanasUnicas).forEach(m => {
+    semanasPorMesRegistradas[m] = semanasUnicas[m].size;
+  });
 
-  // Fila Nuvirta+AAR combinada
+  // Calcular horas esperadas a la fecha por cliente
+  const esperadoPorCliente = {};
+  planes.forEach(plan => {
+    if (plan.cliente === 'nuvirta_aar') {
+      // Para nuvirta+aar calculamos combinado
+      let esperado = 0;
+      Object.keys(semanasPorMesRegistradas).forEach(mes => {
+        const semsRegistradas = semanasPorMesRegistradas[mes];
+        const semsTotales = semanasPorMes[mes] || 1;
+        const hPlan = plan[mes] || 0;
+        esperado += hPlan * (semsRegistradas / semsTotales);
+      });
+      esperadoPorCliente['nuvirta_aar'] = Math.round(esperado * 10) / 10;
+      return;
+    }
+    let esperado = 0;
+    Object.keys(semanasPorMesRegistradas).forEach(mes => {
+      const semsRegistradas = semanasPorMesRegistradas[mes];
+      const semsTotales = semanasPorMes[mes] || 1;
+      const hPlan = plan[mes] || 0;
+      esperado += hPlan * (semsRegistradas / semsTotales);
+    });
+    esperadoPorCliente[plan.cliente] = Math.round(esperado * 10) / 10;
+  });
+
+  const getSemaforo = (real, esperado) => {
+    if (esperado === 0 && real === 0) return '⚪';
+    if (esperado === 0) return '🟢';
+    const ratio = real / esperado;
+    if (ratio >= 0.85) return '🟢';
+    if (ratio >= 0.5)  return '🟡';
+    return '🔴';
+  };
+
+  let totPlan = 0, totReal = 0, totEsperado = 0;
+
+  // Fila Nuvirta+AAR
   const planNuv = planes.find(p => p.cliente === 'nuvirta_aar');
   const realNuv = (realesPorCliente['nuvirta'] || 0) + (realesPorCliente['aar'] || 0);
+  const espNuv  = esperadoPorCliente['nuvirta_aar'] || 0;
   if (planNuv || realNuv > 0) {
     const planTotal = planNuv ? planNuv.total : 0;
-    totPlan += planTotal; totReal += realNuv;
-    const semaforo = realNuv === 0 ? '⚪' : realNuv / Math.max(planTotal,1) >= 0.5 ? '🟢' : '🟡';
+    totPlan += planTotal; totReal += realNuv; totEsperado += espNuv;
     html += `<div class="ritmo-row" style="background:#f8f8f8;">
       <div style="display:flex;align-items:center;gap:8px;">
         <div style="width:8px;height:8px;border-radius:50%;background:#1D9E75;flex-shrink:0;"></div>
         <span style="font-size:12px;font-weight:500;color:#666;">Nuvirta + AAR</span>
       </div>
       <div style="font-size:12px;text-align:right;color:#666;">${planTotal}h</div>
-      <div style="font-size:12px;text-align:right;color:#3B6D11;">—</div>
-      <div style="font-size:12px;text-align:right;color:#854F0B;">—</div>
+      <div style="font-size:12px;text-align:right;color:#aaa;">${espNuv}h</div>
       <div style="font-size:12px;text-align:right;color:#185FA5;">${Math.round(realNuv*10)/10}h</div>
-      <div class="semaforo">${semaforo}</div>
+      <div class="semaforo">${getSemaforo(realNuv, espNuv)}</div>
     </div>`;
   }
 
@@ -702,17 +753,9 @@ function renderRitmo() {
   planes.filter(p => p.cliente !== 'nuvirta_aar').forEach(plan => {
     const cliente = DATA.clientes.find(c => c.id === plan.cliente);
     if (!cliente) return;
-    const tareas = DATA.projects.filter(p2 => p2.cliente === plan.cliente && p2.tipo !== 'accion');
-    const estHecho = tareas.filter(t => (states[t.id] || t.estado) === '✅').reduce((s,t) => s+(t.horas||0), 0);
-    const estPend  = tareas.filter(t => (states[t.id] || t.estado) !== '✅').reduce((s,t) => s+(t.horas||0), 0);
     const realDed  = realesPorCliente[plan.cliente] || 0;
-    totPlan += plan.total; totReal += realDed;
-
-    let semaforo = '⚪';
-    if (realDed > 0 && plan.total > 0) {
-      semaforo = estHecho === 0 ? '🔴' : realDed / plan.total >= 0.5 ? '🟢' : '🟡';
-    } else if (realDed > 0) semaforo = '🟢';
-    else if (plan.total > 0) semaforo = '🔴';
+    const esperado = esperadoPorCliente[plan.cliente] || 0;
+    totPlan += plan.total; totReal += realDed; totEsperado += esperado;
 
     html += `<div class="ritmo-row">
       <div style="display:flex;align-items:center;gap:8px;">
@@ -720,17 +763,16 @@ function renderRitmo() {
         <span style="font-size:12px;font-weight:500;">${cliente.nombre}</span>
       </div>
       <div style="font-size:12px;text-align:right;color:#666;">${plan.total}h</div>
-      <div style="font-size:12px;text-align:right;color:#3B6D11;">${estHecho}h</div>
-      <div style="font-size:12px;text-align:right;color:#854F0B;">${estPend}h</div>
+      <div style="font-size:12px;text-align:right;color:#aaa;">${esperado}h</div>
       <div style="font-size:12px;text-align:right;color:#185FA5;">${Math.round(realDed*10)/10}h</div>
-      <div class="semaforo">${semaforo}</div>
+      <div class="semaforo">${getSemaforo(realDed, esperado)}</div>
     </div>`;
   });
 
-  // Clientes con horas reales pero sin plan
+  // Clientes con horas reales sin plan
   Object.keys(realesPorCliente).forEach(clienteId => {
-    if (clienteId === 'nuvirta' || clienteId === 'aar') return; // ya están en Nuvirta+AAR
-    if (planes.find(p => p.cliente === clienteId)) return; // ya aparece arriba
+    if (clienteId === 'nuvirta' || clienteId === 'aar') return;
+    if (planes.find(p => p.cliente === clienteId)) return;
     const cliente = DATA.clientes.find(c => c.id === clienteId);
     if (!cliente) return;
     const realDed = realesPorCliente[clienteId];
@@ -741,8 +783,7 @@ function renderRitmo() {
         <span style="font-size:12px;font-weight:500;">${cliente.nombre}</span>
       </div>
       <div style="font-size:12px;text-align:right;color:#ccc;">—</div>
-      <div style="font-size:12px;text-align:right;color:#3B6D11;">—</div>
-      <div style="font-size:12px;text-align:right;color:#854F0B;">—</div>
+      <div style="font-size:12px;text-align:right;color:#ccc;">—</div>
       <div style="font-size:12px;text-align:right;color:#185FA5;">${Math.round(realDed*10)/10}h</div>
       <div class="semaforo">⚪</div>
     </div>`;
@@ -752,9 +793,14 @@ function renderRitmo() {
   html += `<div class="ritmo-row" style="background:#f8f8f6;font-weight:500;border-top:1px solid rgba(0,0,0,0.1);">
     <div style="font-size:12px;">Total</div>
     <div style="font-size:12px;text-align:right;">${totPlan}h</div>
-    <div></div><div></div>
+    <div style="font-size:12px;text-align:right;color:#aaa;">${Math.round(totEsperado*10)/10}h</div>
     <div style="font-size:12px;text-align:right;color:#185FA5;">${Math.round(totReal*10)/10}h</div>
     <div></div>
+  </div>`;
+
+  // Leyenda semáforo
+  html += `<div style="padding:8px 14px;font-size:11px;color:#aaa;border-top:0.5px solid rgba(0,0,0,0.06);">
+    🟢 ≥85% de lo esperado · 🟡 50-84% · 🔴 &lt;50% · esperado = horas plan proporcional a semanas completadas
   </div>`;
 
   cont.innerHTML = html;
