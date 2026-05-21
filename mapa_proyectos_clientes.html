@@ -128,6 +128,7 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
     <div class="tab" onclick="showTab('pendientes',this)">Pendientes</div>
     <div class="tab" onclick="showTab('proximas',this)">Próximas</div>
     <div class="tab" onclick="showTab('semanas',this)">Semanas</div>
+    <div class="tab" onclick="showTab('plantilla',this)">Plantilla</div>
     <div class="tab" onclick="showTab('calendario',this)">Calendario</div>
     <div class="tab" onclick="showTab('plan',this)">Plan</div>
     <div class="tab" onclick="showTab('proyectos',this)">Proyectos</div>
@@ -166,6 +167,15 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
     <div style="background:#fff;border:0.5px solid rgba(0,0,0,0.12);border-radius:12px;overflow:hidden;">
       <div class="ritmo-hrow"><span>cliente</span><span>plan total</span><span>esperado</span><span>real ded.</span><span>ritmo</span></div>
       <div id="ritmo-content"><div class="loading">Cargando...</div></div>
+    </div>
+  </div>
+
+  <!-- PLANTILLA -->
+  <div class="section" id="tab-plantilla">
+    <div style="font-size:11px;color:#aaa;margin-bottom:12px;">Distribución tipo semanal — referencia para organizar la semana de trabajo.</div>
+    <div class="cal-wrap">
+      <div id="plantilla-header" style="display:flex;width:100%;margin-bottom:2px;"></div>
+      <div id="plantilla-grid"></div>
     </div>
   </div>
 
@@ -361,6 +371,7 @@ async function init() {
   renderLogros();
   renderPendientesAuto();
   renderProximas();
+  renderPlantilla();
 }
 
 async function saveBin() {
@@ -950,6 +961,59 @@ function unmarkLogro(id) {
 }
 
 // ============================================================
+// PLANTILLA SEMANAL
+// ============================================================
+function renderPlantilla() {
+  const headerEl = document.getElementById('plantilla-header');
+  const gridEl   = document.getElementById('plantilla-grid');
+  if (!headerEl || !gridEl || !DATA || !DATA.plantilla) return;
+
+  const dias = ['Lunes','Martes','Miércoles','Jueves','Viernes'];
+  const horas = CAL_FIN - CAL_INICIO;
+  const alturaTotal = horas * CAL_H_PX;
+
+  // Header
+  let header = `<div style="width:50px;flex-shrink:0;"></div>`;
+  dias.forEach(d => {
+    header += `<div class="cal-hdcell" style="flex:1;">${d}</div>`;
+  });
+  headerEl.style.cssText = 'display:flex;width:100%;margin-bottom:2px;';
+  headerEl.innerHTML = header;
+
+  // Columna horas
+  let horasHtml = `<div style="width:50px;flex-shrink:0;position:relative;height:${alturaTotal}px;border-right:0.5px solid rgba(0,0,0,0.08);">`;
+  for (let h = 0; h < horas; h++) {
+    horasHtml += `<div style="position:absolute;top:${h*CAL_H_PX-7}px;right:6px;font-size:10px;color:#bbb;white-space:nowrap;">${String(CAL_INICIO+h).padStart(2,'0')}:00</div>`;
+    horasHtml += `<div style="position:absolute;top:${h*CAL_H_PX}px;left:0;right:0;border-top:0.5px solid rgba(0,0,0,0.07);"></div>`;
+  }
+  horasHtml += '</div>';
+
+  // Columnas
+  let colsHtml = '';
+  for (let d = 0; d < 5; d++) {
+    let col = `<div style="flex:1;min-width:0;position:relative;height:${alturaTotal}px;border-left:0.5px solid rgba(0,0,0,0.07);background:#fff;">`;
+
+    for (let h = 0; h < horas; h++) {
+      col += `<div style="position:absolute;top:${h*CAL_H_PX}px;left:0;right:0;border-top:0.5px solid rgba(0,0,0,0.07);pointer-events:none;"></div>`;
+      col += `<div style="position:absolute;top:${h*CAL_H_PX+CAL_H_PX/2}px;left:0;right:0;border-top:0.5px dashed rgba(0,0,0,0.04);pointer-events:none;"></div>`;
+    }
+
+    DATA.plantilla.filter(b => b.dia === d).forEach(b => {
+      const top = (b.h - CAL_INICIO) * CAL_H_PX + (b.m / 60) * CAL_H_PX;
+      const height = Math.max((b.dur / 60) * CAL_H_PX - 2, 14);
+      col += `<div style="position:absolute;top:${top}px;height:${height}px;left:2px;right:2px;border-radius:5px;padding:2px 5px;background:${b.color};color:${b.text};overflow:hidden;">
+        <div style="font-size:11px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.3;">${b.tipo}</div>
+      </div>`;
+    });
+
+    col += '</div>';
+    colsHtml += col;
+  }
+
+  gridEl.innerHTML = `<div style="display:flex;width:100%;">${horasHtml}${colsHtml}</div>`;
+}
+
+// ============================================================
 // CALENDARIO SEMANAL
 // ============================================================
 const CAL_INICIO = 8;   // hora inicio
@@ -1095,16 +1159,6 @@ function renderCal() {
       col += `<div style="position:absolute;top:${h*CAL_H_PX}px;left:0;right:0;border-top:0.5px solid rgba(0,0,0,0.07);pointer-events:none;"></div>`;
       col += `<div style="position:absolute;top:${h*CAL_H_PX + CAL_H_PX/2}px;left:0;right:0;border-top:0.5px dashed rgba(0,0,0,0.04);pointer-events:none;"></div>`;
     }
-
-    // Bloques de plantilla (fondo, z-index 0)
-    const plantilla = (DATA && DATA.plantilla) ? DATA.plantilla.filter(b => b.dia === d) : [];
-    plantilla.forEach(b => {
-      const top = (b.h - CAL_INICIO) * CAL_H_PX + (b.m / 60) * CAL_H_PX;
-      const height = Math.max((b.dur / 60) * CAL_H_PX - 1, 14);
-      col += `<div style="position:absolute;top:${top}px;height:${height}px;left:1px;right:1px;border-radius:4px;padding:2px 4px;background:${b.color};color:${b.text};overflow:hidden;z-index:0;opacity:0.5;">
-        <div style="font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${b.tipo}</div>
-      </div>`;
-    });
 
     // Bloques fijos y de semana
     bloquesXdia[d].forEach(b => {
