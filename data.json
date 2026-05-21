@@ -223,6 +223,18 @@
     { "id": "GEN-058", "cliente": "articulo14", "tipo": "accion", "tarea": "Incidencia artículos publicados — problema web", "fecha": "2026-05-12", "estado": "⚪", "horas": 3, "fechaHecho": null },
     { "id": "GEN-059", "cliente": "central", "tipo": "accion", "tarea": "Consultar saldos Banco Santander a 31/12/2025 — enviar a JMR", "fecha": "2026-05-15", "estado": "⚪", "horas": 1, "fechaHecho": null },
     { "id": "GEN-060", "cliente": "aar", "tipo": "accion", "tarea": "Recuperar certificado de empadronamiento", "fecha": "2026-05-20", "estado": "⚪", "horas": 1, "fechaHecho": null },
-    { "id": "GEN-061", "cliente": "aar", "tipo": "accion", "tarea": "📅 Cita renovación DNI — 9 de junio a las 9:00", "fecha": "2026-06-09", "estado": "⚪", "horas": 2, "fechaHecho": null }
+    { "id": "GEN-061", "cliente": "aar", "tipo": "accion", "tarea": "📅 Cita renovación DNI — 9 de junio a las 9:00", "fecha": "2026-06-09", "estado": "⚪", "horas": 2, "fechaHecho": null },
+
+    { "id": "GEN-062", "cliente": "atitlan",    "tipo": "accion", "tarea": "Avanzar CRM Atitlán", "fecha": "2026-05-21", "tiempo": "mañana", "estado": "⚪", "horas": 3, "fechaHecho": null },
+    { "id": "GEN-063", "cliente": "fisiodrid",  "tipo": "accion", "tarea": "Listas SharePoint para Fisiodrid", "fecha": "2026-05-21", "tiempo": "tarde", "estado": "⚪", "horas": 2, "fechaHecho": null },
+    { "id": "GEN-064", "cliente": "articulo14", "tipo": "accion", "tarea": "Resolver tesorería — flujo Holded", "fecha": "2026-05-21", "tiempo": "tarde", "estado": "⚪", "horas": 2, "fechaHecho": null },
+    { "id": "GEN-065", "cliente": "articulo14", "tipo": "accion", "tarea": "Avanzar solución eventos MKT", "fecha": "2026-05-21", "tiempo": "tarde", "estado": "⚪", "horas": 2, "fechaHecho": null },
+    { "id": "GEN-066", "cliente": "bestmedia",  "tipo": "accion", "tarea": "Nuevo flujo Power Automate — generar fichero Excel para Iciar", "fecha": "2026-05-21", "tiempo": "tarde", "estado": "⚪", "horas": 2, "fechaHecho": null },
+
+    { "id": "GEN-067", "cliente": "velasco",    "tipo": "accion", "tarea": "Preparar propuesta de colaboración Velasco", "fecha": "2026-05-22", "tiempo": "mañana", "estado": "⚪", "horas": 2, "fechaHecho": null },
+    { "id": "GEN-068", "cliente": "atitlan",    "tipo": "accion", "tarea": "Avanzar CRM Atitlán", "fecha": "2026-05-22", "tiempo": "mañana", "estado": "⚪", "horas": 3, "fechaHecho": null },
+    { "id": "GEN-069", "cliente": "fisiodrid",  "tipo": "accion", "tarea": "Flujos Power Automate Fisiodrid", "fecha": "2026-05-22", "tiempo": "tarde", "estado": "⚪", "horas": 2, "fechaHecho": null },
+    { "id": "GEN-070", "cliente": "articulo14", "tipo": "accion", "tarea": "Revisar solución eventos MKT", "fecha": "2026-05-22", "tiempo": "tarde", "estado": "⚪", "horas": 2, "fechaHecho": null },
+    { "id": "GEN-071", "cliente": "aar",        "tipo": "accion", "tarea": "Planificar semana siguiente", "fecha": "2026-05-22", "tiempo": "tarde", "estado": "⚪", "horas": 1, "fechaHecho": null }
   ]
 }
