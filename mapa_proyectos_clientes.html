@@ -1096,7 +1096,17 @@ function renderCal() {
       col += `<div style="position:absolute;top:${h*CAL_H_PX + CAL_H_PX/2}px;left:0;right:0;border-top:0.5px dashed rgba(0,0,0,0.04);pointer-events:none;"></div>`;
     }
 
-    // Bloques
+    // Bloques de plantilla (fondo, z-index 0)
+    const plantilla = (DATA && DATA.plantilla) ? DATA.plantilla.filter(b => b.dia === d) : [];
+    plantilla.forEach(b => {
+      const top = (b.h - CAL_INICIO) * CAL_H_PX + (b.m / 60) * CAL_H_PX;
+      const height = Math.max((b.dur / 60) * CAL_H_PX - 1, 14);
+      col += `<div style="position:absolute;top:${top}px;height:${height}px;left:1px;right:1px;border-radius:4px;padding:2px 4px;background:${b.color};color:${b.text};overflow:hidden;z-index:0;opacity:0.5;">
+        <div style="font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${b.tipo}</div>
+      </div>`;
+    });
+
+    // Bloques fijos y de semana
     bloquesXdia[d].forEach(b => {
       const top = (b.h - CAL_INICIO) * CAL_H_PX + (b.m / 60) * CAL_H_PX;
       const height = Math.max((b.dur / 60) * CAL_H_PX - 2, 14);
