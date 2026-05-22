@@ -977,8 +977,8 @@ function renderPlantilla() {
   // Resumen de horas por categoría — ARRIBA
   const categorias = {
     'Trabajo':   { tipos: ['Desarrollo','Mant','Admin','Plan'], color: '#BFDBFE', text: '#1E40AF' },
-    'Formación': { tipos: ['Hive','IA / Vibe'], color: '#FED7AA', text: '#9A3412' },
-    'Físico':    { tipos: ['Pilates','Ejercicios','Golf'], color: '#A7F3D0', text: '#065F46' },
+    'Formación': { tipos: ['Hive','IA / Vibe'], color: '#FDE68A', text: '#92400E' },
+    'Físico':    { tipos: ['Pilates','Ejercicios','Golf'], color: '#BBF7D0', text: '#14532D' },
     'Personal':  { tipos: ['Mamá','Osteópata','Comida'], color: '#FBCFE8', text: '#9D174D' }
   };
 
@@ -999,13 +999,12 @@ function renderPlantilla() {
   });
   resumen += `</div>`;
 
-  // Header días
+  // Header días — se pinta dentro de gridEl después del resumen
   let headerHtml = `<div style="width:50px;flex-shrink:0;"></div>`;
   dias.forEach(d => {
     headerHtml += `<div class="cal-hdcell" style="flex:1;font-size:13px;font-weight:600;">${d}</div>`;
   });
-  headerEl.style.cssText = 'display:flex;width:100%;margin-bottom:2px;';
-  headerEl.innerHTML = headerHtml;
+  headerEl.innerHTML = '';
 
   // Columna horas
   let horasHtml = `<div style="width:50px;flex-shrink:0;position:relative;height:${alturaTotal}px;border-right:0.5px solid rgba(0,0,0,0.08);">`;
@@ -1037,6 +1036,7 @@ function renderPlantilla() {
   }
 
   gridEl.innerHTML = resumen +
+    `<div style="display:flex;width:100%;margin-bottom:2px;">${headerHtml}</div>` +
     `<div style="display:flex;width:100%;">${horasHtml}${colsHtml}</div>`;
 }
 
