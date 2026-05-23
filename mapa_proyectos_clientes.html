@@ -308,10 +308,11 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
 // ============================================================
 // CONFIG
 // ============================================================
-const DATA_URL  = 'https://raw.githubusercontent.com/aaguirre-nuv/organizacion/main/data.json';
-const BIN_ID    = '69e32a6aaaba88219710600a';
-const BIN_KEY   = '$2a$10$2Y9gS7sOIARKbtHusrv.B.gSVjDbAB.ggWQ4GqafsJc24MRrjodrG';
-const BIN_URL   = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
+const DATA_BIN_ID = '6a115cec6877513b27bbd958';
+const BIN_ID      = '69e32a6aaaba88219710600a';
+const BIN_KEY     = '$2a$10$2Y9gS7sOIARKbtHusrv.B.gSVjDbAB.ggWQ4GqafsJc24MRrjodrG';
+const DATA_URL    = `https://api.jsonbin.io/v3/b/${DATA_BIN_ID}/latest`;
+const BIN_URL     = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
 
 // PLAN legacy — solo para footers/avisos mientras se migran al data.json
 const PLAN = [];
@@ -346,9 +347,10 @@ async function init() {
   };
   try {
     log('Cargando data.json...');
-    const dataRes = await fetch(DATA_URL + '?t=' + Date.now());
-    if (!dataRes.ok) throw new Error('data.json error: ' + dataRes.status);
-    DATA = await dataRes.json();
+    const dataRes = await fetch(DATA_URL, { headers: { 'X-Master-Key': BIN_KEY, 'X-Bin-Meta': 'false' } });
+    if (!dataRes.ok) throw new Error('data error: ' + dataRes.status);
+    const dataRaw = await dataRes.json();
+    DATA = dataRaw.record || dataRaw;
     log('data.json OK ✓ Cargando jsonbin...');
     const binRes = await fetch(BIN_URL + '/latest', { headers: { 'X-Master-Key': BIN_KEY, 'X-Bin-Meta': 'false' } });
     if (!binRes.ok) throw new Error('jsonbin error: ' + binRes.status);
@@ -372,6 +374,16 @@ async function init() {
   renderPendientesAuto();
   renderProximas();
   renderPlantilla();
+}
+
+async function saveData() {
+  try {
+    await fetch(`https://api.jsonbin.io/v3/b/${DATA_BIN_ID}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json', 'X-Master-Key': BIN_KEY },
+      body: JSON.stringify(DATA)
+    });
+  } catch(e) { console.warn('Error guardando data:', e); }
 }
 
 async function saveBin() {
