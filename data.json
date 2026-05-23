@@ -306,6 +306,20 @@
     { "id": "GEN-073", "cliente": "atitlan",    "tipo": "accion", "tarea": "Reunión Atitlán", "fecha": "2026-05-28", "tiempo": "10:00h", "estado": "⚪", "horas": 1, "fechaHecho": null },
     { "id": "GEN-074", "cliente": "articulo14", "tipo": "accion", "tarea": "Comida con Queco y Miguel Ángel", "fecha": "2026-05-27", "tiempo": "mediodía", "estado": "⚪", "horas": 2, "fechaHecho": null },
     { "id": "GEN-075", "cliente": "articulo14", "tipo": "accion", "tarea": "Inauguración sede Artículo 14", "fecha": "2026-05-27", "tiempo": "20:00h", "estado": "⚪", "horas": 1, "fechaHecho": null },
-    { "id": "GEN-076", "cliente": "aar",        "tipo": "accion", "tarea": "Revisión Dr. Rubio — confirmar/cancelar cita", "fecha": "2026-05-27", "tiempo": "12:00h", "estado": "⚪", "horas": 1, "fechaHecho": null }
+    { "id": "GEN-076", "cliente": "aar",        "tipo": "accion", "tarea": "Revisión Dr. Rubio — confirmar/cancelar cita", "fecha": "2026-05-27", "tiempo": "12:00h", "estado": "⚪", "horas": 1, "fechaHecho": null },
+
+    { "id": "GEN-077", "cliente": "atitlan",    "tipo": "accion", "tarea": "Validar funcionamiento completo Atgro con correo general", "fecha": "2026-05-23", "tiempo": null, "estado": "⚪", "horas": 2, "fechaHecho": null },
+    { "id": "GEN-078", "cliente": "atitlan",    "tipo": "accion", "tarea": "Validar flujo Capital Call línea individual — proceso aprobación", "fecha": "2026-05-23", "tiempo": null, "estado": "⚪", "horas": 1, "fechaHecho": null },
+    { "id": "GEN-079", "cliente": "atitlan",    "tipo": "accion", "tarea": "Validar variables de entorno en todos los procesos de notificación", "fecha": "2026-05-23", "tiempo": null, "estado": "⚪", "horas": 1, "fechaHecho": null },
+    { "id": "GEN-080", "cliente": "bestmedia",  "tipo": "accion", "tarea": "Resolver bug — trabajos que no recogen presupuestos", "fecha": "2026-05-23", "tiempo": null, "estado": "⚪", "horas": 2, "fechaHecho": null },
+    { "id": "GEN-081", "cliente": "aar",        "tipo": "accion", "tarea": "Recuperar certificado de empadronamiento Madrid", "fecha": "2026-05-23", "tiempo": null, "estado": "⚪", "horas": 1, "fechaHecho": null },
+    { "id": "GEN-082", "cliente": "aar",        "tipo": "accion", "tarea": "Obtener certificado digital nuevo — FNMT", "fecha": "2026-05-23", "tiempo": null, "estado": "⚪", "horas": 1, "fechaHecho": null },
+    { "id": "GEN-083", "cliente": "aar",        "tipo": "accion", "tarea": "Activar aplicación tarjeta sanitaria Madrid", "fecha": "2026-05-23", "tiempo": null, "estado": "⚪", "horas": 0.5, "fechaHecho": null },
+
+    { "id": "GEN-084", "cliente": "fisiodrid",  "tipo": "accion", "tarea": "Empezar a montar listas SharePoint", "fecha": "2026-05-24", "tiempo": null, "estado": "⚪", "horas": 2, "fechaHecho": null },
+    { "id": "GEN-085", "cliente": "velasco",    "tipo": "accion", "tarea": "Preparar propuesta de colaboración Velasco", "fecha": "2026-05-24", "tiempo": null, "estado": "⚪", "horas": 2, "fechaHecho": null },
+    { "id": "GEN-086", "cliente": "velasco",    "tipo": "accion", "tarea": "Migración documentos subidos en las últimas 2 semanas", "fecha": "2026-05-24", "tiempo": null, "estado": "⚪", "horas": 2, "fechaHecho": null },
+    { "id": "GEN-087", "cliente": "articulo14", "tipo": "accion", "tarea": "Seleccionar eventos y definir proceso carga + asignación contactos", "fecha": "2026-05-24", "tiempo": null, "estado": "⚪", "horas": 2, "fechaHecho": null },
+    { "id": "GEN-088", "cliente": "larazon",    "tipo": "accion", "tarea": "Revisar lo que han mandado y ver cómo afecta al proceso", "fecha": "2026-05-24", "tiempo": null, "estado": "⚪", "horas": 1, "fechaHecho": null }
   ]
 }
