@@ -542,11 +542,12 @@ function renderPendientesAuto() {
     const clienteData = DATA.clientes.find(c => c.id === t.cliente);
     const color = clienteData ? clienteData.color : '#888';
     const nombre = clienteData ? clienteData.nombre : t.cliente;
-    rows += `<div class="pend-row">
+    const estadoActual = states[t.id] || t.estado || '⚪';
+    rows += `<div class="pend-row" style="${estadoActual === '🔵' ? 'background:#F0F4FF;' : ''}">
       <div class="pend-fecha">${label}</div>
       <div><span class="pend-cliente" style="background:${color}22;color:${color};">${nombre}</span></div>
       <div class="pend-tarea">${t.tarea}</div>
-      <div class="pend-check" onclick="markPendDone('${t.id}',this)">⚪</div>
+      <div class="pend-check" onclick="markPendDone('${t.id}',this)">${estadoActual}</div>
     </div>`;
   });
   cont.innerHTML = rows;
@@ -559,7 +560,6 @@ function markPendDone(id, el) {
   const idx = estados.indexOf(current);
   const next = estados[(idx + 1) % estados.length];
   BIN.states[id] = next;
-  el.textContent = next;
 
   if (next === '✅') {
     const tarea = DATA && DATA.projects ? DATA.projects.find(p => p.id === id) : null;
@@ -570,12 +570,12 @@ function markPendDone(id, el) {
       if (existing >= 0) BIN.completed[existing] = entry;
       else BIN.completed.push(entry);
     }
-    el.closest('.pend-row').style.display = 'none';
     renderLogros();
   } else if (next === '⚪') {
     BIN.completed = (BIN.completed || []).filter(c => c.id !== id);
   }
   saveBin();
+  renderPendientesAuto();
   renderHoy();
 }
 
