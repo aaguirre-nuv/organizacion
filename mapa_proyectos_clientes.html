@@ -122,7 +122,7 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
 </head>
 <body>
 <div class="container">
-  <h1>Planificación Álvaro — Nuvirta</h1>
+  <h1>Planificación Álvaro — Nuvirta <span id="data-source" style="font-size:11px;font-weight:400;color:#aaa;margin-left:8px;vertical-align:middle;"></span></h1>
   <div class="tabs">
     <div class="tab active" onclick="showTab('hoy',this)">Hoy</div>
     <div class="tab" onclick="showTab('pendientes',this)">Pendientes</div>
@@ -355,6 +355,8 @@ async function init() {
         const dataRaw = await dataRes.json();
         DATA = dataRaw.record || dataRaw;
         dataLoaded = true;
+        const el = document.getElementById('data-source');
+        if (el) el.innerHTML = '🟢 jsonbin';
       }
     } catch(e) { console.warn('jsonbin data falló, intentando GitHub...', e); }
 
@@ -363,6 +365,8 @@ async function init() {
       const ghRes = await fetch('https://raw.githubusercontent.com/aaguirre-nuv/organizacion/main/data.json?t=' + Date.now());
       if (!ghRes.ok) throw new Error('GitHub también falló: ' + ghRes.status);
       DATA = await ghRes.json();
+      const el = document.getElementById('data-source');
+      if (el) el.innerHTML = '🟡 GitHub (jsonbin caído)';
     }
 
     // Cargar estados desde jsonbin
