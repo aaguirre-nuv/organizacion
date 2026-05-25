@@ -369,11 +369,19 @@ async function init() {
       if (el) el.innerHTML = '🟡 GitHub (jsonbin caído)';
     }
 
-    // Cargar estados desde jsonbin
-    const binRes = await fetch(BIN_URL + '/latest', { headers: { 'X-Master-Key': BIN_KEY, 'X-Bin-Meta': 'false' } });
-    if (!binRes.ok) throw new Error('jsonbin estados error: ' + binRes.status);
-    const binRaw = await binRes.json();
-    BIN = binRaw.record || binRaw;
+    // Cargar estados desde jsonbin — si falla, usar vacío
+    try {
+      const binRes = await fetch(BIN_URL + '/latest', { headers: { 'X-Master-Key': BIN_KEY, 'X-Bin-Meta': 'false' } });
+      if (binRes.ok) {
+        const binRaw = await binRes.json();
+        BIN = binRaw.record || binRaw;
+      } else {
+        BIN = { states: {}, completed: [], hoyDone: {} };
+      }
+    } catch(e) {
+      console.warn('jsonbin estados no disponible, usando vacío', e);
+      BIN = { states: {}, completed: [], hoyDone: {} };
+    }
     if (!BIN.states) BIN.states = {};
     if (!BIN.completed) BIN.completed = [];
     if (!BIN.hoyDone) BIN.hoyDone = {};
