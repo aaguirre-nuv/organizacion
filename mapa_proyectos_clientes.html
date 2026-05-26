@@ -308,11 +308,14 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
 // ============================================================
 // CONFIG
 // ============================================================
-const DATA_BIN_ID = '6a115cec6877513b27bbd958';
-const BIN_ID      = '69e32a6aaaba88219710600a';
-const BIN_KEY     = '$2a$10$2Y9gS7sOIARKbtHusrv.B.gSVjDbAB.ggWQ4GqafsJc24MRrjodrG';
-const DATA_URL    = `https://api.jsonbin.io/v3/b/${DATA_BIN_ID}/latest`;
-const BIN_URL     = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
+const GH_TOKEN   = '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';
+const GH_REPO    = 'aaguirre-nuv/nuvirta-states';
+const GH_API     = 'https://api.github.com/repos/' + GH_REPO + '/contents/';
+const GH_HEADERS = { 'Authorization': 'token ' + GH_TOKEN, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' };
+
+// SHA cache para poder hacer PUT
+let DATA_SHA = null;
+let BIN_SHA  = null;
 
 // PLAN legacy — solo para footers/avisos mientras se migran al data.json
 const PLAN = [];
@@ -339,7 +342,27 @@ const COLORES = {
 // ESTADO GLOBAL
 // ============================================================
 let DATA = null;      // data.json de GitHub
-let BIN  = null;      // jsonbin
+let BIN  = null;      // states.json (GitHub)
+
+async function ghGet(file) {
+  const res = await fetch(GH_API + file, { headers: GH_HEADERS });
+  if (!res.ok) throw new Error('GitHub GET ' + file + ' failed: ' + res.status);
+  const json = await res.json();
+  const content = JSON.parse(atob(json.content.replace(/\n/g,'')));
+  return { content, sha: json.sha };
+}
+
+async function ghPut(file, content, sha) {
+  const body = JSON.stringify({
+    message: 'update ' + file,
+    content: btoa(unescape(encodeURIComponent(JSON.stringify(content, null, 2)))),
+    sha: sha
+  });
+  const res = await fetch(GH_API + file, { method: 'PUT', headers: GH_HEADERS, body });
+  if (!res.ok) throw new Error('GitHub PUT ' + file + ' failed: ' + res.status);
+  const json = await res.json();
+  return json.content.sha;
+}
 
 async function init() {
   const log = (msg) => {
@@ -347,49 +370,27 @@ async function init() {
   };
   try {
     log('Cargando datos...');
-    // Cargar data — jsonbin primero, GitHub como fallback
-    let dataLoaded = false;
-    try {
-      const dataRes = await fetch(DATA_URL, { headers: { 'X-Master-Key': BIN_KEY, 'X-Bin-Meta': 'false' } });
-      if (dataRes.ok) {
-        const dataRaw = await dataRes.json();
-        DATA = dataRaw.record || dataRaw;
-        dataLoaded = true;
-        const el = document.getElementById('data-source');
-        if (el) el.innerHTML = '🟢 jsonbin';
-      }
-    } catch(e) { console.warn('jsonbin data falló, intentando GitHub...', e); }
+    const dataResult = await ghGet('data.json');
+    DATA = dataResult.content;
+    DATA_SHA = dataResult.sha;
 
-    if (!dataLoaded) {
-      log('Jsonbin no disponible, cargando desde GitHub...');
-      const ghRes = await fetch('https://raw.githubusercontent.com/aaguirre-nuv/organizacion/main/data.json?t=' + Date.now());
-      if (!ghRes.ok) throw new Error('GitHub también falló: ' + ghRes.status);
-      DATA = await ghRes.json();
-      const el = document.getElementById('data-source');
-      if (el) el.innerHTML = '🟡 GitHub (jsonbin caído)';
-    }
+    const binResult = await ghGet('states.json');
+    BIN = binResult.content;
+    BIN_SHA = binResult.sha;
 
-    // Cargar estados desde jsonbin — si falla, usar vacío
-    try {
-      const binRes = await fetch(BIN_URL + '/latest', { headers: { 'X-Master-Key': BIN_KEY, 'X-Bin-Meta': 'false' } });
-      if (binRes.ok) {
-        const binRaw = await binRes.json();
-        BIN = binRaw.record || binRaw;
-      } else {
-        BIN = { states: {}, completed: [], hoyDone: {} };
-      }
-    } catch(e) {
-      console.warn('jsonbin estados no disponible, usando vacío', e);
-      BIN = { states: {}, completed: [], hoyDone: {} };
-    }
     if (!BIN.states) BIN.states = {};
     if (!BIN.completed) BIN.completed = [];
     if (!BIN.hoyDone) BIN.hoyDone = {};
+
+    const el = document.getElementById('data-source');
+    if (el) el.innerHTML = '🟢 GitHub';
   } catch(e) {
     console.warn('Error:', e);
     document.getElementById('hoy-content').innerHTML = `<div style="padding:16px;background:#FCEBEB;border-radius:12px;font-size:13px;color:#A32D2D;">⚠ Error: ${e.message}</div>`;
     DATA = { clientes: [], projects: [] };
     BIN  = { states: {}, completed: [], hoyDone: {} };
+    const el = document.getElementById('data-source');
+    if (el) el.innerHTML = '🔴 Error';
   }
   renderHoy();
   renderProyectos();
@@ -403,22 +404,14 @@ async function init() {
 
 async function saveData() {
   try {
-    await fetch(`https://api.jsonbin.io/v3/b/${DATA_BIN_ID}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json', 'X-Master-Key': BIN_KEY },
-      body: JSON.stringify(DATA)
-    });
-  } catch(e) { console.warn('Error guardando data:', e); }
+    DATA_SHA = await ghPut('data.json', DATA, DATA_SHA);
+  } catch(e) { console.warn('Error guardando data.json:', e); }
 }
 
 async function saveBin() {
   try {
-    await fetch(BIN_URL, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json', 'X-Master-Key': BIN_KEY },
-      body: JSON.stringify(BIN)
-    });
-  } catch(e) { console.warn('Error guardando en jsonbin:', e); }
+    BIN_SHA = await ghPut('states.json', BIN, BIN_SHA);
+  } catch(e) { console.warn('Error guardando states.json:', e); }
 }
 
 // ============================================================
