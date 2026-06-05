@@ -122,7 +122,17 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
 </head>
 <body>
 <div class="container">
-  <h1>Planificación Álvaro — Nuvirta <span id="data-source" style="font-size:11px;font-weight:400;color:#aaa;margin-left:8px;vertical-align:middle;"></span></h1>
+  <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+    <h1 style="margin:0;">Planificación Álvaro — Nuvirta <span id="data-source" style="font-size:11px;font-weight:400;color:#aaa;margin-left:8px;vertical-align:middle;"></span></h1>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <input type="file" id="data-file-input" accept=".json" style="display:none;" onchange="handleDataFile(event)">
+      <button id="btn-subir-data" onclick="document.getElementById('data-file-input').click()"
+        style="font-size:12px;font-weight:500;padding:6px 14px;border-radius:999px;border:1.5px solid #1D9E75;background:#fff;color:#1D9E75;cursor:pointer;display:flex;align-items:center;gap:6px;">
+        ⬆ Subir data.json
+      </button>
+      <div id="upload-status" style="font-size:11px;color:#aaa;"></div>
+    </div>
+  </div>
   <div class="tabs">
     <div class="tab active" onclick="showTab('hoy',this)">Hoy</div>
     <div class="tab" onclick="showTab('pendientes',this)">Pendientes</div>
@@ -407,6 +417,40 @@ async function saveData() {
       body: JSON.stringify(DATA)
     });
   } catch(e) { console.warn('Error guardando data:', e); }
+}
+
+async function handleDataFile(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const status = document.getElementById('upload-status');
+  const btn = document.getElementById('btn-subir-data');
+  try {
+    status.textContent = 'Leyendo fichero...';
+    const text = await file.text();
+    const parsed = JSON.parse(text);
+    status.textContent = 'Subiendo a jsonbin...';
+    btn.style.opacity = '0.6';
+    btn.style.pointerEvents = 'none';
+    const res = await fetch('https://api.jsonbin.io/v3/b/' + DATA_BIN_ID, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json', 'X-Master-Key': BIN_KEY },
+      body: JSON.stringify(parsed)
+    });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    DATA = parsed;
+    status.innerHTML = '<span style="color:#1D9E75;font-weight:600;">✅ Subido correctamente</span>';
+    document.getElementById('data-source').innerHTML = '🟢 jsonbin';
+    // Rerenderizar todo
+    renderHoy(); renderProyectos(); renderPlan(); renderRitmo();
+    renderLogros(); renderPendientesAuto(); renderProximas(); renderPlantilla();
+    setTimeout(() => { status.textContent = ''; }, 4000);
+  } catch(e) {
+    status.innerHTML = '<span style="color:#A32D2D;">⚠ Error: ' + e.message + '</span>';
+  } finally {
+    btn.style.opacity = '1';
+    btn.style.pointerEvents = 'auto';
+    event.target.value = ''; // reset input para permitir re-subida del mismo fichero
+  }
 }
 
 async function saveBin() {
