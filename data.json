@@ -320,6 +320,13 @@
     { "id": "GEN-085", "cliente": "velasco",    "tipo": "accion", "tarea": "Preparar propuesta de colaboración Velasco", "fecha": "2026-05-24", "tiempo": null, "estado": "⚪", "horas": 2, "fechaHecho": null },
     { "id": "GEN-086", "cliente": "velasco",    "tipo": "accion", "tarea": "Migración documentos subidos en las últimas 2 semanas", "fecha": "2026-05-24", "tiempo": null, "estado": "⚪", "horas": 2, "fechaHecho": null },
     { "id": "GEN-087", "cliente": "articulo14", "tipo": "accion", "tarea": "Seleccionar eventos y definir proceso carga + asignación contactos", "fecha": "2026-05-24", "tiempo": null, "estado": "⚪", "horas": 2, "fechaHecho": null },
-    { "id": "GEN-088", "cliente": "larazon",    "tipo": "accion", "tarea": "Revisar lo que han mandado y ver cómo afecta al proceso", "fecha": "2026-05-24", "tiempo": null, "estado": "⚪", "horas": 1, "fechaHecho": null }
+    { "id": "GEN-088", "cliente": "larazon",    "tipo": "accion", "tarea": "Revisar lo que han mandado y ver cómo afecta al proceso", "fecha": "2026-05-24", "tiempo": null, "estado": "⚪", "horas": 1, "fechaHecho": null },
+
+    { "id": "GEN-089", "cliente": "aar",        "tipo": "accion", "tarea": "Reunión con Cipri — tema personal / Power Platform",                          "fecha": "2026-06-03", "tiempo": null, "estado": "⚪", "horas": 1,   "fechaHecho": null },
+    { "id": "GEN-090", "cliente": "aar",        "tipo": "accion", "tarea": "Analizar documento de Cipri",                                                   "fecha": "2026-06-07", "tiempo": null, "estado": "⚪", "horas": 1.5, "fechaHecho": null },
+    { "id": "GEN-091", "cliente": "nuvirta",    "tipo": "accion", "tarea": "Reclamar a César borradores de contratos — traspaso clientes AAR a Nuvirta",   "fecha": "2026-06-08", "tiempo": null, "estado": "⚪", "horas": 0.5, "fechaHecho": null },
+    { "id": "GEN-092", "cliente": "articulo14", "tipo": "accion", "tarea": "Buscar reunión con Vicky para ver el prototipo",                               "fecha": "2026-06-08", "tiempo": null, "estado": "⚪", "horas": 0.5, "fechaHecho": null },
+    { "id": "GEN-093", "cliente": "aar",        "tipo": "accion", "tarea": "Seguimiento declaración de la Renta 2025",                                      "fecha": "2026-06-11", "tiempo": null, "estado": "⚪", "horas": 1,   "fechaHecho": null },
+    { "id": "GEN-094", "cliente": "aar",        "tipo": "accion", "tarea": "Contestar a José Manuel Carballo sobre torneo de golf",                         "fecha": "2026-06-06", "tiempo": null, "estado": "⚪", "horas": 0.5, "fechaHecho": null }
   ]
 }
