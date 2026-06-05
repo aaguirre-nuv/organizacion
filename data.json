@@ -327,6 +327,11 @@
     { "id": "GEN-091", "cliente": "nuvirta",    "tipo": "accion", "tarea": "Reclamar a César borradores de contratos — traspaso clientes AAR a Nuvirta",   "fecha": "2026-06-08", "tiempo": null, "estado": "⚪", "horas": 0.5, "fechaHecho": null },
     { "id": "GEN-092", "cliente": "articulo14", "tipo": "accion", "tarea": "Buscar reunión con Vicky para ver el prototipo",                               "fecha": "2026-06-08", "tiempo": null, "estado": "⚪", "horas": 0.5, "fechaHecho": null },
     { "id": "GEN-093", "cliente": "aar",        "tipo": "accion", "tarea": "Seguimiento declaración de la Renta 2025",                                      "fecha": "2026-06-11", "tiempo": null, "estado": "⚪", "horas": 1,   "fechaHecho": null },
-    { "id": "GEN-094", "cliente": "aar",        "tipo": "accion", "tarea": "Contestar a José Manuel Carballo sobre torneo de golf",                         "fecha": "2026-06-06", "tiempo": null, "estado": "⚪", "horas": 0.5, "fechaHecho": null }
+    { "id": "GEN-094", "cliente": "aar",        "tipo": "accion", "tarea": "Contestar a José Manuel Carballo sobre torneo de golf",                         "fecha": "2026-06-06", "tiempo": null,      "estado": "⚪", "horas": 0.5, "fechaHecho": null },
+    { "id": "GEN-095", "cliente": "aar",        "tipo": "accion", "tarea": "Revisar email",                                                                     "fecha": "2026-06-06", "tiempo": "mañana",  "estado": "⚪", "horas": 0.5, "fechaHecho": null },
+    { "id": "GEN-096", "cliente": "articulo14", "tipo": "accion", "tarea": "Actualizar reuniones — colaboraciones y marketing",                                  "fecha": "2026-06-06", "tiempo": null,      "estado": "⚪", "horas": 1,   "fechaHecho": null },
+    { "id": "GEN-097", "cliente": "nuvirta",    "tipo": "accion", "tarea": "Actualizar reuniones — private equity y Blash",                                      "fecha": "2026-06-06", "tiempo": null,      "estado": "⚪", "horas": 1,   "fechaHecho": null },
+    { "id": "GEN-098", "cliente": "atitlan",    "tipo": "accion", "tarea": "Actualizar reuniones — seguimiento CRM",                                             "fecha": "2026-06-06", "tiempo": null,      "estado": "⚪", "horas": 1,   "fechaHecho": null },
+    { "id": "GEN-099", "cliente": "fisiodrid",  "tipo": "accion", "tarea": "Actualizar reuniones — presentación prototipo",                                      "fecha": "2026-06-06", "tiempo": null,      "estado": "⚪", "horas": 1,   "fechaHecho": null }
   ]
 }
