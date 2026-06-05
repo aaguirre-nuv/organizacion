@@ -126,6 +126,10 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
     <h1 style="margin:0;">Planificación Álvaro — Nuvirta <span id="data-source" style="font-size:11px;font-weight:400;color:#aaa;margin-left:8px;vertical-align:middle;"></span></h1>
     <div style="display:flex;align-items:center;gap:8px;">
       <input type="file" id="data-file-input" accept=".json" style="display:none;" onchange="handleDataFile(event)">
+      <button id="btn-sync-gh" onclick="syncFromGitHub()"
+        style="display:none;font-size:12px;font-weight:500;padding:6px 14px;border-radius:999px;border:1.5px solid #E8A020;background:#fff;color:#E8A020;cursor:pointer;align-items:center;gap:6px;">
+        🔄 Sync GitHub
+      </button>
       <button id="btn-subir-data" onclick="document.getElementById('data-file-input').click()"
         style="font-size:12px;font-weight:500;padding:6px 14px;border-radius:999px;border:1.5px solid #1D9E75;background:#fff;color:#1D9E75;cursor:pointer;display:flex;align-items:center;gap:6px;">
         ⬆ Subir data.json
@@ -348,8 +352,9 @@ const COLORES = {
 // ============================================================
 // ESTADO GLOBAL
 // ============================================================
-let DATA = null;      // data.json de GitHub
-let BIN  = null;      // jsonbin
+let DATA    = null;   // fuente principal (jsonbin o GitHub)
+let GH_DATA = null;   // copia GitHub para comparar
+let BIN     = null;   // bin de estados
 
 async function init() {
   const log = (msg) => {
@@ -357,26 +362,54 @@ async function init() {
   };
   try {
     log('Cargando datos...');
-    let dataLoaded = false;
-    try {
-      const dataRes = await fetch(DATA_URL, { headers: { 'X-Master-Key': BIN_KEY, 'X-Bin-Meta': 'false' } });
-      if (dataRes.ok) {
-        const dataRaw = await dataRes.json();
-        DATA = dataRaw.record || dataRaw;
-        dataLoaded = true;
-        const el = document.getElementById('data-source');
-        if (el) el.innerHTML = '🟢 jsonbin';
-      }
-    } catch(e) { console.warn('jsonbin data falló, intentando GitHub...', e); }
 
-    if (!dataLoaded) {
-      const ghRes = await fetch('https://raw.githubusercontent.com/aaguirre-nuv/organizacion/main/data.json?t=' + Date.now());
-      if (!ghRes.ok) throw new Error('GitHub también falló: ' + ghRes.status);
-      DATA = await ghRes.json();
-      const el = document.getElementById('data-source');
-      if (el) el.innerHTML = '🟡 GitHub (jsonbin caído)';
+    // Cargar jsonbin y GitHub en paralelo
+    const [jsonbinResult, ghResult] = await Promise.allSettled([
+      fetch(DATA_URL, { headers: { 'X-Master-Key': BIN_KEY, 'X-Bin-Meta': 'false' } }),
+      fetch('https://raw.githubusercontent.com/aaguirre-nuv/organizacion/main/data.json?t=' + Date.now())
+    ]);
+
+    // Procesar GitHub
+    if (ghResult.status === 'fulfilled' && ghResult.value.ok) {
+      GH_DATA = await ghResult.value.json();
     }
 
+    // Procesar jsonbin
+    let jsonbinOk = false;
+    if (jsonbinResult.status === 'fulfilled' && jsonbinResult.value.ok) {
+      const dataRaw = await jsonbinResult.value.json();
+      DATA = dataRaw.record || dataRaw;
+      jsonbinOk = true;
+      const el = document.getElementById('data-source');
+      if (el) el.innerHTML = '🟢 jsonbin';
+    }
+
+    // Si jsonbin falló, usar GitHub
+    if (!jsonbinOk) {
+      if (GH_DATA) {
+        DATA = GH_DATA;
+        const el = document.getElementById('data-source');
+        if (el) el.innerHTML = '🟡 GitHub (jsonbin caído)';
+      } else {
+        throw new Error('Ni jsonbin ni GitHub disponibles');
+      }
+    }
+
+    // Comparar: ¿tiene GitHub tareas que jsonbin no tiene?
+    if (jsonbinOk && GH_DATA && GH_DATA.projects && DATA.projects) {
+      const idsBin = new Set((DATA.projects || []).map(p => p.id));
+      const nuevasEnGH = (GH_DATA.projects || []).filter(p => !idsBin.has(p.id));
+      if (nuevasEnGH.length > 0) {
+        const btn = document.getElementById('btn-sync-gh');
+        if (btn) {
+          btn.style.display = 'flex';
+          btn.dataset.nuevas = nuevasEnGH.length;
+          btn.innerHTML = `🔄 Sync GitHub (${nuevasEnGH.length} nueva${nuevasEnGH.length > 1 ? 's' : ''})`;
+        }
+      }
+    }
+
+    // Cargar bin de estados
     try {
       const binRes = await fetch(BIN_URL + '/latest', { headers: { 'X-Master-Key': BIN_KEY, 'X-Bin-Meta': 'false' } });
       if (binRes.ok) {
@@ -388,9 +421,9 @@ async function init() {
     } catch(e) {
       BIN = { states: {}, completed: [], hoyDone: {} };
     }
-    if (!BIN.states) BIN.states = {};
+    if (!BIN.states)    BIN.states    = {};
     if (!BIN.completed) BIN.completed = [];
-    if (!BIN.hoyDone) BIN.hoyDone = {};
+    if (!BIN.hoyDone)   BIN.hoyDone   = {};
   } catch(e) {
     console.warn('Error:', e);
     document.getElementById('hoy-content').innerHTML = `<div style="padding:16px;background:#FCEBEB;border-radius:12px;font-size:13px;color:#A32D2D;">⚠ Error: ${e.message}</div>`;
@@ -450,6 +483,37 @@ async function handleDataFile(event) {
     btn.style.opacity = '1';
     btn.style.pointerEvents = 'auto';
     event.target.value = ''; // reset input para permitir re-subida del mismo fichero
+  }
+}
+
+async function syncFromGitHub() {
+  const btn = document.getElementById('btn-sync-gh');
+  const status = document.getElementById('upload-status');
+  if (!GH_DATA) {
+    status.innerHTML = '<span style="color:#A32D2D;">⚠ No hay datos de GitHub disponibles</span>';
+    return;
+  }
+  try {
+    btn.style.opacity = '0.6';
+    btn.style.pointerEvents = 'none';
+    status.textContent = 'Sincronizando desde GitHub...';
+    const res = await fetch('https://api.jsonbin.io/v3/b/' + DATA_BIN_ID, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json', 'X-Master-Key': BIN_KEY },
+      body: JSON.stringify(GH_DATA)
+    });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    DATA = GH_DATA;
+    btn.style.display = 'none';
+    status.innerHTML = '<span style="color:#1D9E75;font-weight:600;">✅ jsonbin actualizado desde GitHub</span>';
+    document.getElementById('data-source').innerHTML = '🟢 jsonbin';
+    renderHoy(); renderProyectos(); renderPlan(); renderRitmo();
+    renderLogros(); renderPendientesAuto(); renderProximas(); renderPlantilla();
+    setTimeout(() => { status.textContent = ''; }, 4000);
+  } catch(e) {
+    status.innerHTML = '<span style="color:#A32D2D;">⚠ Error: ' + e.message + '</span>';
+    btn.style.opacity = '1';
+    btn.style.pointerEvents = 'auto';
   }
 }
 
