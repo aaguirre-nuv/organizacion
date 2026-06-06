@@ -332,6 +332,10 @@
     { "id": "GEN-096", "cliente": "articulo14", "tipo": "accion", "tarea": "Actualizar reuniones — colaboraciones y marketing",                                  "fecha": "2026-06-06", "tiempo": null,      "estado": "⚪", "horas": 1,   "fechaHecho": null },
     { "id": "GEN-097", "cliente": "nuvirta",    "tipo": "accion", "tarea": "Actualizar reuniones — private equity y Blash",                                      "fecha": "2026-06-06", "tiempo": null,      "estado": "⚪", "horas": 1,   "fechaHecho": null },
     { "id": "GEN-098", "cliente": "atitlan",    "tipo": "accion", "tarea": "Actualizar reuniones — seguimiento CRM",                                             "fecha": "2026-06-06", "tiempo": null,      "estado": "⚪", "horas": 1,   "fechaHecho": null },
-    { "id": "GEN-099", "cliente": "fisiodrid",  "tipo": "accion", "tarea": "Actualizar reuniones — presentación prototipo",                                      "fecha": "2026-06-06", "tiempo": null,      "estado": "⚪", "horas": 1,   "fechaHecho": null }
+    { "id": "GEN-099", "cliente": "fisiodrid",  "tipo": "accion", "tarea": "Actualizar reuniones — presentación prototipo",                                      "fecha": "2026-06-06", "tiempo": null, "estado": "⚪", "horas": 1,   "fechaHecho": null },
+    { "id": "GEN-100", "cliente": "aar",        "tipo": "accion", "tarea": "Contestar a Carballo sobre torneo 20-06",                                             "fecha": "2026-06-15", "tiempo": null, "estado": "⚪", "horas": 0.5, "fechaHecho": null },
+    { "id": "GEN-101", "cliente": "velasco",    "tipo": "accion", "tarea": "Analizar proyecto migración Sage",                                                    "fecha": "2026-06-06", "tiempo": null, "estado": "⚪", "horas": 1.5, "fechaHecho": null },
+    { "id": "GEN-102", "cliente": "nuvirta",    "tipo": "accion", "tarea": "Cambiar factura Nuvirta a Coimbra con la cuenta correcta",                            "fecha": "2026-06-06", "tiempo": null, "estado": "⚪", "horas": 0.5, "fechaHecho": null },
+    { "id": "GEN-103", "cliente": "central",    "tipo": "accion", "tarea": "Revisar el IS de Dúo",                                                               "fecha": "2026-06-07", "tiempo": null, "estado": "⚪", "horas": 1,   "fechaHecho": null }
   ]
 }
