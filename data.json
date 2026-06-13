@@ -87,16 +87,16 @@
     {
       "id": "escondite",
       "nombre": "El Escondite de Biescas",
-      "badge": "ESC",
-      "color": "#FEF3C7",
-      "text": "#78350F"
+      "badge": "nuevo",
+      "color": "#0C4A6E",
+      "badgeColor": "badge-amber"
     },
     {
       "id": "cipri",
       "nombre": "Cipri",
-      "badge": "CIP",
-      "color": "#E0E7FF",
-      "text": "#3730A3"
+      "badge": "nuevo",
+      "color": "#7C2D12",
+      "badgeColor": "badge-red"
     }
   ],
   "planificacion": [
