@@ -1,341 +1,3168 @@
 {
   "clientes": [
-    { "id": "nuvirta",    "nombre": "Nuvirta",            "color": "#1D9E75", "badge": "propio",       "badgeColor": "badge-green"  },
-    { "id": "aar",        "nombre": "AAR Personal",        "color": "#888888", "badge": "personal",     "badgeColor": "badge-gray"   },
-    { "id": "central",    "nombre": "Central de Producción","color": "#BA7517","badge": "puntual",      "badgeColor": "badge-amber"  },
-    { "id": "formacion",  "nombre": "Formación propia",    "color": "#7F77DD", "badge": "inversión",    "badgeColor": "badge-inversion" },
-    { "id": "fisiodrid",  "nombre": "Fisiodrid",           "color": "#E24B4A", "badge": "en curso",     "badgeColor": "badge-amber"  },
-    { "id": "atitlan",    "nombre": "Atitlán",             "color": "#D4537E", "badge": "en curso",     "badgeColor": "badge-red"    },
-    { "id": "velasco",    "nombre": "Velasco Abogados",    "color": "#1D9E75", "badge": "cerca del fin","badgeColor": "badge-amber"  },
-    { "id": "bestmedia",  "nombre": "BestMedia",           "color": "#378ADD", "badge": "reactivar",    "badgeColor": "badge-amber"  },
-    { "id": "articulo14", "nombre": "Artículo 14",         "color": "#7F77DD", "badge": "en curso",     "badgeColor": "badge-amber"  },
-    { "id": "larazon",    "nombre": "La Razón",            "color": "#E24B4A", "badge": "en curso",     "badgeColor": "badge-amber"  },
-    { "id": "rizkider",   "nombre": "Anuario Rizkider",    "color": "#639922", "badge": "personal",     "badgeColor": "badge-green"  },
-    { "id": "dasme",      "nombre": "Dasme Control",       "color": "#BA7517", "badge": "julio",        "badgeColor": "badge-amber"  }
+    {
+      "id": "nuvirta",
+      "nombre": "Nuvirta",
+      "color": "#1D9E75",
+      "badge": "propio",
+      "badgeColor": "badge-green"
+    },
+    {
+      "id": "aar",
+      "nombre": "AAR Personal",
+      "color": "#888888",
+      "badge": "personal",
+      "badgeColor": "badge-gray"
+    },
+    {
+      "id": "central",
+      "nombre": "Central de Producción",
+      "color": "#BA7517",
+      "badge": "puntual",
+      "badgeColor": "badge-amber"
+    },
+    {
+      "id": "formacion",
+      "nombre": "Formación propia",
+      "color": "#7F77DD",
+      "badge": "inversión",
+      "badgeColor": "badge-inversion"
+    },
+    {
+      "id": "fisiodrid",
+      "nombre": "Fisiodrid",
+      "color": "#E24B4A",
+      "badge": "en curso",
+      "badgeColor": "badge-amber"
+    },
+    {
+      "id": "atitlan",
+      "nombre": "Atitlán",
+      "color": "#D4537E",
+      "badge": "en curso",
+      "badgeColor": "badge-red"
+    },
+    {
+      "id": "velasco",
+      "nombre": "Velasco Abogados",
+      "color": "#1D9E75",
+      "badge": "cerca del fin",
+      "badgeColor": "badge-amber"
+    },
+    {
+      "id": "bestmedia",
+      "nombre": "BestMedia",
+      "color": "#378ADD",
+      "badge": "reactivar",
+      "badgeColor": "badge-amber"
+    },
+    {
+      "id": "articulo14",
+      "nombre": "Artículo 14",
+      "color": "#7F77DD",
+      "badge": "en curso",
+      "badgeColor": "badge-amber"
+    },
+    {
+      "id": "larazon",
+      "nombre": "La Razón",
+      "color": "#E24B4A",
+      "badge": "en curso",
+      "badgeColor": "badge-amber"
+    },
+    {
+      "id": "rizkider",
+      "nombre": "Anuario Rizkider",
+      "color": "#639922",
+      "badge": "personal",
+      "badgeColor": "badge-green"
+    },
+    {
+      "id": "dasme",
+      "nombre": "Dasme Control",
+      "color": "#BA7517",
+      "badge": "julio",
+      "badgeColor": "badge-amber"
+    },
+    {
+      "id": "escondite",
+      "nombre": "El Escondite de Biescas",
+      "badge": "ESC",
+      "color": "#FEF3C7",
+      "text": "#78350F"
+    },
+    {
+      "id": "cipri",
+      "nombre": "Cipri",
+      "badge": "CIP",
+      "color": "#E0E7FF",
+      "text": "#3730A3"
+    }
   ],
-
   "planificacion": [
-    { "cliente": "nuvirta_aar", "nombre": "Nuvirta + AAR", "may": 45, "jun": 60, "jul": 60, "ago": 0, "sep": 60, "oct": 60, "nov": 60, "dic": 45, "total": 390 },
-    { "cliente": "atitlan",     "may": 35, "jun": 45, "jul": 45, "ago": 0, "sep": 40, "oct": 25, "nov": 15, "dic":  0, "total": 205 },
-    { "cliente": "velasco",     "may":  5, "jun": 10, "jul": 10, "ago": 0, "sep": 10, "oct": 15, "nov": 20, "dic": 30, "total": 100 },
-    { "cliente": "articulo14",  "may": 15, "jun": 20, "jul": 20, "ago": 0, "sep":  0, "oct":  0, "nov":  0, "dic":  0, "total":  55 },
-    { "cliente": "larazon",     "may": 10, "jun": 10, "jul":  8, "ago": 0, "sep":  0, "oct":  0, "nov":  0, "dic":  0, "total":  28 },
-    { "cliente": "bestmedia",   "may":  5, "jun":  0, "jul":  7, "ago": 0, "sep":  8, "oct":  0, "nov":  0, "dic":  0, "total":  20 },
-    { "cliente": "fisiodrid",   "may":  0, "jun":  5, "jul":  5, "ago": 0, "sep":  0, "oct":  0, "nov":  0, "dic":  0, "total":  10 },
-    { "cliente": "dasme",       "may":  0, "jun":  0, "jul":  0, "ago": 0, "sep":  0, "oct": 60, "nov": 65, "dic": 17, "total": 142 }
+    {
+      "cliente": "nuvirta_aar",
+      "nombre": "Nuvirta + AAR",
+      "may": 45,
+      "jun": 60,
+      "jul": 60,
+      "ago": 0,
+      "sep": 60,
+      "oct": 60,
+      "nov": 60,
+      "dic": 45,
+      "total": 390
+    },
+    {
+      "cliente": "atitlan",
+      "may": 35,
+      "jun": 45,
+      "jul": 45,
+      "ago": 0,
+      "sep": 40,
+      "oct": 25,
+      "nov": 15,
+      "dic": 0,
+      "total": 205
+    },
+    {
+      "cliente": "velasco",
+      "may": 5,
+      "jun": 10,
+      "jul": 10,
+      "ago": 0,
+      "sep": 10,
+      "oct": 15,
+      "nov": 20,
+      "dic": 30,
+      "total": 100
+    },
+    {
+      "cliente": "articulo14",
+      "may": 15,
+      "jun": 20,
+      "jul": 20,
+      "ago": 0,
+      "sep": 0,
+      "oct": 0,
+      "nov": 0,
+      "dic": 0,
+      "total": 55
+    },
+    {
+      "cliente": "larazon",
+      "may": 10,
+      "jun": 10,
+      "jul": 8,
+      "ago": 0,
+      "sep": 0,
+      "oct": 0,
+      "nov": 0,
+      "dic": 0,
+      "total": 28
+    },
+    {
+      "cliente": "bestmedia",
+      "may": 5,
+      "jun": 0,
+      "jul": 7,
+      "ago": 0,
+      "sep": 8,
+      "oct": 0,
+      "nov": 0,
+      "dic": 0,
+      "total": 20
+    },
+    {
+      "cliente": "fisiodrid",
+      "may": 0,
+      "jun": 5,
+      "jul": 5,
+      "ago": 0,
+      "sep": 0,
+      "oct": 0,
+      "nov": 0,
+      "dic": 0,
+      "total": 10
+    },
+    {
+      "cliente": "dasme",
+      "may": 0,
+      "jun": 0,
+      "jul": 0,
+      "ago": 0,
+      "sep": 0,
+      "oct": 60,
+      "nov": 65,
+      "dic": 17,
+      "total": 142
+    }
   ],
-
   "registros": [
-    { "semana": "2026-05-11", "cliente": "aar",        "horas": 9.9 },
-    { "semana": "2026-05-11", "cliente": "articulo14", "horas": 0.9 },
-    { "semana": "2026-05-11", "cliente": "atitlan",    "horas": 17.8 },
-    { "semana": "2026-05-11", "cliente": "central",    "horas": 0.6 },
-    { "semana": "2026-05-11", "cliente": "fisiodrid",  "horas": 5.1 },
-    { "semana": "2026-05-11", "cliente": "nuvirta",    "horas": 14.3 },
-    { "semana": "2026-05-11", "cliente": "velasco",    "horas": 0.1 }
+    {
+      "semana": "2026-05-11",
+      "cliente": "aar",
+      "horas": 9.9
+    },
+    {
+      "semana": "2026-05-11",
+      "cliente": "articulo14",
+      "horas": 0.9
+    },
+    {
+      "semana": "2026-05-11",
+      "cliente": "atitlan",
+      "horas": 17.8
+    },
+    {
+      "semana": "2026-05-11",
+      "cliente": "central",
+      "horas": 0.6
+    },
+    {
+      "semana": "2026-05-11",
+      "cliente": "fisiodrid",
+      "horas": 5.1
+    },
+    {
+      "semana": "2026-05-11",
+      "cliente": "nuvirta",
+      "horas": 14.3
+    },
+    {
+      "semana": "2026-05-11",
+      "cliente": "velasco",
+      "horas": 0.1
+    },
+    {
+      "semana": "2026-05-18",
+      "cliente": "aar",
+      "horas": 12.1
+    },
+    {
+      "semana": "2026-05-18",
+      "cliente": "articulo14",
+      "horas": 9.2
+    },
+    {
+      "semana": "2026-05-18",
+      "cliente": "atitlan",
+      "horas": 14.0
+    },
+    {
+      "semana": "2026-05-18",
+      "cliente": "bestmedia",
+      "horas": 2.8
+    },
+    {
+      "semana": "2026-05-18",
+      "cliente": "central",
+      "horas": 0.2
+    },
+    {
+      "semana": "2026-05-18",
+      "cliente": "fisiodrid",
+      "horas": 4.3
+    },
+    {
+      "semana": "2026-05-18",
+      "cliente": "nuvirta",
+      "horas": 15.5
+    },
+    {
+      "semana": "2026-05-25",
+      "cliente": "aar",
+      "horas": 5.3
+    },
+    {
+      "semana": "2026-05-25",
+      "cliente": "articulo14",
+      "horas": 5.3
+    },
+    {
+      "semana": "2026-05-25",
+      "cliente": "atitlan",
+      "horas": 4.8
+    },
+    {
+      "semana": "2026-05-25",
+      "cliente": "bestmedia",
+      "horas": 1.5
+    },
+    {
+      "semana": "2026-05-25",
+      "cliente": "fisiodrid",
+      "horas": 3.0
+    },
+    {
+      "semana": "2026-05-25",
+      "cliente": "larazon",
+      "horas": 1.0
+    },
+    {
+      "semana": "2026-05-25",
+      "cliente": "nuvirta",
+      "horas": 3.2
+    },
+    {
+      "semana": "2026-05-25",
+      "cliente": "velasco",
+      "horas": 6.3
+    },
+    {
+      "semana": "2026-06-01",
+      "cliente": "aar",
+      "horas": 7.5
+    },
+    {
+      "semana": "2026-06-01",
+      "cliente": "articulo14",
+      "horas": 1.0
+    },
+    {
+      "semana": "2026-06-01",
+      "cliente": "atitlan",
+      "horas": 10.9
+    },
+    {
+      "semana": "2026-06-01",
+      "cliente": "bestmedia",
+      "horas": 0.3
+    },
+    {
+      "semana": "2026-06-01",
+      "cliente": "cipri",
+      "horas": 2.2
+    },
+    {
+      "semana": "2026-06-01",
+      "cliente": "larazon",
+      "horas": 0.8
+    },
+    {
+      "semana": "2026-06-01",
+      "cliente": "nuvirta",
+      "horas": 12.0
+    },
+    {
+      "semana": "2026-06-01",
+      "cliente": "velasco",
+      "horas": 1.5
+    },
+    {
+      "semana": "2026-06-08",
+      "cliente": "aar",
+      "horas": 4.3
+    },
+    {
+      "semana": "2026-06-08",
+      "cliente": "articulo14",
+      "horas": 1.8
+    },
+    {
+      "semana": "2026-06-08",
+      "cliente": "atitlan",
+      "horas": 6.8
+    },
+    {
+      "semana": "2026-06-08",
+      "cliente": "central",
+      "horas": 0.4
+    },
+    {
+      "semana": "2026-06-08",
+      "cliente": "dasme",
+      "horas": 1.4
+    },
+    {
+      "semana": "2026-06-08",
+      "cliente": "fisiodrid",
+      "horas": 10.6
+    },
+    {
+      "semana": "2026-06-08",
+      "cliente": "nuvirta",
+      "horas": 2.4
+    },
+    {
+      "semana": "2026-06-08",
+      "cliente": "escondite",
+      "horas": 0.8
+    },
+    {
+      "semana": "2026-06-08",
+      "cliente": "velasco",
+      "horas": 10.2
+    }
   ],
-
   "plantilla": [
-    { "dia": 0, "h": 7,  "m": 30, "dur": 30,  "tipo": "Plan",       "color": "#C7D2FE", "text": "#3730A3" },
-    { "dia": 0, "h": 8,  "m": 0,  "dur": 60,  "tipo": "Pilates",    "color": "#FED7AA", "text": "#9A3412" },
-    { "dia": 0, "h": 9,  "m": 0,  "dur": 60,  "tipo": "Hive",       "color": "#FDE68A", "text": "#92400E" },
-    { "dia": 0, "h": 10, "m": 0,  "dur": 120, "tipo": "Desarrollo", "color": "#BFDBFE", "text": "#1E40AF" },
-    { "dia": 0, "h": 12, "m": 30, "dur": 60,  "tipo": "Mant",       "color": "#FEF08A", "text": "#854D0E" },
-    { "dia": 0, "h": 13, "m": 30, "dur": 120, "tipo": "Comida",     "color": "#F1F5F9", "text": "#64748B" },
-    { "dia": 0, "h": 16, "m": 30, "dur": 90,  "tipo": "Desarrollo", "color": "#BFDBFE", "text": "#1E40AF" },
-    { "dia": 0, "h": 18, "m": 0,  "dur": 60,  "tipo": "Desarrollo", "color": "#BFDBFE", "text": "#1E40AF" },
-    { "dia": 0, "h": 19, "m": 0,  "dur": 60,  "tipo": "IA / Vibe",  "color": "#FBCFE8", "text": "#9D174D" },
-    { "dia": 0, "h": 20, "m": 30, "dur": 30,  "tipo": "Admin",      "color": "#E2E8F0", "text": "#475569" },
-
-    { "dia": 1, "h": 7,  "m": 0,  "dur": 30,  "tipo": "Ejercicios", "color": "#BBF7D0", "text": "#14532D" },
-    { "dia": 1, "h": 7,  "m": 30, "dur": 30,  "tipo": "Plan",       "color": "#C7D2FE", "text": "#3730A3" },
-    { "dia": 1, "h": 8,  "m": 0,  "dur": 60,  "tipo": "Plan",       "color": "#C7D2FE", "text": "#3730A3" },
-    { "dia": 1, "h": 9,  "m": 0,  "dur": 60,  "tipo": "Hive",       "color": "#FDE68A", "text": "#92400E" },
-    { "dia": 1, "h": 10, "m": 0,  "dur": 120, "tipo": "Desarrollo", "color": "#BFDBFE", "text": "#1E40AF" },
-    { "dia": 1, "h": 12, "m": 30, "dur": 60,  "tipo": "Mamá",       "color": "#FBCFE8", "text": "#9D174D" },
-    { "dia": 1, "h": 13, "m": 30, "dur": 150, "tipo": "Mamá",       "color": "#FBCFE8", "text": "#9D174D" },
-    { "dia": 1, "h": 16, "m": 0,  "dur": 60,  "tipo": "Osteópata",  "color": "#99F6E4", "text": "#0F766E" },
-    { "dia": 1, "h": 17, "m": 0,  "dur": 30,  "tipo": "Osteópata",  "color": "#99F6E4", "text": "#0F766E" },
-    { "dia": 1, "h": 17, "m": 30, "dur": 30,  "tipo": "Desarrollo", "color": "#BFDBFE", "text": "#1E40AF" },
-    { "dia": 1, "h": 18, "m": 0,  "dur": 60,  "tipo": "Desarrollo", "color": "#BFDBFE", "text": "#1E40AF" },
-    { "dia": 1, "h": 19, "m": 0,  "dur": 60,  "tipo": "Desarrollo", "color": "#BFDBFE", "text": "#1E40AF" },
-    { "dia": 1, "h": 20, "m": 30, "dur": 30,  "tipo": "Admin",      "color": "#E2E8F0", "text": "#475569" },
-
-    { "dia": 2, "h": 7,  "m": 0,  "dur": 30,  "tipo": "Ejercicios", "color": "#BBF7D0", "text": "#14532D" },
-    { "dia": 2, "h": 7,  "m": 30, "dur": 30,  "tipo": "Plan",       "color": "#C7D2FE", "text": "#3730A3" },
-    { "dia": 2, "h": 8,  "m": 0,  "dur": 60,  "tipo": "Plan",       "color": "#C7D2FE", "text": "#3730A3" },
-    { "dia": 2, "h": 9,  "m": 0,  "dur": 60,  "tipo": "Hive",       "color": "#FDE68A", "text": "#92400E" },
-    { "dia": 2, "h": 10, "m": 0,  "dur": 120, "tipo": "Desarrollo", "color": "#BFDBFE", "text": "#1E40AF" },
-    { "dia": 2, "h": 12, "m": 30, "dur": 60,  "tipo": "Mant",       "color": "#FEF08A", "text": "#854D0E" },
-    { "dia": 2, "h": 13, "m": 30, "dur": 120, "tipo": "Comida",     "color": "#F1F5F9", "text": "#64748B" },
-    { "dia": 2, "h": 16, "m": 30, "dur": 150, "tipo": "Desarrollo", "color": "#BFDBFE", "text": "#1E40AF" },
-    { "dia": 2, "h": 19, "m": 0,  "dur": 60,  "tipo": "IA / Vibe",  "color": "#FBCFE8", "text": "#9D174D" },
-    { "dia": 2, "h": 20, "m": 30, "dur": 30,  "tipo": "Admin",      "color": "#E2E8F0", "text": "#475569" },
-
-    { "dia": 3, "h": 7,  "m": 0,  "dur": 30,  "tipo": "Ejercicios", "color": "#BBF7D0", "text": "#14532D" },
-    { "dia": 3, "h": 7,  "m": 30, "dur": 30,  "tipo": "Plan",       "color": "#C7D2FE", "text": "#3730A3" },
-    { "dia": 3, "h": 8,  "m": 0,  "dur": 60,  "tipo": "Plan",       "color": "#C7D2FE", "text": "#3730A3" },
-    { "dia": 3, "h": 9,  "m": 0,  "dur": 60,  "tipo": "Hive",       "color": "#FDE68A", "text": "#92400E" },
-    { "dia": 3, "h": 10, "m": 0,  "dur": 120, "tipo": "Desarrollo", "color": "#BFDBFE", "text": "#1E40AF" },
-    { "dia": 3, "h": 12, "m": 30, "dur": 60,  "tipo": "Mant",       "color": "#FEF08A", "text": "#854D0E" },
-    { "dia": 3, "h": 13, "m": 30, "dur": 120, "tipo": "Comida",     "color": "#F1F5F9", "text": "#64748B" },
-    { "dia": 3, "h": 16, "m": 30, "dur": 150, "tipo": "Desarrollo", "color": "#BFDBFE", "text": "#1E40AF" },
-    { "dia": 3, "h": 19, "m": 0,  "dur": 60,  "tipo": "IA / Vibe",  "color": "#FBCFE8", "text": "#9D174D" },
-    { "dia": 3, "h": 20, "m": 30, "dur": 30,  "tipo": "Admin",      "color": "#E2E8F0", "text": "#475569" },
-
-    { "dia": 4, "h": 7,  "m": 30, "dur": 30,  "tipo": "Plan",       "color": "#C7D2FE", "text": "#3730A3" },
-    { "dia": 4, "h": 8,  "m": 0,  "dur": 60,  "tipo": "Pilates",    "color": "#FED7AA", "text": "#9A3412" },
-    { "dia": 4, "h": 9,  "m": 0,  "dur": 120, "tipo": "Desarrollo", "color": "#BFDBFE", "text": "#1E40AF" },
-    { "dia": 4, "h": 11, "m": 0,  "dur": 60,  "tipo": "Mant",       "color": "#FEF08A", "text": "#854D0E" },
-    { "dia": 4, "h": 12, "m": 0,  "dur": 90,  "tipo": "Golf",       "color": "#BBF7D0", "text": "#14532D" },
-    { "dia": 4, "h": 13, "m": 30, "dur": 120, "tipo": "Comida",     "color": "#F1F5F9", "text": "#64748B" },
-    { "dia": 4, "h": 18, "m": 30, "dur": 60,  "tipo": "Plan",       "color": "#C7D2FE", "text": "#3730A3" },
-    { "dia": 4, "h": 20, "m": 30, "dur": 30,  "tipo": "Admin",      "color": "#E2E8F0", "text": "#475569" }
+    {
+      "dia": 0,
+      "h": 7,
+      "m": 30,
+      "dur": 30,
+      "tipo": "Plan",
+      "color": "#C7D2FE",
+      "text": "#3730A3"
+    },
+    {
+      "dia": 0,
+      "h": 8,
+      "m": 0,
+      "dur": 60,
+      "tipo": "Pilates",
+      "color": "#FED7AA",
+      "text": "#9A3412"
+    },
+    {
+      "dia": 0,
+      "h": 9,
+      "m": 0,
+      "dur": 60,
+      "tipo": "Hive",
+      "color": "#FDE68A",
+      "text": "#92400E"
+    },
+    {
+      "dia": 0,
+      "h": 10,
+      "m": 0,
+      "dur": 120,
+      "tipo": "Desarrollo",
+      "color": "#BFDBFE",
+      "text": "#1E40AF"
+    },
+    {
+      "dia": 0,
+      "h": 12,
+      "m": 30,
+      "dur": 60,
+      "tipo": "Mant",
+      "color": "#FEF08A",
+      "text": "#854D0E"
+    },
+    {
+      "dia": 0,
+      "h": 13,
+      "m": 30,
+      "dur": 120,
+      "tipo": "Comida",
+      "color": "#F1F5F9",
+      "text": "#64748B"
+    },
+    {
+      "dia": 0,
+      "h": 16,
+      "m": 30,
+      "dur": 90,
+      "tipo": "Desarrollo",
+      "color": "#BFDBFE",
+      "text": "#1E40AF"
+    },
+    {
+      "dia": 0,
+      "h": 18,
+      "m": 0,
+      "dur": 60,
+      "tipo": "Desarrollo",
+      "color": "#BFDBFE",
+      "text": "#1E40AF"
+    },
+    {
+      "dia": 0,
+      "h": 19,
+      "m": 0,
+      "dur": 60,
+      "tipo": "IA / Vibe",
+      "color": "#FBCFE8",
+      "text": "#9D174D"
+    },
+    {
+      "dia": 0,
+      "h": 20,
+      "m": 30,
+      "dur": 30,
+      "tipo": "Admin",
+      "color": "#E2E8F0",
+      "text": "#475569"
+    },
+    {
+      "dia": 1,
+      "h": 7,
+      "m": 0,
+      "dur": 30,
+      "tipo": "Ejercicios",
+      "color": "#BBF7D0",
+      "text": "#14532D"
+    },
+    {
+      "dia": 1,
+      "h": 7,
+      "m": 30,
+      "dur": 30,
+      "tipo": "Plan",
+      "color": "#C7D2FE",
+      "text": "#3730A3"
+    },
+    {
+      "dia": 1,
+      "h": 8,
+      "m": 0,
+      "dur": 60,
+      "tipo": "Plan",
+      "color": "#C7D2FE",
+      "text": "#3730A3"
+    },
+    {
+      "dia": 1,
+      "h": 9,
+      "m": 0,
+      "dur": 60,
+      "tipo": "Hive",
+      "color": "#FDE68A",
+      "text": "#92400E"
+    },
+    {
+      "dia": 1,
+      "h": 10,
+      "m": 0,
+      "dur": 120,
+      "tipo": "Desarrollo",
+      "color": "#BFDBFE",
+      "text": "#1E40AF"
+    },
+    {
+      "dia": 1,
+      "h": 12,
+      "m": 30,
+      "dur": 60,
+      "tipo": "Mamá",
+      "color": "#FBCFE8",
+      "text": "#9D174D"
+    },
+    {
+      "dia": 1,
+      "h": 13,
+      "m": 30,
+      "dur": 150,
+      "tipo": "Mamá",
+      "color": "#FBCFE8",
+      "text": "#9D174D"
+    },
+    {
+      "dia": 1,
+      "h": 16,
+      "m": 0,
+      "dur": 60,
+      "tipo": "Osteópata",
+      "color": "#99F6E4",
+      "text": "#0F766E"
+    },
+    {
+      "dia": 1,
+      "h": 17,
+      "m": 0,
+      "dur": 30,
+      "tipo": "Osteópata",
+      "color": "#99F6E4",
+      "text": "#0F766E"
+    },
+    {
+      "dia": 1,
+      "h": 17,
+      "m": 30,
+      "dur": 30,
+      "tipo": "Desarrollo",
+      "color": "#BFDBFE",
+      "text": "#1E40AF"
+    },
+    {
+      "dia": 1,
+      "h": 18,
+      "m": 0,
+      "dur": 60,
+      "tipo": "Desarrollo",
+      "color": "#BFDBFE",
+      "text": "#1E40AF"
+    },
+    {
+      "dia": 1,
+      "h": 19,
+      "m": 0,
+      "dur": 60,
+      "tipo": "Desarrollo",
+      "color": "#BFDBFE",
+      "text": "#1E40AF"
+    },
+    {
+      "dia": 1,
+      "h": 20,
+      "m": 30,
+      "dur": 30,
+      "tipo": "Admin",
+      "color": "#E2E8F0",
+      "text": "#475569"
+    },
+    {
+      "dia": 2,
+      "h": 7,
+      "m": 0,
+      "dur": 30,
+      "tipo": "Ejercicios",
+      "color": "#BBF7D0",
+      "text": "#14532D"
+    },
+    {
+      "dia": 2,
+      "h": 7,
+      "m": 30,
+      "dur": 30,
+      "tipo": "Plan",
+      "color": "#C7D2FE",
+      "text": "#3730A3"
+    },
+    {
+      "dia": 2,
+      "h": 8,
+      "m": 0,
+      "dur": 60,
+      "tipo": "Plan",
+      "color": "#C7D2FE",
+      "text": "#3730A3"
+    },
+    {
+      "dia": 2,
+      "h": 9,
+      "m": 0,
+      "dur": 60,
+      "tipo": "Hive",
+      "color": "#FDE68A",
+      "text": "#92400E"
+    },
+    {
+      "dia": 2,
+      "h": 10,
+      "m": 0,
+      "dur": 120,
+      "tipo": "Desarrollo",
+      "color": "#BFDBFE",
+      "text": "#1E40AF"
+    },
+    {
+      "dia": 2,
+      "h": 12,
+      "m": 30,
+      "dur": 60,
+      "tipo": "Mant",
+      "color": "#FEF08A",
+      "text": "#854D0E"
+    },
+    {
+      "dia": 2,
+      "h": 13,
+      "m": 30,
+      "dur": 120,
+      "tipo": "Comida",
+      "color": "#F1F5F9",
+      "text": "#64748B"
+    },
+    {
+      "dia": 2,
+      "h": 16,
+      "m": 30,
+      "dur": 150,
+      "tipo": "Desarrollo",
+      "color": "#BFDBFE",
+      "text": "#1E40AF"
+    },
+    {
+      "dia": 2,
+      "h": 19,
+      "m": 0,
+      "dur": 60,
+      "tipo": "IA / Vibe",
+      "color": "#FBCFE8",
+      "text": "#9D174D"
+    },
+    {
+      "dia": 2,
+      "h": 20,
+      "m": 30,
+      "dur": 30,
+      "tipo": "Admin",
+      "color": "#E2E8F0",
+      "text": "#475569"
+    },
+    {
+      "dia": 3,
+      "h": 7,
+      "m": 0,
+      "dur": 30,
+      "tipo": "Ejercicios",
+      "color": "#BBF7D0",
+      "text": "#14532D"
+    },
+    {
+      "dia": 3,
+      "h": 7,
+      "m": 30,
+      "dur": 30,
+      "tipo": "Plan",
+      "color": "#C7D2FE",
+      "text": "#3730A3"
+    },
+    {
+      "dia": 3,
+      "h": 8,
+      "m": 0,
+      "dur": 60,
+      "tipo": "Plan",
+      "color": "#C7D2FE",
+      "text": "#3730A3"
+    },
+    {
+      "dia": 3,
+      "h": 9,
+      "m": 0,
+      "dur": 60,
+      "tipo": "Hive",
+      "color": "#FDE68A",
+      "text": "#92400E"
+    },
+    {
+      "dia": 3,
+      "h": 10,
+      "m": 0,
+      "dur": 120,
+      "tipo": "Desarrollo",
+      "color": "#BFDBFE",
+      "text": "#1E40AF"
+    },
+    {
+      "dia": 3,
+      "h": 12,
+      "m": 30,
+      "dur": 60,
+      "tipo": "Mant",
+      "color": "#FEF08A",
+      "text": "#854D0E"
+    },
+    {
+      "dia": 3,
+      "h": 13,
+      "m": 30,
+      "dur": 120,
+      "tipo": "Comida",
+      "color": "#F1F5F9",
+      "text": "#64748B"
+    },
+    {
+      "dia": 3,
+      "h": 16,
+      "m": 30,
+      "dur": 150,
+      "tipo": "Desarrollo",
+      "color": "#BFDBFE",
+      "text": "#1E40AF"
+    },
+    {
+      "dia": 3,
+      "h": 19,
+      "m": 0,
+      "dur": 60,
+      "tipo": "IA / Vibe",
+      "color": "#FBCFE8",
+      "text": "#9D174D"
+    },
+    {
+      "dia": 3,
+      "h": 20,
+      "m": 30,
+      "dur": 30,
+      "tipo": "Admin",
+      "color": "#E2E8F0",
+      "text": "#475569"
+    },
+    {
+      "dia": 4,
+      "h": 7,
+      "m": 30,
+      "dur": 30,
+      "tipo": "Plan",
+      "color": "#C7D2FE",
+      "text": "#3730A3"
+    },
+    {
+      "dia": 4,
+      "h": 8,
+      "m": 0,
+      "dur": 60,
+      "tipo": "Pilates",
+      "color": "#FED7AA",
+      "text": "#9A3412"
+    },
+    {
+      "dia": 4,
+      "h": 9,
+      "m": 0,
+      "dur": 120,
+      "tipo": "Desarrollo",
+      "color": "#BFDBFE",
+      "text": "#1E40AF"
+    },
+    {
+      "dia": 4,
+      "h": 11,
+      "m": 0,
+      "dur": 60,
+      "tipo": "Mant",
+      "color": "#FEF08A",
+      "text": "#854D0E"
+    },
+    {
+      "dia": 4,
+      "h": 12,
+      "m": 0,
+      "dur": 90,
+      "tipo": "Golf",
+      "color": "#BBF7D0",
+      "text": "#14532D"
+    },
+    {
+      "dia": 4,
+      "h": 13,
+      "m": 30,
+      "dur": 120,
+      "tipo": "Comida",
+      "color": "#F1F5F9",
+      "text": "#64748B"
+    },
+    {
+      "dia": 4,
+      "h": 18,
+      "m": 30,
+      "dur": 60,
+      "tipo": "Plan",
+      "color": "#C7D2FE",
+      "text": "#3730A3"
+    },
+    {
+      "dia": 4,
+      "h": 20,
+      "m": 30,
+      "dur": 30,
+      "tipo": "Admin",
+      "color": "#E2E8F0",
+      "text": "#475569"
+    }
   ],
-
   "projects": [
-
-    { "id": "NUV-001", "cliente": "nuvirta", "tarea": "Firma constitución Nuvirta", "criterio": "Completada 21/04/2026 ✓", "estado": "✅", "horas": 0, "fechaEstimada": "2026-04-21", "fechaHecho": "2026-04-21" },
-    { "id": "NUV-002", "cliente": "nuvirta", "tarea": "Propuesta colaboración Velasco — preparar y enviar", "criterio": "Propuesta enviada y valorada por Velasco", "estado": "🔵", "horas": 3, "fechaEstimada": "2026-05-11" },
-    { "id": "NUV-003", "cliente": "nuvirta", "tarea": "Nota a Dani — licencias GitHub Copilot", "criterio": "Dani informado y decisión tomada", "estado": "🔵", "horas": 1, "fechaEstimada": "2026-05-15" },
-    { "id": "NUV-004", "cliente": "nuvirta", "tarea": "Comentar a MA el viaje a Almería", "criterio": "MA informado", "estado": "🔵", "horas": 0.5, "fechaEstimada": "2026-05-15" },
-    { "id": "NUV-005", "cliente": "nuvirta", "tarea": "Concepto factura Atitlán — definir y enviar", "criterio": "Factura enviada con concepto correcto", "estado": "🔵", "horas": 1, "fechaEstimada": "2026-05-11" },
-    { "id": "NUV-006", "cliente": "nuvirta", "tarea": "Diseñar proceso de trabajo Nuvirta (captación → cobro)", "criterio": "Procesos definidos · base para diseño de agentes", "estado": "🔵", "horas": 5, "fechaEstimada": null },
-    { "id": "NUV-007", "cliente": "nuvirta", "tarea": "Inscripción Registro Mercantil (~05/05)", "criterio": "CIF definitivo obtenido", "estado": "⚪", "horas": 0, "fechaEstimada": "2026-05-05" },
-    { "id": "NUV-008", "cliente": "nuvirta", "tarea": "Solicitud Microsoft AI Cloud Partner Program", "criterio": "Correo @nuvirta.com + landing online antes de solicitar", "estado": "⚪", "horas": 2, "fechaEstimada": "2026-05-06" },
-    { "id": "NUV-009", "cliente": "nuvirta", "tarea": "Obtener licencias Microsoft Partners Launch Benefits", "criterio": "Licencias asignadas a usuarios en M365", "estado": "⚪", "horas": 1, "fechaEstimada": "2026-05-14" },
-    { "id": "NUV-010", "cliente": "nuvirta", "tarea": "Contactar con Dashlane — gestión passwords Nuvirta", "criterio": "Solución de passwords activa para el equipo", "estado": "⚪", "horas": 2, "fechaEstimada": "2026-05-15" },
-    { "id": "NUV-011", "cliente": "nuvirta", "tarea": "Herramienta de tiempos — evaluar API o solución alternativa", "criterio": "Solución seleccionada e implementada", "estado": "⚪", "horas": 5, "fechaEstimada": "2026-05-15" },
-    { "id": "NUV-012", "cliente": "nuvirta", "tarea": "Inventario de procesos internos", "criterio": "Todos los procesos documentados", "estado": "⚪", "horas": 8, "fechaEstimada": "2026-05-15" },
-    { "id": "NUV-013", "cliente": "nuvirta", "tarea": "Manual de identidad visual — registrar la marca", "criterio": "Manual completado y marca registrada", "estado": "⚪", "horas": 5, "fechaEstimada": "2026-05-15" },
-    { "id": "NUV-014", "cliente": "nuvirta", "tarea": "Certificado digital administrador Nuvirta", "criterio": "Certificado digital operativo", "estado": "⚪", "horas": 2, "fechaEstimada": "2026-05-15" },
-    { "id": "NUV-015", "cliente": "nuvirta", "tarea": "Business Central — evaluación", "criterio": "Decisión tomada sobre adopción", "estado": "⚪", "horas": 8, "fechaEstimada": null },
-    { "id": "NUV-016", "cliente": "nuvirta", "tarea": "CRM interno Nuvirta", "criterio": "CRM operativo para gestión de clientes", "estado": "⚪", "horas": 20, "fechaEstimada": null },
-    { "id": "NUV-017", "cliente": "nuvirta", "tarea": "Entornos Power Platform vinculados entre ellos", "criterio": "Entornos configurados y vinculados", "estado": "⚪", "horas": 5, "fechaEstimada": null },
-    { "id": "NUV-018", "cliente": "nuvirta", "tarea": "Copilot Studio — conectar con ecosistema completo", "criterio": "Copilot Studio integrado con todos los servicios", "estado": "⚪", "horas": 20, "fechaEstimada": null },
-
-    { "id": "AAR-001", "cliente": "aar", "tarea": "Enviar a David escrito Audiencia Provincial — PA 430/2025", "criterio": "Escrito enviado", "estado": "🔵", "horas": 1, "fechaEstimada": "2026-05-04" },
-    { "id": "AAR-002", "cliente": "aar", "tarea": "Recopilar facturas abril para asesoría", "criterio": "Facturas enviadas a asesoría", "estado": "🔵", "horas": 1, "fechaEstimada": "2026-05-15" },
-    { "id": "AAR-003", "cliente": "aar", "tarea": "Renovar certificado digital", "criterio": "Certificado renovado y operativo", "estado": "🔵", "horas": 1, "fechaEstimada": "2026-05-15" },
-
-    { "id": "CEN-001", "cliente": "central", "tarea": "Cierre 2025 — ver con Afianza cuentas de tesorería", "criterio": "Cuentas cerradas con Afianza", "estado": "🔵", "horas": 3, "fechaEstimada": null },
-
-    { "id": "FOR-001", "cliente": "formacion", "tarea": "Vibe Coding — IA aplicada a Power BI y desarrollo", "criterio": "Capaz de generar y adaptar código con IA de forma autónoma", "estado": "⚪", "horas": 20, "fechaEstimada": null },
-    { "id": "FOR-002", "cliente": "formacion", "tarea": "Code Apps en Power Apps", "criterio": "Canvas App completa desde cero (Dasme como primer caso real)", "estado": "⚪", "horas": 20, "fechaEstimada": null },
-
-    { "id": "FIS-001", "cliente": "fisiodrid", "tarea": "Modelo BI facturación Sanitas", "criterio": "Usuario identifica facturas correctas y errores", "estado": "🔵", "horas": 5, "mes": "jun", "fechaEstimada": null },
-    { "id": "FIS-002", "cliente": "fisiodrid", "tarea": "Sustituir Gen1 por Power Query directo a Azure Blob", "criterio": "Conexión PQ directa a Azure — antes de junio 2026", "estado": "⚪", "horas": 5, "mes": "jun", "fechaEstimada": "2026-05-12" },
-
-    { "id": "ATI-001", "cliente": "atitlan", "tarea": "Flujo borrador liquidaciones", "criterio": "Se genera y notifica al usuario interno", "estado": "✅", "horas": 0, "mes": null, "fechaEstimada": "2026-04-20", "fechaHecho": "2026-04-20" },
-    { "id": "ATI-002", "cliente": "atitlan", "tarea": "Flujo aprobación y envío liquidaciones", "criterio": "Se ejecuta y envía correo al inversor", "estado": "✅", "horas": 0, "mes": null, "fechaEstimada": "2026-04-21", "fechaHecho": "2026-04-21" },
-    { "id": "ATI-003", "cliente": "atitlan", "tarea": "M2 — Traspasos entre vehículos", "criterio": "Flujo de traspasos operativo end-to-end", "estado": "⚪", "horas": 35, "mes": "may-jun", "fechaEstimada": null },
-    { "id": "ATI-004", "cliente": "atitlan", "tarea": "Proceso rebalanceo — completar y desplegar", "criterio": "Flujo rebalanceo end-to-end correcto", "estado": "⚪", "horas": 35, "mes": "may-jun", "fechaEstimada": null },
-    { "id": "ATI-005", "cliente": "atitlan", "tarea": "Estado de posición — nueva plantilla", "criterio": "Plantilla generada y enviada correctamente", "estado": "⚪", "horas": 10, "mes": "may", "fechaEstimada": null },
-    { "id": "ATI-006", "cliente": "atitlan", "tarea": "Liquidaciones — envío línea individual", "criterio": "Envío individual operativo", "estado": "⚪", "horas": 8, "mes": "may", "fechaEstimada": null },
-    { "id": "ATI-007", "cliente": "atitlan", "tarea": "Liquidaciones — migración completa Atgro", "criterio": "Migración completa y validada en Atgro", "estado": "⚪", "horas": 20, "mes": "jun", "fechaEstimada": null },
-    { "id": "ATI-008", "cliente": "atitlan", "tarea": "Gestión de usuarios y grupos de seguridad", "criterio": "Todos los perfiles de acceso definidos y operativos", "estado": "✅", "horas": 0, "mes": null, "fechaEstimada": "2026-04-22", "fechaHecho": "2026-04-22" },
-    { "id": "ATI-009", "cliente": "atitlan", "tarea": "Campos acumulados devolución principal — quitar de vista", "criterio": "Campos ocultos en formulario pero mantenidos en tabla", "estado": "✅", "horas": 0, "mes": null, "fechaEstimada": "2026-04-27", "fechaHecho": "2026-04-27" },
-    { "id": "ATI-010", "cliente": "atitlan", "tarea": "Portal Nerea — visibilidad líneas Capital Call y Liquidaciones", "criterio": "Estados borrador/enviado visibles · comunicado a Nerea", "estado": "✅", "horas": 0, "mes": null, "fechaEstimada": "2026-04-27", "fechaHecho": "2026-04-27" },
-    { "id": "ATI-011", "cliente": "atitlan", "tarea": "Valor liquidativo — tabla nueva + campos coinversión + flujo (Atgro)", "criterio": "Tabla VL operativa · flujo actualización automática", "estado": "✅", "horas": 0, "mes": null, "fechaEstimada": "2026-04-27", "fechaHecho": "2026-04-28" },
-    { "id": "ATI-012", "cliente": "atitlan", "tarea": "Campaña exprés — configurar buzón para envío con correo general", "criterio": "Correo sale desde dirección general", "estado": "🔵", "horas": 3, "mes": "may", "fechaEstimada": "2026-05-05" },
-    { "id": "ATI-013", "cliente": "atitlan", "tarea": "Poner en producción CRM Atitlán", "criterio": "CRM migrado de pruebas a producción y operativo", "estado": "🔵", "horas": 5, "mes": "may", "fechaEstimada": "2026-05-04" },
-    { "id": "ATI-014", "cliente": "atitlan", "tarea": "2 plantillas nuevas de estado — mapear y actualizar flujos", "criterio": "Plantillas mapeadas y flujos actualizados", "estado": "⚪", "horas": 10, "mes": "may-jun", "fechaEstimada": null },
-    { "id": "ATI-015", "cliente": "atitlan", "tarea": "Seguimiento bug correo ir@atgro.com — campañas ATGRO", "criterio": "Bug resuelto y correos enviándose correctamente", "estado": "🔵", "horas": 3, "mes": "may", "fechaEstimada": "2026-05-05" },
-    { "id": "ATI-016", "cliente": "atitlan", "tarea": "M4 — Validación de datos / app cálculo", "criterio": "App de validación operativa para el equipo", "estado": "⚪", "horas": 85, "mes": "jun-jul", "fechaEstimada": null },
-    { "id": "ATI-017", "cliente": "atitlan", "tarea": "Informe de costes (Atgro)", "criterio": "Informe de costes generado y validado", "estado": "⚪", "horas": 35, "mes": "jul-ago", "fechaEstimada": null },
-    { "id": "ATI-018", "cliente": "atitlan", "tarea": "Power BI — migrar + replicar en ATGR0", "criterio": "Modelos operativos en tenant destino", "estado": "⚪", "horas": 20, "mes": "ago-sep", "fechaEstimada": null },
-    { "id": "ATI-019", "cliente": "atitlan", "tarea": "Despliegue y validación Atgro", "criterio": "Solución completa en producción y validada", "estado": "⚪", "horas": 20, "mes": "sep", "fechaEstimada": null },
-
-    { "id": "VEL-001", "cliente": "velasco", "tarea": "Migración documentos (expedientes y clientes)", "criterio": "BI no muestra ningún archivo pendiente", "estado": "🔵", "horas": 3, "mes": "may", "fechaEstimada": null },
-    { "id": "VEL-002", "cliente": "velasco", "tarea": "Bug fecha documentos — huso horario a las 00:00", "criterio": "Campo fecha muestra valor correcto", "estado": "🔵", "horas": 2, "mes": "may", "fechaEstimada": null },
-    { "id": "VEL-003", "cliente": "velasco", "tarea": "Notificaciones fichas → nuevo CRM", "criterio": "Variables de entorno actualizadas al nuevo CRM", "estado": "🔵", "horas": 1, "mes": "may", "fechaEstimada": null },
-    { "id": "VEL-004", "cliente": "velasco", "tarea": "Contactos inactivos Sage", "criterio": "Completado ✓", "estado": "✅", "horas": 0, "mes": null, "fechaEstimada": "2026-04-22", "fechaHecho": "2026-04-28" },
-    { "id": "VEL-005", "cliente": "velasco", "tarea": "Flujo modificación cuentas — CDN_Titulo_Ya_Coincide + dos ramas", "criterio": "Condición aplicada y probada en biblioteca de cuentas", "estado": "🔵", "horas": 5, "mes": "may", "fechaEstimada": null },
-    { "id": "VEL-006", "cliente": "velasco", "tarea": "Flujo carga cuentas — vel_titulo y vel_nombrevisible sin extensión", "criterio": "Cambios aplicados y validados", "estado": "🔵", "horas": 3, "mes": "may", "fechaEstimada": null },
-    { "id": "VEL-007", "cliente": "velasco", "tarea": "Flujo carga expedientes V7 — sin extensión", "criterio": "Completado ✓", "estado": "✅", "horas": 0, "mes": null, "fechaEstimada": null, "fechaHecho": null },
-    { "id": "VEL-008", "cliente": "velasco", "tarea": "Probar cadena completa en ambas bibliotecas", "criterio": "Completado ✓", "estado": "✅", "horas": 0, "mes": null, "fechaEstimada": null, "fechaHecho": null },
-    { "id": "VEL-009", "cliente": "velasco", "tarea": "Flujo eliminación contactos por vencimiento de cargos", "criterio": "Contactos inactivados automáticamente al vencer su cargo", "estado": "🔵", "horas": 3, "mes": "may", "fechaEstimada": null },
-    { "id": "VEL-010", "cliente": "velasco", "tarea": "Migración documentos clientes → SP + actualizar ABS", "criterio": "Documentos migrados a SharePoint y Azure Blob", "estado": "🔵", "horas": 5, "mes": "may-jun", "fechaEstimada": null },
-    { "id": "VEL-011", "cliente": "velasco", "tarea": "Mapear nombres documentos con campo título en Dataverse", "criterio": "Completado ✓", "estado": "✅", "horas": 0, "mes": null, "fechaEstimada": null, "fechaHecho": null },
-    { "id": "VEL-012", "cliente": "velasco", "tarea": "Cargos con fechas inicio/fin", "criterio": "Montado · pendiente confirmar vencimientos poderes vs cargos", "estado": "🔵", "horas": 2, "mes": "may", "fechaEstimada": null },
-    { "id": "VEL-013", "cliente": "velasco", "tarea": "Formación equipo laboral (4 personas)", "criterio": "Completada ✓", "estado": "✅", "horas": 0, "mes": null, "fechaEstimada": "2026-04-22", "fechaHecho": "2026-04-23" },
-    { "id": "VEL-014", "cliente": "velasco", "tarea": "Power BI financiero — P&G trimestral", "criterio": "Asignación de cuentas revisada, resultados correctos", "estado": "🔵", "horas": 20, "mes": "jun", "fechaEstimada": null },
-    { "id": "VEL-015", "cliente": "velasco", "tarea": "Tabla de contratos", "criterio": "A definir — mejora futura", "estado": "⚪", "horas": 5, "mes": "jul", "fechaEstimada": null },
-    { "id": "VEL-016", "cliente": "velasco", "tarea": "Flujo eliminación documentos SharePoint → backup Azure Blob", "criterio": "Registro inactivado + copia Azure Blob + enlace recuperable", "estado": "⚪", "horas": 30, "mes": "jun-jul", "fechaEstimada": null },
-    { "id": "VEL-017", "cliente": "velasco", "tarea": "Migración Gen1 → Power Query directo Azure", "criterio": "Conexión Gen1 sustituida — antes de junio 2026", "estado": "🔵", "horas": 8, "mes": "may", "fechaEstimada": null },
-    { "id": "VEL-018", "cliente": "velasco", "tarea": "Nuevo reporting financiero", "criterio": "Alcance a definir con Velasco", "estado": "⚪", "horas": 10, "mes": "jul", "fechaEstimada": null },
-    { "id": "VEL-019", "cliente": "velasco", "tarea": "Propuesta colaboración futura Nuvirta/Velasco", "criterio": "Propuesta enviada y valorada", "estado": "🔵", "horas": 1, "mes": "may", "fechaEstimada": "2026-05-11" },
-
-    { "id": "BES-001", "cliente": "bestmedia", "tarea": "Bug BAM — IdCabTrabajo no visible en formulario", "criterio": "Campo visible y funcional", "estado": "🔵", "horas": 1, "mes": "may", "fechaEstimada": "2026-05-04" },
-    { "id": "BES-002", "cliente": "bestmedia", "tarea": "Bug BAM — conPresupuesto cabecera", "criterio": "Completado ✓", "estado": "✅", "horas": 0, "mes": null, "fechaEstimada": null, "fechaHecho": null },
-    { "id": "BES-003", "cliente": "bestmedia", "tarea": "Proceso ClickUp — costes", "criterio": "Flujo operativo, costes registrándose correctamente", "estado": "⚪", "horas": 10, "mes": "may-jun", "fechaEstimada": null },
-    { "id": "BES-004", "cliente": "bestmedia", "tarea": "Notificación estado POs", "criterio": "Cancelado", "estado": "⚪", "horas": 0, "mes": null, "fechaEstimada": null },
-    { "id": "BES-005", "cliente": "bestmedia", "tarea": "Generación de facturas desde Power Apps", "criterio": "Usuario genera factura sin replicar datos", "estado": "⚪", "horas": 5, "mes": "jun", "fechaEstimada": null },
-    { "id": "BES-006", "cliente": "bestmedia", "tarea": "Actualizar reporting financiero mensual", "criterio": "Reporting actualizado y operativo cada mes", "estado": "⚪", "horas": 8, "mes": "jun", "fechaEstimada": null },
-    { "id": "BES-007", "cliente": "bestmedia", "tarea": "RLS Power BI — filtro por squad", "criterio": "Cada responsable ve solo los datos de su squad", "estado": "🔵", "horas": 2, "mes": "may", "fechaEstimada": null },
-    { "id": "BES-008", "cliente": "bestmedia", "tarea": "Revisar propuesta Ramón sobre ClickUp", "criterio": "Propuesta revisada y decisión tomada", "estado": "⚪", "horas": 1, "mes": "may", "fechaEstimada": "2026-05-07" },
-
-    { "id": "A14-001", "cliente": "articulo14", "tarea": "Informes Power BI (artículos, audiencia, costes)", "criterio": "Inversor accede y ve la información correctamente", "estado": "🔵", "horas": 15, "mes": "may", "fechaEstimada": null },
-    { "id": "A14-002", "cliente": "articulo14", "tarea": "BBDD contactos + Customer Insights", "criterio": "Contactos migrados, creables, clasificados correctamente", "estado": "🔵", "horas": 5, "mes": "may", "fechaEstimada": "2026-05-06" },
-    { "id": "A14-003", "cliente": "articulo14", "tarea": "Gestión contactos-eventos", "criterio": "Cruce contacto-evento registrado y consultable", "estado": "⚪", "horas": 2, "mes": "jun", "fechaEstimada": null },
-    { "id": "A14-004", "cliente": "articulo14", "tarea": "Modelo de audiencias", "criterio": "Postponer", "estado": "⚪", "horas": 0, "mes": null, "fechaEstimada": null },
-    { "id": "A14-005", "cliente": "articulo14", "tarea": "Modelo financiero — visual HTML", "criterio": "Visual HTML operativo en informe financiero", "estado": "⚪", "horas": 10, "mes": "jun", "fechaEstimada": null },
-    { "id": "A14-006", "cliente": "articulo14", "tarea": "Flujo Holded — añadir un año al filtro de movimientos", "criterio": "Cobros del mes en curso incluidos correctamente", "estado": "🔵", "horas": 3, "mes": "may", "fechaEstimada": null },
-    { "id": "A14-007", "cliente": "articulo14", "tarea": "Revisión previsión de tesorería (Santi)", "criterio": "Cobros mes en curso incluidos — vencimientos posteriores excluidos", "estado": "⚪", "horas": 0, "mes": null, "fechaEstimada": null },
-    { "id": "A14-008", "cliente": "articulo14", "tarea": "Revisar mejoras/correcciones en colaboraciones", "criterio": "Correcciones aplicadas tras formación Carlota", "estado": "🔵", "horas": 10, "mes": "may", "fechaEstimada": "2026-05-06" },
-    { "id": "A14-009", "cliente": "articulo14", "tarea": "Avanzar eventos en MKT", "criterio": "Módulo eventos operativo con Vicky", "estado": "🔵", "horas": 5, "mes": "may-jun", "fechaEstimada": null },
-    { "id": "A14-010", "cliente": "articulo14", "tarea": "Solicitar licencia para Vicky — administrador del sistema", "criterio": "Licencia asignada y Vicky operativa como admin", "estado": "🔵", "horas": 1, "mes": "may", "fechaEstimada": "2026-05-06" },
-    { "id": "A14-011", "cliente": "articulo14", "tarea": "Plan de formación Copilot", "criterio": "Plan definido y fechas acordadas", "estado": "⚪", "horas": 15, "mes": "jul", "fechaEstimada": null },
-    { "id": "A14-012", "cliente": "articulo14", "tarea": "Reunión Queco — cierre + acceso Arce a Power BI", "criterio": "Queco informado · Arce con acceso configurado", "estado": "🔵", "horas": 3, "mes": "may", "fechaEstimada": "2026-05-06" },
-    { "id": "A14-013", "cliente": "articulo14", "tarea": "Diseño nuevo reporting A14", "criterio": "Postponer", "estado": "⚪", "horas": 0, "mes": null, "fechaEstimada": null },
-    { "id": "A14-014", "cliente": "articulo14", "tarea": "Automatización datos podcasts (Spotify, Amazon, Apple, Ivoox)", "criterio": "Postponer — valorar con Miguel Ángel", "estado": "⚪", "horas": 0, "mes": null, "fechaEstimada": null },
-    { "id": "A14-015", "cliente": "articulo14", "tarea": "Migración Gen1 → Gen2 (deprecation junio)", "criterio": "Flujos migrados antes de junio 2026", "estado": "⚪", "horas": 3, "mes": "may", "fechaEstimada": null },
-
-    { "id": "LR-001", "cliente": "larazon", "tarea": "Flujos carga nóminas Planeta", "criterio": "Completado ✓", "estado": "✅", "horas": 0, "mes": null, "fechaEstimada": "2026-04-17", "fechaHecho": "2026-04-17" },
-    { "id": "LR-002", "cliente": "larazon", "tarea": "Control fecha máxima en subida de ficheros", "criterio": "No permite cargar ficheros con fecha anterior a la máxima", "estado": "🔵", "horas": 1, "mes": "may", "fechaEstimada": null },
-    { "id": "LR-003", "cliente": "larazon", "tarea": "Cargar histórico menos último mes (para Clara)", "criterio": "Datos cargados", "estado": "🔵", "horas": 0, "mes": null, "fechaEstimada": null },
-    { "id": "LR-004", "cliente": "larazon", "tarea": "Revisar carga informe de retribuciones", "criterio": "Completado ✓", "estado": "✅", "horas": 0, "mes": null, "fechaEstimada": null, "fechaHecho": null },
-    { "id": "LR-005", "cliente": "larazon", "tarea": "Propuesta de diseño nómina y masa salarial", "criterio": "Propuesta lista para Clara", "estado": "🔵", "horas": 10, "mes": "may", "fechaEstimada": null },
-    { "id": "LR-006", "cliente": "larazon", "tarea": "Rescatar cálculo actual de masa salarial", "criterio": "Cálculo localizado y revisado", "estado": "🔵", "horas": 5, "mes": "may", "fechaEstimada": null },
-    { "id": "LR-007", "cliente": "larazon", "tarea": "Modelo Power BI nóminas", "criterio": "Modelo publicado y navegable", "estado": "⚪", "horas": 2, "mes": "jun", "fechaEstimada": null },
-    { "id": "LR-008", "cliente": "larazon", "tarea": "Canvas App gestión nóminas", "criterio": "A definir en fase posterior", "estado": "⚪", "horas": 10, "mes": "jun", "fechaEstimada": null },
-
-    { "id": "RIZ-001", "cliente": "rizkider", "tarea": "Estructurar datos históricos desde Excel/GameBook", "criterio": "JSON con todas las ediciones, jugadores y partidos", "estado": "⚪", "horas": 10, "fechaEstimada": null },
-    { "id": "RIZ-002", "cliente": "rizkider", "tarea": "Orden de Mérito — histórico campeones y puntos", "criterio": "Vista por año con parejas + individual navegable", "estado": "⚪", "horas": 8, "fechaEstimada": null },
-    { "id": "RIZ-003", "cliente": "rizkider", "tarea": "Ediciones — timeline año a año", "criterio": "Detalle completo por edición", "estado": "⚪", "horas": 10, "fechaEstimada": null },
-    { "id": "RIZ-004", "cliente": "rizkider", "tarea": "Perfil de jugador", "criterio": "Historial individual completo", "estado": "⚪", "horas": 8, "fechaEstimada": null },
-    { "id": "RIZ-005", "cliente": "rizkider", "tarea": "Top 10 — rankings por métricas", "criterio": "Toggle Individual/Parejas operativo", "estado": "⚪", "horas": 5, "fechaEstimada": null },
-    { "id": "RIZ-006", "cliente": "rizkider", "tarea": "Próxima Rizkider — edición en curso", "criterio": "Info de la edición actual visible y actualizable", "estado": "⚪", "horas": 3, "fechaEstimada": null },
-
-    { "id": "DAS-001", "cliente": "dasme", "tarea": "Fase 1 — Análisis y diseño", "criterio": "Documento de diseño funcional aprobado", "estado": "⚪", "horas": 30, "mes": "jul", "fechaEstimada": "2026-07-01" },
-    { "id": "DAS-002", "cliente": "dasme", "tarea": "Fase 2 — Construcción modelo de datos (Dataverse)", "criterio": "22 tablas principales creadas y relacionadas en Dataverse", "estado": "⚪", "horas": 40, "mes": "jul-ago", "fechaEstimada": "2026-07-15" },
-    { "id": "DAS-003", "cliente": "dasme", "tarea": "Fase 3 — Automatizaciones iniciales (flujos Power Automate)", "criterio": "Flujos canal Email/Telegram + generación avisos + integración Holded", "estado": "⚪", "horas": 60, "mes": "ago", "fechaEstimada": "2026-08-01" },
-    { "id": "DAS-004", "cliente": "dasme", "tarea": "Fase 4 — Aplicaciones de gestión", "criterio": "App modelo configurada + app canvas brigadas + app backoffice", "estado": "⚪", "horas": 120, "mes": "ago-sep", "fechaEstimada": "2026-08-15" },
-    { "id": "DAS-005", "cliente": "dasme", "tarea": "Fase 5 — Pruebas y ajustes", "criterio": "Versión candidata a producción validada con usuarios", "estado": "⚪", "horas": 40, "mes": "sep", "fechaEstimada": "2026-09-01" },
-    { "id": "DAS-006", "cliente": "dasme", "tarea": "Fase 6 — Formación y despliegue", "criterio": "Solución en producción con usuarios capacitados", "estado": "⚪", "horas": 20, "mes": "sep", "fechaEstimada": "2026-09-15" },
-
-    { "id": "GEN-001", "cliente": "nuvirta",    "tipo": "accion", "tarea": "Firma constitución Nuvirta",                                    "fecha": "2026-04-21", "estado": "✅", "horas": 0,   "fechaHecho": "2026-04-21" },
-    { "id": "GEN-002", "cliente": "nuvirta",    "tipo": "accion", "tarea": "Reunión Dani + Miguel Ángel — temas pendientes Nuvirta",          "fecha": "2026-04-21", "estado": "✅", "horas": 2,   "fechaHecho": "2026-04-21" },
-    { "id": "GEN-003", "cliente": "velasco",    "tipo": "accion", "tarea": "Formación CRM Velasco — sesión Ariel Turchak",                   "fecha": "2026-04-14", "estado": "✅", "horas": 2,   "fechaHecho": "2026-04-14" },
-    { "id": "GEN-004", "cliente": "velasco",    "tipo": "accion", "tarea": "CSC Torrejón",                                                    "fecha": "2026-04-16", "estado": "✅", "horas": 4,   "fechaHecho": "2026-04-16" },
-    { "id": "GEN-005", "cliente": "larazon",    "tipo": "accion", "tarea": "Reunión con Clara — revisión flujos nóminas y validación",        "fecha": "2026-04-17", "estado": "✅", "horas": 1,   "fechaHecho": "2026-04-17" },
-    { "id": "GEN-006", "cliente": "velasco",    "tipo": "accion", "tarea": "Formación equipo laboral — 4 sesiones x 45 min",                 "fecha": "2026-04-22", "estado": "✅", "horas": 3,   "fechaHecho": "2026-04-23" },
-    { "id": "GEN-007", "cliente": "atitlan",    "tipo": "accion", "tarea": "Reunión Atitlán",                                                 "fecha": "2026-04-22", "estado": "✅", "horas": 1,   "fechaHecho": "2026-04-22" },
-    { "id": "GEN-008", "cliente": "dasme",      "tipo": "accion", "tarea": "Reunión Dasme — avanzar conexión Telegram",                      "fecha": "2026-04-22", "estado": "✅", "horas": 1,   "fechaHecho": "2026-04-22" },
-    { "id": "GEN-009", "cliente": "larazon",    "tipo": "accion", "tarea": "Reunión con Clara — revisión diseño nóminas y masa salarial",    "fecha": "2026-04-24", "estado": "✅", "horas": 1,   "fechaHecho": "2026-04-24" },
-    { "id": "GEN-010", "cliente": "nuvirta",    "tipo": "accion", "tarea": "Reunión Miguel Ángel — diseño proceso captación→cobro",           "fecha": "2026-04-24", "estado": "✅", "horas": 1.5, "fechaHecho": "2026-04-24" },
-    { "id": "GEN-011", "cliente": "atitlan",    "tipo": "accion", "tarea": "Reunión Atitlán",                                                 "fecha": "2026-04-27", "estado": "✅", "horas": 1,   "fechaHecho": "2026-04-27" },
-    { "id": "GEN-012", "cliente": "aar",        "tipo": "accion", "tarea": "Consulta SAGE Central de Producción",                            "fecha": "2026-04-14", "estado": "✅", "horas": 0.5, "fechaHecho": "2026-04-14" },
-    { "id": "GEN-013", "cliente": "aar",        "tipo": "accion", "tarea": "Gestiones administrativas — contratos, facturas, IVA",            "fecha": "2026-04-20", "estado": "✅", "horas": 3,   "fechaHecho": "2026-04-20" },
-    { "id": "GEN-014", "cliente": "nuvirta",    "tipo": "accion", "tarea": "Nota para Dani — facturable Atitlán proporción horas",           "fecha": "2026-04-28", "estado": "✅", "horas": 1,   "fechaHecho": "2026-04-28" },
-    { "id": "GEN-015", "cliente": "articulo14", "tipo": "accion", "tarea": "Nota a Vicky — disculpa retraso BBDD, quedamos mié 6",           "fecha": "2026-04-28", "estado": "✅", "horas": 0.5, "fechaHecho": "2026-04-28" },
-    { "id": "GEN-016", "cliente": "velasco",    "tipo": "accion", "tarea": "CSC Fresnillo + Comida NCG",                                      "fecha": "2026-04-30", "estado": "✅", "horas": 4,   "fechaHecho": "2026-04-30" },
-    { "id": "GEN-017", "cliente": "velasco",    "tipo": "accion", "tarea": "Visita Velasco — apoyo arranque + futuro colaboración",           "fecha": "2026-05-05", "estado": "✅", "horas": 3,   "fechaHecho": "2026-05-05" },
-    { "id": "GEN-018", "cliente": "articulo14", "tipo": "accion", "tarea": "Formación Carlota — colaboraciones",                             "fecha": "2026-05-06", "estado": "✅", "horas": 2,   "fechaHecho": "2026-05-06" },
-    { "id": "GEN-019", "cliente": "articulo14", "tipo": "accion", "tarea": "Reunión Vicky — BBDD marketing in situ",                         "fecha": "2026-05-06", "estado": "✅", "horas": 1,   "fechaHecho": "2026-05-06" },
-    { "id": "GEN-020", "cliente": "articulo14", "tipo": "accion", "tarea": "Reunión Queco — cierre + acceso Arce a Power BI",                "fecha": "2026-05-06", "estado": "✅", "horas": 1,   "fechaHecho": "2026-05-06" },
-    { "id": "GEN-021", "cliente": "atitlan",    "tipo": "accion", "tarea": "Reunión Atitlán — revisión CRM + puesta en producción",          "fecha": "2026-05-04", "estado": "⚪", "horas": 1,   "fechaHecho": null },
-    { "id": "GEN-022", "cliente": "bestmedia",  "tipo": "accion", "tarea": "Bug IdCabTrabajo — campo no visible en formulario",              "fecha": "2026-05-04", "estado": "⚪", "horas": 1,   "fechaHecho": null },
-    { "id": "GEN-023", "cliente": "articulo14", "tipo": "accion", "tarea": "Propuesta BBDD marketing — definir siguiente paso con Vicky",    "fecha": "2026-05-04", "estado": "⚪", "horas": 1,   "fechaHecho": null },
-    { "id": "GEN-024", "cliente": "articulo14", "tipo": "accion", "tarea": "Tesorería — flujo Holded, añadir un año al filtro",              "fecha": "2026-05-04", "estado": "⚪", "horas": 3,   "fechaHecho": null },
-    { "id": "GEN-025", "cliente": "velasco",    "tipo": "accion", "tarea": "Preparar reunión del martes — futuro colaboración Nuvirta/Velasco","fecha": "2026-05-04", "estado": "⚪", "horas": 1,   "fechaHecho": null },
-    { "id": "GEN-026", "cliente": "aar",        "tipo": "accion", "tarea": "Enviar a David escrito Audiencia Provincial — PA 430/2025",      "fecha": "2026-05-04", "estado": "⚪", "horas": 1,   "fechaHecho": null },
-    { "id": "GEN-027", "cliente": "atitlan",    "tipo": "accion", "tarea": "Seguimiento bug correo ir@atgro.com — campañas ATGRO",           "fecha": "2026-05-05", "estado": "⚪", "horas": 1,   "fechaHecho": null },
-    { "id": "GEN-028", "cliente": "nuvirta",    "tipo": "accion", "tarea": "Escribir a Sara — licencias GitHub Copilot",                     "fecha": "2026-05-05", "estado": "⚪", "horas": 0.5, "fechaHecho": null },
-    { "id": "GEN-029", "cliente": "nuvirta",    "tipo": "accion", "tarea": "Seguimiento correo César — borrador contratos",                  "fecha": "2026-05-05", "estado": "⚪", "horas": 0.5, "fechaHecho": null },
-    { "id": "GEN-030", "cliente": "nuvirta",    "tipo": "accion", "tarea": "Ver con Dani — propuesta facturar ampliación Atitlán con Nuvirta","fecha": "2026-05-05", "estado": "⚪", "horas": 1,   "fechaHecho": null },
-    { "id": "GEN-031", "cliente": "bestmedia",  "tipo": "accion", "tarea": "Reclamar diario 2025",                                           "fecha": "2026-05-05", "estado": "⚪", "horas": 0.5, "fechaHecho": null },
-    { "id": "GEN-032", "cliente": "atitlan",    "tipo": "accion", "tarea": "Avanzar técnico Atitlán",                                        "fecha": "2026-05-05", "estado": "⚪", "horas": 4,   "fechaHecho": null },
-    { "id": "GEN-033", "cliente": "larazon",    "tipo": "accion", "tarea": "Preparar material para reunión Clara del jueves",                "fecha": "2026-05-05", "estado": "⚪", "horas": 2,   "fechaHecho": null },
-    { "id": "GEN-034", "cliente": "larazon",    "tipo": "accion", "tarea": "Terminar lo que falte para reunión del jueves con Clara",        "fecha": "2026-05-06", "estado": "⚪", "horas": 2,   "fechaHecho": null },
-    { "id": "GEN-035", "cliente": "larazon",    "tipo": "accion", "tarea": "Reunión con Clara — revisión modelo nóminas y masa salarial",    "fecha": "2026-05-07", "estado": "⚪", "horas": 1,   "fechaHecho": null },
-    { "id": "GEN-036", "cliente": "bestmedia",  "tipo": "accion", "tarea": "Revisar propuesta Ramón sobre ClickUp",                         "fecha": "2026-05-07", "estado": "⚪", "horas": 1,   "fechaHecho": null },
-    { "id": "GEN-037", "cliente": "atitlan",    "tipo": "accion", "tarea": "Empujón fuerte Atitlán — rebalanceo",                           "fecha": "2026-05-07", "estado": "⚪", "horas": 4,   "fechaHecho": null },
-    { "id": "GEN-038", "cliente": "fisiodrid",  "tipo": "accion", "tarea": "Sustituir Gen1 por Power Query directo a Azure Blob",           "fecha": "2026-05-08", "estado": "⚪", "horas": 5,   "fechaHecho": null },
-    { "id": "GEN-039", "cliente": "nuvirta",    "tipo": "accion", "tarea": "Propuesta colaboración Velasco — preparar y enviar",            "fecha": "2026-05-11", "estado": "⚪", "horas": 3,   "fechaHecho": null },
-    { "id": "GEN-040", "cliente": "nuvirta",    "tipo": "accion", "tarea": "Concepto factura Atitlán — definir y enviar",                   "fecha": "2026-05-11", "estado": "⚪", "horas": 1,   "fechaHecho": null },
-    { "id": "GEN-041", "cliente": "atitlan",    "tipo": "accion", "tarea": "Avanzar técnico Atitlán",                                       "fecha": "2026-05-11", "estado": "⚪", "horas": 4,   "fechaHecho": null },
-    { "id": "GEN-042", "cliente": "fisiodrid",  "tipo": "accion", "tarea": "PQ Azure — conexión directa a Azure Blob",                     "fecha": "2026-05-12", "estado": "⚪", "horas": 5,   "fechaHecho": null },
-    { "id": "GEN-043", "cliente": "bestmedia",  "tipo": "accion", "tarea": "Costes ClickUp + bugs BAM",                                     "fecha": "2026-05-12", "estado": "⚪", "horas": 3,   "fechaHecho": null },
-    { "id": "GEN-044", "cliente": "articulo14", "tipo": "accion", "tarea": "Revisar mejoras/correcciones en colaboraciones",                "fecha": "2026-05-13", "estado": "⚪", "horas": 3,   "fechaHecho": null },
-    { "id": "GEN-045", "cliente": "articulo14", "tipo": "accion", "tarea": "Avanzar eventos en MKT",                                        "fecha": "2026-05-13", "estado": "⚪", "horas": 2,   "fechaHecho": null },
-    { "id": "GEN-046", "cliente": "articulo14", "tipo": "accion", "tarea": "Solicitar licencia para Vicky — administrador del sistema",     "fecha": "2026-05-13", "estado": "⚪", "horas": 1,   "fechaHecho": null },
-    { "id": "GEN-047", "cliente": "atitlan",    "tipo": "accion", "tarea": "Empujón fuerte Atitlán — rebalanceo",                          "fecha": "2026-05-14", "estado": "⚪", "horas": 4,   "fechaHecho": null },
-    { "id": "GEN-048", "cliente": "larazon",    "tipo": "accion", "tarea": "Pendientes La Razón",                                           "fecha": "2026-05-14", "estado": "⚪", "horas": 2,   "fechaHecho": null },
-    { "id": "GEN-049", "cliente": "nuvirta",    "tipo": "accion", "tarea": "Nota a Dani — licencias GitHub Copilot",                       "fecha": "2026-05-15", "estado": "⚪", "horas": 0.5, "fechaHecho": null },
-    { "id": "GEN-050", "cliente": "nuvirta",    "tipo": "accion", "tarea": "Comentar a MA el viaje a Almería",                             "fecha": "2026-05-15", "estado": "⚪", "horas": 0.5, "fechaHecho": null },
-    { "id": "GEN-051", "cliente": "aar",        "tipo": "accion", "tarea": "Recopilar facturas abril para asesoría",                       "fecha": "2026-05-15", "estado": "⚪", "horas": 1,   "fechaHecho": null },
-    { "id": "GEN-052", "cliente": "aar",        "tipo": "accion", "tarea": "Renovar certificado digital",                                  "fecha": "2026-05-15", "estado": "⚪", "horas": 1,   "fechaHecho": null },
-
-    { "id": "NUV-019", "cliente": "nuvirta", "tarea": "Seguimiento licencias GitHub Copilot", "criterio": "Licencias confirmadas o alternativa decidida", "estado": "🔵", "horas": 1, "fechaEstimada": "2026-05-12" },
-    { "id": "NUV-020", "cliente": "nuvirta", "tarea": "Seguimiento factura Climbea", "criterio": "Factura cobrada o acuerdo cerrado", "estado": "🔵", "horas": 1, "fechaEstimada": "2026-05-12" },
-    { "id": "NUV-021", "cliente": "nuvirta", "tarea": "Seguimiento Dashlane — gestión passwords", "criterio": "Solución activada o descartada", "estado": "🔵", "horas": 1, "fechaEstimada": "2026-05-12" },
-    { "id": "NUV-022", "cliente": "nuvirta", "tarea": "Seguimiento registro marca — BestMedia", "criterio": "Estado del registro conocido y siguiente paso definido", "estado": "🔵", "horas": 1, "fechaEstimada": "2026-05-12" },
-
-    { "id": "BES-009", "cliente": "bestmedia", "tarea": "Seguimiento diario 2025", "criterio": "Diario recibido o reclamado formalmente", "estado": "🔵", "horas": 1, "fechaEstimada": "2026-05-12" },
-
-    { "id": "A14-016", "cliente": "articulo14", "tarea": "Incidencia artículos publicados — problema web para obtener artículos", "criterio": "Incidencia resuelta y flujo de datos funcionando correctamente", "estado": "🔵", "horas": 3, "fechaEstimada": "2026-05-12" },
-
-    { "id": "CEN-002", "cliente": "central", "tarea": "Consultar saldos Banco Santander a 31/12/2025 — enviar a JMR", "criterio": "Saldos obtenidos y enviados a JMR", "estado": "⚪", "horas": 1, "fechaEstimada": "2026-05-15" },
-
-    { "id": "AAR-004", "cliente": "aar", "tarea": "Recuperar certificado de empadronamiento (para DNI)", "criterio": "Certificado obtenido", "estado": "⚪", "horas": 1, "fechaEstimada": "2026-05-20" },
-    { "id": "AAR-005", "cliente": "aar", "tarea": "📅 Cita renovación DNI — 9 de junio a las 9:00", "criterio": "DNI renovado", "estado": "⚪", "horas": 2, "fechaEstimada": "2026-06-09" },
-
-    { "id": "GEN-053", "cliente": "nuvirta", "tipo": "accion", "tarea": "Seguimiento licencias GitHub Copilot", "fecha": "2026-05-12", "estado": "⚪", "horas": 1, "fechaHecho": null },
-    { "id": "GEN-054", "cliente": "nuvirta", "tipo": "accion", "tarea": "Seguimiento factura Climbea", "fecha": "2026-05-12", "estado": "⚪", "horas": 1, "fechaHecho": null },
-    { "id": "GEN-055", "cliente": "nuvirta", "tipo": "accion", "tarea": "Seguimiento Dashlane", "fecha": "2026-05-12", "estado": "⚪", "horas": 1, "fechaHecho": null },
-    { "id": "GEN-056", "cliente": "nuvirta", "tipo": "accion", "tarea": "Seguimiento registro marca BestMedia", "fecha": "2026-05-12", "estado": "⚪", "horas": 1, "fechaHecho": null },
-    { "id": "GEN-057", "cliente": "bestmedia", "tipo": "accion", "tarea": "Seguimiento diario 2025", "fecha": "2026-05-12", "estado": "⚪", "horas": 1, "fechaHecho": null },
-    { "id": "GEN-058", "cliente": "articulo14", "tipo": "accion", "tarea": "Incidencia artículos publicados — problema web", "fecha": "2026-05-12", "estado": "⚪", "horas": 3, "fechaHecho": null },
-    { "id": "GEN-059", "cliente": "central", "tipo": "accion", "tarea": "Consultar saldos Banco Santander a 31/12/2025 — enviar a JMR", "fecha": "2026-05-15", "estado": "⚪", "horas": 1, "fechaHecho": null },
-    { "id": "GEN-060", "cliente": "aar", "tipo": "accion", "tarea": "Recuperar certificado de empadronamiento", "fecha": "2026-05-20", "estado": "⚪", "horas": 1, "fechaHecho": null },
-    { "id": "GEN-061", "cliente": "aar", "tipo": "accion", "tarea": "📅 Cita renovación DNI — 9 de junio a las 9:00", "fecha": "2026-06-09", "estado": "⚪", "horas": 2, "fechaHecho": null },
-
-    { "id": "GEN-062", "cliente": "atitlan",    "tipo": "accion", "tarea": "Avanzar CRM Atitlán", "fecha": "2026-05-21", "tiempo": "mañana", "estado": "⚪", "horas": 3, "fechaHecho": null },
-    { "id": "GEN-063", "cliente": "fisiodrid",  "tipo": "accion", "tarea": "Listas SharePoint para Fisiodrid", "fecha": "2026-05-21", "tiempo": "tarde", "estado": "⚪", "horas": 2, "fechaHecho": null },
-    { "id": "GEN-064", "cliente": "articulo14", "tipo": "accion", "tarea": "Resolver tesorería — flujo Holded", "fecha": "2026-05-21", "tiempo": "tarde", "estado": "⚪", "horas": 2, "fechaHecho": null },
-    { "id": "GEN-065", "cliente": "articulo14", "tipo": "accion", "tarea": "Avanzar solución eventos MKT", "fecha": "2026-05-21", "tiempo": "tarde", "estado": "⚪", "horas": 2, "fechaHecho": null },
-    { "id": "GEN-066", "cliente": "bestmedia",  "tipo": "accion", "tarea": "Nuevo flujo Power Automate — generar fichero Excel para Iciar", "fecha": "2026-05-21", "tiempo": "tarde", "estado": "⚪", "horas": 2, "fechaHecho": null },
-
-    { "id": "GEN-067", "cliente": "velasco",    "tipo": "accion", "tarea": "Preparar propuesta de colaboración Velasco", "fecha": "2026-05-22", "tiempo": "mañana", "estado": "⚪", "horas": 2, "fechaHecho": null },
-    { "id": "GEN-068", "cliente": "atitlan",    "tipo": "accion", "tarea": "Avanzar CRM Atitlán", "fecha": "2026-05-22", "tiempo": "mañana", "estado": "⚪", "horas": 3, "fechaHecho": null },
-    { "id": "GEN-069", "cliente": "fisiodrid",  "tipo": "accion", "tarea": "Flujos Power Automate Fisiodrid", "fecha": "2026-05-22", "tiempo": "tarde", "estado": "⚪", "horas": 2, "fechaHecho": null },
-    { "id": "GEN-070", "cliente": "articulo14", "tipo": "accion", "tarea": "Revisar solución eventos MKT", "fecha": "2026-05-22", "tiempo": "tarde", "estado": "⚪", "horas": 2, "fechaHecho": null },
-    { "id": "GEN-071", "cliente": "aar",        "tipo": "accion", "tarea": "Planificar semana siguiente", "fecha": "2026-05-22", "tiempo": "tarde", "estado": "⚪", "horas": 1, "fechaHecho": null },
-    { "id": "GEN-072", "cliente": "nuvirta",    "tipo": "accion", "tarea": "Reunión con Matías Zaya", "fecha": "2026-05-28", "tiempo": null, "estado": "⚪", "horas": 1, "fechaHecho": null },
-    { "id": "GEN-073", "cliente": "atitlan",    "tipo": "accion", "tarea": "Reunión Atitlán", "fecha": "2026-05-28", "tiempo": "10:00h", "estado": "⚪", "horas": 1, "fechaHecho": null },
-    { "id": "GEN-074", "cliente": "articulo14", "tipo": "accion", "tarea": "Comida con Queco y Miguel Ángel", "fecha": "2026-05-27", "tiempo": "mediodía", "estado": "⚪", "horas": 2, "fechaHecho": null },
-    { "id": "GEN-075", "cliente": "articulo14", "tipo": "accion", "tarea": "Inauguración sede Artículo 14", "fecha": "2026-05-27", "tiempo": "20:00h", "estado": "⚪", "horas": 1, "fechaHecho": null },
-    { "id": "GEN-076", "cliente": "aar",        "tipo": "accion", "tarea": "Revisión Dr. Rubio — confirmar/cancelar cita", "fecha": "2026-05-27", "tiempo": "12:00h", "estado": "⚪", "horas": 1, "fechaHecho": null },
-
-    { "id": "GEN-077", "cliente": "atitlan",    "tipo": "accion", "tarea": "Validar funcionamiento completo Atgro con correo general", "fecha": "2026-05-23", "tiempo": null, "estado": "⚪", "horas": 2, "fechaHecho": null },
-    { "id": "GEN-078", "cliente": "atitlan",    "tipo": "accion", "tarea": "Validar flujo Capital Call línea individual — proceso aprobación", "fecha": "2026-05-23", "tiempo": null, "estado": "⚪", "horas": 1, "fechaHecho": null },
-    { "id": "GEN-079", "cliente": "atitlan",    "tipo": "accion", "tarea": "Validar variables de entorno en todos los procesos de notificación", "fecha": "2026-05-23", "tiempo": null, "estado": "⚪", "horas": 1, "fechaHecho": null },
-    { "id": "GEN-080", "cliente": "bestmedia",  "tipo": "accion", "tarea": "Resolver bug — trabajos que no recogen presupuestos", "fecha": "2026-05-23", "tiempo": null, "estado": "⚪", "horas": 2, "fechaHecho": null },
-    { "id": "GEN-081", "cliente": "aar",        "tipo": "accion", "tarea": "Recuperar certificado de empadronamiento Madrid", "fecha": "2026-05-23", "tiempo": null, "estado": "⚪", "horas": 1, "fechaHecho": null },
-    { "id": "GEN-082", "cliente": "aar",        "tipo": "accion", "tarea": "Obtener certificado digital nuevo — FNMT", "fecha": "2026-05-23", "tiempo": null, "estado": "⚪", "horas": 1, "fechaHecho": null },
-    { "id": "GEN-083", "cliente": "aar",        "tipo": "accion", "tarea": "Activar aplicación tarjeta sanitaria Madrid", "fecha": "2026-05-23", "tiempo": null, "estado": "⚪", "horas": 0.5, "fechaHecho": null },
-
-    { "id": "GEN-084", "cliente": "fisiodrid",  "tipo": "accion", "tarea": "Empezar a montar listas SharePoint", "fecha": "2026-05-24", "tiempo": null, "estado": "⚪", "horas": 2, "fechaHecho": null },
-    { "id": "GEN-085", "cliente": "velasco",    "tipo": "accion", "tarea": "Preparar propuesta de colaboración Velasco", "fecha": "2026-05-24", "tiempo": null, "estado": "⚪", "horas": 2, "fechaHecho": null },
-    { "id": "GEN-086", "cliente": "velasco",    "tipo": "accion", "tarea": "Migración documentos subidos en las últimas 2 semanas", "fecha": "2026-05-24", "tiempo": null, "estado": "⚪", "horas": 2, "fechaHecho": null },
-    { "id": "GEN-087", "cliente": "articulo14", "tipo": "accion", "tarea": "Seleccionar eventos y definir proceso carga + asignación contactos", "fecha": "2026-05-24", "tiempo": null, "estado": "⚪", "horas": 2, "fechaHecho": null },
-    { "id": "GEN-088", "cliente": "larazon",    "tipo": "accion", "tarea": "Revisar lo que han mandado y ver cómo afecta al proceso", "fecha": "2026-05-24", "tiempo": null, "estado": "⚪", "horas": 1, "fechaHecho": null },
-
-    { "id": "GEN-089", "cliente": "aar",        "tipo": "accion", "tarea": "Reunión con Cipri — tema personal / Power Platform",                          "fecha": "2026-06-03", "tiempo": null, "estado": "⚪", "horas": 1,   "fechaHecho": null },
-    { "id": "GEN-090", "cliente": "aar",        "tipo": "accion", "tarea": "Analizar documento de Cipri",                                                   "fecha": "2026-06-07", "tiempo": null, "estado": "⚪", "horas": 1.5, "fechaHecho": null },
-    { "id": "GEN-091", "cliente": "nuvirta",    "tipo": "accion", "tarea": "Reclamar a César borradores de contratos — traspaso clientes AAR a Nuvirta",   "fecha": "2026-06-08", "tiempo": null, "estado": "⚪", "horas": 0.5, "fechaHecho": null },
-    { "id": "GEN-092", "cliente": "articulo14", "tipo": "accion", "tarea": "Buscar reunión con Vicky para ver el prototipo",                               "fecha": "2026-06-08", "tiempo": null, "estado": "⚪", "horas": 0.5, "fechaHecho": null },
-    { "id": "GEN-093", "cliente": "aar",        "tipo": "accion", "tarea": "Seguimiento declaración de la Renta 2025",                                      "fecha": "2026-06-11", "tiempo": null, "estado": "⚪", "horas": 1,   "fechaHecho": null },
-    { "id": "GEN-094", "cliente": "aar",        "tipo": "accion", "tarea": "Contestar a José Manuel Carballo sobre torneo de golf",                         "fecha": "2026-06-06", "tiempo": null,      "estado": "⚪", "horas": 0.5, "fechaHecho": null },
-    { "id": "GEN-095", "cliente": "aar",        "tipo": "accion", "tarea": "Revisar email",                                                                     "fecha": "2026-06-06", "tiempo": "mañana",  "estado": "⚪", "horas": 0.5, "fechaHecho": null },
-    { "id": "GEN-096", "cliente": "articulo14", "tipo": "accion", "tarea": "Actualizar reuniones — colaboraciones y marketing",                                  "fecha": "2026-06-06", "tiempo": null,      "estado": "⚪", "horas": 1,   "fechaHecho": null },
-    { "id": "GEN-097", "cliente": "nuvirta",    "tipo": "accion", "tarea": "Actualizar reuniones — private equity y Blash",                                      "fecha": "2026-06-06", "tiempo": null,      "estado": "⚪", "horas": 1,   "fechaHecho": null },
-    { "id": "GEN-098", "cliente": "atitlan",    "tipo": "accion", "tarea": "Actualizar reuniones — seguimiento CRM",                                             "fecha": "2026-06-06", "tiempo": null,      "estado": "⚪", "horas": 1,   "fechaHecho": null },
-    { "id": "GEN-099", "cliente": "fisiodrid",  "tipo": "accion", "tarea": "Actualizar reuniones — presentación prototipo",                                      "fecha": "2026-06-06", "tiempo": null, "estado": "⚪", "horas": 1,   "fechaHecho": null },
-    { "id": "GEN-100", "cliente": "aar",        "tipo": "accion", "tarea": "Contestar a Carballo sobre torneo 20-06",                                             "fecha": "2026-06-15", "tiempo": null, "estado": "⚪", "horas": 0.5, "fechaHecho": null },
-    { "id": "GEN-101", "cliente": "velasco",    "tipo": "accion", "tarea": "Analizar proyecto migración Sage",                                                    "fecha": "2026-06-06", "tiempo": null, "estado": "⚪", "horas": 1.5, "fechaHecho": null },
-    { "id": "GEN-102", "cliente": "nuvirta",    "tipo": "accion", "tarea": "Cambiar factura Nuvirta a Coimbra con la cuenta correcta",                            "fecha": "2026-06-06", "tiempo": null, "estado": "⚪", "horas": 0.5, "fechaHecho": null },
-    { "id": "GEN-103", "cliente": "central",    "tipo": "accion", "tarea": "Revisar el IS de Dúo",                                                               "fecha": "2026-06-07", "tiempo": null, "estado": "⚪", "horas": 1,   "fechaHecho": null }
+    {
+      "id": "NUV-001",
+      "cliente": "nuvirta",
+      "tarea": "Firma constitución Nuvirta",
+      "criterio": "Completada 21/04/2026 ✓",
+      "estado": "✅",
+      "horas": 0,
+      "fechaEstimada": "2026-04-21",
+      "fechaHecho": "2026-04-21"
+    },
+    {
+      "id": "NUV-002",
+      "cliente": "nuvirta",
+      "tarea": "Propuesta colaboración Velasco — preparar y enviar",
+      "criterio": "Propuesta enviada y valorada por Velasco",
+      "estado": "🔵",
+      "horas": 3,
+      "fechaEstimada": "2026-05-11"
+    },
+    {
+      "id": "NUV-003",
+      "cliente": "nuvirta",
+      "tarea": "Nota a Dani — licencias GitHub Copilot",
+      "criterio": "Dani informado y decisión tomada",
+      "estado": "🔵",
+      "horas": 1,
+      "fechaEstimada": "2026-05-15"
+    },
+    {
+      "id": "NUV-004",
+      "cliente": "nuvirta",
+      "tarea": "Comentar a MA el viaje a Almería",
+      "criterio": "MA informado",
+      "estado": "🔵",
+      "horas": 0.5,
+      "fechaEstimada": "2026-05-15"
+    },
+    {
+      "id": "NUV-005",
+      "cliente": "nuvirta",
+      "tarea": "Concepto factura Atitlán — definir y enviar",
+      "criterio": "Factura enviada con concepto correcto",
+      "estado": "🔵",
+      "horas": 1,
+      "fechaEstimada": "2026-05-11"
+    },
+    {
+      "id": "NUV-006",
+      "cliente": "nuvirta",
+      "tarea": "Diseñar proceso de trabajo Nuvirta (captación → cobro)",
+      "criterio": "Procesos definidos · base para diseño de agentes",
+      "estado": "🔵",
+      "horas": 5,
+      "fechaEstimada": null
+    },
+    {
+      "id": "NUV-007",
+      "cliente": "nuvirta",
+      "tarea": "Inscripción Registro Mercantil (~05/05)",
+      "criterio": "CIF definitivo obtenido",
+      "estado": "⚪",
+      "horas": 0,
+      "fechaEstimada": "2026-05-05"
+    },
+    {
+      "id": "NUV-008",
+      "cliente": "nuvirta",
+      "tarea": "Solicitud Microsoft AI Cloud Partner Program",
+      "criterio": "Correo @nuvirta.com + landing online antes de solicitar",
+      "estado": "⚪",
+      "horas": 2,
+      "fechaEstimada": "2026-05-06"
+    },
+    {
+      "id": "NUV-009",
+      "cliente": "nuvirta",
+      "tarea": "Obtener licencias Microsoft Partners Launch Benefits",
+      "criterio": "Licencias asignadas a usuarios en M365",
+      "estado": "⚪",
+      "horas": 1,
+      "fechaEstimada": "2026-05-14"
+    },
+    {
+      "id": "NUV-010",
+      "cliente": "nuvirta",
+      "tarea": "Contactar con Dashlane — gestión passwords Nuvirta",
+      "criterio": "Solución de passwords activa para el equipo",
+      "estado": "⚪",
+      "horas": 2,
+      "fechaEstimada": "2026-05-15"
+    },
+    {
+      "id": "NUV-011",
+      "cliente": "nuvirta",
+      "tarea": "Herramienta de tiempos — evaluar API o solución alternativa",
+      "criterio": "Solución seleccionada e implementada",
+      "estado": "⚪",
+      "horas": 5,
+      "fechaEstimada": "2026-05-15"
+    },
+    {
+      "id": "NUV-012",
+      "cliente": "nuvirta",
+      "tarea": "Inventario de procesos internos",
+      "criterio": "Todos los procesos documentados",
+      "estado": "⚪",
+      "horas": 8,
+      "fechaEstimada": "2026-05-15"
+    },
+    {
+      "id": "NUV-013",
+      "cliente": "nuvirta",
+      "tarea": "Manual de identidad visual — registrar la marca",
+      "criterio": "Manual completado y marca registrada",
+      "estado": "⚪",
+      "horas": 5,
+      "fechaEstimada": "2026-05-15"
+    },
+    {
+      "id": "NUV-014",
+      "cliente": "nuvirta",
+      "tarea": "Certificado digital administrador Nuvirta",
+      "criterio": "Certificado digital operativo",
+      "estado": "⚪",
+      "horas": 2,
+      "fechaEstimada": "2026-05-15"
+    },
+    {
+      "id": "NUV-015",
+      "cliente": "nuvirta",
+      "tarea": "Business Central — evaluación",
+      "criterio": "Decisión tomada sobre adopción",
+      "estado": "⚪",
+      "horas": 8,
+      "fechaEstimada": null
+    },
+    {
+      "id": "NUV-016",
+      "cliente": "nuvirta",
+      "tarea": "CRM interno Nuvirta",
+      "criterio": "CRM operativo para gestión de clientes",
+      "estado": "⚪",
+      "horas": 20,
+      "fechaEstimada": null
+    },
+    {
+      "id": "NUV-017",
+      "cliente": "nuvirta",
+      "tarea": "Entornos Power Platform vinculados entre ellos",
+      "criterio": "Entornos configurados y vinculados",
+      "estado": "⚪",
+      "horas": 5,
+      "fechaEstimada": null
+    },
+    {
+      "id": "NUV-018",
+      "cliente": "nuvirta",
+      "tarea": "Copilot Studio — conectar con ecosistema completo",
+      "criterio": "Copilot Studio integrado con todos los servicios",
+      "estado": "⚪",
+      "horas": 20,
+      "fechaEstimada": null
+    },
+    {
+      "id": "AAR-001",
+      "cliente": "aar",
+      "tarea": "Enviar a David escrito Audiencia Provincial — PA 430/2025",
+      "criterio": "Escrito enviado",
+      "estado": "🔵",
+      "horas": 1,
+      "fechaEstimada": "2026-05-04"
+    },
+    {
+      "id": "AAR-002",
+      "cliente": "aar",
+      "tarea": "Recopilar facturas abril para asesoría",
+      "criterio": "Facturas enviadas a asesoría",
+      "estado": "🔵",
+      "horas": 1,
+      "fechaEstimada": "2026-05-15"
+    },
+    {
+      "id": "AAR-003",
+      "cliente": "aar",
+      "tarea": "Renovar certificado digital",
+      "criterio": "Certificado renovado y operativo",
+      "estado": "🔵",
+      "horas": 1,
+      "fechaEstimada": "2026-05-15"
+    },
+    {
+      "id": "CEN-001",
+      "cliente": "central",
+      "tarea": "Cierre 2025 — ver con Afianza cuentas de tesorería",
+      "criterio": "Cuentas cerradas con Afianza",
+      "estado": "🔵",
+      "horas": 3,
+      "fechaEstimada": null
+    },
+    {
+      "id": "FOR-001",
+      "cliente": "formacion",
+      "tarea": "Vibe Coding — IA aplicada a Power BI y desarrollo",
+      "criterio": "Capaz de generar y adaptar código con IA de forma autónoma",
+      "estado": "⚪",
+      "horas": 20,
+      "fechaEstimada": null
+    },
+    {
+      "id": "FOR-002",
+      "cliente": "formacion",
+      "tarea": "Code Apps en Power Apps",
+      "criterio": "Canvas App completa desde cero (Dasme como primer caso real)",
+      "estado": "⚪",
+      "horas": 20,
+      "fechaEstimada": null
+    },
+    {
+      "id": "FIS-001",
+      "cliente": "fisiodrid",
+      "tarea": "Modelo BI facturación Sanitas",
+      "criterio": "Usuario identifica facturas correctas y errores",
+      "estado": "🔵",
+      "horas": 5,
+      "mes": "jun",
+      "fechaEstimada": null
+    },
+    {
+      "id": "FIS-002",
+      "cliente": "fisiodrid",
+      "tarea": "Sustituir Gen1 por Power Query directo a Azure Blob",
+      "criterio": "Conexión PQ directa a Azure — antes de junio 2026",
+      "estado": "⚪",
+      "horas": 5,
+      "mes": "jun",
+      "fechaEstimada": "2026-05-12"
+    },
+    {
+      "id": "ATI-001",
+      "cliente": "atitlan",
+      "tarea": "Flujo borrador liquidaciones",
+      "criterio": "Se genera y notifica al usuario interno",
+      "estado": "✅",
+      "horas": 0,
+      "mes": null,
+      "fechaEstimada": "2026-04-20",
+      "fechaHecho": "2026-04-20"
+    },
+    {
+      "id": "ATI-002",
+      "cliente": "atitlan",
+      "tarea": "Flujo aprobación y envío liquidaciones",
+      "criterio": "Se ejecuta y envía correo al inversor",
+      "estado": "✅",
+      "horas": 0,
+      "mes": null,
+      "fechaEstimada": "2026-04-21",
+      "fechaHecho": "2026-04-21"
+    },
+    {
+      "id": "ATI-003",
+      "cliente": "atitlan",
+      "tarea": "M2 — Traspasos entre vehículos",
+      "criterio": "Flujo de traspasos operativo end-to-end",
+      "estado": "⚪",
+      "horas": 35,
+      "mes": "may-jun",
+      "fechaEstimada": null
+    },
+    {
+      "id": "ATI-004",
+      "cliente": "atitlan",
+      "tarea": "Proceso rebalanceo — completar y desplegar",
+      "criterio": "Flujo rebalanceo end-to-end correcto",
+      "estado": "⚪",
+      "horas": 35,
+      "mes": "may-jun",
+      "fechaEstimada": null
+    },
+    {
+      "id": "ATI-005",
+      "cliente": "atitlan",
+      "tarea": "Estado de posición — nueva plantilla",
+      "criterio": "Plantilla generada y enviada correctamente",
+      "estado": "⚪",
+      "horas": 10,
+      "mes": "may",
+      "fechaEstimada": null
+    },
+    {
+      "id": "ATI-006",
+      "cliente": "atitlan",
+      "tarea": "Liquidaciones — envío línea individual",
+      "criterio": "Envío individual operativo",
+      "estado": "⚪",
+      "horas": 8,
+      "mes": "may",
+      "fechaEstimada": null
+    },
+    {
+      "id": "ATI-007",
+      "cliente": "atitlan",
+      "tarea": "Liquidaciones — migración completa Atgro",
+      "criterio": "Migración completa y validada en Atgro",
+      "estado": "⚪",
+      "horas": 20,
+      "mes": "jun",
+      "fechaEstimada": null
+    },
+    {
+      "id": "ATI-008",
+      "cliente": "atitlan",
+      "tarea": "Gestión de usuarios y grupos de seguridad",
+      "criterio": "Todos los perfiles de acceso definidos y operativos",
+      "estado": "✅",
+      "horas": 0,
+      "mes": null,
+      "fechaEstimada": "2026-04-22",
+      "fechaHecho": "2026-04-22"
+    },
+    {
+      "id": "ATI-009",
+      "cliente": "atitlan",
+      "tarea": "Campos acumulados devolución principal — quitar de vista",
+      "criterio": "Campos ocultos en formulario pero mantenidos en tabla",
+      "estado": "✅",
+      "horas": 0,
+      "mes": null,
+      "fechaEstimada": "2026-04-27",
+      "fechaHecho": "2026-04-27"
+    },
+    {
+      "id": "ATI-010",
+      "cliente": "atitlan",
+      "tarea": "Portal Nerea — visibilidad líneas Capital Call y Liquidaciones",
+      "criterio": "Estados borrador/enviado visibles · comunicado a Nerea",
+      "estado": "✅",
+      "horas": 0,
+      "mes": null,
+      "fechaEstimada": "2026-04-27",
+      "fechaHecho": "2026-04-27"
+    },
+    {
+      "id": "ATI-011",
+      "cliente": "atitlan",
+      "tarea": "Valor liquidativo — tabla nueva + campos coinversión + flujo (Atgro)",
+      "criterio": "Tabla VL operativa · flujo actualización automática",
+      "estado": "✅",
+      "horas": 0,
+      "mes": null,
+      "fechaEstimada": "2026-04-27",
+      "fechaHecho": "2026-04-28"
+    },
+    {
+      "id": "ATI-012",
+      "cliente": "atitlan",
+      "tarea": "Campaña exprés — configurar buzón para envío con correo general",
+      "criterio": "Correo sale desde dirección general",
+      "estado": "🔵",
+      "horas": 3,
+      "mes": "may",
+      "fechaEstimada": "2026-05-05"
+    },
+    {
+      "id": "ATI-013",
+      "cliente": "atitlan",
+      "tarea": "Poner en producción CRM Atitlán",
+      "criterio": "CRM migrado de pruebas a producción y operativo",
+      "estado": "🔵",
+      "horas": 5,
+      "mes": "may",
+      "fechaEstimada": "2026-05-04"
+    },
+    {
+      "id": "ATI-014",
+      "cliente": "atitlan",
+      "tarea": "2 plantillas nuevas de estado — mapear y actualizar flujos",
+      "criterio": "Plantillas mapeadas y flujos actualizados",
+      "estado": "⚪",
+      "horas": 10,
+      "mes": "may-jun",
+      "fechaEstimada": null
+    },
+    {
+      "id": "ATI-015",
+      "cliente": "atitlan",
+      "tarea": "Seguimiento bug correo ir@atgro.com — campañas ATGRO",
+      "criterio": "Bug resuelto y correos enviándose correctamente",
+      "estado": "🔵",
+      "horas": 3,
+      "mes": "may",
+      "fechaEstimada": "2026-05-05"
+    },
+    {
+      "id": "ATI-016",
+      "cliente": "atitlan",
+      "tarea": "M4 — Validación de datos / app cálculo",
+      "criterio": "App de validación operativa para el equipo",
+      "estado": "⚪",
+      "horas": 85,
+      "mes": "jun-jul",
+      "fechaEstimada": null
+    },
+    {
+      "id": "ATI-017",
+      "cliente": "atitlan",
+      "tarea": "Informe de costes (Atgro)",
+      "criterio": "Informe de costes generado y validado",
+      "estado": "⚪",
+      "horas": 35,
+      "mes": "jul-ago",
+      "fechaEstimada": null
+    },
+    {
+      "id": "ATI-018",
+      "cliente": "atitlan",
+      "tarea": "Power BI — migrar + replicar en ATGR0",
+      "criterio": "Modelos operativos en tenant destino",
+      "estado": "⚪",
+      "horas": 20,
+      "mes": "ago-sep",
+      "fechaEstimada": null
+    },
+    {
+      "id": "ATI-019",
+      "cliente": "atitlan",
+      "tarea": "Despliegue y validación Atgro",
+      "criterio": "Solución completa en producción y validada",
+      "estado": "⚪",
+      "horas": 20,
+      "mes": "sep",
+      "fechaEstimada": null
+    },
+    {
+      "id": "VEL-001",
+      "cliente": "velasco",
+      "tarea": "Migración documentos (expedientes y clientes)",
+      "criterio": "BI no muestra ningún archivo pendiente",
+      "estado": "🔵",
+      "horas": 3,
+      "mes": "may",
+      "fechaEstimada": null
+    },
+    {
+      "id": "VEL-002",
+      "cliente": "velasco",
+      "tarea": "Bug fecha documentos — huso horario a las 00:00",
+      "criterio": "Campo fecha muestra valor correcto",
+      "estado": "🔵",
+      "horas": 2,
+      "mes": "may",
+      "fechaEstimada": null
+    },
+    {
+      "id": "VEL-003",
+      "cliente": "velasco",
+      "tarea": "Notificaciones fichas → nuevo CRM",
+      "criterio": "Variables de entorno actualizadas al nuevo CRM",
+      "estado": "🔵",
+      "horas": 1,
+      "mes": "may",
+      "fechaEstimada": null
+    },
+    {
+      "id": "VEL-004",
+      "cliente": "velasco",
+      "tarea": "Contactos inactivos Sage",
+      "criterio": "Completado ✓",
+      "estado": "✅",
+      "horas": 0,
+      "mes": null,
+      "fechaEstimada": "2026-04-22",
+      "fechaHecho": "2026-04-28"
+    },
+    {
+      "id": "VEL-005",
+      "cliente": "velasco",
+      "tarea": "Flujo modificación cuentas — CDN_Titulo_Ya_Coincide + dos ramas",
+      "criterio": "Condición aplicada y probada en biblioteca de cuentas",
+      "estado": "🔵",
+      "horas": 5,
+      "mes": "may",
+      "fechaEstimada": null
+    },
+    {
+      "id": "VEL-006",
+      "cliente": "velasco",
+      "tarea": "Flujo carga cuentas — vel_titulo y vel_nombrevisible sin extensión",
+      "criterio": "Cambios aplicados y validados",
+      "estado": "🔵",
+      "horas": 3,
+      "mes": "may",
+      "fechaEstimada": null
+    },
+    {
+      "id": "VEL-007",
+      "cliente": "velasco",
+      "tarea": "Flujo carga expedientes V7 — sin extensión",
+      "criterio": "Completado ✓",
+      "estado": "✅",
+      "horas": 0,
+      "mes": null,
+      "fechaEstimada": null,
+      "fechaHecho": null
+    },
+    {
+      "id": "VEL-008",
+      "cliente": "velasco",
+      "tarea": "Probar cadena completa en ambas bibliotecas",
+      "criterio": "Completado ✓",
+      "estado": "✅",
+      "horas": 0,
+      "mes": null,
+      "fechaEstimada": null,
+      "fechaHecho": null
+    },
+    {
+      "id": "VEL-009",
+      "cliente": "velasco",
+      "tarea": "Flujo eliminación contactos por vencimiento de cargos",
+      "criterio": "Contactos inactivados automáticamente al vencer su cargo",
+      "estado": "🔵",
+      "horas": 3,
+      "mes": "may",
+      "fechaEstimada": null
+    },
+    {
+      "id": "VEL-010",
+      "cliente": "velasco",
+      "tarea": "Migración documentos clientes → SP + actualizar ABS",
+      "criterio": "Documentos migrados a SharePoint y Azure Blob",
+      "estado": "🔵",
+      "horas": 5,
+      "mes": "may-jun",
+      "fechaEstimada": null
+    },
+    {
+      "id": "VEL-011",
+      "cliente": "velasco",
+      "tarea": "Mapear nombres documentos con campo título en Dataverse",
+      "criterio": "Completado ✓",
+      "estado": "✅",
+      "horas": 0,
+      "mes": null,
+      "fechaEstimada": null,
+      "fechaHecho": null
+    },
+    {
+      "id": "VEL-012",
+      "cliente": "velasco",
+      "tarea": "Cargos con fechas inicio/fin",
+      "criterio": "Montado · pendiente confirmar vencimientos poderes vs cargos",
+      "estado": "🔵",
+      "horas": 2,
+      "mes": "may",
+      "fechaEstimada": null
+    },
+    {
+      "id": "VEL-013",
+      "cliente": "velasco",
+      "tarea": "Formación equipo laboral (4 personas)",
+      "criterio": "Completada ✓",
+      "estado": "✅",
+      "horas": 0,
+      "mes": null,
+      "fechaEstimada": "2026-04-22",
+      "fechaHecho": "2026-04-23"
+    },
+    {
+      "id": "VEL-014",
+      "cliente": "velasco",
+      "tarea": "Power BI financiero — P&G trimestral",
+      "criterio": "Asignación de cuentas revisada, resultados correctos",
+      "estado": "🔵",
+      "horas": 20,
+      "mes": "jun",
+      "fechaEstimada": null
+    },
+    {
+      "id": "VEL-015",
+      "cliente": "velasco",
+      "tarea": "Tabla de contratos",
+      "criterio": "A definir — mejora futura",
+      "estado": "⚪",
+      "horas": 5,
+      "mes": "jul",
+      "fechaEstimada": null
+    },
+    {
+      "id": "VEL-016",
+      "cliente": "velasco",
+      "tarea": "Flujo eliminación documentos SharePoint → backup Azure Blob",
+      "criterio": "Registro inactivado + copia Azure Blob + enlace recuperable",
+      "estado": "⚪",
+      "horas": 30,
+      "mes": "jun-jul",
+      "fechaEstimada": null
+    },
+    {
+      "id": "VEL-017",
+      "cliente": "velasco",
+      "tarea": "Migración Gen1 → Power Query directo Azure",
+      "criterio": "Conexión Gen1 sustituida — antes de junio 2026",
+      "estado": "🔵",
+      "horas": 8,
+      "mes": "may",
+      "fechaEstimada": null
+    },
+    {
+      "id": "VEL-018",
+      "cliente": "velasco",
+      "tarea": "Nuevo reporting financiero",
+      "criterio": "Alcance a definir con Velasco",
+      "estado": "⚪",
+      "horas": 10,
+      "mes": "jul",
+      "fechaEstimada": null
+    },
+    {
+      "id": "VEL-019",
+      "cliente": "velasco",
+      "tarea": "Propuesta colaboración futura Nuvirta/Velasco",
+      "criterio": "Propuesta enviada y valorada",
+      "estado": "🔵",
+      "horas": 1,
+      "mes": "may",
+      "fechaEstimada": "2026-05-11"
+    },
+    {
+      "id": "BES-001",
+      "cliente": "bestmedia",
+      "tarea": "Bug BAM — IdCabTrabajo no visible en formulario",
+      "criterio": "Campo visible y funcional",
+      "estado": "🔵",
+      "horas": 1,
+      "mes": "may",
+      "fechaEstimada": "2026-05-04"
+    },
+    {
+      "id": "BES-002",
+      "cliente": "bestmedia",
+      "tarea": "Bug BAM — conPresupuesto cabecera",
+      "criterio": "Completado ✓",
+      "estado": "✅",
+      "horas": 0,
+      "mes": null,
+      "fechaEstimada": null,
+      "fechaHecho": null
+    },
+    {
+      "id": "BES-003",
+      "cliente": "bestmedia",
+      "tarea": "Proceso ClickUp — costes",
+      "criterio": "Flujo operativo, costes registrándose correctamente",
+      "estado": "⚪",
+      "horas": 10,
+      "mes": "may-jun",
+      "fechaEstimada": null
+    },
+    {
+      "id": "BES-004",
+      "cliente": "bestmedia",
+      "tarea": "Notificación estado POs",
+      "criterio": "Cancelado",
+      "estado": "⚪",
+      "horas": 0,
+      "mes": null,
+      "fechaEstimada": null
+    },
+    {
+      "id": "BES-005",
+      "cliente": "bestmedia",
+      "tarea": "Generación de facturas desde Power Apps",
+      "criterio": "Usuario genera factura sin replicar datos",
+      "estado": "⚪",
+      "horas": 5,
+      "mes": "jun",
+      "fechaEstimada": null
+    },
+    {
+      "id": "BES-006",
+      "cliente": "bestmedia",
+      "tarea": "Actualizar reporting financiero mensual",
+      "criterio": "Reporting actualizado y operativo cada mes",
+      "estado": "⚪",
+      "horas": 8,
+      "mes": "jun",
+      "fechaEstimada": null
+    },
+    {
+      "id": "BES-007",
+      "cliente": "bestmedia",
+      "tarea": "RLS Power BI — filtro por squad",
+      "criterio": "Cada responsable ve solo los datos de su squad",
+      "estado": "🔵",
+      "horas": 2,
+      "mes": "may",
+      "fechaEstimada": null
+    },
+    {
+      "id": "BES-008",
+      "cliente": "bestmedia",
+      "tarea": "Revisar propuesta Ramón sobre ClickUp",
+      "criterio": "Propuesta revisada y decisión tomada",
+      "estado": "⚪",
+      "horas": 1,
+      "mes": "may",
+      "fechaEstimada": "2026-05-07"
+    },
+    {
+      "id": "A14-001",
+      "cliente": "articulo14",
+      "tarea": "Informes Power BI (artículos, audiencia, costes)",
+      "criterio": "Inversor accede y ve la información correctamente",
+      "estado": "🔵",
+      "horas": 15,
+      "mes": "may",
+      "fechaEstimada": null
+    },
+    {
+      "id": "A14-002",
+      "cliente": "articulo14",
+      "tarea": "BBDD contactos + Customer Insights",
+      "criterio": "Contactos migrados, creables, clasificados correctamente",
+      "estado": "🔵",
+      "horas": 5,
+      "mes": "may",
+      "fechaEstimada": "2026-05-06"
+    },
+    {
+      "id": "A14-003",
+      "cliente": "articulo14",
+      "tarea": "Gestión contactos-eventos",
+      "criterio": "Cruce contacto-evento registrado y consultable",
+      "estado": "⚪",
+      "horas": 2,
+      "mes": "jun",
+      "fechaEstimada": null
+    },
+    {
+      "id": "A14-004",
+      "cliente": "articulo14",
+      "tarea": "Modelo de audiencias",
+      "criterio": "Postponer",
+      "estado": "⚪",
+      "horas": 0,
+      "mes": null,
+      "fechaEstimada": null
+    },
+    {
+      "id": "A14-005",
+      "cliente": "articulo14",
+      "tarea": "Modelo financiero — visual HTML",
+      "criterio": "Visual HTML operativo en informe financiero",
+      "estado": "⚪",
+      "horas": 10,
+      "mes": "jun",
+      "fechaEstimada": null
+    },
+    {
+      "id": "A14-006",
+      "cliente": "articulo14",
+      "tarea": "Flujo Holded — añadir un año al filtro de movimientos",
+      "criterio": "Cobros del mes en curso incluidos correctamente",
+      "estado": "🔵",
+      "horas": 3,
+      "mes": "may",
+      "fechaEstimada": null
+    },
+    {
+      "id": "A14-007",
+      "cliente": "articulo14",
+      "tarea": "Revisión previsión de tesorería (Santi)",
+      "criterio": "Cobros mes en curso incluidos — vencimientos posteriores excluidos",
+      "estado": "⚪",
+      "horas": 0,
+      "mes": null,
+      "fechaEstimada": null
+    },
+    {
+      "id": "A14-008",
+      "cliente": "articulo14",
+      "tarea": "Revisar mejoras/correcciones en colaboraciones",
+      "criterio": "Correcciones aplicadas tras formación Carlota",
+      "estado": "🔵",
+      "horas": 10,
+      "mes": "may",
+      "fechaEstimada": "2026-05-06"
+    },
+    {
+      "id": "A14-009",
+      "cliente": "articulo14",
+      "tarea": "Avanzar eventos en MKT",
+      "criterio": "Módulo eventos operativo con Vicky",
+      "estado": "🔵",
+      "horas": 5,
+      "mes": "may-jun",
+      "fechaEstimada": null
+    },
+    {
+      "id": "A14-010",
+      "cliente": "articulo14",
+      "tarea": "Solicitar licencia para Vicky — administrador del sistema",
+      "criterio": "Licencia asignada y Vicky operativa como admin",
+      "estado": "🔵",
+      "horas": 1,
+      "mes": "may",
+      "fechaEstimada": "2026-05-06"
+    },
+    {
+      "id": "A14-011",
+      "cliente": "articulo14",
+      "tarea": "Plan de formación Copilot",
+      "criterio": "Plan definido y fechas acordadas",
+      "estado": "⚪",
+      "horas": 15,
+      "mes": "jul",
+      "fechaEstimada": null
+    },
+    {
+      "id": "A14-012",
+      "cliente": "articulo14",
+      "tarea": "Reunión Queco — cierre + acceso Arce a Power BI",
+      "criterio": "Queco informado · Arce con acceso configurado",
+      "estado": "🔵",
+      "horas": 3,
+      "mes": "may",
+      "fechaEstimada": "2026-05-06"
+    },
+    {
+      "id": "A14-013",
+      "cliente": "articulo14",
+      "tarea": "Diseño nuevo reporting A14",
+      "criterio": "Postponer",
+      "estado": "⚪",
+      "horas": 0,
+      "mes": null,
+      "fechaEstimada": null
+    },
+    {
+      "id": "A14-014",
+      "cliente": "articulo14",
+      "tarea": "Automatización datos podcasts (Spotify, Amazon, Apple, Ivoox)",
+      "criterio": "Postponer — valorar con Miguel Ángel",
+      "estado": "⚪",
+      "horas": 0,
+      "mes": null,
+      "fechaEstimada": null
+    },
+    {
+      "id": "A14-015",
+      "cliente": "articulo14",
+      "tarea": "Migración Gen1 → Gen2 (deprecation junio)",
+      "criterio": "Flujos migrados antes de junio 2026",
+      "estado": "⚪",
+      "horas": 3,
+      "mes": "may",
+      "fechaEstimada": null
+    },
+    {
+      "id": "LR-001",
+      "cliente": "larazon",
+      "tarea": "Flujos carga nóminas Planeta",
+      "criterio": "Completado ✓",
+      "estado": "✅",
+      "horas": 0,
+      "mes": null,
+      "fechaEstimada": "2026-04-17",
+      "fechaHecho": "2026-04-17"
+    },
+    {
+      "id": "LR-002",
+      "cliente": "larazon",
+      "tarea": "Control fecha máxima en subida de ficheros",
+      "criterio": "No permite cargar ficheros con fecha anterior a la máxima",
+      "estado": "🔵",
+      "horas": 1,
+      "mes": "may",
+      "fechaEstimada": null
+    },
+    {
+      "id": "LR-003",
+      "cliente": "larazon",
+      "tarea": "Cargar histórico menos último mes (para Clara)",
+      "criterio": "Datos cargados",
+      "estado": "🔵",
+      "horas": 0,
+      "mes": null,
+      "fechaEstimada": null
+    },
+    {
+      "id": "LR-004",
+      "cliente": "larazon",
+      "tarea": "Revisar carga informe de retribuciones",
+      "criterio": "Completado ✓",
+      "estado": "✅",
+      "horas": 0,
+      "mes": null,
+      "fechaEstimada": null,
+      "fechaHecho": null
+    },
+    {
+      "id": "LR-005",
+      "cliente": "larazon",
+      "tarea": "Propuesta de diseño nómina y masa salarial",
+      "criterio": "Propuesta lista para Clara",
+      "estado": "🔵",
+      "horas": 10,
+      "mes": "may",
+      "fechaEstimada": null
+    },
+    {
+      "id": "LR-006",
+      "cliente": "larazon",
+      "tarea": "Rescatar cálculo actual de masa salarial",
+      "criterio": "Cálculo localizado y revisado",
+      "estado": "🔵",
+      "horas": 5,
+      "mes": "may",
+      "fechaEstimada": null
+    },
+    {
+      "id": "LR-007",
+      "cliente": "larazon",
+      "tarea": "Modelo Power BI nóminas",
+      "criterio": "Modelo publicado y navegable",
+      "estado": "⚪",
+      "horas": 2,
+      "mes": "jun",
+      "fechaEstimada": null
+    },
+    {
+      "id": "LR-008",
+      "cliente": "larazon",
+      "tarea": "Canvas App gestión nóminas",
+      "criterio": "A definir en fase posterior",
+      "estado": "⚪",
+      "horas": 10,
+      "mes": "jun",
+      "fechaEstimada": null
+    },
+    {
+      "id": "RIZ-001",
+      "cliente": "rizkider",
+      "tarea": "Estructurar datos históricos desde Excel/GameBook",
+      "criterio": "JSON con todas las ediciones, jugadores y partidos",
+      "estado": "⚪",
+      "horas": 10,
+      "fechaEstimada": null
+    },
+    {
+      "id": "RIZ-002",
+      "cliente": "rizkider",
+      "tarea": "Orden de Mérito — histórico campeones y puntos",
+      "criterio": "Vista por año con parejas + individual navegable",
+      "estado": "⚪",
+      "horas": 8,
+      "fechaEstimada": null
+    },
+    {
+      "id": "RIZ-003",
+      "cliente": "rizkider",
+      "tarea": "Ediciones — timeline año a año",
+      "criterio": "Detalle completo por edición",
+      "estado": "⚪",
+      "horas": 10,
+      "fechaEstimada": null
+    },
+    {
+      "id": "RIZ-004",
+      "cliente": "rizkider",
+      "tarea": "Perfil de jugador",
+      "criterio": "Historial individual completo",
+      "estado": "⚪",
+      "horas": 8,
+      "fechaEstimada": null
+    },
+    {
+      "id": "RIZ-005",
+      "cliente": "rizkider",
+      "tarea": "Top 10 — rankings por métricas",
+      "criterio": "Toggle Individual/Parejas operativo",
+      "estado": "⚪",
+      "horas": 5,
+      "fechaEstimada": null
+    },
+    {
+      "id": "RIZ-006",
+      "cliente": "rizkider",
+      "tarea": "Próxima Rizkider — edición en curso",
+      "criterio": "Info de la edición actual visible y actualizable",
+      "estado": "⚪",
+      "horas": 3,
+      "fechaEstimada": null
+    },
+    {
+      "id": "DAS-001",
+      "cliente": "dasme",
+      "tarea": "Fase 1 — Análisis y diseño",
+      "criterio": "Documento de diseño funcional aprobado",
+      "estado": "⚪",
+      "horas": 30,
+      "mes": "jul",
+      "fechaEstimada": "2026-07-01"
+    },
+    {
+      "id": "DAS-002",
+      "cliente": "dasme",
+      "tarea": "Fase 2 — Construcción modelo de datos (Dataverse)",
+      "criterio": "22 tablas principales creadas y relacionadas en Dataverse",
+      "estado": "⚪",
+      "horas": 40,
+      "mes": "jul-ago",
+      "fechaEstimada": "2026-07-15"
+    },
+    {
+      "id": "DAS-003",
+      "cliente": "dasme",
+      "tarea": "Fase 3 — Automatizaciones iniciales (flujos Power Automate)",
+      "criterio": "Flujos canal Email/Telegram + generación avisos + integración Holded",
+      "estado": "⚪",
+      "horas": 60,
+      "mes": "ago",
+      "fechaEstimada": "2026-08-01"
+    },
+    {
+      "id": "DAS-004",
+      "cliente": "dasme",
+      "tarea": "Fase 4 — Aplicaciones de gestión",
+      "criterio": "App modelo configurada + app canvas brigadas + app backoffice",
+      "estado": "⚪",
+      "horas": 120,
+      "mes": "ago-sep",
+      "fechaEstimada": "2026-08-15"
+    },
+    {
+      "id": "DAS-005",
+      "cliente": "dasme",
+      "tarea": "Fase 5 — Pruebas y ajustes",
+      "criterio": "Versión candidata a producción validada con usuarios",
+      "estado": "⚪",
+      "horas": 40,
+      "mes": "sep",
+      "fechaEstimada": "2026-09-01"
+    },
+    {
+      "id": "DAS-006",
+      "cliente": "dasme",
+      "tarea": "Fase 6 — Formación y despliegue",
+      "criterio": "Solución en producción con usuarios capacitados",
+      "estado": "⚪",
+      "horas": 20,
+      "mes": "sep",
+      "fechaEstimada": "2026-09-15"
+    },
+    {
+      "id": "GEN-001",
+      "cliente": "nuvirta",
+      "tipo": "accion",
+      "tarea": "Firma constitución Nuvirta",
+      "fecha": "2026-04-21",
+      "estado": "✅",
+      "horas": 0,
+      "fechaHecho": "2026-04-21"
+    },
+    {
+      "id": "GEN-002",
+      "cliente": "nuvirta",
+      "tipo": "accion",
+      "tarea": "Reunión Dani + Miguel Ángel — temas pendientes Nuvirta",
+      "fecha": "2026-04-21",
+      "estado": "✅",
+      "horas": 2,
+      "fechaHecho": "2026-04-21"
+    },
+    {
+      "id": "GEN-003",
+      "cliente": "velasco",
+      "tipo": "accion",
+      "tarea": "Formación CRM Velasco — sesión Ariel Turchak",
+      "fecha": "2026-04-14",
+      "estado": "✅",
+      "horas": 2,
+      "fechaHecho": "2026-04-14"
+    },
+    {
+      "id": "GEN-004",
+      "cliente": "velasco",
+      "tipo": "accion",
+      "tarea": "CSC Torrejón",
+      "fecha": "2026-04-16",
+      "estado": "✅",
+      "horas": 4,
+      "fechaHecho": "2026-04-16"
+    },
+    {
+      "id": "GEN-005",
+      "cliente": "larazon",
+      "tipo": "accion",
+      "tarea": "Reunión con Clara — revisión flujos nóminas y validación",
+      "fecha": "2026-04-17",
+      "estado": "✅",
+      "horas": 1,
+      "fechaHecho": "2026-04-17"
+    },
+    {
+      "id": "GEN-006",
+      "cliente": "velasco",
+      "tipo": "accion",
+      "tarea": "Formación equipo laboral — 4 sesiones x 45 min",
+      "fecha": "2026-04-22",
+      "estado": "✅",
+      "horas": 3,
+      "fechaHecho": "2026-04-23"
+    },
+    {
+      "id": "GEN-007",
+      "cliente": "atitlan",
+      "tipo": "accion",
+      "tarea": "Reunión Atitlán",
+      "fecha": "2026-04-22",
+      "estado": "✅",
+      "horas": 1,
+      "fechaHecho": "2026-04-22"
+    },
+    {
+      "id": "GEN-008",
+      "cliente": "dasme",
+      "tipo": "accion",
+      "tarea": "Reunión Dasme — avanzar conexión Telegram",
+      "fecha": "2026-04-22",
+      "estado": "✅",
+      "horas": 1,
+      "fechaHecho": "2026-04-22"
+    },
+    {
+      "id": "GEN-009",
+      "cliente": "larazon",
+      "tipo": "accion",
+      "tarea": "Reunión con Clara — revisión diseño nóminas y masa salarial",
+      "fecha": "2026-04-24",
+      "estado": "✅",
+      "horas": 1,
+      "fechaHecho": "2026-04-24"
+    },
+    {
+      "id": "GEN-010",
+      "cliente": "nuvirta",
+      "tipo": "accion",
+      "tarea": "Reunión Miguel Ángel — diseño proceso captación→cobro",
+      "fecha": "2026-04-24",
+      "estado": "✅",
+      "horas": 1.5,
+      "fechaHecho": "2026-04-24"
+    },
+    {
+      "id": "GEN-011",
+      "cliente": "atitlan",
+      "tipo": "accion",
+      "tarea": "Reunión Atitlán",
+      "fecha": "2026-04-27",
+      "estado": "✅",
+      "horas": 1,
+      "fechaHecho": "2026-04-27"
+    },
+    {
+      "id": "GEN-012",
+      "cliente": "aar",
+      "tipo": "accion",
+      "tarea": "Consulta SAGE Central de Producción",
+      "fecha": "2026-04-14",
+      "estado": "✅",
+      "horas": 0.5,
+      "fechaHecho": "2026-04-14"
+    },
+    {
+      "id": "GEN-013",
+      "cliente": "aar",
+      "tipo": "accion",
+      "tarea": "Gestiones administrativas — contratos, facturas, IVA",
+      "fecha": "2026-04-20",
+      "estado": "✅",
+      "horas": 3,
+      "fechaHecho": "2026-04-20"
+    },
+    {
+      "id": "GEN-014",
+      "cliente": "nuvirta",
+      "tipo": "accion",
+      "tarea": "Nota para Dani — facturable Atitlán proporción horas",
+      "fecha": "2026-04-28",
+      "estado": "✅",
+      "horas": 1,
+      "fechaHecho": "2026-04-28"
+    },
+    {
+      "id": "GEN-015",
+      "cliente": "articulo14",
+      "tipo": "accion",
+      "tarea": "Nota a Vicky — disculpa retraso BBDD, quedamos mié 6",
+      "fecha": "2026-04-28",
+      "estado": "✅",
+      "horas": 0.5,
+      "fechaHecho": "2026-04-28"
+    },
+    {
+      "id": "GEN-016",
+      "cliente": "velasco",
+      "tipo": "accion",
+      "tarea": "CSC Fresnillo + Comida NCG",
+      "fecha": "2026-04-30",
+      "estado": "✅",
+      "horas": 4,
+      "fechaHecho": "2026-04-30"
+    },
+    {
+      "id": "GEN-017",
+      "cliente": "velasco",
+      "tipo": "accion",
+      "tarea": "Visita Velasco — apoyo arranque + futuro colaboración",
+      "fecha": "2026-05-05",
+      "estado": "✅",
+      "horas": 3,
+      "fechaHecho": "2026-05-05"
+    },
+    {
+      "id": "GEN-018",
+      "cliente": "articulo14",
+      "tipo": "accion",
+      "tarea": "Formación Carlota — colaboraciones",
+      "fecha": "2026-05-06",
+      "estado": "✅",
+      "horas": 2,
+      "fechaHecho": "2026-05-06"
+    },
+    {
+      "id": "GEN-019",
+      "cliente": "articulo14",
+      "tipo": "accion",
+      "tarea": "Reunión Vicky — BBDD marketing in situ",
+      "fecha": "2026-05-06",
+      "estado": "✅",
+      "horas": 1,
+      "fechaHecho": "2026-05-06"
+    },
+    {
+      "id": "GEN-020",
+      "cliente": "articulo14",
+      "tipo": "accion",
+      "tarea": "Reunión Queco — cierre + acceso Arce a Power BI",
+      "fecha": "2026-05-06",
+      "estado": "✅",
+      "horas": 1,
+      "fechaHecho": "2026-05-06"
+    },
+    {
+      "id": "GEN-021",
+      "cliente": "atitlan",
+      "tipo": "accion",
+      "tarea": "Reunión Atitlán — revisión CRM + puesta en producción",
+      "fecha": "2026-05-04",
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-022",
+      "cliente": "bestmedia",
+      "tipo": "accion",
+      "tarea": "Bug IdCabTrabajo — campo no visible en formulario",
+      "fecha": "2026-05-04",
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-023",
+      "cliente": "articulo14",
+      "tipo": "accion",
+      "tarea": "Propuesta BBDD marketing — definir siguiente paso con Vicky",
+      "fecha": "2026-05-04",
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-024",
+      "cliente": "articulo14",
+      "tipo": "accion",
+      "tarea": "Tesorería — flujo Holded, añadir un año al filtro",
+      "fecha": "2026-05-04",
+      "estado": "⚪",
+      "horas": 3,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-025",
+      "cliente": "velasco",
+      "tipo": "accion",
+      "tarea": "Preparar reunión del martes — futuro colaboración Nuvirta/Velasco",
+      "fecha": "2026-05-04",
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-026",
+      "cliente": "aar",
+      "tipo": "accion",
+      "tarea": "Enviar a David escrito Audiencia Provincial — PA 430/2025",
+      "fecha": "2026-05-04",
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-027",
+      "cliente": "atitlan",
+      "tipo": "accion",
+      "tarea": "Seguimiento bug correo ir@atgro.com — campañas ATGRO",
+      "fecha": "2026-05-05",
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-028",
+      "cliente": "nuvirta",
+      "tipo": "accion",
+      "tarea": "Escribir a Sara — licencias GitHub Copilot",
+      "fecha": "2026-05-05",
+      "estado": "⚪",
+      "horas": 0.5,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-029",
+      "cliente": "nuvirta",
+      "tipo": "accion",
+      "tarea": "Seguimiento correo César — borrador contratos",
+      "fecha": "2026-05-05",
+      "estado": "⚪",
+      "horas": 0.5,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-030",
+      "cliente": "nuvirta",
+      "tipo": "accion",
+      "tarea": "Ver con Dani — propuesta facturar ampliación Atitlán con Nuvirta",
+      "fecha": "2026-05-05",
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-031",
+      "cliente": "bestmedia",
+      "tipo": "accion",
+      "tarea": "Reclamar diario 2025",
+      "fecha": "2026-05-05",
+      "estado": "⚪",
+      "horas": 0.5,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-032",
+      "cliente": "atitlan",
+      "tipo": "accion",
+      "tarea": "Avanzar técnico Atitlán",
+      "fecha": "2026-05-05",
+      "estado": "⚪",
+      "horas": 4,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-033",
+      "cliente": "larazon",
+      "tipo": "accion",
+      "tarea": "Preparar material para reunión Clara del jueves",
+      "fecha": "2026-05-05",
+      "estado": "⚪",
+      "horas": 2,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-034",
+      "cliente": "larazon",
+      "tipo": "accion",
+      "tarea": "Terminar lo que falte para reunión del jueves con Clara",
+      "fecha": "2026-05-06",
+      "estado": "⚪",
+      "horas": 2,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-035",
+      "cliente": "larazon",
+      "tipo": "accion",
+      "tarea": "Reunión con Clara — revisión modelo nóminas y masa salarial",
+      "fecha": "2026-05-07",
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-036",
+      "cliente": "bestmedia",
+      "tipo": "accion",
+      "tarea": "Revisar propuesta Ramón sobre ClickUp",
+      "fecha": "2026-05-07",
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-037",
+      "cliente": "atitlan",
+      "tipo": "accion",
+      "tarea": "Empujón fuerte Atitlán — rebalanceo",
+      "fecha": "2026-05-07",
+      "estado": "⚪",
+      "horas": 4,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-038",
+      "cliente": "fisiodrid",
+      "tipo": "accion",
+      "tarea": "Sustituir Gen1 por Power Query directo a Azure Blob",
+      "fecha": "2026-05-08",
+      "estado": "⚪",
+      "horas": 5,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-039",
+      "cliente": "nuvirta",
+      "tipo": "accion",
+      "tarea": "Propuesta colaboración Velasco — preparar y enviar",
+      "fecha": "2026-05-11",
+      "estado": "⚪",
+      "horas": 3,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-040",
+      "cliente": "nuvirta",
+      "tipo": "accion",
+      "tarea": "Concepto factura Atitlán — definir y enviar",
+      "fecha": "2026-05-11",
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-041",
+      "cliente": "atitlan",
+      "tipo": "accion",
+      "tarea": "Avanzar técnico Atitlán",
+      "fecha": "2026-05-11",
+      "estado": "⚪",
+      "horas": 4,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-042",
+      "cliente": "fisiodrid",
+      "tipo": "accion",
+      "tarea": "PQ Azure — conexión directa a Azure Blob",
+      "fecha": "2026-05-12",
+      "estado": "⚪",
+      "horas": 5,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-043",
+      "cliente": "bestmedia",
+      "tipo": "accion",
+      "tarea": "Costes ClickUp + bugs BAM",
+      "fecha": "2026-05-12",
+      "estado": "⚪",
+      "horas": 3,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-044",
+      "cliente": "articulo14",
+      "tipo": "accion",
+      "tarea": "Revisar mejoras/correcciones en colaboraciones",
+      "fecha": "2026-05-13",
+      "estado": "⚪",
+      "horas": 3,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-045",
+      "cliente": "articulo14",
+      "tipo": "accion",
+      "tarea": "Avanzar eventos en MKT",
+      "fecha": "2026-05-13",
+      "estado": "⚪",
+      "horas": 2,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-046",
+      "cliente": "articulo14",
+      "tipo": "accion",
+      "tarea": "Solicitar licencia para Vicky — administrador del sistema",
+      "fecha": "2026-05-13",
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-047",
+      "cliente": "atitlan",
+      "tipo": "accion",
+      "tarea": "Empujón fuerte Atitlán — rebalanceo",
+      "fecha": "2026-05-14",
+      "estado": "⚪",
+      "horas": 4,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-048",
+      "cliente": "larazon",
+      "tipo": "accion",
+      "tarea": "Pendientes La Razón",
+      "fecha": "2026-05-14",
+      "estado": "⚪",
+      "horas": 2,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-049",
+      "cliente": "nuvirta",
+      "tipo": "accion",
+      "tarea": "Nota a Dani — licencias GitHub Copilot",
+      "fecha": "2026-05-15",
+      "estado": "⚪",
+      "horas": 0.5,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-050",
+      "cliente": "nuvirta",
+      "tipo": "accion",
+      "tarea": "Comentar a MA el viaje a Almería",
+      "fecha": "2026-05-15",
+      "estado": "⚪",
+      "horas": 0.5,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-051",
+      "cliente": "aar",
+      "tipo": "accion",
+      "tarea": "Recopilar facturas abril para asesoría",
+      "fecha": "2026-05-15",
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-052",
+      "cliente": "aar",
+      "tipo": "accion",
+      "tarea": "Renovar certificado digital",
+      "fecha": "2026-05-15",
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "NUV-019",
+      "cliente": "nuvirta",
+      "tarea": "Seguimiento licencias GitHub Copilot",
+      "criterio": "Licencias confirmadas o alternativa decidida",
+      "estado": "🔵",
+      "horas": 1,
+      "fechaEstimada": "2026-05-12"
+    },
+    {
+      "id": "NUV-020",
+      "cliente": "nuvirta",
+      "tarea": "Seguimiento factura Climbea",
+      "criterio": "Factura cobrada o acuerdo cerrado",
+      "estado": "🔵",
+      "horas": 1,
+      "fechaEstimada": "2026-05-12"
+    },
+    {
+      "id": "NUV-021",
+      "cliente": "nuvirta",
+      "tarea": "Seguimiento Dashlane — gestión passwords",
+      "criterio": "Solución activada o descartada",
+      "estado": "🔵",
+      "horas": 1,
+      "fechaEstimada": "2026-05-12"
+    },
+    {
+      "id": "NUV-022",
+      "cliente": "nuvirta",
+      "tarea": "Seguimiento registro marca — BestMedia",
+      "criterio": "Estado del registro conocido y siguiente paso definido",
+      "estado": "🔵",
+      "horas": 1,
+      "fechaEstimada": "2026-05-12"
+    },
+    {
+      "id": "BES-009",
+      "cliente": "bestmedia",
+      "tarea": "Seguimiento diario 2025",
+      "criterio": "Diario recibido o reclamado formalmente",
+      "estado": "🔵",
+      "horas": 1,
+      "fechaEstimada": "2026-05-12"
+    },
+    {
+      "id": "A14-016",
+      "cliente": "articulo14",
+      "tarea": "Incidencia artículos publicados — problema web para obtener artículos",
+      "criterio": "Incidencia resuelta y flujo de datos funcionando correctamente",
+      "estado": "🔵",
+      "horas": 3,
+      "fechaEstimada": "2026-05-12"
+    },
+    {
+      "id": "CEN-002",
+      "cliente": "central",
+      "tarea": "Consultar saldos Banco Santander a 31/12/2025 — enviar a JMR",
+      "criterio": "Saldos obtenidos y enviados a JMR",
+      "estado": "⚪",
+      "horas": 1,
+      "fechaEstimada": "2026-05-15"
+    },
+    {
+      "id": "AAR-004",
+      "cliente": "aar",
+      "tarea": "Recuperar certificado de empadronamiento (para DNI)",
+      "criterio": "Certificado obtenido",
+      "estado": "⚪",
+      "horas": 1,
+      "fechaEstimada": "2026-05-20"
+    },
+    {
+      "id": "AAR-005",
+      "cliente": "aar",
+      "tarea": "📅 Cita renovación DNI — 9 de junio a las 9:00",
+      "criterio": "DNI renovado",
+      "estado": "⚪",
+      "horas": 2,
+      "fechaEstimada": "2026-06-09"
+    },
+    {
+      "id": "GEN-053",
+      "cliente": "nuvirta",
+      "tipo": "accion",
+      "tarea": "Seguimiento licencias GitHub Copilot",
+      "fecha": "2026-05-12",
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-054",
+      "cliente": "nuvirta",
+      "tipo": "accion",
+      "tarea": "Seguimiento factura Climbea",
+      "fecha": "2026-05-12",
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-055",
+      "cliente": "nuvirta",
+      "tipo": "accion",
+      "tarea": "Seguimiento Dashlane",
+      "fecha": "2026-05-12",
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-056",
+      "cliente": "nuvirta",
+      "tipo": "accion",
+      "tarea": "Seguimiento registro marca BestMedia",
+      "fecha": "2026-05-12",
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-057",
+      "cliente": "bestmedia",
+      "tipo": "accion",
+      "tarea": "Seguimiento diario 2025",
+      "fecha": "2026-05-12",
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-058",
+      "cliente": "articulo14",
+      "tipo": "accion",
+      "tarea": "Incidencia artículos publicados — problema web",
+      "fecha": "2026-05-12",
+      "estado": "⚪",
+      "horas": 3,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-059",
+      "cliente": "central",
+      "tipo": "accion",
+      "tarea": "Consultar saldos Banco Santander a 31/12/2025 — enviar a JMR",
+      "fecha": "2026-05-15",
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-060",
+      "cliente": "aar",
+      "tipo": "accion",
+      "tarea": "Recuperar certificado de empadronamiento",
+      "fecha": "2026-05-20",
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-061",
+      "cliente": "aar",
+      "tipo": "accion",
+      "tarea": "📅 Cita renovación DNI — 9 de junio a las 9:00",
+      "fecha": "2026-06-09",
+      "estado": "⚪",
+      "horas": 2,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-062",
+      "cliente": "atitlan",
+      "tipo": "accion",
+      "tarea": "Avanzar CRM Atitlán",
+      "fecha": "2026-05-21",
+      "tiempo": "mañana",
+      "estado": "⚪",
+      "horas": 3,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-063",
+      "cliente": "fisiodrid",
+      "tipo": "accion",
+      "tarea": "Listas SharePoint para Fisiodrid",
+      "fecha": "2026-05-21",
+      "tiempo": "tarde",
+      "estado": "⚪",
+      "horas": 2,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-064",
+      "cliente": "articulo14",
+      "tipo": "accion",
+      "tarea": "Resolver tesorería — flujo Holded",
+      "fecha": "2026-05-21",
+      "tiempo": "tarde",
+      "estado": "⚪",
+      "horas": 2,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-065",
+      "cliente": "articulo14",
+      "tipo": "accion",
+      "tarea": "Avanzar solución eventos MKT",
+      "fecha": "2026-05-21",
+      "tiempo": "tarde",
+      "estado": "⚪",
+      "horas": 2,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-066",
+      "cliente": "bestmedia",
+      "tipo": "accion",
+      "tarea": "Nuevo flujo Power Automate — generar fichero Excel para Iciar",
+      "fecha": "2026-05-21",
+      "tiempo": "tarde",
+      "estado": "⚪",
+      "horas": 2,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-067",
+      "cliente": "velasco",
+      "tipo": "accion",
+      "tarea": "Preparar propuesta de colaboración Velasco",
+      "fecha": "2026-05-22",
+      "tiempo": "mañana",
+      "estado": "⚪",
+      "horas": 2,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-068",
+      "cliente": "atitlan",
+      "tipo": "accion",
+      "tarea": "Avanzar CRM Atitlán",
+      "fecha": "2026-05-22",
+      "tiempo": "mañana",
+      "estado": "⚪",
+      "horas": 3,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-069",
+      "cliente": "fisiodrid",
+      "tipo": "accion",
+      "tarea": "Flujos Power Automate Fisiodrid",
+      "fecha": "2026-05-22",
+      "tiempo": "tarde",
+      "estado": "⚪",
+      "horas": 2,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-070",
+      "cliente": "articulo14",
+      "tipo": "accion",
+      "tarea": "Revisar solución eventos MKT",
+      "fecha": "2026-05-22",
+      "tiempo": "tarde",
+      "estado": "⚪",
+      "horas": 2,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-071",
+      "cliente": "aar",
+      "tipo": "accion",
+      "tarea": "Planificar semana siguiente",
+      "fecha": "2026-05-22",
+      "tiempo": "tarde",
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-072",
+      "cliente": "nuvirta",
+      "tipo": "accion",
+      "tarea": "Reunión con Matías Zaya",
+      "fecha": "2026-05-28",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-073",
+      "cliente": "atitlan",
+      "tipo": "accion",
+      "tarea": "Reunión Atitlán",
+      "fecha": "2026-05-28",
+      "tiempo": "10:00h",
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-074",
+      "cliente": "articulo14",
+      "tipo": "accion",
+      "tarea": "Comida con Queco y Miguel Ángel",
+      "fecha": "2026-05-27",
+      "tiempo": "mediodía",
+      "estado": "⚪",
+      "horas": 2,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-075",
+      "cliente": "articulo14",
+      "tipo": "accion",
+      "tarea": "Inauguración sede Artículo 14",
+      "fecha": "2026-05-27",
+      "tiempo": "20:00h",
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-076",
+      "cliente": "aar",
+      "tipo": "accion",
+      "tarea": "Revisión Dr. Rubio — confirmar/cancelar cita",
+      "fecha": "2026-05-27",
+      "tiempo": "12:00h",
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-077",
+      "cliente": "atitlan",
+      "tipo": "accion",
+      "tarea": "Validar funcionamiento completo Atgro con correo general",
+      "fecha": "2026-05-23",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 2,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-078",
+      "cliente": "atitlan",
+      "tipo": "accion",
+      "tarea": "Validar flujo Capital Call línea individual — proceso aprobación",
+      "fecha": "2026-05-23",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-079",
+      "cliente": "atitlan",
+      "tipo": "accion",
+      "tarea": "Validar variables de entorno en todos los procesos de notificación",
+      "fecha": "2026-05-23",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-080",
+      "cliente": "bestmedia",
+      "tipo": "accion",
+      "tarea": "Resolver bug — trabajos que no recogen presupuestos",
+      "fecha": "2026-05-23",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 2,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-081",
+      "cliente": "aar",
+      "tipo": "accion",
+      "tarea": "Recuperar certificado de empadronamiento Madrid",
+      "fecha": "2026-05-23",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-082",
+      "cliente": "aar",
+      "tipo": "accion",
+      "tarea": "Obtener certificado digital nuevo — FNMT",
+      "fecha": "2026-05-23",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-083",
+      "cliente": "aar",
+      "tipo": "accion",
+      "tarea": "Activar aplicación tarjeta sanitaria Madrid",
+      "fecha": "2026-05-23",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 0.5,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-084",
+      "cliente": "fisiodrid",
+      "tipo": "accion",
+      "tarea": "Empezar a montar listas SharePoint",
+      "fecha": "2026-05-24",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 2,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-085",
+      "cliente": "velasco",
+      "tipo": "accion",
+      "tarea": "Preparar propuesta de colaboración Velasco",
+      "fecha": "2026-05-24",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 2,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-086",
+      "cliente": "velasco",
+      "tipo": "accion",
+      "tarea": "Migración documentos subidos en las últimas 2 semanas",
+      "fecha": "2026-05-24",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 2,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-087",
+      "cliente": "articulo14",
+      "tipo": "accion",
+      "tarea": "Seleccionar eventos y definir proceso carga + asignación contactos",
+      "fecha": "2026-05-24",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 2,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-088",
+      "cliente": "larazon",
+      "tipo": "accion",
+      "tarea": "Revisar lo que han mandado y ver cómo afecta al proceso",
+      "fecha": "2026-05-24",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-089",
+      "cliente": "aar",
+      "tipo": "accion",
+      "tarea": "Reunión con Cipri — tema personal / Power Platform",
+      "fecha": "2026-06-03",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-090",
+      "cliente": "aar",
+      "tipo": "accion",
+      "tarea": "Analizar documento de Cipri",
+      "fecha": "2026-06-07",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 1.5,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-091",
+      "cliente": "nuvirta",
+      "tipo": "accion",
+      "tarea": "Reclamar a César borradores de contratos — traspaso clientes AAR a Nuvirta",
+      "fecha": "2026-06-08",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 0.5,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-092",
+      "cliente": "articulo14",
+      "tipo": "accion",
+      "tarea": "Buscar reunión con Vicky para ver el prototipo",
+      "fecha": "2026-06-08",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 0.5,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-093",
+      "cliente": "aar",
+      "tipo": "accion",
+      "tarea": "Seguimiento declaración de la Renta 2025",
+      "fecha": "2026-06-11",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-094",
+      "cliente": "aar",
+      "tipo": "accion",
+      "tarea": "Contestar a José Manuel Carballo sobre torneo de golf",
+      "fecha": "2026-06-06",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 0.5,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-095",
+      "cliente": "aar",
+      "tipo": "accion",
+      "tarea": "Revisar email",
+      "fecha": "2026-06-06",
+      "tiempo": "mañana",
+      "estado": "⚪",
+      "horas": 0.5,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-096",
+      "cliente": "articulo14",
+      "tipo": "accion",
+      "tarea": "Actualizar reuniones — colaboraciones y marketing",
+      "fecha": "2026-06-06",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-097",
+      "cliente": "nuvirta",
+      "tipo": "accion",
+      "tarea": "Actualizar reuniones — private equity y Blash",
+      "fecha": "2026-06-06",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-098",
+      "cliente": "atitlan",
+      "tipo": "accion",
+      "tarea": "Actualizar reuniones — seguimiento CRM",
+      "fecha": "2026-06-06",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-099",
+      "cliente": "fisiodrid",
+      "tipo": "accion",
+      "tarea": "Actualizar reuniones — presentación prototipo",
+      "fecha": "2026-06-06",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-100",
+      "cliente": "aar",
+      "tipo": "accion",
+      "tarea": "Contestar a Carballo sobre torneo 20-06",
+      "fecha": "2026-06-15",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 0.5,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-101",
+      "cliente": "velasco",
+      "tipo": "accion",
+      "tarea": "Analizar proyecto migración Sage",
+      "fecha": "2026-06-06",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 1.5,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-102",
+      "cliente": "nuvirta",
+      "tipo": "accion",
+      "tarea": "Cambiar factura Nuvirta a Coimbra con la cuenta correcta",
+      "fecha": "2026-06-06",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 0.5,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-103",
+      "cliente": "central",
+      "tipo": "accion",
+      "tarea": "Revisar el IS de Dúo",
+      "fecha": "2026-06-07",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-104",
+      "cliente": "aar",
+      "tipo": "accion",
+      "tarea": "Revisar grabaciones de Plaud para aprovechar el margen",
+      "fecha": "2026-06-25",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-105",
+      "cliente": "velasco",
+      "tipo": "accion",
+      "tarea": "Planificar y valorar proyecto migración Sage",
+      "fecha": "2026-06-18",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 2,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-106",
+      "cliente": "larazon",
+      "tipo": "accion",
+      "tarea": "Reunión con Clara",
+      "fecha": "2026-06-15",
+      "tiempo": "16:30",
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-107",
+      "cliente": "atitlan",
+      "tipo": "accion",
+      "tarea": "Reunión CRM Atitlán",
+      "fecha": "2026-06-16",
+      "tiempo": "10:00",
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-108",
+      "cliente": "fisiodrid",
+      "tipo": "accion",
+      "tarea": "Mejorar aplicación Fisiodrid",
+      "fecha": "2026-06-13",
+      "tiempo": "mañana",
+      "estado": "⚪",
+      "horas": 2,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-109",
+      "cliente": "central",
+      "tipo": "accion",
+      "tarea": "Resolver temas Central — Concurso de acreedores",
+      "fecha": "2026-06-14",
+      "tiempo": "mañana",
+      "estado": "⚪",
+      "horas": 2,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-110",
+      "cliente": "larazon",
+      "tipo": "accion",
+      "tarea": "Preparar reunión con Clara de La Razón",
+      "fecha": "2026-06-13",
+      "tiempo": "tarde",
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-111",
+      "cliente": "aar",
+      "tipo": "accion",
+      "tarea": "Organizar semana AAR",
+      "fecha": "2026-06-14",
+      "tiempo": "tarde",
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-112",
+      "cliente": "escondite",
+      "tipo": "accion",
+      "tarea": "Recuperar modelo Power BI para revisar datos",
+      "fecha": "2026-06-17",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 2,
+      "fechaHecho": null
+    }
   ]
 }
