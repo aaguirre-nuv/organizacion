@@ -3163,6 +3163,83 @@
       "estado": "⚪",
       "horas": 2,
       "fechaHecho": null
+    },
+    {
+      "id": "GEN-113",
+      "cliente": "central",
+      "tipo": "accion",
+      "tarea": "Contactar con Eduardo para acceso a SAGE",
+      "fecha": "2026-06-15",
+      "tiempo": "tarde",
+      "estado": "⚪",
+      "horas": 0.5,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-114",
+      "cliente": "central",
+      "tipo": "accion",
+      "tarea": "Extraer documentación concurso",
+      "fecha": "2026-06-16",
+      "tiempo": "tarde",
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-115",
+      "cliente": "atitlan",
+      "tipo": "accion",
+      "tarea": "Fusión de coinversiones Atitlán",
+      "fecha": "2026-06-17",
+      "tiempo": "mañana",
+      "estado": "⚪",
+      "horas": 1.5,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-116",
+      "cliente": "atitlan",
+      "tipo": "accion",
+      "tarea": "Acta reunión de hoy y plan de trabajo",
+      "fecha": "2026-06-17",
+      "tiempo": "mañana",
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-117",
+      "cliente": "velasco",
+      "tipo": "accion",
+      "tarea": "Revisar nombres de carpetas de expedientes",
+      "fecha": "2026-06-19",
+      "tiempo": "tarde",
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-118",
+      "cliente": "fisiodrid",
+      "tipo": "accion",
+      "tarea": "Crear flujos de Power Automate para completar listas de SharePoint",
+      "fecha": "2026-06-19",
+      "tiempo": "tarde",
+      "estado": "⚪",
+      "horas": 2,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-119",
+      "cliente": "larazon",
+      "tipo": "accion",
+      "tarea": "Validar cambios y mejora de la maqueta",
+      "fecha": "2026-06-19",
+      "tiempo": "mañana",
+      "estado": "⚪",
+      "horas": 1.5,
+      "fechaHecho": null
     }
   ]
 }
