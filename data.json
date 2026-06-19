@@ -3240,6 +3240,50 @@
       "estado": "⚪",
       "horas": 1.5,
       "fechaHecho": null
+    },
+    {
+      "id": "GEN-120",
+      "cliente": "cipri",
+      "tipo": "accion",
+      "tarea": "Avisar a Cipri de los nuevos precios de Copilot Cowork",
+      "fecha": "2026-06-22",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 0.5,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-121",
+      "cliente": "bestmedia",
+      "tipo": "accion",
+      "tarea": "Revisar las cuentas del modelo de Power BI",
+      "fecha": "2026-06-21",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-122",
+      "cliente": "bestmedia",
+      "tipo": "accion",
+      "tarea": "Avisar a Montoya de la emisión de facturas de mayo y junio desde Nuvirta — pendientes modelos de contratos",
+      "fecha": "2026-06-22",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 0.5,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-123",
+      "cliente": "aar",
+      "tipo": "accion",
+      "tarea": "Buscar solución para facturas autónomo AAR",
+      "fecha": "2026-06-24",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
     }
   ]
 }
