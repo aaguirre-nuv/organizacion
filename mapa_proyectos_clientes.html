@@ -69,6 +69,9 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
 .prio-btn:hover:not(:disabled) { color: #1a1a1a; }
 .prio-btn:disabled { opacity: 0.25; cursor: default; }
 .prio-num { font-size: 10px; color: #ccc; min-width: 12px; text-align: center; }
+.prio-input { width: 28px; font-size: 11px; text-align: center; border: 1px solid rgba(0,0,0,0.1); border-radius: 4px; padding: 2px 1px; color: #666; background: #fff; -moz-appearance: textfield; }
+.prio-input::-webkit-outer-spin-button, .prio-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.prio-input:focus { outline: none; border-color: #1D9E75; color: #1a1a1a; }
 .pend-card { background: #fff; border: 0.5px solid rgba(0,0,0,0.12); border-radius: 12px; overflow: hidden; margin-bottom: 16px; }
 .pend-header { display: grid; grid-template-columns: 54px 70px 120px 1fr 28px; gap: 8px; padding: 5px 14px; background: #f8f8f6; }
 .pend-header span { font-size: 11px; color: #bbb; text-transform: uppercase; letter-spacing: 0.05em; }
@@ -426,9 +429,10 @@ async function init() {
     } catch(e) {
       BIN = { states: {}, completed: [], hoyDone: {} };
     }
-    if (!BIN.states)    BIN.states    = {};
-    if (!BIN.completed) BIN.completed = [];
-    if (!BIN.hoyDone)   BIN.hoyDone   = {};
+    if (!BIN.states)      BIN.states      = {};
+    if (!BIN.completed)   BIN.completed   = [];
+    if (!BIN.hoyDone)     BIN.hoyDone     = {};
+    if (!BIN.prioridades) BIN.prioridades = {};
   } catch(e) {
     console.warn('Error:', e);
     document.getElementById('hoy-content').innerHTML = `<div style="padding:16px;background:#FCEBEB;border-radius:12px;font-size:13px;color:#A32D2D;">⚠ Error: ${e.message}</div>`;
@@ -615,10 +619,17 @@ function toggleAccion(id, el) {
 // ============================================================
 // PRÓXIMAS — acciones con fecha futura no completadas
 // ============================================================
+function getPrioridad(id) {
+  const p = (BIN.prioridades || {})[id];
+  return (p === undefined || p === null || p === '') ? null : Number(p);
+}
+
 function ordenarPorPrioridad(a, b) {
-  const pa = (a.prioridad === undefined || a.prioridad === null) ? Infinity : a.prioridad;
-  const pb = (b.prioridad === undefined || b.prioridad === null) ? Infinity : b.prioridad;
-  if (pa !== pb) return pa - pb;
+  const pa = getPrioridad(a.id);
+  const pb = getPrioridad(b.id);
+  const va = pa === null ? Infinity : pa;
+  const vb = pb === null ? Infinity : pb;
+  if (va !== vb) return va - vb;
   return a.fecha.localeCompare(b.fecha);
 }
 
@@ -646,11 +657,11 @@ function renderProximas() {
     const clienteData = DATA.clientes.find(c => c.id === t.cliente);
     const color = clienteData ? clienteData.color : '#888';
     const nombre = clienteData ? clienteData.nombre : t.cliente;
-    const prioLabel = (t.prioridad !== undefined && t.prioridad !== null) ? t.prioridad : '';
+    const prio = getPrioridad(t.id);
     rows += `<div class="pend-row">
       <div class="pend-prio">
         <button class="prio-btn" onclick="moverPrioridad('${t.id}','up','proximas')" ${idx === 0 ? 'disabled' : ''}>▲</button>
-        <span class="prio-num">${prioLabel}</span>
+        <input class="prio-input" type="number" value="${prio === null ? '' : prio}" placeholder="-" onchange="setPrioridadManual('${t.id}', this.value, 'proximas')">
         <button class="prio-btn" onclick="moverPrioridad('${t.id}','down','proximas')" ${idx === proximas.length - 1 ? 'disabled' : ''}>▼</button>
       </div>
       <div class="pend-fecha">${label}</div>
@@ -692,11 +703,11 @@ function renderPendientesAuto() {
     const color = clienteData ? clienteData.color : '#888';
     const nombre = clienteData ? clienteData.nombre : t.cliente;
     const estadoActual = states[t.id] || t.estado || '⚪';
-    const prioLabel = (t.prioridad !== undefined && t.prioridad !== null) ? t.prioridad : '';
+    const prio = getPrioridad(t.id);
     rows += `<div class="pend-row" style="${estadoActual === '🔵' ? 'background:#F0F4FF;' : ''}">
       <div class="pend-prio">
         <button class="prio-btn" onclick="moverPrioridad('${t.id}','up','pendientes')" ${idx === 0 ? 'disabled' : ''}>▲</button>
-        <span class="prio-num">${prioLabel}</span>
+        <input class="prio-input" type="number" value="${prio === null ? '' : prio}" placeholder="-" onchange="setPrioridadManual('${t.id}', this.value, 'pendientes')">
         <button class="prio-btn" onclick="moverPrioridad('${t.id}','down','pendientes')" ${idx === pendientes.length - 1 ? 'disabled' : ''}>▼</button>
       </div>
       <div class="pend-fecha">${label}</div>
@@ -709,14 +720,27 @@ function renderPendientesAuto() {
 }
 
 // ============================================================
-// PRIORIDAD MANUAL — reordenar cola completa (pendientes + próximas)
+// PRIORIDAD MANUAL — guardada en BIN.prioridades (no en data.json)
 // ============================================================
+function setPrioridadManual(id, valor, vista) {
+  if (!BIN.prioridades) BIN.prioridades = {};
+  if (valor === '' || valor === null || valor === undefined) {
+    delete BIN.prioridades[id];
+  } else {
+    BIN.prioridades[id] = Number(valor);
+  }
+  saveBin();
+  if (vista === 'proximas') renderProximas();
+  else renderPendientesAuto();
+}
+
 function moverPrioridad(id, direccion, vista) {
   if (!DATA || !DATA.projects) return;
   const fechaHoy = getHoy();
   const states = BIN.states || {};
+  if (!BIN.prioridades) BIN.prioridades = {};
 
-  // Construir la "cola completa": pendientes + próximas, en su orden actual
+  // Cola completa: pendientes + próximas, en su orden actual
   const cola = DATA.projects.filter(p =>
     p.tipo === 'accion' && p.fecha &&
     (states[p.id] || p.estado || '⚪') !== '✅'
@@ -727,14 +751,20 @@ function moverPrioridad(id, direccion, vista) {
   const targetIdx = direccion === 'up' ? idx - 1 : idx + 1;
   if (targetIdx < 0 || targetIdx >= cola.length) return;
 
-  // Reasignar prioridad como índice secuencial 1..N tras el intercambio
-  const tmp = cola[idx];
-  cola[idx] = cola[targetIdx];
-  cola[targetIdx] = tmp;
+  // Intercambiar los números de prioridad entre ambas tareas
+  const idA = cola[idx].id;
+  const idB = cola[targetIdx].id;
+  const prioA = getPrioridad(idA);
+  const prioB = getPrioridad(idB);
 
-  cola.forEach((t, i) => { t.prioridad = i + 1; });
+  // Si alguna no tiene prioridad asignada, usamos su posición actual en la cola (1-indexed) como base
+  const valA = prioA !== null ? prioA : idx + 1;
+  const valB = prioB !== null ? prioB : targetIdx + 1;
 
-  saveData();
+  BIN.prioridades[idA] = valB;
+  BIN.prioridades[idB] = valA;
+
+  saveBin();
 
   if (vista === 'proximas') renderProximas();
   else renderPendientesAuto();
