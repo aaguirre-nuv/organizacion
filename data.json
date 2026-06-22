@@ -352,7 +352,7 @@
     {
       "semana": "2026-06-08",
       "cliente": "aar",
-      "horas": 4.3
+      "horas": 11.1
     },
     {
       "semana": "2026-06-08",
@@ -362,12 +362,12 @@
     {
       "semana": "2026-06-08",
       "cliente": "atitlan",
-      "horas": 6.8
+      "horas": 9.0
     },
     {
       "semana": "2026-06-08",
-      "cliente": "central",
-      "horas": 0.4
+      "cliente": "bestmedia",
+      "horas": 1.8
     },
     {
       "semana": "2026-06-08",
@@ -377,7 +377,12 @@
     {
       "semana": "2026-06-08",
       "cliente": "fisiodrid",
-      "horas": 10.6
+      "horas": 13.4
+    },
+    {
+      "semana": "2026-06-08",
+      "cliente": "larazon",
+      "horas": 0.8
     },
     {
       "semana": "2026-06-08",
@@ -393,6 +398,56 @@
       "semana": "2026-06-08",
       "cliente": "velasco",
       "horas": 10.2
+    },
+    {
+      "semana": "2026-06-15",
+      "cliente": "aar",
+      "horas": 6.2
+    },
+    {
+      "semana": "2026-06-15",
+      "cliente": "atitlan",
+      "horas": 14.6
+    },
+    {
+      "semana": "2026-06-15",
+      "cliente": "bestmedia",
+      "horas": 1.8
+    },
+    {
+      "semana": "2026-06-15",
+      "cliente": "central",
+      "horas": 3.3
+    },
+    {
+      "semana": "2026-06-15",
+      "cliente": "cipri",
+      "horas": 3.3
+    },
+    {
+      "semana": "2026-06-15",
+      "cliente": "dasme",
+      "horas": 1.5
+    },
+    {
+      "semana": "2026-06-15",
+      "cliente": "fisiodrid",
+      "horas": 5.1
+    },
+    {
+      "semana": "2026-06-15",
+      "cliente": "larazon",
+      "horas": 4.5
+    },
+    {
+      "semana": "2026-06-15",
+      "cliente": "nuvirta",
+      "horas": 1.1
+    },
+    {
+      "semana": "2026-06-15",
+      "cliente": "velasco",
+      "horas": 10.5
     }
   ],
   "plantilla": [
@@ -3283,6 +3338,61 @@
       "tiempo": null,
       "estado": "⚪",
       "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-124",
+      "cliente": "velasco",
+      "tipo": "accion",
+      "tarea": "Crear flujo Automate para validar datos de expedientes SAGE con CRM",
+      "fecha": "2026-06-23",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 2,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-125",
+      "cliente": "velasco",
+      "tipo": "accion",
+      "tarea": "Revisar flujo de documentos VisiblesUsuario",
+      "fecha": "2026-06-23",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 1.5,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-126",
+      "cliente": "velasco",
+      "tipo": "accion",
+      "tarea": "Confirmar reunión miércoles 8:30 — expedientes duplicados",
+      "fecha": "2026-06-24",
+      "tiempo": "08:30",
+      "estado": "⚪",
+      "horas": 0.5,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-127",
+      "cliente": "larazon",
+      "tipo": "accion",
+      "tarea": "Revisar la MS de mayo enviada por Clara",
+      "fecha": "2026-06-25",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-128",
+      "cliente": "cipri",
+      "tipo": "accion",
+      "tarea": "Preguntar a Cipri si ha podido avanzar",
+      "fecha": "2026-06-23",
+      "tiempo": "mañana",
+      "estado": "⚪",
+      "horas": 0.5,
       "fechaHecho": null
     }
   ]
