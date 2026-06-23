@@ -31,6 +31,18 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
 .semana-dia { font-weight: 500; color: #1a1a1a; font-size: 12px; }
 .semana-note { font-size: 11px; color: #aaa; margin-bottom: 1.5rem; padding: 0 2px; }
 .pill { font-size: 11px; padding: 2px 7px; border-radius: 6px; display: inline-block; margin: 1px 2px 1px 0; }
+.semanas-table { border-collapse: collapse; width: 100%; font-size: 12px; background: #fff; border-radius: 12px; overflow: hidden; border: 0.5px solid rgba(0,0,0,0.12); }
+.semanas-table th { background: #f8f8f6; padding: 8px 10px; font-size: 11px; color: #aaa; text-transform: uppercase; letter-spacing: 0.04em; font-weight: 500; text-align: right; white-space: nowrap; border-bottom: 0.5px solid rgba(0,0,0,0.08); }
+.semanas-table th.sem-th-cliente { text-align: left; position: sticky; left: 0; background: #f8f8f6; z-index: 1; }
+.semanas-table th.sem-th-total { color: #1a1a1a; }
+.semanas-table td { padding: 7px 10px; text-align: right; border-bottom: 0.5px solid rgba(0,0,0,0.05); white-space: nowrap; color: #444; }
+.semanas-table td.sem-td-cliente { text-align: left; position: sticky; left: 0; background: #fff; z-index: 1; font-size: 12px; }
+.semanas-table td.sem-td-val { color: #888; }
+.semanas-table td.sem-td-total { font-weight: 600; color: #1a1a1a; }
+.semanas-table tr.sem-tr-totales td { border-top: 1px solid rgba(0,0,0,0.12); font-weight: 600; background: #fafaf8; }
+.semanas-table tr.sem-tr-totales td.sem-td-cliente { background: #fafaf8; }
+.semanas-table tr:hover td { background: #fafaf8; }
+.semanas-table tr:hover td.sem-td-cliente { background: #f2f2ee; }
 .client-card { background: #fff; border: 0.5px solid rgba(0,0,0,0.12); border-radius: 12px; margin-bottom: 10px; overflow: hidden; }
 .client-header { display: flex; align-items: center; gap: 10px; padding: 10px 14px; cursor: pointer; }
 .client-header:hover { background: #f8f8f6; }
@@ -216,47 +228,8 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
   </div>
 
   <div class="section" id="tab-semanas">
-    <h2>Semana 19 — 4 al 8 mayo <span style="font-size:11px;color:#aaa;font-weight:400;">en curso</span></h2>
-    <div class="semana-grid">
-      <div class="semana-header">día</div><div class="semana-header">cliente</div><div class="semana-header">tarea</div>
-      <div class="semana-cell semana-dia">Lun 4</div>
-      <div class="semana-cell"><span class="pill" style="background:#FBEAF0;color:#72243E;">Atitlán</span> <span class="pill" style="background:#378ADD;color:#fff;">BestMedia</span> <span class="pill" style="background:#7F77DD;color:#fff;">Art.14</span> <span class="pill" style="background:#E1F5EE;color:#0F6E56;">Velasco</span></div>
-      <div class="semana-cell">10:30 Atitlán · bug IdCabTrabajo · propuesta BBDD A14 · tesorería · ⚑ preparar reunión Velasco martes</div>
-      <div class="semana-cell semana-dia">Mar 5</div>
-      <div class="semana-cell"><span class="pill" style="background:#E1F5EE;color:#0F6E56;">Velasco</span> <span class="pill" style="background:#FBEAF0;color:#72243E;">Atitlán</span> <span class="pill" style="background:#FCEBEB;color:#A32D2D;">La Razón</span></div>
-      <div class="semana-cell">Mañana: visita Velasco (arranque + futuro colaboración) · Tarde: Atitlán + preparar La Razón + A14</div>
-      <div class="semana-cell semana-dia">Mié 6</div>
-      <div class="semana-cell"><span class="pill" style="background:#7F77DD;color:#fff;">Art.14</span> <span class="pill" style="background:#FCEBEB;color:#A32D2D;">La Razón</span></div>
-      <div class="semana-cell">Visita A14: Carlota 10h + Vicky 12h + Queco · Tarde: terminar La Razón</div>
-      <div class="semana-cell semana-dia">Jue 7</div>
-      <div class="semana-cell"><span class="pill" style="background:#FCEBEB;color:#A32D2D;">La Razón</span> <span class="pill" style="background:#FBEAF0;color:#72243E;">Atitlán</span></div>
-      <div class="semana-cell">10:30 reunión Clara La Razón · tarde: empujón fuerte Atitlán</div>
-      <div class="semana-cell semana-dia">Vie 8</div>
-      <div class="semana-cell"><span class="pill" style="background:#FCEBEB;color:#A32D2D;">Fisiodrid</span> <span class="pill" style="background:#7F77DD;color:#fff;">Art.14</span> <span class="pill" style="background:#378ADD;color:#fff;">BestMedia</span></div>
-      <div class="semana-cell">Fisiodrid PQ Azure + pendientes A14 y BestMedia</div>
-    </div>
-    <div class="semana-note">Semana 19 — visita Velasco martes + visita Art.14 miércoles · objetivo: cerrar La Razón, empujar Atitlán, arrancar Fisiodrid.</div>
-
-    <h2>Semana 20 — 11 al 15 mayo <span style="font-size:11px;color:#aaa;font-weight:400;">planificado</span></h2>
-    <div class="semana-grid">
-      <div class="semana-header">día</div><div class="semana-header">cliente</div><div class="semana-header">tarea</div>
-      <div class="semana-cell semana-dia">Lun 11</div>
-      <div class="semana-cell"><span class="pill" style="background:#E1F5EE;color:#04342C;">Nuvirta</span> <span class="pill" style="background:#FBEAF0;color:#72243E;">Atitlán</span></div>
-      <div class="semana-cell">Propuesta Velasco + concepto factura Atitlán + avanzar técnico</div>
-      <div class="semana-cell semana-dia">Mar 12</div>
-      <div class="semana-cell"><span class="pill" style="background:#FCEBEB;color:#A32D2D;">Fisiodrid</span> <span class="pill" style="background:#378ADD;color:#fff;">BestMedia</span></div>
-      <div class="semana-cell">PQ Azure Fisiodrid + costes ClickUp + bugs BAM</div>
-      <div class="semana-cell semana-dia">Mié 13</div>
-      <div class="semana-cell"><span class="pill" style="background:#7F77DD;color:#fff;">Art.14</span></div>
-      <div class="semana-cell">Colaboraciones + eventos MKT + licencia Vicky</div>
-      <div class="semana-cell semana-dia">Jue 14</div>
-      <div class="semana-cell"><span class="pill" style="background:#FBEAF0;color:#72243E;">Atitlán</span> <span class="pill" style="background:#FCEBEB;color:#A32D2D;">La Razón</span></div>
-      <div class="semana-cell">Empujón Atitlán + pendientes La Razón</div>
-      <div class="semana-cell semana-dia">Vie 15</div>
-      <div class="semana-cell"><span class="pill" style="background:#E1F5EE;color:#04342C;">Nuvirta</span> <span class="pill" style="background:#F1EFE8;color:#5F5E5A;">AAR</span></div>
-      <div class="semana-cell">Copilot MA + viaje Almería + facturas asesoría + certificado digital</div>
-    </div>
-    <div class="semana-note">Semana 20 — objetivo: propuesta Velasco, avanzar Atitlán, cerrar pendientes A14 y BestMedia.</div>
+    <p style="font-size:13px;color:#888;margin:0 0 14px;">Horas reales dedicadas por cliente y semana — semanas en columnas (creciente), clientes en filas.</p>
+    <div id="semanas-table-wrap" style="overflow-x:auto;"></div>
   </div>
 
   <div class="section" id="tab-proyectos">
@@ -449,6 +422,7 @@ async function init() {
   renderPendientesAuto();
   renderProximas();
   renderPlantilla();
+  renderSemanas();
 }
 
 async function saveData() {
@@ -484,7 +458,7 @@ async function handleDataFile(event) {
     document.getElementById('data-source').innerHTML = '🟢 jsonbin';
     // Rerenderizar todo
     renderHoy(); renderProyectos(); renderPlan(); renderRitmo();
-    renderLogros(); renderPendientesAuto(); renderProximas(); renderPlantilla();
+    renderLogros(); renderPendientesAuto(); renderProximas(); renderPlantilla(); renderSemanas();
     setTimeout(() => { status.textContent = ''; }, 4000);
   } catch(e) {
     status.innerHTML = '<span style="color:#A32D2D;">⚠ Error: ' + e.message + '</span>';
@@ -517,7 +491,7 @@ async function syncFromGitHub() {
     status.innerHTML = '<span style="color:#1D9E75;font-weight:600;">✅ jsonbin actualizado desde GitHub</span>';
     document.getElementById('data-source').innerHTML = '🟢 jsonbin';
     renderHoy(); renderProyectos(); renderPlan(); renderRitmo();
-    renderLogros(); renderPendientesAuto(); renderProximas(); renderPlantilla();
+    renderLogros(); renderPendientesAuto(); renderProximas(); renderPlantilla(); renderSemanas();
     setTimeout(() => { status.textContent = ''; }, 4000);
   } catch(e) {
     status.innerHTML = '<span style="color:#A32D2D;">⚠ Error: ' + e.message + '</span>';
@@ -901,6 +875,80 @@ function togglePlan(id) {
 // ============================================================
 // RITMO — planificado vs estimado vs real
 // ============================================================
+// ============================================================
+// SEMANAS — horas reales por cliente y semana (tabla cruzada)
+// ============================================================
+function renderSemanas() {
+  const wrap = document.getElementById('semanas-table-wrap');
+  if (!wrap || !DATA) return;
+  const registros = DATA.registros || [];
+
+  if (!registros.length) {
+    wrap.innerHTML = '<div style="padding:12px 14px;font-size:13px;color:#aaa;">Sin registros de horas todavía.</div>';
+    return;
+  }
+
+  // Semanas únicas, orden creciente (más antigua a la izquierda)
+  const semanas = [...new Set(registros.map(r => r.semana))].sort();
+
+  // Clientes que tienen al menos un registro, en el orden del array DATA.clientes
+  const clientesConDatos = (DATA.clientes || []).filter(c =>
+    registros.some(r => r.cliente === c.id)
+  );
+  // Por si hay algún cliente en registros que ya no está en DATA.clientes
+  const idsConocidos = new Set(clientesConDatos.map(c => c.id));
+  const huerfanos = [...new Set(registros.map(r => r.cliente))].filter(id => !idsConocidos.has(id));
+
+  // Matriz cliente -> semana -> horas
+  const matriz = {};
+  registros.forEach(r => {
+    if (!matriz[r.cliente]) matriz[r.cliente] = {};
+    matriz[r.cliente][r.semana] = (matriz[r.cliente][r.semana] || 0) + r.horas;
+  });
+
+  const fmtSemana = (s) => {
+    const d = new Date(s + 'T12:00:00');
+    return `${d.getDate()}/${d.getMonth() + 1}`;
+  };
+
+  let html = '<table class="semanas-table">';
+  // Header
+  html += '<tr><th class="sem-th-cliente">Cliente</th>';
+  semanas.forEach(s => { html += `<th>${fmtSemana(s)}</th>`; });
+  html += '<th class="sem-th-total">Total</th></tr>';
+
+  // Filas por cliente
+  const filas = clientesConDatos.map(c => ({ id: c.id, nombre: c.nombre, color: c.color }));
+  huerfanos.forEach(id => filas.push({ id, nombre: id, color: '#888' }));
+
+  filas.forEach(c => {
+    html += `<tr><td class="sem-td-cliente"><span style="color:${c.color};font-weight:600;">${c.nombre}</span></td>`;
+    let totalFila = 0;
+    semanas.forEach(s => {
+      const v = (matriz[c.id] && matriz[c.id][s]) || 0;
+      totalFila += v;
+      html += `<td class="sem-td-val">${v ? v.toFixed(1) : ''}</td>`;
+    });
+    html += `<td class="sem-td-total">${totalFila.toFixed(1)}</td></tr>`;
+  });
+
+  // Fila de totales por semana
+  html += '<tr class="sem-tr-totales"><td class="sem-td-cliente">Total</td>';
+  let granTotal = 0;
+  semanas.forEach(s => {
+    let totalCol = 0;
+    Object.keys(matriz).forEach(clienteId => {
+      totalCol += (matriz[clienteId][s] || 0);
+    });
+    granTotal += totalCol;
+    html += `<td class="sem-td-val">${totalCol.toFixed(1)}</td>`;
+  });
+  html += `<td class="sem-td-total">${granTotal.toFixed(1)}</td></tr>`;
+
+  html += '</table>';
+  wrap.innerHTML = html;
+}
+
 function renderRitmo() {
   const cont = document.getElementById('ritmo-content');
   if (!cont || !DATA) return;
