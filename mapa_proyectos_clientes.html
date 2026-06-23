@@ -43,6 +43,10 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
 .semanas-table tr.sem-tr-totales td.sem-td-cliente { background: #fafaf8; }
 .semanas-table tr:hover td { background: #fafaf8; }
 .semanas-table tr:hover td.sem-td-cliente { background: #f2f2ee; }
+.sem-prev { font-size: 9px; color: #ccc; line-height: 1; margin-top: 1px; }
+.sem-td-val.sem-cell-ok { background: rgba(29,158,117,0.08); }
+.sem-td-val.sem-cell-mid { background: rgba(232,160,32,0.10); }
+.sem-td-val.sem-cell-low { background: rgba(163,45,45,0.08); }
 .client-card { background: #fff; border: 0.5px solid rgba(0,0,0,0.12); border-radius: 12px; margin-bottom: 10px; overflow: hidden; }
 .client-header { display: flex; align-items: center; gap: 10px; padding: 10px 14px; cursor: pointer; }
 .client-header:hover { background: #f8f8f6; }
@@ -878,26 +882,76 @@ function togglePlan(id) {
 // ============================================================
 // SEMANAS — horas reales por cliente y semana (tabla cruzada)
 // ============================================================
+function mesDeSemana(semana) {
+  // semana = lunes en formato YYYY-MM-DD. Devuelve clave de mes: may, jun, jul, ago, sep, oct, nov, dic
+  const d = new Date(semana + 'T12:00:00');
+  const claves = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+  return claves[d.getMonth()];
+}
+
 function renderSemanas() {
   const wrap = document.getElementById('semanas-table-wrap');
   if (!wrap || !DATA) return;
-  const registros = DATA.registros || [];
+  const registrosOrig = DATA.registros || [];
 
-  if (!registros.length) {
+  if (!registrosOrig.length) {
     wrap.innerHTML = '<div style="padding:12px 14px;font-size:13px;color:#aaa;">Sin registros de horas todavía.</div>';
     return;
   }
 
+  // Fusionar nuvirta + aar en una sola clave "nuvirta_aar" para esta vista
+  const registros = registrosOrig.map(r => {
+    if (r.cliente === 'nuvirta' || r.cliente === 'aar') {
+      return { ...r, cliente: 'nuvirta_aar' };
+    }
+    return r;
+  });
+
   // Semanas únicas, orden creciente (más antigua a la izquierda)
   const semanas = [...new Set(registros.map(r => r.semana))].sort();
 
-  // Clientes que tienen al menos un registro, en el orden del array DATA.clientes
-  const clientesConDatos = (DATA.clientes || []).filter(c =>
-    registros.some(r => r.cliente === c.id)
-  );
-  // Por si hay algún cliente en registros que ya no está en DATA.clientes
-  const idsConocidos = new Set(clientesConDatos.map(c => c.id));
-  const huerfanos = [...new Set(registros.map(r => r.cliente))].filter(id => !idsConocidos.has(id));
+  const semanasPorMes = { may:3, jun:4, jul:4, ago:0, sep:4, oct:4, nov:4, dic:3 };
+  const planes = DATA.planificacion || [];
+
+  // Previsto semanal por cliente y semana: plan[mes] / semanasDelMes
+  function previstoSemanal(clienteId, semana) {
+    const plan = planes.find(p => p.cliente === clienteId);
+    if (!plan) return null;
+    const mes = mesDeSemana(semana);
+    const totalSemanasMes = semanasPorMes[mes];
+    if (!totalSemanasMes) return null;
+    const horasMes = plan[mes] || 0;
+    if (!horasMes) return null;
+    return horasMes / totalSemanasMes;
+  }
+
+  // Clientes con datos (ya fusionados), respetando el orden de DATA.clientes
+  // pero sustituyendo nuvirta/aar por una fila combinada "Nuvirta + AAR"
+  const idsConDatos = [...new Set(registros.map(r => r.cliente))];
+  const filas = [];
+  const yaAnadidos = new Set();
+
+  (DATA.clientes || []).forEach(c => {
+    if (c.id === 'aar') return; // se fusiona dentro de nuvirta_aar, no fila propia
+    if (c.id === 'nuvirta') {
+      if (idsConDatos.includes('nuvirta_aar') && !yaAnadidos.has('nuvirta_aar')) {
+        filas.push({ id: 'nuvirta_aar', nombre: 'Nuvirta + AAR', color: c.color });
+        yaAnadidos.add('nuvirta_aar');
+      }
+      return;
+    }
+    if (idsConDatos.includes(c.id) && !yaAnadidos.has(c.id)) {
+      filas.push({ id: c.id, nombre: c.nombre, color: c.color });
+      yaAnadidos.add(c.id);
+    }
+  });
+  // Huérfanos (clientes en registros pero no en DATA.clientes)
+  idsConDatos.forEach(id => {
+    if (!yaAnadidos.has(id)) {
+      filas.push({ id, nombre: id, color: '#888' });
+      yaAnadidos.add(id);
+    }
+  });
 
   // Matriz cliente -> semana -> horas
   const matriz = {};
@@ -911,15 +965,19 @@ function renderSemanas() {
     return `${d.getDate()}/${d.getMonth() + 1}`;
   };
 
+  function colorCelda(real, previsto) {
+    if (previsto === null || previsto === 0) return '';
+    const ratio = real / previsto;
+    if (ratio >= 0.85) return 'sem-cell-ok';
+    if (ratio >= 0.5) return 'sem-cell-mid';
+    return 'sem-cell-low';
+  }
+
   let html = '<table class="semanas-table">';
   // Header
   html += '<tr><th class="sem-th-cliente">Cliente</th>';
   semanas.forEach(s => { html += `<th>${fmtSemana(s)}</th>`; });
   html += '<th class="sem-th-total">Total</th></tr>';
-
-  // Filas por cliente
-  const filas = clientesConDatos.map(c => ({ id: c.id, nombre: c.nombre, color: c.color }));
-  huerfanos.forEach(id => filas.push({ id, nombre: id, color: '#888' }));
 
   filas.forEach(c => {
     html += `<tr><td class="sem-td-cliente"><span style="color:${c.color};font-weight:600;">${c.nombre}</span></td>`;
@@ -927,7 +985,10 @@ function renderSemanas() {
     semanas.forEach(s => {
       const v = (matriz[c.id] && matriz[c.id][s]) || 0;
       totalFila += v;
-      html += `<td class="sem-td-val">${v ? v.toFixed(1) : ''}</td>`;
+      const prev = previstoSemanal(c.id, s);
+      const claseColor = colorCelda(v, prev);
+      const prevLabel = prev !== null ? `<div class="sem-prev">${prev.toFixed(1)}</div>` : '';
+      html += `<td class="sem-td-val ${claseColor}">${v ? v.toFixed(1) : '—'}${prevLabel}</td>`;
     });
     html += `<td class="sem-td-total">${totalFila.toFixed(1)}</td></tr>`;
   });
