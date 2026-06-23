@@ -63,15 +63,17 @@ h2 { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 10px; }
 .chevron.open { transform: rotate(90deg); }
 .tasks { display: none; border-top: 0.5px solid rgba(0,0,0,0.08); }
 .tasks.open { display: block; }
-.tasks-header { display: grid; grid-template-columns: 26px 60px 1fr 1fr; padding: 5px 14px; background: #f8f8f6; }
+.tasks-header { display: grid; grid-template-columns: 44px 26px 60px 1fr 1fr; padding: 5px 14px; background: #f8f8f6; }
 .tasks-header span { font-size: 11px; color: #bbb; text-transform: uppercase; letter-spacing: 0.05em; }
-.task-row { display: grid; grid-template-columns: 26px 60px 1fr 1fr; gap: 6px; padding: 8px 14px; border-top: 0.5px solid rgba(0,0,0,0.05); align-items: start; }
+.task-row { display: grid; grid-template-columns: 44px 26px 60px 1fr 1fr; gap: 6px; padding: 8px 14px; border-top: 0.5px solid rgba(0,0,0,0.05); align-items: start; }
 .task-row:hover { background: #fafaf8; }
 .task-status { cursor: pointer; font-size: 13px; line-height: 1.4; user-select: none; }
 .task-id { font-size: 10px; color: #ccc; padding-top: 2px; }
 .task-label { font-size: 13px; color: #1a1a1a; }
 .task-label.done-text { color: #bbb; text-decoration: line-through; }
 .task-criteria { font-size: 11px; color: #999; }
+.task-criteria.done-text { color: #ccc; }
+.task-prio { display: flex; align-items: center; justify-content: center; gap: 2px; padding-top: 1px; }
 .toggle-all { font-size: 12px; color: #999; cursor: pointer; text-align: right; margin-bottom: 8px; }
 .toggle-all:hover { color: #1a1a1a; }
 .pend-row { display: grid; grid-template-columns: 54px 70px 120px 1fr 28px; gap: 8px; padding: 8px 14px; border-top: 0.5px solid rgba(0,0,0,0.05); align-items: center; }
@@ -709,6 +711,7 @@ function setPrioridadManual(id, valor, vista) {
   }
   saveBin();
   if (vista === 'proximas') renderProximas();
+  else if (vista === 'proyectos') renderProyectos();
   else renderPendientesAuto();
 }
 
@@ -1174,15 +1177,55 @@ function renderProyectos() {
   if (!DATA || !DATA.clientes) return;
   const cont = document.getElementById('proyectos-content');
   const states = BIN.states || {};
+  const completedMap = {};
+  (BIN.completed || []).forEach(c => { completedMap[c.id] = c.fechaHecho; });
+
+  // Recordar qué clientes estaban desplegados antes de redibujar
+  const abiertos = new Set();
+  DATA.clientes.forEach(c => {
+    const t = document.getElementById('tasks-' + c.id);
+    if (t && t.classList.contains('open')) abiertos.add(c.id);
+  });
+
   let html = '';
 
   DATA.clientes.forEach(cliente => {
-    const tareas = DATA.projects.filter(p => p.cliente === cliente.id && p.tipo !== 'accion');
+    let tareas = DATA.projects.filter(p => p.cliente === cliente.id && p.tipo !== 'accion');
     if (!tareas.length) return;
     const badgeClass = cliente.badgeColor || 'badge-gray';
     const badgeStyle = badgeClass === 'badge-inversion'
       ? 'style="background:#EEEDFE;color:#3C3489;"'
       : `class="badge ${badgeClass}"`;
+
+    // Separar pendientes/en curso de completadas
+    const pendientesTareas = [];
+    const completadasTareas = [];
+    tareas.forEach(t => {
+      const estado = states[t.id] || t.estado || '⚪';
+      if (estado === '✅') completadasTareas.push(t);
+      else pendientesTareas.push(t);
+    });
+
+    // Pendientes: por prioridad manual (BIN.prioridades), luego orden original
+    pendientesTareas.sort((a, b) => {
+      const pa = getPrioridad(a.id);
+      const pb = getPrioridad(b.id);
+      const va = pa === null ? Infinity : pa;
+      const vb = pb === null ? Infinity : pb;
+      return va - vb;
+    });
+
+    // Completadas: por fechaHecho (más reciente primero), sin fecha al final
+    completadasTareas.sort((a, b) => {
+      const fa = completedMap[a.id] || '';
+      const fb = completedMap[b.id] || '';
+      if (fa === fb) return 0;
+      if (!fa) return 1;
+      if (!fb) return -1;
+      return fb.localeCompare(fa);
+    });
+
+    const tareasOrdenadas = [...pendientesTareas, ...completadasTareas];
 
     html += `<div class="client-card">
       <div class="client-header" onclick="toggle('${cliente.id}')">
@@ -1193,16 +1236,30 @@ function renderProyectos() {
         <span class="chevron" id="chev-${cliente.id}">▶</span>
       </div>
       <div class="tasks" id="tasks-${cliente.id}">
-        <div class="tasks-header"><span></span><span>id</span><span>tema</span><span>done cuando</span></div>`;
+        <div class="tasks-header"><span>prio</span><span></span><span>id</span><span>tema</span><span>done cuando</span></div>`;
 
-    tareas.forEach(t => {
+    const noCompletadasCount = pendientesTareas.length;
+    tareasOrdenadas.forEach((t, idx) => {
       const estado = states[t.id] || t.estado || '⚪';
       const isDone = estado === '✅';
+      const prio = getPrioridad(t.id);
+      let prioCell;
+      if (isDone) {
+        prioCell = '<div class="task-prio"></div>';
+      } else {
+        const idxEnPendientes = idx;
+        prioCell = `<div class="task-prio">
+          <button class="prio-btn" onclick="moverPrioridadProyecto('${t.id}','${cliente.id}','up')" ${idxEnPendientes === 0 ? 'disabled' : ''}>▲</button>
+          <input class="prio-input" type="number" value="${prio === null ? '' : prio}" placeholder="-" onchange="setPrioridadManual('${t.id}', this.value, 'proyectos')">
+          <button class="prio-btn" onclick="moverPrioridadProyecto('${t.id}','${cliente.id}','down')" ${idxEnPendientes === noCompletadasCount - 1 ? 'disabled' : ''}>▼</button>
+        </div>`;
+      }
       html += `<div class="task-row">
+        ${prioCell}
         <div class="task-status" onclick="cycleStatus('${t.id}',this)">${estado}</div>
         <div class="task-id">${t.id}</div>
         <div class="task-label ${isDone ? 'done-text' : ''}">${t.tarea}</div>
-        <div class="task-criteria">${t.criterio || ''}</div>
+        <div class="task-criteria ${isDone ? 'done-text' : ''}">${isDone && completedMap[t.id] ? completedMap[t.id] : (t.criterio || '')}</div>
       </div>`;
     });
 
@@ -1210,6 +1267,46 @@ function renderProyectos() {
   });
 
   cont.innerHTML = html;
+
+  // Restaurar desplegables que estaban abiertos
+  abiertos.forEach(id => {
+    const t = document.getElementById('tasks-' + id);
+    const ch = document.getElementById('chev-' + id);
+    if (t) t.classList.add('open');
+    if (ch) ch.classList.add('open');
+  });
+}
+
+function moverPrioridadProyecto(id, clienteId, direccion) {
+  if (!DATA || !DATA.projects) return;
+  const states = BIN.states || {};
+  if (!BIN.prioridades) BIN.prioridades = {};
+
+  const pendientes = DATA.projects.filter(p =>
+    p.cliente === clienteId && p.tipo !== 'accion' && (states[p.id] || p.estado || '⚪') !== '✅'
+  ).sort((a, b) => {
+    const pa = getPrioridad(a.id), pb = getPrioridad(b.id);
+    const va = pa === null ? Infinity : pa, vb = pb === null ? Infinity : pb;
+    return va - vb;
+  });
+
+  const idx = pendientes.findIndex(p => p.id === id);
+  if (idx === -1) return;
+  const targetIdx = direccion === 'up' ? idx - 1 : idx + 1;
+  if (targetIdx < 0 || targetIdx >= pendientes.length) return;
+
+  const idA = pendientes[idx].id;
+  const idB = pendientes[targetIdx].id;
+  const prioA = getPrioridad(idA);
+  const prioB = getPrioridad(idB);
+  const valA = prioA !== null ? prioA : idx + 1;
+  const valB = prioB !== null ? prioB : targetIdx + 1;
+
+  BIN.prioridades[idA] = valB;
+  BIN.prioridades[idB] = valA;
+
+  saveBin();
+  renderProyectos();
 }
 
 function cycleStatus(id, el) {
@@ -1232,6 +1329,7 @@ function cycleStatus(id, el) {
   }
   saveBin();
   renderLogros();
+  if (tarea && tarea.tipo !== 'accion') renderProyectos();
 }
 
 // ============================================================
