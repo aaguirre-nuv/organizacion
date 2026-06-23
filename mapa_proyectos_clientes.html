@@ -982,29 +982,41 @@ function renderSemanas() {
   filas.forEach(c => {
     html += `<tr><td class="sem-td-cliente"><span style="color:${c.color};font-weight:600;">${c.nombre}</span></td>`;
     let totalFila = 0;
+    let prevTotalFila = 0;
+    let tieneAlgunPrevisto = false;
     semanas.forEach(s => {
       const v = (matriz[c.id] && matriz[c.id][s]) || 0;
       totalFila += v;
       const prev = previstoSemanal(c.id, s);
+      if (prev !== null) { prevTotalFila += prev; tieneAlgunPrevisto = true; }
       const claseColor = colorCelda(v, prev);
       const prevLabel = prev !== null ? `<div class="sem-prev">${prev.toFixed(1)}</div>` : '';
       html += `<td class="sem-td-val ${claseColor}">${v ? v.toFixed(1) : '—'}${prevLabel}</td>`;
     });
-    html += `<td class="sem-td-total">${totalFila.toFixed(1)}</td></tr>`;
+    const claseColorTotal = tieneAlgunPrevisto ? colorCelda(totalFila, prevTotalFila) : '';
+    const prevTotalLabel = tieneAlgunPrevisto ? `<div class="sem-prev">${prevTotalFila.toFixed(1)}</div>` : '';
+    html += `<td class="sem-td-total ${claseColorTotal}">${totalFila.toFixed(1)}${prevTotalLabel}</td></tr>`;
   });
 
   // Fila de totales por semana
   html += '<tr class="sem-tr-totales"><td class="sem-td-cliente">Total</td>';
   let granTotal = 0;
+  let granPrevisto = 0;
   semanas.forEach(s => {
     let totalCol = 0;
+    let prevCol = 0;
     Object.keys(matriz).forEach(clienteId => {
       totalCol += (matriz[clienteId][s] || 0);
+      const p = previstoSemanal(clienteId, s);
+      if (p !== null) prevCol += p;
     });
     granTotal += totalCol;
-    html += `<td class="sem-td-val">${totalCol.toFixed(1)}</td>`;
+    granPrevisto += prevCol;
+    const prevColLabel = prevCol ? `<div class="sem-prev">${prevCol.toFixed(1)}</div>` : '';
+    html += `<td class="sem-td-val">${totalCol.toFixed(1)}${prevColLabel}</td>`;
   });
-  html += `<td class="sem-td-total">${granTotal.toFixed(1)}</td></tr>`;
+  const prevGranLabel = granPrevisto ? `<div class="sem-prev">${granPrevisto.toFixed(1)}</div>` : '';
+  html += `<td class="sem-td-total">${granTotal.toFixed(1)}${prevGranLabel}</td></tr>`;
 
   html += '</table>';
   wrap.innerHTML = html;
