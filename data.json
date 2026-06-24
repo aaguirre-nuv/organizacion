@@ -3394,6 +3394,39 @@
       "estado": "⚪",
       "horas": 0.5,
       "fechaHecho": null
+    },
+    {
+      "id": "GEN-129",
+      "cliente": "articulo14",
+      "tipo": "accion",
+      "tarea": "Llamar a Queco",
+      "fecha": "2026-06-15",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 0.5,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-130",
+      "cliente": "central",
+      "tipo": "accion",
+      "tarea": "Llamar a JM",
+      "fecha": "2026-06-15",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 0.5,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-131",
+      "cliente": "aar",
+      "tipo": "accion",
+      "tarea": "Cambiar matriz multinivel de Xerpa de BestMedia a Nuvirta (la de Artículo 14 sigue en AAR)",
+      "fecha": "2026-06-19",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
     }
   ]
 }
