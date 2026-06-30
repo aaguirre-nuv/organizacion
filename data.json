@@ -3427,6 +3427,83 @@
       "estado": "⚪",
       "horas": 1,
       "fechaHecho": null
+    },
+    {
+      "id": "GEN-132",
+      "cliente": "cipri",
+      "tipo": "accion",
+      "tarea": "Planificar sesión con Cipri el jueves 2 de julio",
+      "fecha": "2026-06-28",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 0.5,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-133",
+      "cliente": "velasco",
+      "tipo": "accion",
+      "tarea": "Migrar documentos",
+      "fecha": "2026-06-28",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 1.5,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-134",
+      "cliente": "velasco",
+      "tipo": "accion",
+      "tarea": "Preparar reunión Velasco",
+      "fecha": "2026-06-28",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-135",
+      "cliente": "velasco",
+      "tipo": "accion",
+      "tarea": "Reunión Velasco",
+      "fecha": "2026-06-30",
+      "tiempo": "08:30",
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-136",
+      "cliente": "atitlan",
+      "tipo": "accion",
+      "tarea": "Reunión Atitlán",
+      "fecha": "2026-06-30",
+      "tiempo": "11:00",
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-137",
+      "cliente": "articulo14",
+      "tipo": "accion",
+      "tarea": "Consultar la cuenta 470",
+      "fecha": "2026-06-30",
+      "tiempo": "mañana",
+      "estado": "⚪",
+      "horas": 0.5,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-138",
+      "cliente": "central",
+      "tipo": "accion",
+      "tarea": "Revisar los contratos de bancos",
+      "fecha": "2026-06-30",
+      "tiempo": "mañana",
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
     }
   ]
 }
