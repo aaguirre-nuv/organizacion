@@ -3515,6 +3515,17 @@
       "estado": "⚪",
       "horas": 1,
       "fechaHecho": null
+    },
+    {
+      "id": "GEN-140",
+      "cliente": "atitlan",
+      "tipo": "accion",
+      "tarea": "Avisar a Vladi sobre el portal de Atitlán",
+      "fecha": "2026-07-01",
+      "tiempo": "mañana",
+      "estado": "⚪",
+      "horas": 0.5,
+      "fechaHecho": null
     }
   ]
 }
