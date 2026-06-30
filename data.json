@@ -3504,6 +3504,17 @@
       "estado": "⚪",
       "horas": 1,
       "fechaHecho": null
+    },
+    {
+      "id": "GEN-139",
+      "cliente": "bestmedia",
+      "tipo": "accion",
+      "tarea": "Incluir las fechas de los nuevos años fiscales en el report de Power BI",
+      "fecha": "2026-06-30",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
     }
   ]
 }
