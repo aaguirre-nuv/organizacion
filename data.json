@@ -3526,6 +3526,105 @@
       "estado": "⚪",
       "horas": 0.5,
       "fechaHecho": null
+    },
+    {
+      "id": "GEN-141",
+      "cliente": "atitlan",
+      "tipo": "accion",
+      "tarea": "Confirmar con Vladi la puesta en marcha del portal el 7 de septiembre",
+      "fecha": "2026-07-06",
+      "tiempo": "mañana",
+      "estado": "⚪",
+      "horas": 0.5,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-142",
+      "cliente": "velasco",
+      "tipo": "accion",
+      "tarea": "Revisar los flujos de cargos",
+      "fecha": "2026-07-04",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-143",
+      "cliente": "velasco",
+      "tipo": "accion",
+      "tarea": "Ver los contactos que desactivar",
+      "fecha": "2026-07-04",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-144",
+      "cliente": "velasco",
+      "tipo": "accion",
+      "tarea": "Planificar la carga de Access",
+      "fecha": "2026-07-04",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-145",
+      "cliente": "velasco",
+      "tipo": "accion",
+      "tarea": "Revisar e implementar los flujos de actualizar expedientes",
+      "fecha": "2026-07-04",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 2,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-146",
+      "cliente": "atitlan",
+      "tipo": "accion",
+      "tarea": "Revisar los flujos de liquidaciones",
+      "fecha": "2026-07-05",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 1.5,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-147",
+      "cliente": "atitlan",
+      "tipo": "accion",
+      "tarea": "Planificar los siguientes pasos",
+      "fecha": "2026-07-05",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 1,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-148",
+      "cliente": "articulo14",
+      "tipo": "accion",
+      "tarea": "Cerrar la carga de eventos",
+      "fecha": "2026-07-06",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 1.5,
+      "fechaHecho": null
+    },
+    {
+      "id": "GEN-149",
+      "cliente": "articulo14",
+      "tipo": "accion",
+      "tarea": "Implementar mejoras de la app",
+      "fecha": "2026-07-06",
+      "tiempo": null,
+      "estado": "⚪",
+      "horas": 2,
+      "fechaHecho": null
     }
   ]
 }
