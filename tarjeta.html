@@ -380,7 +380,7 @@ END:VCARD`;
     const nombre = document.getElementById("fname").value.trim();
     const contacto = document.getElementById("fcontact").value.trim();
     const status = document.getElementById("formStatus");
-    status.textContent = "Enviando…";
+    status.textContent = "Registrando…";
     status.className = "status";
 
     const FORMSPREE_ENDPOINT = "https://formspree.io/f/TU_ID_FORMSPREE";
@@ -396,33 +396,64 @@ END:VCARD`;
           origen: "Tarjeta digital evento"
         })
       });
-      if (resp.ok) {
-        status.textContent = "Registrado. Abriendo email…";
-        status.className = "status ok";
-      } else {
-        status.textContent = "No se pudo registrar, pero puedes enviar igualmente.";
-        status.className = "status err";
-      }
+      status.textContent = resp.ok ? "Registrado. Abriendo panel de compartir…" : "No se pudo registrar, pero puedes enviar igualmente.";
+      status.className = resp.ok ? "status ok" : "status err";
     } catch (err) {
       status.textContent = "Sin conexión al registro, enviando igualmente…";
       status.className = "status err";
     }
 
-    const esEmail = contacto.includes("@");
-    const asunto = encodeURIComponent("Contacto de Álvaro Aguirre — Nuvirta");
-    const cuerpo = encodeURIComponent(
-      `Hola ${nombre},\n\nEncantado de conocerte. Aquí tienes mis datos de contacto:\n\nÁlvaro Aguirre — Co-founder, Nuvirta\nTeléfono: +34 666 45 05 22\nEmail: aaguirre@nuvirta.com\nWeb: https://www.nuvirta.com\n\nUn saludo,\nÁlvaro`
-    );
+    const nombreArchivo = "alvaro-aguirre-nuvirta.vcf";
+    const vcardFile = new File([VCARD], nombreArchivo, { type: "text/vcard" });
+    const mensaje = `Hola ${nombre}, encantado de conocerte. Aquí tienes mis datos de contacto — Álvaro Aguirre, Co-founder Nuvirta. www.nuvirta.com`;
 
-    setTimeout(() => {
-      if (esEmail) {
-        window.location.href = `mailto:${contacto}?subject=${asunto}&body=${cuerpo}`;
+    const puedeCompartirArchivo = navigator.canShare && navigator.canShare({ files: [vcardFile] });
+
+    setTimeout(async () => {
+      if (puedeCompartirArchivo) {
+        try {
+          await navigator.share({
+            files: [vcardFile],
+            title: "Contacto de Álvaro Aguirre — Nuvirta",
+            text: mensaje
+          });
+          status.textContent = "Compartido correctamente.";
+          status.className = "status ok";
+        } catch (err) {
+          // Usuario canceló el panel de compartir: no es un error
+          if (err.name !== "AbortError") {
+            status.textContent = "No se pudo compartir el archivo.";
+            status.className = "status err";
+          }
+        }
       } else {
-        window.location.href = `https://wa.me/?text=${asunto}%0A%0A${cuerpo}`;
+        // Respaldo: el navegador no soporta compartir ficheros.
+        // Descargamos el contacto para que lo adjunten a mano, y abrimos email/WhatsApp con el texto ya listo.
+        const blob = new Blob([VCARD], { type: "text/vcard;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = nombreArchivo;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
+        const esEmail = contacto.includes("@");
+        const asunto = encodeURIComponent("Contacto de Álvaro Aguirre — Nuvirta");
+        const cuerpo = encodeURIComponent(mensaje + "\n\n(Te hemos descargado el contacto — adjúntalo a este email si tu app no lo hizo automáticamente)");
+        if (esEmail) {
+          window.location.href = `mailto:${contacto}?subject=${asunto}&body=${cuerpo}`;
+        } else {
+          window.location.href = `https://wa.me/?text=${asunto}%0A%0A${cuerpo}`;
+        }
+        status.textContent = "Tu navegador no adjunta archivos automáticamente: te hemos descargado el contacto para adjuntarlo a mano.";
+        status.className = "status err";
       }
+
       overlay.classList.remove("open");
       document.getElementById("shareForm").reset();
-    }, 900);
+    }, 700);
   });
 </script>
 
